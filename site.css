@@ -239,3 +239,10 @@ html.embed .sheet{border:0;box-shadow:none}
 .g-axis{stroke:var(--ink);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .g-o{font-family:var(--font-hand);font-weight:700;font-size:26px;fill:var(--ink)}
 @media (pointer:coarse){ .linepick select{font-size:16px} }
+
+/* practice: form wrapper for the label box, pencil and eraser */
+.edit-form{display:contents}
+.board.tool-pencil, .board.tool-pencil *{cursor:crosshair}
+.board.tool-eraser, .board.tool-eraser *{cursor:cell}
+.tooltile[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.tooltile[aria-pressed="true"] .ic{stroke:var(--paper)}

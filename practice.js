@@ -87,20 +87,21 @@ var CURVES = {
   ac:  {label:'AC',   col:'ac', d:[['M',0,0],['C',0.12,0.75,0.32,1,0.52,1],['C',0.72,1,0.88,0.75,1,0.25]], end:[1,0.25]},
   lrac:{label:'LRAC', col:'ac', d:[['M',0,0],['C',0.12,0.65,0.35,0.92,1,0.95]], end:[1,0.95]},
   lrmc:{label:'LRMC', col:'mc', d:[['M',0,1],['C',0.45,0.95,0.78,0.65,1,0]], end:[1,0]},
-  as:  {label:'AS',   col:'ac', d:[['M',0,0.9],['L',0.45,0.9],['C',0.75,0.9,0.9,0.65,0.93,0]], end:[0.93,0]}
+  as:  {label:'AS',   col:'ac', d:[['M',0,0.9],['L',0.45,0.9],['C',0.75,0.9,0.9,0.65,0.93,0]], end:[0.93,0]},
+  ppc: {label:'PPC',  col:'ar', d:[['M',0,0],['C',0.58,0,1,0.42,1,1]], end:[0.82,0.3]}
 };
 var COLOURS = [['ink','Black'],['ar','Blue'],['mr','Purple'],['mc','Red'],['ac','Green']];
 var FILLS = [['profit','Profit','#FFDD33'],['cost','Loss / cost','#FF8DBA'],['dwl','Welfare loss','#FF9A3D'],['cs','Consumer surplus','#6FB8FF'],['gain','Gain','#74D99A']];
 var W=1000, H=700;
 var AXES = {
-  one:[{ox:110,oy:610,top:80,right:940}],
-  two:[{ox:90,oy:610,top:80,right:462},{ox:572,oy:610,top:80,right:945}]
+  one:[{ox:160,oy:610,top:80,right:940}],
+  two:[{ox:140,oy:610,top:80,right:450},{ox:620,oy:610,top:80,right:950}]
 };
 
 /* ======================================================================
    STATE
    ====================================================================== */
-var st = {q:0, pieces:[], axes:{}, mode:'one', sel:null, revealed:false, n:0, editing:null};
+var st = {q:0, pieces:[], axes:{}, mode:'one', sel:null, revealed:false, n:0, editing:null, tool:'select'};
 var undoStack = [];
 var svg = document.getElementById('svg'), board = document.getElementById('board');
 
@@ -134,7 +135,23 @@ function curvePath(p){
     return s;
   }).join(' ');
 }
+function drawPath(pts){
+  if(!pts.length) return '';
+  var d='M'+r1(pts[0][0])+' '+r1(pts[0][1]);
+  if(pts.length<3){ for(var i=1;i<pts.length;i++) d+='L'+r1(pts[i][0])+' '+r1(pts[i][1]); return d; }
+  for(var j=1;j<pts.length-1;j++){
+    var mx=(pts[j][0]+pts[j+1][0])/2, my=(pts[j][1]+pts[j+1][1])/2;
+    d+='Q'+r1(pts[j][0])+' '+r1(pts[j][1])+' '+r1(mx)+' '+r1(my);
+  }
+  var l=pts[pts.length-1]; return d+'L'+r1(l[0])+' '+r1(l[1]);
+}
+function bbox(p){
+  var xs=p.pts.map(function(v){return v[0];}), ys=p.pts.map(function(v){return v[1];});
+  var x=Math.min.apply(null,xs), y=Math.min.apply(null,ys);
+  return {x:x-8, y:y-8, w:Math.max.apply(null,xs)-x+16, h:Math.max.apply(null,ys)-y+16};
+}
 function labelAnchor(p){
+  if(p.t==='draw') return p.pts[p.pts.length-1];
   if(CURVES[p.t]){ var e=CURVES[p.t].end; return [p.x+e[0]*p.w, p.y+e[1]*p.h]; }
   if(p.t==='line') return [p.x2, p.y2];
   return [p.x, p.y];
@@ -164,33 +181,44 @@ function render(){
     } else if(p.t==='text'){
       if(!isEditing(p.id)) texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" x="'+r1(p.x)+'" y="'+r1(p.y)+'">'+fmt(p.label||'')+'</text>';
     } else {
-      var d = p.t==='line' ? 'M'+r1(p.x1)+' '+r1(p.y1)+'L'+r1(p.x2)+' '+r1(p.y2) : curvePath(p);
+      var d = p.t==='line' ? 'M'+r1(p.x1)+' '+r1(p.y1)+'L'+r1(p.x2)+' '+r1(p.y2) : p.t==='draw' ? drawPath(p.pts) : curvePath(p);
       strokes+='<g><path class="pc k-'+col+(p.dash?' dash':'')+'" d="'+d+'"/><path class="hit" data-id="'+p.id+'" d="'+d+'"/>';
       if(p.label && !isEditing(p.id)){ var an=labelAnchor(p); texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" data-role="label" x="'+r1(an[0]+p.lx)+'" y="'+r1(an[1]+p.ly)+'">'+fmt(p.label)+'</text>'; }
       strokes+='</g>';
     }
   });
   /* a selected curve can be grabbed anywhere inside its dotted box */
-  var grab = (sel && CURVES[sel.t]) ? '<rect class="grab" data-id="'+sel.id+'" x="'+r1(sel.x)+'" y="'+r1(sel.y)+'" width="'+r1(sel.w)+'" height="'+r1(sel.h)+'"/>' : '';
+  var gb = sel ? (CURVES[sel.t] ? sel : sel.t==='draw' ? bbox(sel) : null) : null;
+  var grab = gb ? '<rect class="grab" data-id="'+sel.id+'" x="'+r1(gb.x)+'" y="'+r1(gb.y)+'" width="'+r1(gb.w)+'" height="'+r1(gb.h)+'"/>' : '';
   s+=shades+grab+strokes+texts;
   if(sel) s+=handlesFor(sel);
   svg.innerHTML=s;
   renderSel();
 }
 function isEditing(id){ return st.editing && st.editing.kind==='piece' && st.editing.id===id; }
-function isStroke(p){ return !!CURVES[p.t] || p.t==='line'; }
+function isStroke(p){ return !!CURVES[p.t] || p.t==='line' || p.t==='draw'; }
 /* where each axis label goes: the vertical one beside the arrow, the horizontal one under the arrow */
 function axisGeom(key){
   var ax=AXES[st.mode][(+key.charAt(1))-1]; if(!ax) return null;
-  if(key.charAt(0)==='y') return {x:ax.ox+18, y:ax.top-30, anchor:'start', bx:ax.ox+12, by:ax.top-62, bw:200};
+  if(key.charAt(0)==='y'){ var bw=Math.min(ax.ox-24, 140); return {x:ax.ox-14, y:ax.top+4, anchor:'end', bx:ax.ox-14-bw, by:ax.top-20, bw:bw, wrap:Math.max(6, Math.floor(bw/11.5))}; }
   return {x:ax.right+12, y:ax.oy+52, anchor:'end', bx:ax.right+18-200, by:ax.oy+22, bw:200};
 }
 function axisLabel(key){
   var g=axisGeom(key); if(!g || (st.editing && st.editing.kind==='axis' && st.editing.key===key)) return '';
   var v=st.axes[key];
-  if(v) return '<text class="ax-lab" data-axis="'+key+'" x="'+g.x+'" y="'+g.y+'" text-anchor="'+g.anchor+'">'+fmt(v)+'</text>';
+  if(v){
+    var lines=g.wrap ? wrapWords(v, g.wrap) : [v];
+    return '<text class="ax-lab" data-axis="'+key+'" x="'+g.x+'" y="'+g.y+'" text-anchor="'+g.anchor+'">'
+      + lines.map(function(l,i){ return '<tspan x="'+g.x+'" dy="'+(i?26:0)+'">'+fmt(l)+'</tspan>'; }).join('') + '</text>';
+  }
   return '<rect class="ax-empty" data-axis="'+key+'" x="'+g.bx+'" y="'+g.by+'" width="'+g.bw+'" height="40" rx="5"/>'
        + '<text class="ax-ph" data-axis="'+key+'" x="'+(g.bx+12)+'" y="'+(g.by+28)+'">label?</text>';
+}
+function wrapWords(t, max){
+  var words=String(t).split(/\s+/), lines=[], cur='';
+  words.forEach(function(w){ if(cur && (cur+' '+w).length>max){ lines.push(cur); cur=w; } else cur = cur ? cur+' '+w : w; });
+  if(cur) lines.push(cur);
+  return lines;
 }
 function labelPos(p){
   if(p.t==='text') return [p.x, p.y];
@@ -199,11 +227,12 @@ function labelPos(p){
 function handlePts(p){
   if(p.t==='line') return [['p1',p.x1,p.y1],['p2',p.x2,p.y2]];
   if(p.t==='tri') return p.p.map(function(v,i){ return ['v'+i,v[0],v[1]]; });
-  if(p.t==='text') return [];
+  if(p.t==='text' || p.t==='draw') return [];
   return [['nw',p.x,p.y],['ne',p.x+p.w,p.y],['sw',p.x,p.y+p.h],['se',p.x+p.w,p.y+p.h]];
 }
 function handlesFor(p){
   var s='';
+  if(p.t==='draw'){ var b=bbox(p); s+='<rect class="selbox-outline" x="'+r1(b.x)+'" y="'+r1(b.y)+'" width="'+r1(b.w)+'" height="'+r1(b.h)+'"/>'; }
   if(p.w!==undefined && p.t!=='text') s+='<rect class="selbox-outline" x="'+r1(p.x)+'" y="'+r1(p.y)+'" width="'+r1(p.w)+'" height="'+r1(p.h)+'"/>';
   handlePts(p).forEach(function(h){
     s+='<circle class="handle-hit" data-h="'+h[0]+'" cx="'+r1(h[1])+'" cy="'+r1(h[2])+'" r="24"/>'
@@ -243,9 +272,20 @@ svg.addEventListener('pointerdown', function(e){
   if(e.button!==undefined && e.button!==0) return;
   var t=e.target, h=t.getAttribute && t.getAttribute('data-h'), id=t.getAttribute && t.getAttribute('data-id');
   var axk=t.getAttribute && t.getAttribute('data-axis'), role=t.getAttribute && t.getAttribute('data-role');
-  if(axk){ e.preventDefault(); commitEdit(); openEditor({kind:'axis', key:axk}); return; }
+  if(st.tool==='eraser'){
+    if(st.editing) commitEdit();
+    drag={mode:'erase', before:snapshot()}; eraseAt(e);
+    svg.setPointerCapture(e.pointerId); e.preventDefault(); return;
+  }
+  if(axk){ commitEdit(); drag={mode:'axis', key:axk}; svg.setPointerCapture(e.pointerId); e.preventDefault(); return; }
   if(st.editing) commitEdit();
   var p0=pt(e);
+  if(st.tool==='pencil'){
+    st.sel=null; render();
+    drag={mode:'draw', pts:[[p0.x,p0.y]], before:snapshot()};
+    var tmp=document.createElementNS('http://www.w3.org/2000/svg','path'); tmp.setAttribute('class','pc k-ink'); tmp.setAttribute('id','ink-now'); svg.appendChild(tmp);
+    svg.setPointerCapture(e.pointerId); e.preventDefault(); return;
+  }
   if(h && st.sel){ drag={mode:'handle', h:h, start:p0, before:snapshot(), orig:JSON.parse(JSON.stringify(get(st.sel)))}; }
   else if(id){
     st.sel=id; var p=get(id);
@@ -256,7 +296,15 @@ svg.addEventListener('pointerdown', function(e){
   e.preventDefault();
 });
 svg.addEventListener('pointermove', function(e){
-  if(!drag) return;
+  if(!drag || drag.mode==='axis') return;
+  if(drag.mode==='erase'){ eraseAt(e); return; }
+  if(drag.mode==='draw'){
+    var q0=pt(e), last=drag.pts[drag.pts.length-1];
+    if(Math.abs(q0.x-last[0])+Math.abs(q0.y-last[1])<5) return;
+    drag.pts.push([clamp(q0.x,0,W), clamp(q0.y,0,H)]);
+    var tmp=document.getElementById('ink-now'); if(tmp) tmp.setAttribute('d', drawPath(drag.pts));
+    return;
+  }
   var p=get(st.sel); if(!p) return;
   var q=pt(e), dx=q.x-drag.start.x, dy=q.y-drag.start.y, o=drag.orig;
   if(!drag.moved && Math.abs(dx)+Math.abs(dy)<4) return;
@@ -265,6 +313,7 @@ svg.addEventListener('pointermove', function(e){
   else if(drag.mode==='move'){
     if(p.t==='line'){ p.x1=o.x1+dx; p.y1=o.y1+dy; p.x2=o.x2+dx; p.y2=o.y2+dy; }
     else if(p.t==='tri'){ p.p=o.p.map(function(v){ return [v[0]+dx, v[1]+dy]; }); }
+    else if(p.t==='draw'){ p.pts=o.pts.map(function(v){ return [v[0]+dx, v[1]+dy]; }); }
     else { p.x=clamp(o.x+dx,-(p.w||0)+30,W-30); p.y=clamp(o.y+dy,-(p.h||0)+30,H-30); }
   } else {
     var h=drag.h, x=clamp(q.x,0,W), y=clamp(q.y,0,H);
@@ -282,6 +331,15 @@ svg.addEventListener('pointermove', function(e){
 function endDrag(){
   if(!drag) return;
   var d=drag; drag=null;
+  if(d.mode==='axis'){ openEditor({kind:'axis', key:d.key}); return; }
+  if(d.mode==='erase'){ if(snapshot()!==d.before){ pushUndo(d.before); save(); } return; }
+  if(d.mode==='draw'){
+    if(d.pts.length<3){ render(); return; }
+    var np={id:uid(), t:'draw', pts:d.pts, col:'ink', dash:false, label:'', lx:10, ly:-12};
+    st.pieces.push(np); st.sel=np.id; pushUndo(d.before); save(); render();
+    openEditor({kind:'piece', id:np.id});   /* every new line gets a label box */
+    return;
+  }
   if(snapshot()!==d.before){ pushUndo(d.before); save(); }
   /* a click (no drag) on a label, a text piece, or an unlabelled line opens the label box */
   if(!d.moved && d.id){
@@ -292,17 +350,42 @@ function endDrag(){
 svg.addEventListener('pointerup', endDrag);
 svg.addEventListener('pointercancel', endDrag);
 
+/* eraser: anything under the pointer goes, including axis labels */
+function eraseAt(e){
+  var el=document.elementFromPoint(e.clientX, e.clientY); if(!el || !svg.contains(el)) return;
+  var id=el.getAttribute('data-id'), ax=el.getAttribute('data-axis');
+  if(id){ st.pieces=st.pieces.filter(function(x){return x.id!==id;}); if(st.sel===id) st.sel=null; render(); }
+  else if(ax && st.axes[ax]){ st.axes[ax]=''; render(); }
+}
+function setTool(t){
+  if(st.editing) commitEdit();
+  st.tool = (st.tool===t && t!=='select') ? 'select' : t;
+  board.classList.toggle('tool-pencil', st.tool==='pencil');
+  board.classList.toggle('tool-eraser', st.tool==='eraser');
+  var b=document.querySelectorAll('[data-tool]');
+  for(var i=0;i<b.length;i++) b[i].setAttribute('aria-pressed', b[i].dataset.tool===st.tool?'true':'false');
+  var hint=document.querySelector('.board-tools .hint');
+  if(hint) hint.textContent = st.tool==='pencil' ? 'Pencil: drag to draw a line, then type its label and press Enter. Esc to stop.'
+    : st.tool==='eraser' ? 'Eraser: click or drag over anything to remove it. Esc to stop.'
+    : 'Drag to move. Pull the round handles to stretch. Click a label to edit it. Delete removes what you have selected.';
+  if(st.tool!=='select'){ st.sel=null; render(); }
+}
+
 /* ======================================================================
    LABEL BOX ON THE BOARD: type, press Enter, and the label is placed
    ====================================================================== */
+var editForm=document.createElement('form');
+editForm.className='edit-form'; editForm.setAttribute('autocomplete','off');
 var editor=document.createElement('input');
 editor.type='text'; editor.className='board-edit'; editor.maxLength=28; editor.hidden=true; editor.setAttribute('autocomplete','off');
-board.appendChild(editor);
+editor.setAttribute('enterkeyhint','done');
+editForm.appendChild(editor); board.appendChild(editForm);
+editForm.addEventListener('submit', function(e){ e.preventDefault(); commitEdit(false); });
 function openEditor(ed){
   var x, y, w=20, val;
   if(ed.kind==='axis'){
     var g=axisGeom(ed.key); if(!g) return;
-    x=g.bx; y=g.by; val=st.axes[ed.key]||'';
+    x=g.bx; y=g.by; val=st.axes[ed.key]||''; w=g.bw/W*100;
     editor.placeholder= ed.key.charAt(0)==='y' ? 'e.g. Costs / revenue' : 'e.g. Output';
     editor.setAttribute('aria-label', (ed.key.charAt(0)==='y'?'Vertical':'Horizontal')+' axis label. Press Enter to place it.');
   } else {
@@ -338,7 +421,7 @@ function commitEdit(cancel){
   render();
 }
 editor.addEventListener('keydown', function(e){
-  if(e.key==='Enter'){ e.preventDefault(); commitEdit(false); }
+  if(e.key==='Enter' || e.keyCode===13){ e.preventDefault(); commitEdit(false); }
   else if(e.key==='Escape'){ e.preventDefault(); commitEdit(true); }
 });
 editor.addEventListener('blur', function(){ commitEdit(false); });
@@ -360,7 +443,7 @@ function renderSel(){
   if(!p) return;
   var stroke=!!CURVES[p.t]||p.t==='line', shade=p.t==='box'||p.t==='tri';
   show('relabel', stroke||p.t==='text'); show('row-style', stroke); show('row-colour', stroke||p.t==='text'); show('row-fill', shade);
-  document.getElementById('sel-kind').textContent = p.t==='box'?'Shade box':p.t==='tri'?'Shade triangle':p.t==='text'?'Text label':p.t==='line'?'Straight line':(CURVES[p.t].label+' curve');
+  document.getElementById('sel-kind').textContent = p.t==='box'?'Shade box':p.t==='tri'?'Shade triangle':p.t==='text'?'Text label':p.t==='line'?'Straight line':p.t==='draw'?'Freehand line':(CURVES[p.t].label+' curve');
   document.getElementById('sel-style').value=p.dash?'dash':'solid';
   var sw=document.querySelectorAll('[data-col]'); for(var i=0;i<sw.length;i++) sw[i].setAttribute('aria-pressed', sw[i].dataset.col===(p.col||'ink')?'true':'false');
   var fl=document.querySelectorAll('[data-fill]'); for(var j=0;j<fl.length;j++) fl[j].setAttribute('aria-pressed', fl[j].dataset.fill===p.fill?'true':'false');
@@ -384,6 +467,7 @@ document.getElementById('dup').addEventListener('click', function(){
   var c=JSON.parse(JSON.stringify(p)); c.id=uid();
   if(c.t==='line'){ c.x1+=24; c.y1+=24; c.x2+=24; c.y2+=24; }
   else if(c.t==='tri'){ c.p=c.p.map(function(v){return [v[0]+24,v[1]+24];}); }
+  else if(c.t==='draw'){ c.pts=c.pts.map(function(v){return [v[0]+24,v[1]+24];}); }
   else { c.x+=24; c.y+=24; }
   st.pieces.push(c); st.sel=c.id; render(); save();
 });
@@ -393,6 +477,7 @@ document.addEventListener('keydown', function(e){
   var tag=(document.activeElement&&document.activeElement.tagName)||'';
   if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA') return;
   if((e.ctrlKey||e.metaKey) && (e.key==='z'||e.key==='Z')){ e.preventDefault(); undo(); return; }
+  if(e.key==='Escape' && st.tool!=='select'){ setTool('select'); return; }
   if(!st.sel) return;
   if(e.key==='Delete'||e.key==='Backspace'){ e.preventDefault(); del(); return; }
   var d={ArrowLeft:[-5,0],ArrowRight:[5,0],ArrowUp:[0,-5],ArrowDown:[0,5]}[e.key];
@@ -400,6 +485,7 @@ document.addEventListener('keydown', function(e){
     e.preventDefault(); var p=get(st.sel); pushUndo();
     if(p.t==='line'){ p.x1+=d[0]; p.x2+=d[0]; p.y1+=d[1]; p.y2+=d[1]; }
     else if(p.t==='tri'){ p.p=p.p.map(function(v){return [v[0]+d[0],v[1]+d[1]];}); }
+    else if(p.t==='draw'){ p.pts=p.pts.map(function(v){return [v[0]+d[0],v[1]+d[1]];}); }
     else { p.x+=d[0]; p.y+=d[1]; }
     render(); save();
   }
@@ -413,18 +499,23 @@ function icon(t){
   var box={x:8,y:5,w:60,h:30};
   if(CURVES[t]) return '<svg viewBox="0 0 76 40" aria-hidden="true"><path class="ic" d="'+curvePath({t:t,x:box.x,y:box.y,w:box.w,h:box.h})+'"/></svg>';
   if(t==='line') return '<svg viewBox="0 0 76 40" aria-hidden="true"><path class="ic" id="line-ic" d="M10 34L66 6"/></svg>';
+  if(t==='pencil') return '<svg viewBox="0 0 76 40" aria-hidden="true"><path class="ic" d="M14 30c8-14 14 6 22-6s12-10 18-2"/><path class="icf" d="M52 6l10 10-6 6-10-10z" fill="#FFDD33"/></svg>';
+  if(t==='eraser') return '<svg viewBox="0 0 76 40" aria-hidden="true"><path class="icf" d="M24 30l16-20 16 12-12 14H28z" fill="#FF8DBA"/><path class="ic" d="M18 36h40"/></svg>';
   if(t==='box') return '<svg viewBox="0 0 76 40" aria-hidden="true"><rect class="icf" x="12" y="8" width="52" height="24" fill="#FFDD33" opacity=".75"/></svg>';
   if(t==='tri') return '<svg viewBox="0 0 76 40" aria-hidden="true"><polygon class="icf" points="18,6 18,34 60,34" fill="#FF9A3D" opacity=".75"/></svg>';
   return '<svg viewBox="0 0 76 40" aria-hidden="true"><text x="38" y="30" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="24" fill="currentColor">P₁</text></svg>';
 }
-var pal=[['mc','MC'],['ac','AC'],['lrac','LRAC'],['lrmc','LRMC'],['as','AS'],['line','Straight line'],['box','Shade box'],['tri','Shade triangle'],['text','Text label']];
+var pal=[['mc','MC'],['ac','AC'],['lrac','LRAC'],['lrmc','LRMC'],['as','AS'],['ppc','PPC'],['line','Straight line'],['box','Shade box'],['tri','Shade triangle'],['text','Text label'],['pencil','Pencil'],['eraser','Eraser']];
 document.getElementById('palette').innerHTML=pal.map(function(t){
+  if(t[0]==='pencil'||t[0]==='eraser') return '<button type="button" class="tile tooltile" data-tool="'+t[0]+'" aria-pressed="false" aria-label="'+t[1]+' tool">'+icon(t[0])+'<span>'+t[1]+'</span></button>';
   var tile='<button type="button" class="tile" data-add="'+t[0]+'" aria-label="Add '+t[1]+'">'+icon(t[0])+'<span>'+t[1]+'</span></button>';
   if(t[0]==='line') return '<div class="linepick">'+tile+'<select id="line-kind" aria-label="Line style for new lines"><option value="solid">Solid</option><option value="dash">Dotted</option></select></div>';
   return tile;
 }).join('');
 document.getElementById('palette').addEventListener('click', function(e){
+  var tb=e.target.closest('[data-tool]'); if(tb){ setTool(tb.dataset.tool); return; }
   var b=e.target.closest('[data-add]'); if(!b) return;
+  if(st.tool!=='select') setTool('select');
   add(b.dataset.add, {dash: document.getElementById('line-kind').value==='dash'});
 });
 document.getElementById('line-kind').addEventListener('change', function(e){
@@ -462,6 +553,7 @@ function loadQuestion(i, fromHash){
     + (Q.shift?'<span class="status part">Shift: the answer animates</span>':'')
     + (Q.two?'<span class="status part">Two diagrams</span>':'');
   if(st.editing){ st.editing=null; editor.hidden=true; }
+  if(st.tool!=='select') setTool('select');
   undoStack=[]; st.sel=null; st.n=0;
   var saved=null; try{ saved=localStorage.getItem(key()); }catch(e){}
   if(saved){ try{ restore(saved); }catch(e){ saved=null; } }
