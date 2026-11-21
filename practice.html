@@ -14,8 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Kalam:wght@400;700&family=Karla:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="style.css?v=15">
-<link rel="stylesheet" href="site.css?v=15">
+<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="site.css?v=18">
 <script>try{var m=localStorage.getItem('tof-theme');if(m==='light'||m==='dark')document.documentElement.setAttribute('data-theme',m);}catch(e){}</script>
 </head>
 <body class="practice-page">
@@ -68,29 +68,11 @@
         <button type="button" class="chip" id="undo">Undo</button>
         <button type="button" class="chip" id="axes1" aria-pressed="true">One diagram</button>
         <button type="button" class="chip" id="axes2" aria-pressed="false">Two side by side</button>
-        <span class="hint">Drag to move. Pull the round handles to stretch.</span>
+        <span class="hint">Drag to move. Pull the round handles to stretch. Click a label to edit it.</span>
       </div>
     </div>
 
     <aside class="pside">
-      <section aria-labelledby="pieces-title">
-        <h2 class="ptitle" id="pieces-title">Pieces: click to add</h2>
-        <div class="palette" id="palette"></div>
-      </section>
-
-      <section class="selbox" id="selbox" aria-labelledby="sel-title">
-        <h2 class="ptitle" id="sel-title" style="margin:0">Selected piece</h2>
-        <p class="sel-empty" id="sel-empty">Click a piece on the board to label it, change its colour or delete it.</p>
-        <div id="sel-tools" hidden>
-          <div class="selrow" id="row-label"><label for="sel-label">Label</label><input type="text" id="sel-label" maxlength="24" placeholder="e.g. MC or AR = D"></div>
-          <div class="selrow" id="row-style"><label for="sel-style">Line</label>
-            <select id="sel-style"><option value="solid">Solid</option><option value="dash">Dotted</option></select></div>
-          <div class="selrow" id="row-colour"><label>Colour</label><span id="swatches" class="selrow"></span></div>
-          <div class="selrow" id="row-fill"><label>Shading</label><span id="fills" class="selrow"></span></div>
-          <div class="selrow"><button type="button" class="chip" id="dup">Duplicate</button><button type="button" class="chip" id="del">Delete</button></div>
-        </div>
-      </section>
-
       <section class="answer" id="answer" hidden aria-labelledby="ans-title">
         <div class="a-head"><strong id="ans-title">The answer</strong><a id="ans-link" href="learn.html">Open the full notes</a></div>
         <iframe id="ans-frame" title="Answer diagram"></iframe>
@@ -99,6 +81,24 @@
           <ul id="checklist"></ul>
         </div>
       </section>
+      <section aria-labelledby="pieces-title">
+        <h2 class="ptitle" id="pieces-title">Pieces: click to add</h2>
+        <div class="palette" id="palette"></div>
+      </section>
+
+      <section class="selbox" id="selbox" aria-labelledby="sel-title">
+        <h2 class="ptitle" id="sel-title" style="margin:0">Selected piece</h2>
+        <p class="sel-empty" id="sel-empty">Click a piece to select it. To label a line, click it and type; press Enter to place the label. Click any label to change it.</p>
+        <div id="sel-tools" class="sel-grid" hidden>
+          <div class="selrow"><span class="sel-lab">Piece</span><strong id="sel-kind"></strong></div>
+          <div class="selrow" id="row-style"><label class="sel-lab" for="sel-style">Line</label>
+            <select id="sel-style"><option value="solid">Solid</option><option value="dash">Dotted</option></select></div>
+          <div class="selrow" id="row-colour"><span class="sel-lab">Colour</span><span id="swatches" class="swrow"></span></div>
+          <div class="selrow" id="row-fill"><span class="sel-lab">Shading</span><span id="fills" class="swrow"></span></div>
+          <div class="selbtns"><button type="button" class="chip" id="relabel">Edit label</button><button type="button" class="chip" id="dup">Duplicate</button><button type="button" class="chip" id="del">Delete</button></div>
+        </div>
+      </section>
+
       <p class="p-help">Your drawing for each question is saved in this browser, so you can come back to it.</p>
     </aside>
   </div>
@@ -150,7 +150,7 @@
     </div>
   </div>
 </footer>
-<script src="site.js?v=15"></script>
-<script src="practice.js?v=15"></script>
+<script src="site.js?v=18"></script>
+<script src="practice.js?v=18"></script>
 </body>
 </html>

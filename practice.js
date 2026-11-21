@@ -93,14 +93,14 @@ var COLOURS = [['ink','Black'],['ar','Blue'],['mr','Purple'],['mc','Red'],['ac',
 var FILLS = [['profit','Profit','#FFDD33'],['cost','Loss / cost','#FF8DBA'],['dwl','Welfare loss','#FF9A3D'],['cs','Consumer surplus','#6FB8FF'],['gain','Gain','#74D99A']];
 var W=1000, H=700;
 var AXES = {
-  one:[{ox:110,oy:615,top:55,right:955}],
-  two:[{ox:90,oy:615,top:55,right:470},{ox:580,oy:615,top:55,right:962}]
+  one:[{ox:110,oy:610,top:80,right:940}],
+  two:[{ox:90,oy:610,top:80,right:462},{ox:572,oy:610,top:80,right:945}]
 };
 
 /* ======================================================================
    STATE
    ====================================================================== */
-var st = {q:0, pieces:[], axes:{}, mode:'one', sel:null, revealed:false, n:0};
+var st = {q:0, pieces:[], axes:{}, mode:'one', sel:null, revealed:false, n:0, editing:null};
 var undoStack = [];
 var svg = document.getElementById('svg'), board = document.getElementById('board');
 
@@ -152,6 +152,7 @@ function render(){
       +'<path class="g-axis" d="M'+(ax.right-2)+' '+(ax.oy-8)+'L'+(ax.right+12)+' '+ax.oy+'L'+(ax.right-2)+' '+(ax.oy+8)+'"/>'
       +'<text class="g-o" x="'+(ax.ox-14)+'" y="'+(ax.oy+30)+'" text-anchor="end">O</text>';
   });
+  a.forEach(function(ax,i){ s+=axisLabel('y'+(i+1))+axisLabel('x'+(i+1)); });
   var shades='', strokes='', texts='', sel=null;
   st.pieces.forEach(function(p){
     if(p.id===st.sel) sel=p;
@@ -161,18 +162,39 @@ function render(){
     } else if(p.t==='tri'){
       shades+='<polygon class="shade f-'+p.fill+'" data-id="'+p.id+'" points="'+p.p.map(function(v){return r1(v[0])+','+r1(v[1]);}).join(' ')+'"/>';
     } else if(p.t==='text'){
-      texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" x="'+r1(p.x)+'" y="'+r1(p.y)+'">'+fmt(p.label||'')+'</text>';
+      if(!isEditing(p.id)) texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" x="'+r1(p.x)+'" y="'+r1(p.y)+'">'+fmt(p.label||'')+'</text>';
     } else {
       var d = p.t==='line' ? 'M'+r1(p.x1)+' '+r1(p.y1)+'L'+r1(p.x2)+' '+r1(p.y2) : curvePath(p);
       strokes+='<g><path class="pc k-'+col+(p.dash?' dash':'')+'" d="'+d+'"/><path class="hit" data-id="'+p.id+'" d="'+d+'"/>';
-      if(p.label){ var an=labelAnchor(p); texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" data-role="label" x="'+r1(an[0]+p.lx)+'" y="'+r1(an[1]+p.ly)+'">'+fmt(p.label)+'</text>'; }
+      if(p.label && !isEditing(p.id)){ var an=labelAnchor(p); texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" data-role="label" x="'+r1(an[0]+p.lx)+'" y="'+r1(an[1]+p.ly)+'">'+fmt(p.label)+'</text>'; }
       strokes+='</g>';
     }
   });
-  s+=shades+strokes+texts;
+  /* a selected curve can be grabbed anywhere inside its dotted box */
+  var grab = (sel && CURVES[sel.t]) ? '<rect class="grab" data-id="'+sel.id+'" x="'+r1(sel.x)+'" y="'+r1(sel.y)+'" width="'+r1(sel.w)+'" height="'+r1(sel.h)+'"/>' : '';
+  s+=shades+grab+strokes+texts;
   if(sel) s+=handlesFor(sel);
   svg.innerHTML=s;
   renderSel();
+}
+function isEditing(id){ return st.editing && st.editing.kind==='piece' && st.editing.id===id; }
+function isStroke(p){ return !!CURVES[p.t] || p.t==='line'; }
+/* where each axis label goes: the vertical one beside the arrow, the horizontal one under the arrow */
+function axisGeom(key){
+  var ax=AXES[st.mode][(+key.charAt(1))-1]; if(!ax) return null;
+  if(key.charAt(0)==='y') return {x:ax.ox+18, y:ax.top-30, anchor:'start', bx:ax.ox+12, by:ax.top-62, bw:200};
+  return {x:ax.right+12, y:ax.oy+52, anchor:'end', bx:ax.right+18-200, by:ax.oy+22, bw:200};
+}
+function axisLabel(key){
+  var g=axisGeom(key); if(!g || (st.editing && st.editing.kind==='axis' && st.editing.key===key)) return '';
+  var v=st.axes[key];
+  if(v) return '<text class="ax-lab" data-axis="'+key+'" x="'+g.x+'" y="'+g.y+'" text-anchor="'+g.anchor+'">'+fmt(v)+'</text>';
+  return '<rect class="ax-empty" data-axis="'+key+'" x="'+g.bx+'" y="'+g.by+'" width="'+g.bw+'" height="40" rx="5"/>'
+       + '<text class="ax-ph" data-axis="'+key+'" x="'+(g.bx+12)+'" y="'+(g.by+28)+'">label?</text>';
+}
+function labelPos(p){
+  if(p.t==='text') return [p.x, p.y];
+  var an=labelAnchor(p); return [an[0]+p.lx, an[1]+p.ly];
 }
 function handlePts(p){
   if(p.t==='line') return [['p1',p.x1,p.y1],['p2',p.x2,p.y2]];
@@ -200,10 +222,10 @@ function add(t, opt){
   else if(t==='line'){ p.x1=200+k; p.y1=130+k; p.x2=760+k; p.y2=560+k; p.label=''; p.col='ink'; p.dash=!!(opt&&opt.dash); }
   else if(t==='box'){ p.x=150+k; p.y=300+k; p.w=230; p.h=90; p.fill='profit'; }
   else if(t==='tri'){ p.p=[[470+k,330+k],[470+k,450+k],[600+k,450+k]]; p.fill='dwl'; }
-  else if(t==='text'){ p.x=150+k; p.y=280+k; p.label='P_1'; p.col='ink'; }
+  else if(t==='text'){ p.x=150+k; p.y=280+k; p.label=''; p.col='ink'; }
   st.pieces.push(p); st.sel=p.id;
   render(); save();
-  if(p.t==='text' || p.t==='line'){ var inp=document.getElementById('sel-label'); if(inp){ inp.focus(); inp.select(); } }
+  if(p.t==='text' || p.t==='line') openEditor({kind:'piece', id:p.id});
 }
 function get(id){ for(var i=0;i<st.pieces.length;i++) if(st.pieces[i].id===id) return st.pieces[i]; return null; }
 
@@ -220,11 +242,14 @@ function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
 svg.addEventListener('pointerdown', function(e){
   if(e.button!==undefined && e.button!==0) return;
   var t=e.target, h=t.getAttribute && t.getAttribute('data-h'), id=t.getAttribute && t.getAttribute('data-id');
+  var axk=t.getAttribute && t.getAttribute('data-axis'), role=t.getAttribute && t.getAttribute('data-role');
+  if(axk){ e.preventDefault(); commitEdit(); openEditor({kind:'axis', key:axk}); return; }
+  if(st.editing) commitEdit();
   var p0=pt(e);
   if(h && st.sel){ drag={mode:'handle', h:h, start:p0, before:snapshot(), orig:JSON.parse(JSON.stringify(get(st.sel)))}; }
   else if(id){
     st.sel=id; var p=get(id);
-    drag={mode: t.getAttribute('data-role')==='label' ? 'label' : 'move', start:p0, before:snapshot(), orig:JSON.parse(JSON.stringify(p))};
+    drag={mode: role==='label' ? 'label' : 'move', id:id, role:role, start:p0, before:snapshot(), orig:JSON.parse(JSON.stringify(p))};
     render();
   } else { if(st.sel){ st.sel=null; render(); } return; }
   svg.setPointerCapture(e.pointerId);
@@ -234,6 +259,8 @@ svg.addEventListener('pointermove', function(e){
   if(!drag) return;
   var p=get(st.sel); if(!p) return;
   var q=pt(e), dx=q.x-drag.start.x, dy=q.y-drag.start.y, o=drag.orig;
+  if(!drag.moved && Math.abs(dx)+Math.abs(dy)<4) return;
+  drag.moved=true;
   if(drag.mode==='label'){ p.lx=o.lx+dx; p.ly=o.ly+dy; }
   else if(drag.mode==='move'){
     if(p.t==='line'){ p.x1=o.x1+dx; p.y1=o.y1+dy; p.x2=o.x2+dx; p.y2=o.y2+dy; }
@@ -254,11 +281,67 @@ svg.addEventListener('pointermove', function(e){
 });
 function endDrag(){
   if(!drag) return;
-  if(snapshot()!==drag.before){ pushUndo(drag.before); save(); }
-  drag=null;
+  var d=drag; drag=null;
+  if(snapshot()!==d.before){ pushUndo(d.before); save(); }
+  /* a click (no drag) on a label, a text piece, or an unlabelled line opens the label box */
+  if(!d.moved && d.id){
+    var p=get(d.id);
+    if(p && (d.role==='label' || p.t==='text' || (isStroke(p) && !p.label))) openEditor({kind:'piece', id:p.id});
+  }
 }
 svg.addEventListener('pointerup', endDrag);
 svg.addEventListener('pointercancel', endDrag);
+
+/* ======================================================================
+   LABEL BOX ON THE BOARD: type, press Enter, and the label is placed
+   ====================================================================== */
+var editor=document.createElement('input');
+editor.type='text'; editor.className='board-edit'; editor.maxLength=28; editor.hidden=true; editor.setAttribute('autocomplete','off');
+board.appendChild(editor);
+function openEditor(ed){
+  var x, y, w=20, val;
+  if(ed.kind==='axis'){
+    var g=axisGeom(ed.key); if(!g) return;
+    x=g.bx; y=g.by; val=st.axes[ed.key]||'';
+    editor.placeholder= ed.key.charAt(0)==='y' ? 'e.g. Costs / revenue' : 'e.g. Output';
+    editor.setAttribute('aria-label', (ed.key.charAt(0)==='y'?'Vertical':'Horizontal')+' axis label. Press Enter to place it.');
+  } else {
+    var p=get(ed.id); if(!p) return;
+    var lp=labelPos(p); x=lp[0]-6; y=lp[1]-32; w=17; val=p.label||'';
+    editor.placeholder= p.t==='text' ? 'e.g. P_1' : 'e.g. AR = D';
+    editor.setAttribute('aria-label', 'Label. Press Enter to place it.');
+  }
+  st.editing=ed; editor._before=snapshot(); editor.value=val;
+  editor.style.width=w+'%';
+  editor.style.left=clamp(x/W*100, 0, 100-w-0.5)+'%';
+  editor.style.top=clamp(y/H*100, 0, 93)+'%';
+  editor.hidden=false; render();
+  /* keep the whole box inside the board on narrow screens */
+  var bw=board.clientWidth, ew=editor.offsetWidth;
+  if(editor.offsetLeft+ew>bw-4) editor.style.left=Math.max(0,bw-ew-4)+'px';
+  editor.focus(); editor.select();
+}
+function commitEdit(cancel){
+  var ed=st.editing; if(!ed) return;
+  st.editing=null; editor.hidden=true;
+  if(!cancel){
+    var v=editor.value.trim();
+    if(ed.kind==='axis') st.axes[ed.key]=v;
+    else {
+      var p=get(ed.id);
+      if(p){ if(p.t==='text' && !v){ st.pieces=st.pieces.filter(function(x){return x!==p;}); st.sel=null; } else p.label=v; }
+    }
+  } else {
+    var q=get(ed.id); if(q && q.t==='text' && !q.label){ st.pieces=st.pieces.filter(function(x){return x!==q;}); st.sel=null; }
+  }
+  if(snapshot()!==editor._before){ pushUndo(editor._before); save(); }
+  render();
+}
+editor.addEventListener('keydown', function(e){
+  if(e.key==='Enter'){ e.preventDefault(); commitEdit(false); }
+  else if(e.key==='Escape'){ e.preventDefault(); commitEdit(true); }
+});
+editor.addEventListener('blur', function(){ commitEdit(false); });
 
 /* ======================================================================
    SELECTION PANEL
@@ -276,19 +359,15 @@ function renderSel(){
   selTools.hidden=!p; selEmpty.hidden=!!p;
   if(!p) return;
   var stroke=!!CURVES[p.t]||p.t==='line', shade=p.t==='box'||p.t==='tri';
-  show('row-label', stroke||p.t==='text'); show('row-style', stroke); show('row-colour', stroke||p.t==='text'); show('row-fill', shade);
-  var inp=document.getElementById('sel-label');
-  if(document.activeElement!==inp) inp.value=p.label||'';
+  show('relabel', stroke||p.t==='text'); show('row-style', stroke); show('row-colour', stroke||p.t==='text'); show('row-fill', shade);
+  document.getElementById('sel-kind').textContent = p.t==='box'?'Shade box':p.t==='tri'?'Shade triangle':p.t==='text'?'Text label':p.t==='line'?'Straight line':(CURVES[p.t].label+' curve');
   document.getElementById('sel-style').value=p.dash?'dash':'solid';
   var sw=document.querySelectorAll('[data-col]'); for(var i=0;i<sw.length;i++) sw[i].setAttribute('aria-pressed', sw[i].dataset.col===(p.col||'ink')?'true':'false');
   var fl=document.querySelectorAll('[data-fill]'); for(var j=0;j<fl.length;j++) fl[j].setAttribute('aria-pressed', fl[j].dataset.fill===p.fill?'true':'false');
 }
-var labelBefore=null;
-document.getElementById('sel-label').addEventListener('focus', function(){ labelBefore=snapshot(); });
-document.getElementById('sel-label').addEventListener('input', function(e){
-  var p=get(st.sel); if(!p) return; p.label=e.target.value; render(); save();
+document.getElementById('relabel').addEventListener('click', function(){
+  var p=get(st.sel); if(p && (isStroke(p)||p.t==='text')) openEditor({kind:'piece', id:p.id});
 });
-document.getElementById('sel-label').addEventListener('blur', function(){ if(labelBefore && labelBefore!==snapshot()) pushUndo(labelBefore); labelBefore=null; });
 document.getElementById('sel-style').addEventListener('change', function(e){
   var p=get(st.sel); if(!p) return; pushUndo(); p.dash=e.target.value==='dash'; render(); save();
 });
@@ -355,26 +434,11 @@ document.getElementById('line-kind').addEventListener('change', function(e){
 /* ======================================================================
    AXES: one diagram or two side by side, with typed labels
    ====================================================================== */
-var AX_POS = {
-  one:[['y1','left:1.2%;top:1%','Vertical axis'],['x1','right:1.2%;bottom:1.2%','Horizontal axis']],
-  two:[['y1','left:1%;top:1%','Vertical axis'],['x1','left:26%;bottom:1.2%','Horizontal axis'],['y2','left:50%;top:1%','Vertical axis'],['x2','right:1%;bottom:1.2%','Horizontal axis']]
-};
 function buildAxisInputs(){
-  var old=board.querySelectorAll('.axis-in'); for(var i=0;i<old.length;i++) old[i].remove();
-  AX_POS[st.mode].forEach(function(a){
-    var inp=document.createElement('input');
-    inp.type='text'; inp.className='axis-in'; inp.id='ax-'+a[0]; inp.maxLength=28;
-    inp.setAttribute('style', a[1]); inp.placeholder='label?'; inp.setAttribute('aria-label', a[2]+' label');
-    inp.value=st.axes[a[0]]||'';
-    inp.addEventListener('focus', function(){ inp._before=snapshot(); });
-    inp.addEventListener('input', function(){ st.axes[a[0]]=inp.value; save(); });
-    inp.addEventListener('blur', function(){ if(inp._before && inp._before!==snapshot()) pushUndo(inp._before); });
-    board.appendChild(inp);
-  });
   document.getElementById('axes1').setAttribute('aria-pressed', st.mode==='one'?'true':'false');
   document.getElementById('axes2').setAttribute('aria-pressed', st.mode==='two'?'true':'false');
 }
-function setMode(m){ if(st.mode===m) return; pushUndo(); st.mode=m; buildAxisInputs(); render(); save(); }
+function setMode(m){ if(st.mode===m) return; commitEdit(); pushUndo(); st.mode=m; buildAxisInputs(); render(); save(); }
 document.getElementById('axes1').addEventListener('click', function(){ setMode('one'); });
 document.getElementById('axes2').addEventListener('click', function(){ setMode('two'); });
 
@@ -397,6 +461,7 @@ function loadQuestion(i, fromHash){
   document.getElementById('qmeta').innerHTML='<span class="status full">Theme '+Q.th+'</span><span class="status part">'+Q.spec+'</span>'
     + (Q.shift?'<span class="status part">Shift: the answer animates</span>':'')
     + (Q.two?'<span class="status part">Two diagrams</span>':'');
+  if(st.editing){ st.editing=null; editor.hidden=true; }
   undoStack=[]; st.sel=null; st.n=0;
   var saved=null; try{ saved=localStorage.getItem(key()); }catch(e){}
   if(saved){ try{ restore(saved); }catch(e){ saved=null; } }
@@ -410,7 +475,7 @@ document.getElementById('qprev').addEventListener('click', function(){ loadQuest
 document.getElementById('qnext').addEventListener('click', function(){ loadQuestion(st.q+1); });
 document.getElementById('clear').addEventListener('click', function(){
   if(!st.pieces.length && !Object.keys(st.axes).some(function(k){return st.axes[k];})) return;
-  pushUndo(); st.pieces=[]; st.axes={}; st.sel=null; buildAxisInputs(); render(); save();
+  commitEdit(true); pushUndo(); st.pieces=[]; st.axes={}; st.sel=null; buildAxisInputs(); render(); save();
 });
 
 var answer=document.getElementById('answer'), frame=document.getElementById('ans-frame'), revealBtn=document.getElementById('reveal');
@@ -424,7 +489,8 @@ function showAnswer(){
   }).join('');
   score();
   answer.hidden=false; revealBtn.textContent='Hide answer'; st.revealed=true;
-  if(window.matchMedia && window.matchMedia('(max-width:900px)').matches) answer.scrollIntoView({behavior:'smooth', block:'start'});
+  var narrow = window.matchMedia && window.matchMedia('(max-width:900px)').matches;
+  (narrow ? answer : document.querySelector('.pgrid')).scrollIntoView({behavior:'smooth', block:'start'});
 }
 function score(){
   var all=document.querySelectorAll('#checklist input'), n=0;
