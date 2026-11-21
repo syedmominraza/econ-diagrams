@@ -815,12 +815,690 @@ function renderCard(){
   var c=cur().card, h='<div class="panel-head"><strong>'+c.head+'</strong></div><div class="card-list">';
   c.items.forEach(function(it){
     h+='<div class="ex"><h4>'+it.h+(it.tag?' <span class="chipv '+it.tag[1]+'">'+it.tag[0]+'</span>':'')+'</h4>';
-    if(it.chips) h+='<div class="chips-v">'+it.chips.map(function(x){return '<span class="chipv">'+x+'</span>';}).join('')+'</div>';
+    if(it.chips) h+='<div class="chips-v">'+it.chips.map(function(x){return Array.isArray(x) ? '<span class="chipv '+x[1]+'">'+x[0]+'</span>' : '<span class="chipv">'+x+'</span>';}).join('')+'</div>';
     (it.l||[]).forEach(function(r){ if(r[1]) h+='<p>'+(r[0]?'<b class="k">'+r[0]+'</b>':'')+r[1]+'</p>'; });
     h+='</div>';
   });
   panel.innerHTML=h+'</div>';
 }
+
+/* =====================================================================
+   THEME 3: FIRMS, REVENUE, COSTS, PROFIT, EFFICIENCY, BARRIERS
+   (MASTER handouts 1 to 8). Micro now has two labelled rows of tabs.
+   ===================================================================== */
+SECTIONS.micro.heading='Firms and markets';
+SECTIONS.micro.scope='Theme 3: growth, objectives, revenue, costs, profit and market structures.';
+SECTIONS.micro.groups=[
+  ['Firms, revenue and costs',['growth','objectives','revenue','costs','scale','profits']],
+  ['Market structures',['efficiency','perfect','monopoly','monopolistic','oligopoly','contestable','barriers']]
+];
+SECTIONS.micro.order=SECTIONS.micro.groups[0][1].concat(SECTIONS.micro.groups[1][1]);
+/* revenue and sales maximisation move from Monopoly to the Objectives tab */
+TOPICS.monopoly.groups=TOPICS.monopoly.groups.filter(function(gr){return gr[0]!=='Other objectives';});
+
+TOPICS.growth={section:'micro',label:'Business growth',eyebrow:'Edexcel A · Theme 3 · 3.1 Business growth',first:'gr_horiz',groups:[
+  ['Types of firm',['gr_types']],
+  ['How firms grow',['gr_organic','gr_ext']],
+  ['Integration',['gr_horiz','gr_fwd','gr_back','gr_cong']],
+  ['Limits and demergers',['gr_limits','gr_demerge']],
+  ['Apply',['gr_ex']]
+]};
+TOPICS.objectives={section:'micro',label:'Objectives',eyebrow:'Edexcel A · Theme 3 · 3.2 Business objectives',first:'ob_all',groups:[
+  ['Why not profit?',['ob_why']],
+  ['Maximising objectives',['ob_all','revmax','salesmax']],
+  ['Satisficing and other aims',['ob_sat','ob_other']],
+  ['By type of firm',['ob_types','ob_ex']]
+]};
+TOPICS.revenue={section:'micro',label:'Revenue',eyebrow:'Edexcel A · Theme 3 · 3.3.1 Revenue',first:'rv_armr',groups:[
+  ['Price makers',['rv_armr','rv_ped','rv_tr']],
+  ['Price takers',['rv_taker']],
+  ['Work it out',['rv_calc']]
+]};
+TOPICS.costs={section:'micro',label:'Costs',eyebrow:'Edexcel A · Theme 3 · 3.3.2 Costs',first:'co_avg',groups:[
+  ['Fixed and variable',['co_srlr']],
+  ['Cost curves',['co_total','co_avg','co_mcac']],
+  ['Why the curves bend',['co_dr']],
+  ['Work it out',['co_calc']]
+]};
+TOPICS.scale={section:'micro',label:'Economies of scale',eyebrow:'Edexcel A · Theme 3 · 3.3.3 Economies and diseconomies of scale',first:'sc_lrac',groups:[
+  ['The long-run curve',['sc_lrac','sc_env','sc_fall']],
+  ['Internal',['sc_int','sc_dis']],
+  ['External',['sc_ext','sc_extdis']],
+  ['Apply and evaluate',['sc_ex','sc_eval']]
+]};
+TOPICS.profits={section:'micro',label:'Profit',eyebrow:'Edexcel A · Theme 3 · 3.3.4 Normal profits, supernormal profits and losses',first:'pf_types',groups:[
+  ['What profit means',['pf_calc','pf_types']],
+  ['Profit maximisation',['pf_max']],
+  ['Losses and shutting down',['pf_stay','pf_shut']]
+]};
+TOPICS.efficiency={section:'micro',label:'Efficiency',eyebrow:'Edexcel A · Theme 3 · 3.4.1 Efficiency',first:'ef_prod',groups:[
+  ['Static efficiency',['ef_prod','ef_alloc']],
+  ['Dynamic efficiency',['ef_ppf','ef_dyn']],
+  ['X-inefficiency',['ef_x']],
+  ['Compare',['ef_table']]
+]};
+TOPICS.barriers={section:'micro',label:'Barriers to entry',eyebrow:'Edexcel A · Theme 3 · 3.4.7 Barriers to entry and exit',first:'br_eos',groups:[
+  ['The barriers',['br_types','br_exit']],
+  ['Using costs and prices',['br_eos','br_limit','br_pred']],
+  ['Work it out',['br_calc']],
+  ['Apply',['br_ex']]
+]};
+
+/* ------------------------- BUSINESS GROWTH (3.1) ------------------------- */
+V.gr_types={kind:'card', btn:'Types of firm', showing:'Size, ownership and aims',
+  title:'Types of firm',
+  lead:'Firms differ in size, in who owns them and in what they are trying to achieve. Each difference changes how the firm behaves.',
+  card:{head:'Four distinctions', items:[
+    PT('Why some firms stay small',[['Small market','Niche products, such as custom trainers or a local barber, have too few customers to support a big firm.'],['Owner’s choice','Many owners want control and a manageable workload more than growth.'],['Finance','Small firms find it harder and dearer to borrow.'],['Personal service','Customers may value a small firm’s flexibility and personal touch.']]),
+    PT('Why others grow',[['Economies of scale','Average costs fall as output rises.'],['Market power','A bigger share of the market gives more control over price.'],['Spreading risk','Selling more products in more markets means one failure does less damage.'],['Managers’ goals','Pay and status often rise with the size of the firm.']]),
+    {h:'Ownership and control', l:[['','In a public limited company (plc) the owners are thousands of shareholders who do not run the firm. Managers run it for them. This divorce of ownership from control causes the principal–agent problem: the agents (managers) may chase their own goals, such as higher sales or a bigger firm, instead of the profit the principals (shareholders) want.']]},
+    PT('Sector and aim',[['Private sector','Owned by individuals or shareholders. Most aim to make a profit.'],['Public sector','Owned and run by the government, such as the NHS. The aim is a public service, not profit.'],['Not-for-profit','Charities, and organisations such as the Wikimedia Foundation that runs Wikipedia. They can make a surplus, but it goes back into their aims instead of to owners.']])
+  ]},
+  tip:'If a question mentions a plc, think principal–agent problem straight away.'};
+
+V.gr_organic={kind:'card', btn:'Organic growth', showing:'Growing from within',
+  title:'Organic growth',
+  lead:'Organic (internal) growth is when a firm expands using its own resources, usually by reinvesting its profit.',
+  card:{head:'Growing from within', items:[
+    PT('Methods',[['New products','Innovation and research and development. Apple added the Apple Watch and AirPods alongside the iPhone.'],['New markets','Selling abroad, or to new kinds of customer. Gymshark grew from a UK online store to selling around the world.'],['Changing the marketing mix','Changing the product or how it is promoted to reach new customers, such as sharing-size packs or a TikTok campaign.'],['New technology','Selling online and through apps reaches customers a shop never could.']]),
+    PT('Advantages',[['Cheaper','Usually costs less than buying another firm.'],['Lower risk','The firm builds on what it already does well, and keeps its own culture and control.']]),
+    PT('Disadvantages',[['Slow','It can take years, and owners may not want to wait.'],['Limited by demand','Growth stops if there are not enough customers for the new product or market.']])
+  ]},
+  tip:'Internal growth is mostly used by smaller firms: it is cheap, and they still have plenty of customers who have never bought from them.'};
+
+V.gr_ext={kind:'card', btn:'Mergers and takeovers', showing:'Growing by joining or buying',
+  title:'Mergers and takeovers',
+  lead:'External (inorganic) growth is when a firm grows by joining with, or buying, another firm.',
+  card:{head:'Growing from outside', items:[
+    {h:'Merger', l:[['','Two firms agree to join together as one new company, and the owners of both share control. Example: British Airways and Iberia joined to form IAG.']]},
+    {h:'Takeover (acquisition)', l:[['','One firm buys more than 50% of another firm’s shares and takes control of it. A hostile takeover is one the target firm’s managers do not want. Example: Facebook (now Meta) bought Instagram and WhatsApp.']]},
+    PT('Advantages',[['Fast','Much quicker than organic growth.'],['Market power','Fewer rivals and a bigger market share give more control over price.'],['New ideas and markets','The firm gains the other firm’s skills, products and customers.'],['Economies of scale','A bigger firm can cut its average costs.']]),
+    PT('Disadvantages',[['Expensive','Buying a firm costs a lot, and a competition authority such as the CMA may block the deal.'],['Clash of cultures','The two firms may have different aims and ways of working.'],['Job losses','Jobs are duplicated, so some go: there is no need for two finance teams.'],['Consumers','Less competition can mean higher prices and less choice.']])
+  ]},
+  evaluation:'Many takeovers fail to deliver what they promise, because of culture clashes and diseconomies of scale. Large firms whose sales have stopped growing often buy firms in faster-growing markets, because external growth is the quickest way in.'};
+
+V.gr_horiz={kind:'chain', anim:true, btn:'Horizontal', showing:'Joining a rival at the same stage',
+  title:'Horizontal integration',
+  lead:'Two firms at the same stage of production, in the same market, join together. Here Nike takes over its rival, Adidas.',
+  chain:[
+    'Both firms make sportswear, so the takeover removes a competitor.',
+    'The combined firm has a bigger market share and more power when negotiating and setting prices.',
+    'It can cut average costs through economies of scale, for example by buying materials in bulk and sharing marketing.',
+    'Consumers may face higher prices and less choice, which is why competition authorities look closely at these deals.'
+  ],
+  evaluation:'Taking over a rival is expensive, and changes after the takeover can cost staff and customer loyalty. Real example: Facebook bought Instagram, a rival photo-sharing app, and US regulators later took Meta to court arguing it had bought out its competition.',
+  tip:'Same stage, same market: horizontal.'};
+
+V.gr_fwd={kind:'chain', anim:true, btn:'Forward vertical', showing:'Taking over a later stage',
+  title:'Forward vertical integration',
+  lead:'A firm takes over a business at a later stage of the supply chain, closer to the customer. Here Nike takes over JD Sports, a retailer.',
+  chain:[
+    'Nike now owns shops that sell its products, so it is guaranteed an outlet.',
+    'It cuts out the middleman, so the retailer’s profit margin becomes Nike’s.',
+    'It controls how its products are priced and displayed.',
+    'It could also give rival brands less space in its shops.'
+  ],
+  evaluation:'Retailing is a different skill from making trainers, and spreading resources across both can hurt the core business. Real example: Apple sells through its own Apple Stores and website, so it controls how iPhones are sold.',
+  tip:'Forward = towards the customer.'};
+
+V.gr_back={kind:'chain', anim:true, btn:'Backward vertical', showing:'Taking over an earlier stage',
+  title:'Backward vertical integration',
+  lead:'A firm takes over a business at an earlier stage of the supply chain, such as a supplier of raw materials. Here Nike takes over a cotton producer.',
+  chain:[
+    'Nike now controls the supply of a key input, so it is guaranteed stock.',
+    'It controls the quality of that input.',
+    'It cuts out the supplier’s profit margin, so its costs fall.',
+    'It could limit supplies to rivals, which makes it harder for them to compete.'
+  ],
+  evaluation:'Farming is a very different business, and Nike can no longer shop around for cheaper cotton. Real example: Microsoft, which makes the Xbox and runs Game Pass, bought Activision Blizzard, the maker of Call of Duty. Games are an input to Game Pass, so this was backward integration, and partly horizontal too, since Microsoft already made games. The CMA only approved it after Microsoft agreed to sell the cloud gaming rights to Ubisoft.',
+  tip:'Backward = towards the raw materials.'};
+
+V.gr_cong={kind:'chain', anim:true, btn:'Conglomerate', showing:'Joining a firm in another market',
+  title:'Conglomerate integration',
+  lead:'Firms in unrelated markets join together. Here Nike takes over Peloton, which makes exercise bikes.',
+  chain:[
+    'Nike now sells in a market it was not in before, so it spreads its risk: if trainer sales fall, bike sales may not.',
+    'It gains new customers, and the other firm’s assets.',
+    'It can learn from the experience and knowledge of the firm it has bought.',
+    'There are few cost savings, because the two businesses do different things.'
+  ],
+  evaluation:'The buyer may not have the knowledge to run a business in a market it does not understand, and resources are spread more thinly. Real example: Facebook bought Oculus, the virtual reality headset maker, now sold as Meta Quest.',
+  tip:'Unrelated market: conglomerate.'};
+
+V.gr_limits={kind:'card', btn:'Constraints on growth', showing:'What stops firms growing',
+  title:'Constraints on business growth',
+  lead:'Even a firm that wants to grow may not be able to.',
+  card:{head:'What holds firms back', items:[
+    PT('Size of the market',[['','A niche or local market cannot support a large firm.']]),
+    PT('Access to finance',[['','Banks may not lend to a small or risky firm, and selling shares means giving up some control.']]),
+    PT('Owner objectives',[['','The owners may want to keep control, or keep the business manageable, rather than grow.']]),
+    PT('Regulation',[['','Competition authorities can block mergers that would reduce competition. The CMA blocked the planned merger of Sainsbury’s and Asda.']]),
+    PT('Diseconomies of scale',[['','A firm that grows too big can see its average costs rise.']])
+  ]}};
+
+V.gr_demerge={kind:'card', btn:'Demergers', showing:'When firms split up',
+  title:'Demergers',
+  lead:'A demerger is when a firm splits into two or more separate firms.',
+  card:{head:'Splitting up', items:[
+    PT('Why firms demerge',[['Focus','Concentrate on the main business, cutting costs and raising profit margins and returns to shareholders.'],['Diseconomies of scale','A smaller firm doing fewer things has lower management costs.'],['Raise money','Selling part of the business raises cash that can be returned to shareholders.'],['Competition authorities','Splitting up can head off an investigation into market power.']]),
+    PT('Impact',[['Businesses','Higher returns in the long run, but the split itself costs money in the short run.'],['Workers','Jobs may go if the aim is to cut costs, but managers of the new firm get new opportunities.'],['Consumers','Prices depend on whether competition in the market increases.']]),
+    {h:'Examples', l:[['','PayPal was split off from eBay so that each could focus on its own market. Unilever split its ice cream brands, such as Magnum and Ben & Jerry’s, into a separate company so the rest of the group could focus on beauty and household products.']]}
+  ]}};
+
+V.gr_ex={kind:'card', btn:'Real examples', showing:'Growth you can point to',
+  title:'Real examples: business growth',
+  lead:'Name the type of growth, then say what the firm gained and what it risked.',
+  card:{head:'Where you can see it', items:[
+    EX('Gymshark: organic growth','It started small selling gym wear online, and grew mainly through social media and fitness influencers, reinvesting its profit as it went.','Organic growth is slow and depends on demand. Gym wear is a crowded market, so customers can switch easily.','What happened','The catch'),
+    EX('Meta: Instagram and WhatsApp (horizontal)','Facebook bought two fast-growing rival apps before they could become threats, keeping its users and its advertising revenue.','US regulators later took Meta to court, arguing the deals removed competition. Authorities now look much harder at tech takeovers.','What happened','The catch'),
+    EX('Microsoft and Activision Blizzard (vertical)','The Xbox maker bought the publisher of Call of Duty to put more games on Game Pass.','The CMA only allowed it after Microsoft sold the cloud gaming rights to Ubisoft, to protect competition in cloud gaming.','What happened','The catch')
+  ]}};
+
+/* ------------------------- OBJECTIVES (3.2) ------------------------- */
+V.ob_why={kind:'card', btn:'Why not profit max?', showing:'Two problems with the assumption',
+  title:'Why firms may not profit maximise',
+  lead:'The theory assumes firms produce where MC = MR. In practice many do not, for two main reasons.',
+  card:{head:'Two problems', items:[
+    {h:'Firms rarely operate on the margin', l:[['','MC and MR are hard to measure. A chain such as Halfords, with hundreds of stores, does not sell one more bike and check what happens to its total cost and revenue. Ceteris paribus never holds in the real world, which makes the effect of one extra unit even harder to isolate.']]},
+    {h:'The principal–agent problem', l:[['','In large firms ownership is separated from control. The owners (principals) want profit, but the managers (agents) who run the firm may want other things: a higher salary, status or a bigger firm. This is most likely in a plc, where thousands of shareholders take little part in running the business.']]},
+    {h:'It can be reduced', l:[['','Owners can link managers’ bonuses to profit or the share price, or monitor them more closely to cut the asymmetric information between them.']]}
+  ]},
+  tip:'Say why the assumption may fail, then evaluate: profit is still the long-run goal for most private firms.'};
+
+V.ob_all={kind:'mono', btn:'All three objectives', showing:'Profit, revenue and sales max compared',
+  title:'Three objectives on one diagram',
+  lead:'Each objective picks a different point on the same diagram. Learn where each one sits, then how price and output compare.',
+  plain:[
+    ['<b class="k-mc">MR = MC</b>','Profit maximisation, at Q<sub>1</sub> and P<sub>1</sub>.'],
+    ['<b class="k-mr">MR = 0</b>','Revenue maximisation, at Q<sub>2</sub> and P<sub>2</sub>. Output is higher and price lower.'],
+    ['<b class="k-ac">AR = AC</b>','Sales maximisation, at Q<sub>3</sub> and P<sub>3</sub>. The highest output and lowest price the firm can manage without making a loss.']
+  ],
+  evaluation:'Moving from Q<sub>1</sub> to Q<sub>3</sub>, consumers get more output at a lower price, but the firm gives up profit. Which objective a firm follows depends on who controls it, and how closely the owners can watch the managers.',
+  tip:'On the usual diagram, Q<sub>1</sub> &lt; Q<sub>2</sub> &lt; Q<sub>3</sub> and P<sub>1</sub> &gt; P<sub>2</sub> &gt; P<sub>3</sub>. Every price is read off AR.'};
+
+V.ob_sat={kind:'sat', btn:'Minimum profit constraint', showing:'Satisficing: more output than profit max, less than sales max',
+  title:'Satisficing: the minimum profit constraint',
+  lead:'Managers cannot ignore profit altogether, or the shareholders would replace them. So they chase their own objective only as far as a minimum level of profit allows.',
+  chain:[
+    'The curve shows supernormal profit at each level of output. It is highest at Q<sub>PM</sub>, where MR = MC.',
+    'A manager who wants to maximise sales volume would like to produce at Q<sub>VM</sub>, where AR = AC and supernormal profit falls to zero.',
+    'Shareholders need a minimum level of profit to keep them satisfied: the horizontal line.',
+    'So the manager can only expand to Q<sub>VM*</sub>, where profit falls to that minimum. Output is above the profit-maximising level but below the sales-maximising level.'
+  ],
+  evaluation:'This is satisficing: making enough profit to keep the owners happy, rather than as much as possible. In the real world a compromise between stakeholders is far more likely than maximising any one thing. Firms also decide with limited information (bounded rationality), so a satisfactory result may be the best they can realistically aim for.',
+  tip:'Q<sub>VM*</sub> is where the profit curve falls to the constraint, to the right of Q<sub>PM</sub>.'};
+
+V.ob_other={kind:'card', btn:'Other objectives', showing:'Growth, utility, survival, CSR',
+  title:'Other objectives',
+  lead:'Profit, revenue and sales are not the only things firms aim for.',
+  card:{head:'Beyond profit', items:[
+    PT('Growth maximisation',[['Why','Managers may see better career prospects and status in running a big firm, and a bigger firm has more market power and more control over its price.'],['Output','There is no rule. The firm expands as fast as it can, organically or by taking over other firms, and may borrow to do it.'],['Limit','Organic growth takes time, and external growth is costly and can bring diseconomies of scale.']]),
+    PT('Utility maximisation',[['Why','The owner runs the firm for the satisfaction it gives rather than the profit. Many football club owners spend more on players than the club earns.'],['Limit','It conflicts with profit maximisation in both the short run and the long run.']]),
+    PT('Survival',[['Why','When times are hard, or a firm is new, the aim is just to cover variable costs and avoid shutting down. Airlines in the Covid lockdowns were not maximising anything; they were trying to survive.']]),
+    PT('Corporate social responsibility (CSR)',[['Why','Firms give up some profit to do good: cutting emissions, paying suppliers fairly, supporting the community.'],['But','It can raise profit in the end, because customers think better of the firm.']])
+  ]},
+  evaluation:'These objectives can still lead to profit in the long run. Sales maximisation can build market share and economies of scale, and make demand more inelastic as rivals are pushed out. Revenue maximisation can help a firm raise the finance it needs for investment, which lowers costs or improves the product later.'};
+
+V.ob_types={kind:'card', btn:'By type of firm', showing:'Who owns it decides what it aims for',
+  title:'Which objective, by type of firm',
+  lead:'Who owns a firm, and whether it is run for profit, tells you which objective it is most likely to follow in the long run.',
+  card:{head:'Long-term profit maximiser?', items:[
+    VD('Public limited company (plc)','unlikely','mix','Private sector, run for profit. But ownership is separate from control, so managers are likely to follow other objectives even though the owners want profit. Profit satisficing is the most likely result.'),
+    VD('Privately owned firm','most likely','yes','Private sector, run for profit. The owners usually run it themselves, so there is no principal–agent problem. The most likely type to profit maximise.'),
+    VD('Public sector organisation','no','no','Not-for-profit and owned by the government. The aim is the best possible service to the public, not profit.'),
+    VD('Voluntary organisation','no','no','Not-for-profit, such as a charity. The aim is usually to do as much good for its cause as possible (utility maximisation).')
+  ]}};
+
+V.ob_ex={kind:'card', btn:'Real examples', showing:'Objectives you can point to',
+  title:'Real examples: business objectives',
+  lead:'Name the objective, then explain why the firm chose it and what limits it.',
+  card:{head:'Where you can see it', items:[
+    EX('Uber and Deliveroo: growth first','For years both made losses while they spent heavily on cheap rides, discounts and marketing to win market share. The bet was that profit would come later.','Shareholders eventually pushed for profit, so both cut discounts and raised prices. Growth cannot replace profit for ever.','The objective','The limit'),
+    EX('Patagonia: CSR','Its founder gave the company to a trust and a charity, so profit not needed to run the business goes to fighting climate change.','The firm still needs to make a profit to fund the cause, so profit still matters.','The objective','The limit'),
+    EX('Football clubs: utility','Many owners run their clubs at a loss for the status and the thrill of winning, spending more on players than the club earns.','Spending rules now limit how much clubs can lose, so even owners who do not want profit cannot ignore it.','The objective','The limit'),
+    EX('Wikipedia: not-for-profit','Run by the Wikimedia Foundation and funded by donations. The aim is free knowledge for everyone, so it carries no adverts.','It still needs a surplus to pay for servers and staff, which is why it asks for donations.','The objective','The limit')
+  ]}};
+
+/* ------------------------- REVENUE (3.3.1) ------------------------- */
+V.rv_armr={kind:'rev', btn:'AR and MR', showing:'MR falls twice as steeply as AR',
+  title:'Average and marginal revenue',
+  lead:'Most firms are price makers: to sell more, they have to cut the price. So average revenue slopes down, and marginal revenue falls even faster.',
+  plain:[
+    ['<b>TR</b>','Total revenue = price × quantity.'],
+    ['<b class="k-ar">AR</b>','Average revenue = total revenue ÷ quantity. That is just the price, so AR is the demand curve.'],
+    ['<b class="k-mr">MR</b>','Marginal revenue: the change in total revenue from selling one more unit.']
+  ],
+  chain:[
+    'To sell one more unit the firm has to lower its price, so AR slopes down.',
+    'The lower price applies to every unit, not just the extra one. The firm gains the price of the extra unit but loses some revenue on all the units it was already selling.',
+    'That is why MR is below AR and falls twice as steeply.',
+    'MR reaches zero halfway along AR. Past that point, selling more makes total revenue fall.'
+  ],
+  tip:'Start AR and MR at the same point on the vertical axis. MR meets the output axis halfway to where AR would.'};
+
+V.rv_ped={kind:'rev', btn:'PED along AR', showing:'Elastic at the top, inelastic at the bottom',
+  title:'Price elasticity of demand along AR',
+  lead:'PED is not the same all the way along a straight demand curve. It falls as you move down the curve, and that decides whether MR is positive or negative.',
+  chain:[
+    'Near the top of AR, price is high and quantity low. A small percentage cut in price brings a large percentage rise in quantity, so demand is price elastic (PED > 1).',
+    'In the elastic section, cutting the price raises total revenue, so MR is positive.',
+    'At the midpoint demand is unit elastic (PED = 1). MR = 0 and total revenue is at its maximum.',
+    'Below the midpoint demand is price inelastic (PED < 1). Cutting the price lowers total revenue, so MR is negative.'
+  ],
+  evaluation:'This is why a football club that adds seats can end up with less revenue. If demand for tickets is inelastic, it has to cut prices so far to fill the extra seats that total revenue falls.',
+  tip:'A profit maximiser always produces on the elastic part of AR, because MR = MC needs MR to be positive.'};
+
+V.rv_tr={kind:'rev', anim:true, two:true, btn:'Total revenue', showing:'TR is highest where MR = 0',
+  title:'Total revenue: the TR hill',
+  lead:'Total revenue rises while MR is positive, peaks where MR = 0, and falls once MR turns negative.',
+  chain:[
+    'Left diagram: as output rises from zero, MR is positive, so each extra unit adds to total revenue.',
+    'Right diagram: TR therefore rises, but more and more slowly, because MR keeps falling.',
+    'At Q<sub>1</sub>, MR = 0 and TR is at its peak. This is revenue maximisation, where PED = 1.',
+    'Beyond Q<sub>1</sub>, MR is negative: each extra unit sold lowers TR, so the hill turns down.'
+  ],
+  tip:'MR is the slope of TR. Where TR is steepest MR is highest, and where TR is flat at the top MR is zero.'};
+
+V.rv_taker={kind:'rev', btn:'Price taker', showing:'AR = MR, and TR is a straight line',
+  title:'Revenue for a price taker',
+  lead:'A firm in perfect competition can sell as much as it likes at the market price, so its revenue curves look completely different.',
+  chain:[
+    'The firm cannot change the price, so every unit sells for P<sub>1</sub>.',
+    'Average revenue is P<sub>1</sub> at every output, and so is the revenue from one more unit: AR = MR, a horizontal line.',
+    'Each extra unit adds the same amount to total revenue, so TR is a straight line from the origin.',
+    'The slope of the TR line is the price. A higher price gives a steeper line.'
+  ],
+  tip:'Demand for the firm is perfectly elastic. Do not confuse it with the industry demand curve, which still slopes down.'};
+
+V.rv_calc={kind:'revcalc', btn:'Revenue calculator', showing:'Type in the prices to recalculate',
+  title:'Revenue calculator',
+  lead:'Type in the price the firm can charge at each output. The table works out total, average and marginal revenue.',
+  chain:[
+    'TR = P × Q.',
+    'AR = TR ÷ Q, which is always the price.',
+    'MR = the change in TR when output rises by one unit.',
+    'Total revenue is highest where MR reaches zero. After that, MR is negative and TR falls.'
+  ],
+  tip:'The first unit’s MR equals its TR, because total revenue at zero output is zero.'};
+
+/* ------------------------- COSTS (3.3.2) ------------------------- */
+V.co_srlr={kind:'card', btn:'Fixed and variable', showing:'Short run and long run costs',
+  title:'Fixed and variable costs',
+  lead:'In the short run at least one factor of production, usually capital, is fixed. In the long run every factor can be changed, so every cost is variable.',
+  card:{head:'Two kinds of cost', items:[
+    {h:'Fixed costs', l:[['','Do not change with output, and have to be paid even if the firm produces nothing: rent, insurance, the salaries of permanent staff.']]},
+    {h:'Variable costs', l:[['','Rise and fall with output: raw materials, packaging, delivery. Staff on zero-hours contracts are a variable cost too, because they are only paid for the hours the firm needs.']]},
+    PT('Formulas',[['TC','Total cost = fixed costs + variable costs'],['ATC','Average total cost = total cost ÷ output'],['AFC','Average fixed cost = total fixed cost ÷ output'],['AVC','Average variable cost = total variable cost ÷ output'],['MC','Marginal cost: the change in total cost from producing one more unit']]),
+    {h:'Short run vs long run', l:[['','In the long run a firm could end its lease, sell its machines or move to a bigger site, so all its costs become variable. The short run is not a set number of months: it lasts as long as it takes to change the fixed factor.']]}
+  ]},
+  tip:'For a coffee shop, the rent is fixed. The beans, milk and cups are variable.'};
+
+V.co_total={kind:'cost', btn:'Total costs', showing:'TC = TFC + TVC',
+  title:'Total cost curves',
+  lead:'Total cost is fixed cost plus variable cost. The two total curves run parallel, with fixed cost as the gap between them.',
+  chain:[
+    'TFC is a horizontal line: fixed costs are the same at every output, even zero.',
+    'TVC starts at the origin, because variable costs are zero when nothing is produced.',
+    'TVC rises slowly at first, then faster once diminishing returns set in.',
+    'TC is TVC shifted up by TFC, so it starts on the vertical axis at the level of fixed costs.'
+  ],
+  tip:'The vertical gap between TC and TVC is TFC, and it is the same at every output.'};
+
+V.co_avg={kind:'cost', btn:'Average and marginal', showing:'ATC, AVC, AFC and MC',
+  title:'Average and marginal cost curves',
+  lead:'The four short-run curves. Get their shapes and crossing points right, and every firm diagram follows from them.',
+  plain:[
+    ['<b class="k-ac">ATC</b>','A U shape. It falls at first as fixed costs are spread over more units, then rises as diminishing returns set in.'],
+    ['<b class="k-mr">AVC</b>','A smaller U below ATC. The gap between them is AFC.'],
+    ['<b class="k-ar">AFC</b>','Falls all the way, as the same fixed cost is shared over more units. It never reaches zero.'],
+    ['<b class="k-mc">MC</b>','A tick shape. It cuts AVC and then ATC at their lowest points.']
+  ],
+  tip:'ATC and AVC get closer together as output rises, because AFC keeps shrinking. They never touch.'};
+
+V.co_mcac={kind:'cost', btn:'Why MC cuts AC', showing:'MC below AC: AC falls; above: AC rises',
+  title:'Why MC cuts AC at its lowest point',
+  lead:'This is maths, and examiners check it on every diagram: MC must cut AC at the lowest point of AC.',
+  chain:[
+    'If the next unit costs less than the average (MC below AC), making it pulls the average down. So while MC is below AC, AC falls.',
+    'If the next unit costs more than the average (MC above AC), it pulls the average up. So while MC is above AC, AC rises.',
+    'AC stops falling and starts rising exactly where MC crosses it, which is the lowest point of AC.',
+    'The same logic means MC cuts AVC at the lowest point of AVC.'
+  ],
+  tip:'Think of test scores. If your next mark is below your average, your average falls, even if that mark beats your last one.'};
+
+V.co_dr={kind:'cost', btn:'Diminishing returns', showing:'MP and AP mirror MC and AVC',
+  title:'Diminishing marginal returns',
+  lead:'In the short run capital is fixed. Adding more and more workers to the same machines explains the shape of the short-run cost curves.',
+  chain:[
+    'At first, extra workers can specialise, so the marginal product (MP) of each extra worker rises.',
+    'Eventually workers have to share the fixed capital. Each extra worker adds less than the one before: diminishing marginal returns. MP falls.',
+    'Costs mirror this. While MP rises, each extra unit of output costs less, so MC falls. Once MP falls, MC rises.',
+    'In the same way, AVC is lowest where the average product (AP) of labour is highest.'
+  ],
+  evaluation:'This is a short-run idea, because it depends on one factor being fixed. In the long run the firm can add capital too, so its costs are explained by economies and diseconomies of scale instead.',
+  tip:'Diminishing returns explain why short-run AC rises. Do not call it diseconomies of scale, which is a long-run idea.'};
+
+V.co_calc={kind:'costcalc', btn:'Cost calculator', showing:'Type in the costs to recalculate',
+  title:'Cost calculator',
+  lead:'Type in total fixed cost, total variable cost and output. The calculator works out the averages the way you would in a data question.',
+  chain:[
+    'Total cost = total fixed cost + total variable cost.',
+    'Average total cost = total cost ÷ output.',
+    'Average variable cost = total variable cost ÷ output.',
+    'Average fixed cost = total fixed cost ÷ output. Check: AFC + AVC = ATC.'
+  ],
+  tip:'The starting numbers are Chelsea’s Electrics: rent of £10,000 a month and six staff on £18,000 a year are fixed; the products it buys in to sell are variable.'};
+
+/* ------------------------- ECONOMIES OF SCALE (3.3.3) ------------------------- */
+V.sc_lrac={kind:'lrac', btn:'LRAC', showing:'Economies, MES, diseconomies',
+  title:'Economies and diseconomies of scale',
+  lead:'In the long run a firm can change all its inputs and choose its scale. The long-run average cost curve (LRAC) shows the lowest average cost at each output.',
+  chain:[
+    'As the firm grows, internal economies of scale lower its average cost: LRAC falls.',
+    'The minimum efficient scale (MES) is the lowest output at which average cost is at its minimum. Producing here is productively efficient.',
+    'If the firm grows beyond this, it becomes harder to manage, and diseconomies of scale push average cost up: LRAC rises.',
+    'Internal economies and diseconomies come from the firm’s own size, so they are movements along LRAC.'
+  ],
+  evaluation:'In many industries LRAC is flat for a long stretch after the MES, so firms of quite different sizes can have similar costs. Where the MES is a large share of the whole market there is only room for a few firms, which links economies of scale to market structure.',
+  tip:'Economies of scale are a long-run idea. Short-run AC rises because of diminishing returns.'};
+
+V.sc_env={kind:'lrac', anim:true, two:true, btn:'SRAC and LRAC', showing:'British Airways adds more planes',
+  title:'Short-run and long-run average cost',
+  lead:'Each short-run average cost curve (SRAC) is for one fixed amount of capital. LRAC wraps around all of them: it is the lowest cost the firm can reach at each output once capital can change.',
+  chain:[
+    'British Airways is producing at Q<sub>1</sub> on SRAC<sub>1</sub>. With its current fleet, flying more passengers would bring diminishing returns.',
+    'It buys more planes, which puts it on a new short-run curve, SRAC<sub>2</sub>.',
+    'At first it cannot fill the new planes. Output only rises to Q<sub>2</sub>, and average cost rises from C<sub>1</sub> to C<sub>2</sub>.',
+    'Once it makes full use of the new planes, at Q<sub>3</sub>, average cost falls to C<sub>3</sub>, below where it started.'
+  ],
+  evaluation:'If demand does not grow along with the fleet, the expansion backfires and the firm is left with higher costs. Adding capacity is a bet on future demand.',
+  tip:'Each SRAC touches LRAC at one point only. LRAC is never above any SRAC.'};
+
+V.sc_fall={kind:'lrac', btn:'Always falling', showing:'Economies of scale never run out',
+  title:'A continuously falling LRAC',
+  lead:'In some industries size really does matter: economies of scale keep coming and diseconomies never arrive, at least within the size of the market.',
+  chain:[
+    'Set-up costs are enormous, such as a national network of water pipes, and the cost of supplying one more unit is tiny.',
+    'Every extra unit spreads those fixed costs more thinly, so LRAC keeps falling.',
+    'The bigger the firm, the lower its costs, so one firm can supply the whole market more cheaply than two.',
+    'This is a natural monopoly. Water, rail track, the electricity grid and broadband networks all fit.'
+  ],
+  evaluation:'Digital products work in a similar way. A streaming service pays a fortune to make a show, but one more subscriber costs it almost nothing, so its average cost per subscriber keeps falling as it grows. That is part of why a few giants dominate streaming.',
+  tip:'Draw LRAC falling and flattening out, but never turning back up.'};
+
+V.sc_int={kind:'card', btn:'Internal economies', showing:'Six ways bigger means cheaper',
+  title:'Internal economies of scale',
+  lead:'Internal economies of scale lower a firm’s long-run average cost as the firm itself grows. Learn six.',
+  card:{head:'Six internal economies of scale', items:[
+    PT('Purchasing',[['','Buying in bulk lets the firm pay less for each unit, because it is a more important customer for its suppliers.'],['Example','McDonald’s buys beef, potatoes and packaging in quantities a burger van never could.']]),
+    PT('Technical',[['','Expensive, efficient machinery is only worth buying if its cost can be spread over a large output.'],['Example','Amazon’s warehouses use robots to bring shelves to the staff who pack orders.']]),
+    PT('Marketing',[['','Advertising costs do not rise in line with output, so the cost per unit sold falls.'],['Example','One global Nike campaign reaches millions of potential customers.']]),
+    PT('Managerial',[['','A large firm can employ specialists, such as its own accountants, lawyers and data scientists.'],['Example','Big supermarkets employ specialist buyers for each type of product.']]),
+    PT('Financial',[['','Large firms find it easier and cheaper to raise finance, through loans at lower interest rates or by selling shares.'],['Example','Banks lend to Tesco at a lower interest rate than to a corner shop.']]),
+    PT('Risk-bearing',[['','A large firm can diversify, so if one product fails it has others to fall back on.'],['Example','Samsung sells phones, TVs, fridges and computer chips.']])
+  ]},
+  tip:'Mnemonic: Really Fun Mums Try Making Pies (risk-bearing, financial, managerial, technical, marketing, purchasing).'};
+
+V.sc_dis={kind:'card', btn:'Internal diseconomies', showing:'Why big can get expensive',
+  title:'Internal diseconomies of scale',
+  lead:'Internal diseconomies of scale raise long-run average cost once a firm grows too big. They are mostly about people and management. The examples are from British Airways.',
+  card:{head:'When a firm grows too big', items:[
+    PT('Co-ordination problems',[['','It is hard to keep track of everything in a huge firm and co-ordinate production.'],['Example','With check-in desks across the world, managers can lose sight of how well each one runs.']]),
+    PT('Slow decisions',[['','Layers of management slow decisions down, so the firm is slower to respond to its market.'],['Example','When a route becomes popular, it can take a long time for the right managers to find out, meet and add flights.']]),
+    PT('Communication',[['','Messages pass through more people, so they arrive late or get changed on the way.'],['Example','Instructions from head office reach staff late or garbled, leading to mistakes.']]),
+    PT('Worker motivation',[['','Workers feel like a small part of a big organisation and become less productive. Disputes take longer to resolve.'],['Example','Cabin crew who hear about job cuts, with no way to reach senior managers, go through their unions instead, which creates conflict.']])
+  ]},
+  evaluation:'Firms try to avoid diseconomies by splitting into smaller units, cutting layers of management, or demerging parts of the business.'};
+
+V.sc_ext={kind:'lrac', anim:true, shiftL:-14, btn:'External economies', showing:'The industry grows: LRAC shifts down',
+  title:'External economies of scale',
+  lead:'External economies lower a firm’s average cost because the whole industry grows, even if the firm itself stays the same size. LRAC shifts down.',
+  chain:[
+    'The industry grows, often clustered in one area.',
+    'A pool of skilled labour builds up, as local universities and colleges train people for the industry, so firms spend less on training.',
+    'Specialist suppliers set up nearby, and the government improves the infrastructure the industry relies on.',
+    'Costs fall at every level of output, so LRAC shifts down from LRAC<sub>1</sub> to LRAC<sub>2</sub>.'
+  ],
+  evaluation:'Games studios cluster in places such as Leamington Spa and Dundee. Universities there run games courses, so studios can hire skilled developers, and specialist firms for motion capture, testing and voice acting set up nearby.',
+  tip:'Internal economies: a movement along LRAC. External economies: a shift of the whole curve.'};
+
+V.sc_extdis={kind:'lrac', anim:true, shiftL:14, btn:'External diseconomies', showing:'The industry grows too much: LRAC shifts up',
+  title:'External diseconomies of scale',
+  lead:'If an industry grows too much, its firms compete for the same scarce resources and every firm’s costs rise. LRAC shifts up.',
+  chain:[
+    'More firms compete for the same skilled workers, so wages are bid up.',
+    'Land and office rents rise in the popular area.',
+    'Roads, airports and other infrastructure become congested.',
+    'Costs rise at every level of output, so LRAC shifts up from LRAC<sub>1</sub> to LRAC<sub>2</sub>.'
+  ],
+  evaluation:'Airlines compete for landing slots at busy airports such as Heathrow, which pushes up the price of a slot, and for scarce pilots and engineers.'};
+
+V.sc_ex={kind:'card', btn:'Real examples', showing:'Economies of scale you can point to',
+  title:'Real examples: economies of scale',
+  lead:'Name the economy of scale, then say what might limit it.',
+  card:{head:'Where you can see it', items:[
+    EX('Netflix and Spotify','A show or a music licence costs the same whether a few people use it or many millions. Each extra subscriber costs almost nothing, so average cost falls as they grow.','Rivals bid up the price of shows and artists, which eats into the saving.','Why it is scale','The catch'),
+    EX('Tesla Gigafactories','Huge factories make batteries and cars on a scale that lowers the cost of each one: technical economies.','They take enormous investment, and costs only fall if demand fills them. That is the SRAC story.','Why it is scale','The catch'),
+    EX('Amazon','Bulk buying, robot warehouses and its own delivery network make each parcel cheaper to handle as volumes grow.','A firm this big is hard to manage, and disputes with warehouse workers are a sign of diseconomies.','Why it is scale','The catch')
+  ]}};
+
+V.sc_eval={kind:'card', btn:'Evaluation', showing:'How much do they matter?',
+  title:'Evaluating economies of scale',
+  lead:'Economies of scale let a firm cut costs and raise profit, but how much they matter depends on the firm and its market.',
+  card:{head:'It depends on', items:[
+    PT('The industry',[['Size and nature','Where fixed costs are huge, as in medicines or cars, scale is vital. For a hairdresser it hardly matters.'],['PED','A firm facing inelastic demand may make more profit by restricting output and keeping its price high.']]),
+    PT('The firm',[['Distance from the MES','A firm already at or near the MES gains little from growing, and risks diseconomies.'],['Diseconomies of scale','Co-ordination and motivation problems can wipe out the gains.'],['X-inefficiency','A big firm with little competition may let its costs drift up through slack.']]),
+    PT('The limits',[['One supplier','If there is only one place to buy supplies, size gives no bargaining power.'],['Global advertising','Language and culture differences mean campaigns have to be adapted, and targeted online ads have cut advertising costs for small firms too.']])
+  ]}};
+
+/* ------------------------- PROFIT (3.3.4) ------------------------- */
+V.pf_calc={kind:'pcalc', btn:'Accounting vs economic', showing:'Type in the numbers to recalculate',
+  title:'Accounting profit and economic profit',
+  lead:'Economists count the opportunity cost of what the owner gives up. Accountants do not. The same business can make a profit for one and a loss for the other.',
+  chain:[
+    'Profit = total revenue − total cost. Profit per unit = average revenue − average cost.',
+    'Accounting profit only takes off the costs the firm actually pays.',
+    'Economic profit also takes off the opportunity cost: what the owner could have earned in the next best alternative.',
+    'Normal profit is when economic profit is zero (AR = AC, counting opportunity cost). The owner earns just enough to stay rather than leave.'
+  ],
+  evaluation:'Supernormal profit is economic profit above zero. It signals to other firms that the industry is worth entering.',
+  tip:'Tobi would give up a £30,000 data science job to run a DJ business. She needs £49,000 of revenue just to make normal profit.'};
+
+V.pf_types={kind:'profit', btn:'Supernormal, normal, loss', showing:'AR against AC at the chosen output',
+  title:'Supernormal profit, normal profit and losses',
+  lead:'The firm chooses its output where MR = MC. Then compare average revenue with average cost at that output.',
+  plain:[
+    ['<b>AR &gt; AC</b>','Supernormal profit: more than enough to keep the firm in the industry. The shaded box is the profit.'],
+    ['<b>AR = AC</b>','Normal profit: all costs are covered, including the opportunity cost. AR just touches AC.'],
+    ['<b>AR &lt; AC</b>','A loss: average cost is above the price. The shaded box is the loss.']
+  ],
+  evaluation:'A loss in the short run does not mean the firm closes. It keeps producing as long as the price covers average variable cost, because its fixed costs have to be paid either way.',
+  tip:'Read the profit or loss at the output where MR = MC, not where AR crosses AC.'};
+
+V.pf_max={kind:'profit', btn:'MR = MC', showing:'The biggest gap between TR and TC',
+  title:'The profit-maximising rule: MR = MC',
+  lead:'Profit is the gap between total revenue and total cost. It is biggest at the output where MR = MC. The firm here is a price taker, as in your handout.',
+  chain:[
+    'Left diagram: profit is the vertical gap between TR and TC. It is biggest at Q<sub>1</sub>.',
+    'Right diagram: below Q<sub>1</sub>, MR &gt; MC. One more unit adds more to revenue than to cost, so producing more raises profit.',
+    'Beyond Q<sub>1</sub>, MC &gt; MR. The last unit adds more to cost than to revenue, so cutting output raises profit.',
+    'At Q<sub>1</sub>, MR = MC: profit cannot be raised by producing one unit more or one unit less.'
+  ],
+  evaluation:'This assumes firms know their marginal costs and revenues, and want as much profit as possible. In practice they rarely do either, which is why other objectives exist.',
+  tip:'At Q<sub>1</sub>, TR and TC have the same slope. The slope of TR is MR and the slope of TC is MC.'};
+
+V.pf_stay={kind:'profit', btn:'Loss but stay open', showing:'Price covers AVC: stay open for now',
+  title:'Making a loss but staying open',
+  lead:'If the price is below average total cost but above average variable cost, the firm makes a loss but should keep producing in the short run.',
+  chain:[
+    'At Q<sub>1</sub>, where MC = MR, the price P<sub>1</sub> is below ATC, so the firm makes a loss: the top box.',
+    'But P<sub>1</sub> is above AVC. Each unit sold covers its variable cost and leaves something over.',
+    'That surplus, the lower box, goes towards the fixed costs, which have to be paid whether the firm produces or not.',
+    'Shutting down would lose all the fixed costs. Staying open loses less, so the firm stays open in the short run.'
+  ],
+  evaluation:'In the long run the firm can get out of its fixed costs, so if the price stays below ATC it leaves the industry.',
+  tip:'Loss if it stays open: the top box. Loss if it shuts: both boxes together, which is all of its fixed cost.'};
+
+V.pf_shut={kind:'profit', btn:'Shut-down points', showing:'Short run: lowest AVC; long run: lowest ATC',
+  title:'Short-run and long-run shut-down points',
+  lead:'How low can the price go before the firm stops producing? The answer is different in the short run and the long run.',
+  chain:[
+    'Short run: the firm has to pay its fixed costs anyway, so it only needs to cover variable costs. If the price falls below the lowest point of AVC it shuts down: the short-run shut-down point.',
+    'Long run: every cost is variable, so the price has to cover average total cost. If it stays below the lowest point of ATC the firm leaves: the long-run shut-down point.',
+    'Between the two prices, the firm makes a loss but carries on for now.',
+    'Above the lowest point of ATC, it makes at least normal profit.'
+  ],
+  compare:{vs:'Where the price is',rows:[['Above min ATC','profit: stay'],['Between','loss: stay for now'],['Below min AVC','shut down now'],['Long run','needs P ≥ ATC']]},
+  tip:'Both shut-down points are where MC cuts the curve, because MC passes through the lowest point of AVC and of ATC. Try it with numbers: <a href="#br_calc">Stay or leave? calculator</a>.'};
+
+/* ------------------------- EFFICIENCY (3.4.1) ------------------------- */
+V.ef_prod={kind:'eff', btn:'Productive', showing:'Lowest point on AC',
+  title:'Productive efficiency',
+  lead:'A firm is productively efficient when it produces at the lowest point on its average cost curve: the most output from the fewest resources.',
+  chain:[
+    'Productive efficiency is at the lowest point of AC, at output Q*.',
+    'MC cuts AC at exactly this point, so the condition is MC = AC.',
+    'At any other output, each unit costs more to make than it needs to.',
+    'In the long run it means producing at the lowest point of LRAC: the minimum efficient scale.'
+  ],
+  tip:'For the whole economy, productive efficiency means producing on the production possibility frontier.'};
+
+V.ef_alloc={kind:'eff', btn:'Allocative', showing:'P = MC, and what happens either side',
+  title:'Allocative efficiency: P = MC',
+  lead:'Resources are allocated efficiently when the mix of goods produced matches what consumers want. The condition is price = marginal cost.',
+  chain:[
+    'The price shows how much consumers value the last unit. MC shows what it costs to make.',
+    'At Q<sub>1</sub>, P &gt; MC: consumers value the last unit more than it costs. More resources should go to this good.',
+    'At Q<sub>2</sub>, MC &gt; P: the last unit costs more than consumers value it. Too many resources are going to this good.',
+    'Only at Q*, where P = MC, is the last unit valued at exactly what it costs. That is allocative efficiency.'
+  ],
+  tip:'Monopoly, oligopoly and monopolistic competition all produce where P &gt; MC, so they make too little.'};
+
+V.ef_ppf={kind:'eff', anim:true, btn:'On a PPF', showing:'Productive: on the frontier; dynamic: shifting it out',
+  title:'Productive and dynamic efficiency on a PPF',
+  lead:'For the whole economy, productive efficiency means being on the production possibility frontier. Dynamic efficiency shifts the frontier out over time.',
+  chain:[
+    'At A, inside the frontier, resources are wasted or unemployed: productively inefficient.',
+    'At B, on the frontier, the economy produces the most it can from its resources: productively efficient. Any point on the frontier is.',
+    'Investment in research and development brings new products and better ways of producing.',
+    'The frontier shifts out from PPF<sub>1</sub> to PPF<sub>2</sub>. That is dynamic efficiency: more can now be made from the same resources.'
+  ],
+  tip:'Productive efficiency is about using today’s resources well. Dynamic efficiency is about improving over time.'};
+
+V.ef_dyn={kind:'eff', anim:true, shift:{dx:-6,dy:-12}, btn:'Dynamic', showing:'Research shifts costs down over time',
+  title:'Dynamic efficiency',
+  lead:'A firm is dynamically efficient when it invests enough in research and development to bring in new production techniques and new products over time.',
+  chain:[
+    'The firm uses supernormal profit to pay for research and development.',
+    'New techniques, such as automation or better software, cut the cost of making each unit.',
+    'MC and AC shift down from MC<sub>1</sub> and AC<sub>1</sub> to MC<sub>2</sub> and AC<sub>2</sub>.',
+    'New and better products can also raise demand, so consumers gain from lower prices and better quality.'
+  ],
+  evaluation:'Many firms underinvest. Short-term thinking (inertia) means managers favour profit now, and firms may not train their workers for fear that rivals will poach them. Monopolies and oligopolies can afford research, but they only spend on it if competition, or the threat of it, pushes them to.',
+  tip:'Static efficiency (productive and allocative) is at one moment in time. Dynamic efficiency is over time, and the two can conflict.'};
+
+V.ef_x={kind:'eff', anim:true, btn:'X-inefficiency', showing:'Actual AC above attainable AC',
+  title:'X-inefficiency',
+  lead:'X-inefficiency occurs when actual average cost is greater than attainable average cost.',
+  chain:[
+    'The lower curve, AC (attainable), is the lowest average cost the firm could reach at each output.',
+    'A firm with little competition is under no pressure to keep its costs down.',
+    'Slack creeps in: too many staff, managers taking long lunches and large pay rises, and nobody checking for cheaper suppliers.',
+    'Actual costs drift above what is attainable, so the firm operates on AC (actual), above the curve it could reach.'
+  ],
+  evaluation:'X-inefficiency is most likely in monopolies, in firms protected by regulation or subsidies, and in parts of the public sector. Competition, or the threat of it in a contestable market, is the cure, because a slack firm would be undercut. Even where economies of scale are large, X-inefficiency can outweigh them and leave costs undesirably high.'};
+
+V.ef_table={kind:'card', btn:'By market structure', showing:'Which efficiencies each structure gets',
+  title:'Efficiency in each market structure',
+  lead:'A quick comparison of long-run outcomes, assuming firms profit maximise.',
+  card:{head:'Structure by structure', items:[
+    {h:'Perfect competition', chips:[['Productive: yes','yes'],['Allocative: yes','yes'],['X-efficient: yes','yes'],['Dynamic: no','no']], l:[['','Price ends at the lowest point of AC and equals MC. But there is no supernormal profit to spend on research, and any new idea is copied at once.']]},
+    {h:'Monopolistic competition', chips:[['Productive: no','no'],['Allocative: no','no'],['X-efficient: likely','yes'],['Dynamic: limited','mix']], l:[['','The firm ends on the falling part of AC with spare capacity, and P &gt; MC. Competition keeps slack down, but normal profit leaves little for research.']]},
+    {h:'Oligopoly', chips:[['Productive: no','no'],['Allocative: no','no'],['X-efficient: depends','mix'],['Dynamic: likely','yes']], l:[['','P &gt; MC, and output is not at the lowest point of AC. Supernormal profit and non-price competition encourage research and new products.']]},
+    {h:'Monopoly', chips:[['Productive: no','no'],['Allocative: no','no'],['X-efficient: no','no'],['Dynamic: possible','mix']], l:[['','Output is restricted, P &gt; MC, and with no rivals slack creeps in. Supernormal profit can fund research, but nothing forces the firm to spend it.']]},
+    {h:'Contestable market', chips:[['Productive: closer','yes'],['Allocative: closer','yes'],['X-efficient: yes','yes'],['Dynamic: debatable','mix']], l:[['','The threat of hit-and-run entry pushes the incumbent to price close to average cost and keep slack out.']]}
+  ]},
+  tip:'Static efficiency and dynamic efficiency often pull in opposite directions. That trade-off is your evaluation.'};
+
+/* ------------------------- BARRIERS TO ENTRY ------------------------- */
+V.br_types={kind:'card', btn:'Barriers to entry', showing:'Seven barriers, with examples',
+  title:'Barriers to entry',
+  lead:'Barriers to entry are obstacles that stop new firms entering a market. How competitive a market is depends heavily on how easily new firms can get in.',
+  card:{head:'Seven barriers', items:[
+    PT('High start-up costs',[['','Expensive equipment or heavy research spending makes it hard for a newcomer to raise the finance, and risky if it fails.'],['Example','A factory for advanced computer chips costs billions, which is why so few firms make them.']]),
+    PT('Legal barriers',[['','A patent makes it illegal for anyone else to copy an invention for a number of years. Licences work the same way in some industries.'],['Example','Drug firms patent new medicines, such as weight-loss jabs, so rivals cannot sell copies until the patent runs out.']]),
+    PT('Economies of scale',[['','An incumbent producing on a large scale has much lower average costs than a newcomer starting small, so the newcomer cannot match its prices.'],['Example','Amazon’s delivery network gives it costs a new online shop cannot match.']]),
+    PT('Brand loyalty',[['','Customers stick with brands they know, even if a newcomer is cheaper or better.'],['Example','Many iPhone users will not consider switching, partly because their photos, apps and messages are tied to Apple.']]),
+    PT('Control of raw materials',[['','If one firm controls the supply of a key input, rivals cannot get hold of it.'],['Example','De Beers once controlled most of the world’s supply of diamonds.']]),
+    PT('Limit pricing',[['','The incumbent sets a price low enough that a newcomer, with higher costs, would make a loss.']]),
+    PT('Predatory pricing',[['','The incumbent cuts its price below average variable cost to drive a rival out. It is illegal, but hard to prove.']])
+  ]},
+  tip:'Limit pricing keeps firms out. Predatory pricing drives firms out.'};
+
+V.br_exit={kind:'card', btn:'Barriers to exit', showing:'What stops firms leaving',
+  title:'Barriers to exit',
+  lead:'Barriers to exit are obstacles to leaving a market. They matter for entry too: a firm that cannot get out easily will think twice before coming in.',
+  card:{head:'Why leaving is hard', items:[
+    PT('Sunk costs',[['','Costs that cannot be recovered when a firm leaves, such as specialist equipment with no other use, or money spent on advertising.'],['Example','A firm that spends heavily launching a new energy drink cannot get that money back if the drink flops.']]),
+    PT('Contracts',[['','A firm may be legally bound to supply a product, or to pay rent, for a set period, so it cannot leave straight away even when it is making a loss.'],['Example','A gym chain tied into long leases on its buildings.']])
+  ]},
+  evaluation:'Sunk costs are the link to contestability. If they are low, a firm can enter, take any supernormal profit and leave without losing much: hit-and-run entry. That threat alone can keep prices down.',
+  tip:'Contestable markets has the diagram for hit-and-run entry.'};
+
+V.br_eos={kind:'lrac', btn:'Economies of scale', showing:'The incumbent’s costs are far below a newcomer’s',
+  title:'Economies of scale as a barrier to entry',
+  lead:'Where economies of scale are large, a newcomer that starts small cannot compete on price with an incumbent that is already big.',
+  chain:[
+    'The incumbent produces a large output, Q<sub>I</sub>, at a low average cost, C<sub>I</sub>.',
+    'A new firm starts small, at Q<sub>E</sub>, where average cost is much higher, at C<sub>E</sub>.',
+    'At the market price P, the incumbent makes supernormal profit, but the newcomer would make a loss.',
+    'To get its costs down, the newcomer would have to win a big share of the market straight away.'
+  ],
+  evaluation:'This barrier is strongest where the minimum efficient scale is a large share of the market. New technology can lower it: selling online let small firms reach customers without big shops.'};
+
+V.br_limit={kind:'lrac', anim:true, btn:'Limit pricing', showing:'Price cut to just below the newcomer’s cost',
+  title:'Limit pricing',
+  lead:'The incumbent deliberately sets a low price, limiting its own profit, so that a new firm with higher costs would make a loss if it entered.',
+  chain:[
+    'Without the threat of entry, the incumbent would charge P<sub>1</sub> and make large supernormal profit.',
+    'A newcomer would start small, at Q<sub>E</sub>, with average cost C<sub>E</sub>. At P<sub>1</sub> it could make a profit, so it would come in.',
+    'The incumbent cuts its price to P<sub>L</sub>, just below C<sub>E</sub>.',
+    'The newcomer would now make a loss, so it stays out. The incumbent still covers its own lower costs and keeps some supernormal profit.'
+  ],
+  evaluation:'Limit pricing gives up some profit now to protect profit in the future. It only works if the incumbent really does have lower costs, and if newcomers believe the low price will last. Consumers gain from the lower price, but miss out on extra competition.',
+  tip:'The limit price is below the newcomer’s average cost but above the incumbent’s.'};
+
+V.br_pred={kind:'pred', anim:true, two:true, btn:'Predatory pricing', showing:'Price below AVC until the rival leaves',
+  title:'Predatory pricing',
+  lead:'The incumbent sets a price below average variable cost, making a loss on purpose, to drive a rival out of the market. Then it raises the price again.',
+  chain:[
+    'At first both firms sell at P<sub>1</sub>.',
+    'The incumbent cuts its price to P<sub>2</sub>, below average variable cost. Both firms now lose money on every unit, before even counting fixed costs.',
+    'The rival has higher costs and smaller reserves. It cannot cover its variable costs, so it leaves straight away.',
+    'With the rival gone, the incumbent raises its price to P<sub>3</sub>, above where it started, to win back its losses.'
+  ],
+  evaluation:'Predatory pricing is illegal anti-competitive behaviour, but hard to prove: a low price could just be fierce competition. It only works if the incumbent can survive the losses for longer than its rival, and if no new rival comes in once the price goes back up. The threat alone can deter entry, if newcomers believe it.'};
+
+V.br_calc={kind:'stay', btn:'Stay or leave?', showing:'Type in the numbers to recalculate',
+  title:'Stay or leave? Limit and predatory pricing in numbers',
+  lead:'A firm faces a low price set by a rival. Should it keep producing? Compare its loss if it stays open with its loss if it shuts down.',
+  chain:[
+    'If it shuts down, it sells nothing but still pays its fixed costs. Its loss is its fixed costs.',
+    'If it stays open, profit = TR − (fixed costs + variable costs) = (AR − ATC) × Q.',
+    'Short run: stay open as long as the price covers AVC, because the loss is then smaller than the fixed costs.',
+    'Long run: leave unless the price covers ATC. A price below the firm’s ATC is limit pricing; below its AVC it is predatory, and the firm should leave straight away.'
+  ],
+  tip:'Try the presets, then change the price and watch where the decision flips.'};
+
+V.br_ex={kind:'card', btn:'Real examples', showing:'Barriers you can point to',
+  title:'Real examples: barriers to entry',
+  lead:'Name the barrier, then say how strong it is and what could weaken it.',
+  card:{head:'Where you can see it', items:[
+    EX('Weight-loss jabs: patents','The drug firms that invented the jabs patented them, so no one else can sell copies while the patents last. That protects large supernormal profit, which pays for the research.','Patents run out after a set time, and then cheaper copies can be sold. Rivals also race to invent their own versions.','The barrier','What weakens it'),
+    EX('WhatsApp and TikTok: network effects','A messaging app is only useful if your friends use it, so a newcomer with better features still struggles: no one wants to switch first.','Network effects can flip fast once a rival catches on, as TikTok showed against Instagram and YouTube.','The barrier','What weakens it'),
+    EX('Apple: brand and ecosystem','Photos, apps, iMessage and AirDrop tie users to Apple, and switching feels like a hassle. That loyalty is a barrier for rival phone makers.','EU rules now force Apple to open up parts of its system, such as allowing other app stores, which lowers the barrier.','The barrier','What weakens it'),
+    EX('De Beers: raw materials','De Beers once controlled most of the world’s diamond supply, so rivals could not get stones to sell.','New mines in other countries, and now lab-grown diamonds, broke that control.','The barrier','What weakens it')
+  ]}};
 
 /* =====================================================================
    MACRO CONTENT (Theme 4, section 4.1)
@@ -1416,7 +2094,8 @@ function renderTrade(){
 /* ---------- exchange rate: the market for a currency ---------- */
 function renderFX(){
   var id=curId(), v=V[id];
-  var g=kit(v.cur?{ytitle:'Price of the currency',xtitle:'Quantity of the currency'}:{ytitle:'Price of £ (in $)',xtitle:'Quantity of £'}), X=g.X, Y=g.Y, fs=g.fs;
+  var narrow=(plot.clientWidth||640)<480;   /* the long title runs into Q labels on a phone */
+  var g=kit(v.cur?{ytitle:'Price of the currency',xtitle:narrow?'Quantity':'Quantity of the currency'}:{ytitle:'Price of £ (in $)',xtitle:'Quantity of £'}), X=g.X, Y=g.Y, fs=g.fs;
   var t=v.anim?state.t:1, two=!!v.two;
   var a1=ease(two?Math.min(1,t*2):t), a2=two?ease(Math.max(0,t*2-1)):0;
   var d1=v.d1||0, s1=v.s1||0, d2=v.d2||0, s2=v.s2||0;
@@ -1669,6 +2348,609 @@ function updateML(){
 }
 
 /* =====================================================================
+   THEME 3 DIAGRAMS: growth, revenue, costs, scale, profit, efficiency,
+   objectives and barriers. Same cost model (FIRM / MONO) as the market
+   structure diagrams, so every MC still cuts AC at its lowest point.
+   ===================================================================== */
+/* push a row of label positions apart (sorted ascending), keeping their centre */
+function spreadN(a,gap){
+  var b=a.slice(), n=b.length, i, s0=0, s1=0;
+  for(i=1;i<n;i++) if(b[i]<b[i-1]+gap) b[i]=b[i-1]+gap;
+  for(i=0;i<n;i++){ s0+=a[i]; s1+=b[i]; }
+  var sh=(s1-s0)/n; for(i=0;i<n;i++) b[i]-=sh;
+  return b;
+}
+function seg(g,q0,p0,q1,p1,cls,style){return '<path class="'+cls+'"'+(style?' style="'+style+'"':'')+' d="M'+r1(g.X(q0))+' '+r1(g.Y(p0))+'L'+r1(g.X(q1))+' '+r1(g.Y(p1))+'"/>';}
+function arrowPx(x0,y0,x1,y1,cls,h){
+  var dx=x1-x0, dy=y1-y0, L=Math.sqrt(dx*dx+dy*dy)||1, ux=dx/L, uy=dy/L; h=Math.min(h||9,L); var w=h*0.55, bx=x1-ux*h, by=y1-uy*h;
+  return '<path class="'+cls+'" d="M'+r1(x0)+' '+r1(y0)+'L'+r1(x1)+' '+r1(y1)+'M'+r1(bx-uy*w)+' '+r1(by+ux*w)+'L'+r1(x1)+' '+r1(y1)+'L'+r1(bx+uy*w)+' '+r1(by-ux*w)+'"/>';
+}
+/* a double-headed arrow marking the gap between two values at one output */
+function gapArrow(g,q,p0,p1,cls){
+  var x=g.X(q), a=g.Y(p0), b=g.Y(p1), m=(a+b)/2;
+  return arrowPx(x,m,x,a+(a<b?2:-2),cls,7)+arrowPx(x,m,x,b+(b<a?2:-2),cls,7);
+}
+function clipLo(fn,lo,hi,top){ return fn(lo)<=top ? lo : bisect(function(q){return fn(q)-top;},lo,hi); }
+function clipHi(fn,lo,hi,top){ return fn(hi)<=top ? hi : bisect(function(q){return fn(q)-top;},lo,hi); }
+function avcF(m,q){var Q=q+m.dx; return m.c+m.k*(Q-m.q1)*(Q-m.q1)+m.dy;}
+
+/* ---------- business growth: who takes over whom ---------- */
+var CHAIN_BOX={
+  cotton:{name:'Cotton producer',role:'raw materials',c:1,r:0},
+  nike:{name:'Nike',role:'makes sportswear',c:1,r:1},
+  adidas:{name:'Adidas',role:'a rival',c:2,r:1},
+  jd:{name:'JD Sports',role:'a retailer',c:1,r:2},
+  peloton:{name:'Peloton',role:'fitness bikes',c:0,r:1}
+};
+var CHAIN_TO={gr_horiz:'adidas',gr_fwd:'jd',gr_back:'cotton',gr_cong:'peloton'};
+var CHAIN_LAB={adidas:'horizontal',jd:'forward vertical',cotton:'backward vertical',peloton:'conglomerate'};
+function renderChain(){
+  var g=kit({axes:false}), W=g.W, H=g.H, sm=g.small, id=curId(), v=V[id];
+  var te=v.anim?ease(state.t):1, to=CHAIN_TO[id], k;
+  var cx=[W*0.135,W*0.5,W*0.865], cy=[H*0.16,H*0.5,H*0.84];
+  var wSide=W*0.23, wMid=Math.min(W*0.34,240), bh=sm?46:58, fl=sm?13:15;
+  function bx(key){var b=CHAIN_BOX[key], w=b.c===1?wMid:wSide; return {x0:cx[b.c]-w/2,x1:cx[b.c]+w/2,y0:cy[b.r]-bh/2,y1:cy[b.r]+bh/2,x:cx[b.c],y:cy[b.r]};}
+  var n=bx('nike'), lines='', boxes='', labs='';
+  function ends(key){
+    var b=bx(key), B=CHAIN_BOX[key];
+    if(B.r<1) return [n.x,n.y0-4,b.x,b.y1+4];
+    if(B.r>1) return [n.x,n.y1+4,b.x,b.y0-4];
+    if(B.c>1) return [n.x1+4,n.y,b.x0-4,b.y];
+    return [n.x0-4,n.y,b.x1+4,b.y];
+  }
+  for(k in CHAIN_BOX){
+    if(k==='nike') continue;
+    var e=ends(k), on=(k===to), B=CHAIN_BOX[k], lx, ly, anc;
+    if(!on) lines+='<path class="guide muted" d="M'+r1(e[0])+' '+r1(e[1])+'L'+r1(e[2])+' '+r1(e[3])+'"/>';
+    else if(te>0.04) lines+=arrowPx(e[0],e[1],e[0]+(e[2]-e[0])*te,e[1]+(e[3]-e[1])*te,'curve c-ar',sm?10:12);
+    if(B.r!==1){ lx=n.x+(sm?9:13); ly=(e[1]+e[3])/2+5; anc='start'; }
+    else { lx=(e[0]+e[2])/2; ly=n.y0-12; anc='middle'; }
+    labs+='<text x="'+r1(lx)+'" y="'+r1(ly)+'" text-anchor="'+anc+'" font-size="'+fl+'" class="'+(on?'bold t-ar halo':'t-muted halo')+'">'+esc(CHAIN_LAB[k])+'</text>';
+  }
+  for(k in CHAIN_BOX){
+    var b=bx(k), Bx=CHAIN_BOX[k], w=r1(b.x1-b.x0);
+    boxes+='<rect class="cbox'+(k==='nike'?' me':'')+'" x="'+r1(b.x0)+'" y="'+r1(b.y0)+'" width="'+w+'" height="'+bh+'" rx="6"/>';
+    if(k===to && te>0.02) boxes+='<rect class="cbox on" x="'+r1(b.x0)+'" y="'+r1(b.y0)+'" width="'+w+'" height="'+bh+'" rx="6" style="opacity:'+r1(te)+'"/>';
+    boxes+='<text x="'+r1(b.x)+'" y="'+r1(b.y-(sm?3:4))+'" text-anchor="middle" font-size="'+(sm?14:17)+'" class="bold">'+esc(Bx.name)+'</text>'
+      + '<text x="'+r1(b.x)+'" y="'+r1(b.y+(sm?14:18))+'" text-anchor="middle" font-size="'+(sm?11:13)+'" class="role">'+esc(Bx.role)+'</text>';
+  }
+  g.out('',lines,boxes,labs,'');
+}
+
+/* ---------- revenue ---------- */
+function renderRev(){
+  var id=curId(), v=V[id], te=v.anim?ease(state.t):1, a=100, b=0.85, qMid=a/(2*b), qEnd=a/b;
+  function ar(q){return a-b*q;}
+  function mr(q){return a-2*b*q;}
+  if(id==='rv_tr' || id==='rv_taker'){
+    var taker=(id==='rv_taker'), P=60;
+    var gl=kit({n:2,i:0,head:taker?'Price taker':'Price maker',ytitle:'Price / revenue'}), X=gl.X, Y=gl.Y, fs=gl.fs;
+    var c='', l='', gd='', nt='';
+    if(taker){
+      c+=seg(gl,0,P,116,P,'curve c-ar');
+      l+=gl.txt(X(116),Y(P)-9,'D = AR = MR','bold t-ar halo','end');
+      nt+=gl.axP(Y(P),'P_1');
+    } else {
+      var qNow=2+(114-2)*te;
+      c+='<path class="curve c-ar" d="'+gl.path(ar,0,116)+'"/><path class="curve c-mr" d="'+gl.path(mr,0,qMid)+'"/>';
+      l+=gl.txt(X(92)+5,Y(ar(92))-6,'AR','bold t-ar halo')+gl.txt(X(37)-6,Y(35),'MR','bold t-mr halo','end');
+      if(te<1){ gd+=gl.dot(qNow,ar(qNow),'eff'); if(qNow<qMid) gd+=gl.dot(qNow,mr(qNow),'eff'); }
+      else { gd+=gl.vline(qMid,ar(qMid),'muted')+gl.dot(qMid,0); nt+=gl.axQ(X(qMid),'Q_1')+gl.txt(X(qMid)+7,Y(0)-9,'MR = 0','halo t-mr bold'); }
+    }
+    var inner=gl.compose('',c,gd,l,nt);
+    var trTop=taker?P*116:a*a/(4*b);
+    var gr=kit({n:2,i:1,head:'Total revenue',ytitle:'Total revenue',pmax:trTop*(taker?1.08:1.3)}); X=gr.X; Y=gr.Y;
+    c=''; l=''; gd=''; nt='';
+    if(taker){
+      c+=seg(gr,0,0,116,P*116,'curve c-ac');
+      l+=gr.txt(X(104),Y(P*104)-10,'TR','bold t-ac halo','end');
+      nt+=gr.leader(['slope = price'], 34, trTop*0.86, 62, P*62);
+    } else {
+      var tr=function(q){return q*ar(q);}, qe=2+(114-2)*te;
+      c+='<path class="curve c-ac" d="'+gr.path(tr,0,qe)+'"/>';
+      if(te<1) gd+=gr.dot(qe,tr(qe),'eff');
+      else {
+        l+=gr.txt(X(108),Y(tr(108))-10,'TR','bold t-ac halo');
+        gd+=gr.vline(qMid,trTop,'muted')+gr.dot(qMid,trTop);
+        nt+=gr.axQ(X(qMid),'Q_1')+gr.txt(X(qMid),Y(trTop)-11,'highest TR','bold halo','middle');
+      }
+    }
+    inner+=gr.compose('',c,gd,l,nt);
+    wrapSvg(gl,inner);
+    return;
+  }
+  var g=kit({ytitle:'Price / revenue'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var curves='<path class="curve c-ar" d="'+g.path(ar,0,116)+'"/>', labels='', guides='', notes='';
+  labels+=g.txt(X(116),Y(ar(116))-12,sm?'AR':'AR = D','bold t-ar halo','end');
+  if(id==='rv_armr'){
+    curves+='<path class="curve c-mr" d="'+g.path(mr,0,qMid)+'"/>';
+    labels+=g.txt(X(37)-8,Y(35),'MR','bold t-mr halo','end');
+    var q1=30;
+    guides+=g.guide(q1,ar(q1))+g.dot(q1,ar(q1))+g.dot(q1,mr(q1))+g.dot(qMid,0);
+    notes+=g.axP(Y(ar(q1)),'P_1')+g.axQ(X(q1),'Q_1')+g.txt(X(qMid)+9,Y(0)-10,'MR = 0','halo t-mr bold');
+    notes+=g.leader(['MR is below AR'], sm?62:60, 74, q1+0.6, (ar(q1)+mr(q1))/2);
+    notes+='<path class="gap" d="M'+r1(X(q1))+' '+r1(Y(ar(q1))+6)+'V'+r1(Y(mr(q1))-6)+'"/>';
+  }
+  else if(id==='rv_ped'){
+    curves+='<path class="curve c-mr ghost" d="'+g.path(mr,0,qMid)+'"/>';
+    labels+=g.txt(X(37)-8,Y(35),'MR','bold t-mr halo','end');
+    guides+=g.guide(qMid,a/2,'eff')+g.dot(qMid,a/2,'eff')+g.dot(qMid,0);
+    notes+=g.txt(X(qMid)+12,Y(a/2)-8,sm?'PED = 1':'unit elastic: PED = 1','bold t-eff halo');
+    var dx=X(qEnd)-X(0), dy=Y(0)-Y(a), L=Math.sqrt(dx*dx+dy*dy), nx=dy/L, ny=-dx/L;
+    var brace=function(q0,q1,side,off){
+      var ax=X(q0)+side*nx*off, ay=Y(ar(q0))+side*ny*off, bx2=X(q1)+side*nx*off, by=Y(ar(q1))+side*ny*off, t=6;
+      return '<path class="leader" d="M'+r1(ax-side*nx*t)+' '+r1(ay-side*ny*t)+'L'+r1(ax)+' '+r1(ay)+'L'+r1(bx2)+' '+r1(by)+'L'+r1(bx2-side*nx*t)+' '+r1(by-side*ny*t)+'"/>';
+    };
+    notes+=brace(3,qMid-3,1,14)+brace(qMid+3,114,-1,14);
+    var qa=(qMid)/2, qb=(qMid+114)/2;
+    var ex=X(qa)+nx*28, ey=Y(ar(qa))+ny*28, ix=X(qb)-nx*28, iy=Y(ar(qb))-ny*28+fs*0.6;
+    if(sm){ notes+=g.txt2(ex,ey,'elastic','PED > 1','bold halo','start')+g.txt2(ix,iy,'inelastic','PED < 1','bold halo','end'); }
+    else { notes+=g.txt(ex,ey,'elastic: PED > 1','bold halo','start')+g.txt(ix,iy,'inelastic: PED < 1','bold halo','end'); }
+  }
+  g.out('',curves,guides,labels,notes);
+}
+
+/* ---------- short-run costs ---------- */
+function renderCost(){
+  var id=curId(), m=FIRM, rm=rangeMC(m);
+  function avc(q){return avcF(m,q);}
+  function mcF(q){return MC(m,q);}
+  if(id==='co_dr'){
+    var mp=function(L){return 3.6*L-0.045*L*L;}, ap=function(L){return 1.8*L-0.015*L*L;};
+    var gl=kit({n:2,i:0,head:'Output per worker',ytitle:'Product',xtitle:'Workers'}), X=gl.X, Y=gl.Y;
+    var c='<path class="curve c-ar" d="'+gl.path(mp,0,80)+'"/><path class="curve c-mr" d="'+gl.path(ap,0,116)+'"/>';
+    var l=gl.txt(X(80)+5,Y(5),'MP','bold t-ar halo')+gl.txt(X(116),Y(ap(116))-9,'AP','bold t-mr halo','end');
+    var gd=gl.vline(40,72,'muted')+gl.dot(40,72)+gl.dot(60,54);
+    var nt=gl.txt(X(40),Y(72)-10,'MP peaks','bold halo','middle');
+    var inner=gl.compose('',c,gd,l,nt);
+    var gr=kit({n:2,i:1,head:'Costs',ytitle:'Costs',xtitle:'Output'}); X=gr.X; Y=gr.Y;
+    var qmin=2*m.q1/3, cmin=MC(m,qmin);
+    c='<path class="curve c-mc" d="'+gr.path(mcF,rm[0],rm[1])+'"/><path class="curve c-mr" d="'+gr.path(avc,4,116)+'"/>';
+    l=gr.txt(X(rm[1])-9,Y(MC(m,rm[1]))+13,'MC','bold t-mc halo','end')+gr.txt(X(116),Y(avc(116))-9,'AVC','bold t-mr halo','end');
+    gd=gr.vline(qmin,cmin,'muted')+gr.dot(qmin,cmin)+gr.dot(m.q1,m.c);
+    nt=gr.leader(['MC lowest'], 82, 7, qmin+1, cmin);
+    inner+=gr.compose('',c,gd,l,nt);
+    wrapSvg(gl,inner);
+    return;
+  }
+  if(id==='co_total'){
+    var pm=8000, top=pm*PTOP/PMAX;
+    var g=kit({pmax:pm,ytitle:'Costs'}), X2=g.X, Y2=g.Y;
+    var tvc=function(q){return q*avc(q);}, tc=function(q){return m.F+tvc(q);};
+    var e1=clipHi(tc,0,116,top), e2=clipHi(tvc,0,116,top);
+    var curves=seg(g,0,m.F,116,m.F,'curve c-ar')+'<path class="curve c-mr" d="'+g.path(tvc,0,e2)+'"/><path class="curve c-ac" d="'+g.path(tc,0,e1)+'"/>';
+    var labels=g.txt(X2(116),Y2(m.F)-9,'TFC','bold t-ar halo','end')
+      + g.txt(X2(e1)-8,Y2(tc(e1))+5,'TC','bold t-ac halo','end')
+      + g.txt(X2(e2)+7,Y2(tvc(e2))+5,'TVC','bold t-mr halo');
+    var notes=gapArrow(g,28,tvc(28),tc(28),'leader')+gapArrow(g,76,tvc(76),tc(76),'leader');
+    notes+=g.txt(X2(28)+7,(Y2(tvc(28))+Y2(tc(28)))/2+5,'TFC','bold halo')+g.txt(X2(76)+7,(Y2(tvc(76))+Y2(tc(76)))/2+5,'TFC','bold halo');
+    g.out('',curves,'',labels,notes);
+    return;
+  }
+  var g2=kit(), X3=g2.X, Y3=g2.Y, sm=g2.small;
+  if(id==='co_avg'){
+    var afc=function(q){return m.F/q;}, atc=function(q){return afc(q)+avc(q);};
+    var sA=clipLo(atc,3,60,PTOP), sF=clipLo(afc,3,60,PTOP);
+    var cv='<path class="curve c-ar" d="'+g2.path(afc,sF,116)+'"/><path class="curve c-mr" d="'+g2.path(avc,4,116)+'"/>'
+      + '<path class="curve c-ac" d="'+g2.path(atc,sA,116)+'"/><path class="curve c-mc" d="'+g2.path(mcF,rm[0],rm[1])+'"/>';
+    var lb=g2.txt(X3(116),Y3(atc(116))-9,'ATC','bold t-ac halo','end')+g2.txt(X3(116),Y3(avc(116))-9,'AVC','bold t-mr halo','end')
+      + g2.txt(X3(116),Y3(afc(116))-9,'AFC','bold t-ar halo','end')+g2.txt(X3(rm[1])-9,Y3(MC(m,rm[1]))+13,'MC','bold t-mc halo','end');
+    var qe=bisect(function(q){return MC(m,q)-AC(m,q);},30,110);
+    g2.out('',cv,g2.dot(m.q1,m.c)+g2.dot(qe,AC(m,qe)),lb,'');
+    return;
+  }
+  /* co_mcac */
+  var cc=g2.costs(m,m,null), qe2=bisect(function(q){return MC(m,q)-AC(m,q);},30,110), ce2=AC(m,qe2);
+  var gds=g2.vline(qe2,ce2,'muted')+g2.dot(qe2,ce2,'eff');
+  /* both notes sit in the empty band under AC, either side of its lowest point */
+  var nts=g2.txt2(X3(sm?32:30),Y3(sm?38:34),'MC below AC:','AC falls','bold halo','middle')
+    + g2.txt2(X3(92),Y3(sm?38:34),'MC above AC:','AC rises','bold halo','middle');
+  g2.out('',cc.curves,gds,cc.labels,nts);
+}
+
+/* ---------- long-run average cost (scale) and barriers that use it ---------- */
+var LR={A:300,c:20,k:0.018,q0:58};
+function LRAC(q,d){return LR.A/q+LR.c+LR.k*(q-LR.q0)*(q-LR.q0)+(d||0);}
+function renderLRAC(){
+  var id=curId(), v=V[id], t=v.anim?state.t:1, te=v.anim?ease(state.t):1;
+  var g=kit({ytitle:'Costs'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var curves='', labels='', guides='', notes='';
+  var qMES=bisect(function(q){return -LR.A/(q*q)+2*LR.k*(q-LR.q0);},20,100), cMES=LRAC(qMES);
+  function lr(d,cls){
+    var f=function(q){return LRAC(q,d);}, s=clipLo(f,3,50,PTOP), e=clipHi(f,70,116,PTOP);
+    return {d:'<path class="curve c-ac'+(cls||'')+'" d="'+g.path(f,s,e)+'"/>', s:s, e:e, f:f};
+  }
+  function lrLabel(L0){ return g.txt(X(L0.e),Y(L0.f(L0.e))-10,'LRAC','bold t-ac halo','end'); }
+  if(id==='sc_fall'){
+    var f=function(q){return 600/q+6+120/Math.sqrt(q);}, s=clipLo(f,3,40,PTOP);
+    curves+='<path class="curve c-ac" d="'+g.path(f,s,116)+'"/>';
+    labels+=g.txt(X(116),Y(f(116))-10,'LRAC','bold t-ac halo','end');
+    notes+=g.leader(['economies of scale','never run out'], sm?66:70, 70, 84, f(84));
+  }
+  else if(id==='sc_lrac'){
+    var L0=lr(0); curves+=L0.d; labels+=lrLabel(L0);
+    guides+=g.vline(qMES,cMES,'eff')+g.dot(qMES,cMES,'eff');
+    notes+=g.axQ(X(qMES),'MES','t-eff');
+    notes+=g.leader(['economies','of scale'], 34, 90, 26, LRAC(26));
+    notes+=g.leader(['diseconomies','of scale'], sm?81:88, 90, 97, LRAC(97));
+  }
+  else if(id==='sc_ext' || id==='sc_extdis'){
+    var d1=v.shiftL*te, base=lr(0,' ghost'), now=lr(d1), up=v.shiftL>0;
+    curves+=base.d+now.d;
+    /* the higher curve is labelled above its right end, the lower one under its lowest point
+       (a label under a rising curve's end would be crossed by the curve) */
+    var hi=up?now:base, lo=up?base:now, dl=up?0:d1;
+    labels+=g.txt(X(hi.e),Y(hi.f(hi.e))-9,up?'LRAC_2':'LRAC_1','bold t-ac halo','end');
+    labels+=g.txt(X(qMES),Y(cMES+dl)+fs+8,up?'LRAC_1':'LRAC_2','bold t-ac halo','middle');
+    if(Math.abs(d1)>3) notes+=arrowPx(X(qMES),Y(cMES)+(up?-3:3),X(qMES),Y(cMES+d1)+(up?3:-3),'leader',8);
+  }
+  else if(id==='sc_env'){
+    var mm=0.04, s1q=28, s2q=48, L1=lr(0);
+    var S=function(qi){return function(q){return LRAC(q)+mm*(q-qi)*(q-qi);};};
+    curves+=L1.d; labels+=lrLabel(L1);
+    [[76,62,90],[94,80,108]].forEach(function(r){ curves+='<path class="curve c-mc ghost" d="'+g.path(S(r[0]),r[1],r[2])+'"/>'; });
+    var f1=S(s1q), f2=S(s2q);
+    curves+='<path class="curve c-mc" d="'+g.path(f1,14,42)+'"/><path class="curve c-mc" d="'+g.path(f2,30,66)+'"/>';
+    labels+=g.txt(X(14)+4,Y(f1(14))-8,'SRAC_1','bold t-mc halo')+g.txt(X(30)+4,Y(f2(30))-8,'SRAC_2','bold t-mc halo');
+    var Q1=s1q, C1=LRAC(Q1), Q2=31, C2=f2(Q2), Q3=s2q, C3=LRAC(Q3), pq, pp, u;
+    if(t<0.5){ u=ease(t/0.5); pq=Q1+(Q2-Q1)*u; pp=C1+(C2-C1)*u; }
+    else { u=ease((t-0.5)/0.5); pq=Q2+(Q3-Q2)*u; pp=f2(pq); }
+    var cy=spreadN([Y(C2),Y(C1),Y(C3)],fs+7), qx=spreadN([X(Q1),X(Q2),X(Q3)],fs*1.7);
+    guides+=g.guide(Q1,C1)+g.dot(Q1,C1); notes+=g.axP(cy[1],'C_1')+g.axQ(qx[0],'Q_1');
+    if(t>=0.5){ guides+=g.guide(Q2,C2,'muted')+g.dot(Q2,C2,'muted'); notes+=g.axP(cy[0],'C_2','t-muted')+g.axQ(qx[1],'Q_2','t-muted'); }
+    if(t>=1){ guides+=g.guide(Q3,C3,'eff')+g.dot(Q3,C3,'eff'); notes+=g.axP(cy[2],'C_3','t-eff')+g.axQ(qx[2],'Q_3','t-eff'); }
+    if(t>0 && t<1) guides+=g.dot(pq,pp,'eff');
+  }
+  else if(id==='br_eos' || id==='br_limit'){
+    var L2=lr(0); curves+=L2.d; labels+=lrLabel(L2);
+    var QI=qMES, CI=cMES, QE=16, CE=LRAC(QE);
+    guides+=g.guide(QI,CI)+g.dot(QI,CI)+g.guide(QE,CE)+g.dot(QE,CE);
+    notes+=g.txt(X(QI),Y(CI)+fs+8,'incumbent','bold halo','middle')+g.txt(X(QE)+10,Y(CE)+5,'new firm','bold halo');
+    var qx2=spreadN([X(QE),X(QI)],fs*1.7);
+    notes+=g.axQ(qx2[0],'Q_E')+g.axQ(qx2[1],'Q_I');
+    if(id==='br_eos'){
+      var P=50;
+      curves+=seg(g,0,P,116,P,'curve c-ar');
+      var py=spreadN([Y(CE),Y(P),Y(CI)],fs+7);
+      notes+=g.axP(py[0],'C_E')+g.axP(py[1],'P','t-ar')+g.axP(py[2],'C_I');
+    } else {
+      var P1=82, PL=66, p=P1+(PL-P1)*te;
+      if(te>0.02) curves+=seg(g,0,P1,116,P1,'curve c-ar ghost');
+      curves+=seg(g,0,p,116,p,'curve c-ar');
+      var py2=spreadN([Y(P1),Y(CE),Y(p),Y(CI)],fs+7);
+      notes+=g.axP(py2[0],'P_1',te>0.5?'t-muted':'')+g.axP(py2[1],'C_E')+(te>0.5?g.axP(py2[2],'P_L','t-ar'):'')+g.axP(py2[3],'C_I');
+    }
+  }
+  g.out('',curves,guides,labels,notes);
+}
+
+/* ---------- profit ---------- */
+function renderProfits(){
+  var id=curId(), m=FIRM, rm=rangeMC(m), ra=rangeAC(m);
+  function mcF(q){return MC(m,q);}
+  function acF(q){return AC(m,q);}
+  function avc(q){return avcF(m,q);}
+  if(id==='pf_types'){
+    var qT=44, b=m.F/(qT*qT)-2*m.k*(qT-m.q1), aN=AC(m,qT)+b*qT;
+    var small=(plot.clientWidth||640)<480;
+    var specs=[{a:aN+18,head:small?'Supernormal':'Supernormal profit'},{a:aN,head:small?'Normal':'Normal profit'},{a:aN-14,head:'Loss'}];
+    var inner='', first=null;
+    specs.forEach(function(s,i){
+      var g=kit({n:3,i:i,qmax:100,head:s.head,ytitle:small?'£':'Costs / revenue'}), X=g.X, Y=g.Y, fs=g.fs;
+      if(!first) first=g;
+      var A=s.a, q=bisect(function(x){return A-2*b*x-MC(m,x);},20,80), p=A-b*q, c=AC(m,q);
+      var arEnd=Math.min(98,(A-3)/b);
+      var curves='<path class="curve c-ar" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(arEnd))+' '+r1(Y(A-b*arEnd))+'"/>'
+        + '<path class="curve c-mr" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(A/(2*b)))+' '+r1(Y(0))+'"/>'
+        + '<path class="curve c-mc" d="'+g.path(mcF,rm[0],Math.min(rm[1],98))+'"/>'
+        + '<path class="curve c-ac" d="'+g.path(acF,ra[0],98)+'"/>';
+      var labels=g.txt(X(arEnd),Y(A-b*arEnd)-8,'AR','bold t-ar halo','end')+g.txt(X(A/(2*b))+4,Y(4),'MR','bold t-mr halo')
+        + g.txt(X(98),Y(AC(m,98))-8,'AC','bold t-ac halo','end')+g.txt(X(rm[1])-6,Y(MC(m,rm[1]))+12,'MC','bold t-mc halo','end');
+      var areas='', guides=g.guide(q,Math.max(p,c))+g.dot(q,p)+g.dot(q,MC(m,q)), notes=g.axQ(X(q),'Q');
+      if(i===1) notes+=g.axP(Y(p),'P');
+      else {
+        areas+=g.box(0,q,Math.min(p,c),Math.max(p,c),'area '+(i===0?'a-profit':'a-cost'));
+        guides+=g.hline(q,Math.min(p,c))+g.dot(q,c);
+        var py=spread(Y(p),Y(c),fs+6);
+        notes+=g.axP(py[0],'P')+g.axP(py[1],'C');
+      }
+      inner+=g.compose(areas,curves,guides,labels,notes);
+    });
+    wrapSvg(first,inner);
+    return;
+  }
+  if(id==='pf_max'){
+    var P=62, q1=bisect(function(q){return MC(m,q)-P;},45,90);
+    var tc=function(q){return m.F+q*avc(q);}, trF=function(q){return P*q;};
+    var pm=7600, top=pm*PTOP/PMAX;
+    var gl=kit({n:2,i:0,pmax:pm,head:'Total revenue and cost',ytitle:'TR, TC'}), X=gl.X, Y=gl.Y, fs=gl.fs;
+    var eTR=clipHi(trF,0,116,top), eTC=clipHi(tc,0,116,top);
+    var c=seg(gl,0,0,eTR,trF(eTR),'curve c-ar')+'<path class="curve c-ac" d="'+gl.path(tc,0,eTC)+'"/>';
+    var l=gl.txt(X(24),Y(trF(24))+fs+5,'TR','bold t-ar halo')+gl.txt(X(eTC)-7,Y(top)+13,'TC','bold t-ac halo','end');
+    var gd=gl.vline(q1,trF(q1),'muted')+gl.dot(q1,trF(q1))+gl.dot(q1,tc(q1));
+    var nt=gapArrow(gl,q1,tc(q1),trF(q1),'leader eff')+gl.axQ(X(q1),'Q_1')
+      + gl.leader(['biggest','profit'], 30, pm*0.8, q1-0.4, (tc(q1)+trF(q1))/2, 't-eff');
+    var inner2=gl.compose('',c,gd,l,nt);
+    var gr=kit({n:2,i:1,head:'Marginal revenue and cost',ytitle:'Costs / revenue'}); X=gr.X; Y=gr.Y;
+    c=seg(gr,0,P,116,P,'curve c-ar')+'<path class="curve c-mc" d="'+gr.path(mcF,rm[0],rm[1])+'"/>';
+    l=gr.txt(X(116),Y(P)-9,'MR','bold t-ar halo','end')+gr.txt(X(rm[1])-9,Y(MC(m,rm[1]))+13,'MC','bold t-mc halo','end');
+    gd=gr.vline(q1,P)+gr.dot(q1,P);
+    nt=gr.axQ(X(q1),'Q_1')+gr.txt(X(30),Y(P)+fs+8,'MR > MC','bold halo','middle')+gr.txt(X(98),Y(P)+fs+8,'MC > MR','bold halo','middle');
+    inner2+=gr.compose('',c,gd,l,nt);
+    wrapSvg(gl,inner2);
+    return;
+  }
+  /* pf_stay and pf_shut: price taker with MC, ATC and AVC */
+  var g=kit(), X2=g.X, Y2=g.Y, fs2=g.fs, sm=g.small;
+  var curves='<path class="curve c-mc" d="'+g.path(mcF,rm[0],rm[1])+'"/><path class="curve c-ac" d="'+g.path(acF,ra[0],ra[1])+'"/>'
+    + '<path class="curve c-mr" d="'+g.path(avc,4,104)+'"/>';
+  var labels=g.txt(X2(rm[1])-9,Y2(MC(m,rm[1]))+13,'MC','bold t-mc halo','end')
+    + g.txt(X2(ra[1]),Y2(AC(m,ra[1]))-9,'ATC','bold t-ac halo','end')
+    + g.txt(X2(104)+6,Y2(avc(104))+5,'AVC','bold t-mr halo');
+  var areas='', guides='', notes='';
+  if(id==='pf_stay'){
+    var P2=32, q=bisect(function(x){return MC(m,x)-P2;},40,90), c=AC(m,q), vv=avc(q);
+    curves+=seg(g,0,P2,116,P2,'curve c-ar');
+    labels+=g.txt(X2(116),Y2(P2)-9,'AR = MR','bold t-ar halo','end');
+    areas+=g.box(0,q,P2,c,'area a-cost')+g.box(0,q,vv,P2,'area a-gain');
+    guides+=g.vline(q,c)+g.hline(q,c)+g.hline(q,vv)+g.dot(q,P2)+g.dot(q,c)+g.dot(q,vv);
+    notes+=g.axP(Y2(P2),'P_1')+g.axQ(X2(q),'Q_1');
+    notes+=g.txt(X2(q/2),(Y2(P2)+Y2(c))/2+5,'loss','bold','middle');
+    notes+=sm ? g.txt(X2(q/2),(Y2(P2)+Y2(vv))/2+5,'to fixed costs','bold','middle')
+              : g.txt2(X2(q/2),(Y2(P2)+Y2(vv))/2-fs2*0.2,'pays part of the','fixed costs','bold','middle');
+  } else {
+    var qa=bisect(function(x){return MC(m,x)-AC(m,x);},30,110), pa=AC(m,qa), qv=m.q1, pv=m.c;
+    guides+=g.hline(qa,pa,'eff')+g.dot(qa,pa,'eff')+g.hline(qv,pv)+g.dot(qv,pv);
+    notes+=g.axP(Y2(pa),'P_1','t-eff')+g.axP(Y2(pv),'P_2');
+    notes+=g.leader(sm?['long-run','shut-down point']:['long-run shut-down point'], sm?42:38, 95, qa, pa, 't-eff');
+    notes+=g.leader(sm?['short-run','shut-down point']:['short-run shut-down point'], 84, sm?13:9, qv+0.5, pv);
+  }
+  g.out(areas,curves,guides,labels,notes);
+}
+
+/* ---------- objectives: the minimum profit constraint ---------- */
+function renderSat(){
+  var m=MONO, s=solveMono(m);
+  function pi(q){return q*(mAR(q)-AC(m,q));}
+  var qa=bisect(pi,5,s.qm), qb=s.qs, top=pi(s.qm);
+  var g=kit({qmax:80,pmax:top*1.32,ytitle:'Supernormal profit'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var lim=top*0.45, qStar=bisect(function(q){return pi(q)-lim;},s.qm,qb);
+  var curves='<path class="curve c-ar" d="'+g.path(pi,qa,qb)+'"/>'+seg(g,0,lim,78,lim,'curve c-mc');
+  var guides=g.vline(s.qm,top,'muted')+g.dot(s.qm,top)+g.vline(qStar,lim,'eff')+g.dot(qStar,lim,'eff')+g.dot(qb,0);
+  var qx=spreadN([X(s.qm),X(qStar),X(qb)],fs*2.4);
+  var notes=g.axQ(qx[0],'Q_PM')+g.axQ(qx[1],'Q_VM*','t-eff')+g.axQ(qx[2],'Q_VM');
+  notes+=g.leader(['minimum profit','constraint'], sm?62:66, top*1.2, 74, lim, '');
+  notes+=g.txt(X(s.qm),Y(top)-11,'most profit','bold halo','middle');
+  g.out('',curves,guides,'',notes);
+}
+
+/* ---------- efficiency ---------- */
+function renderEff(){
+  var id=curId(), v=V[id], te=v.anim?ease(state.t):1, m=FIRM;
+  if(id==='ef_ppf'){
+    var g=kit({ytitle:'Good Y',xtitle:'Good X'}), X=g.X, Y=g.Y, fs=g.fs, r0=80, r=80+20*te;
+    var ppf=function(R,cls){ var d='', n=60, i, a; for(i=0;i<=n;i++){ a=Math.PI/2*i/n; d+=(i?'L':'M')+r1(X(R*Math.sin(a)))+' '+r1(Y(R*Math.cos(a))); } return '<path class="curve '+cls+'" d="'+d+'"/>'; };
+    var sh=te>0.01, curves=(sh?ppf(r0,'c-ar ghost'):'')+ppf(sh?r:r0,'c-ar');
+    var at=function(R,deg){var a=deg*Math.PI/180; return [R*Math.sin(a),R*Math.cos(a)];};
+    var p1=at(r0,80), p2=at(r,80);
+    var labels=g.txt(X(p1[0])+7,Y(p1[1])+4,sh?'PPF_1':'PPF','bold t-ar halo')+(sh?g.txt(X(p2[0])+7,Y(p2[1])+4,'PPF_2','bold t-ar halo'):'');
+    var B=at(r0,45), C=at(r,45);
+    var guides=g.dot(34,30,'muted')+g.dot(B[0],B[1]);
+    var notes=g.txt(X(34)-10,Y(30)+5,'A','bold halo','end')+g.txt(X(B[0])+8,Y(B[1])-8,'B','bold halo');
+    if(sh && te>0.12) notes+=arrowPx(X(B[0])+5,Y(B[1])-5,X(C[0])-4,Y(C[1])+4,'leader eff',8);
+    if(te>0.95){ guides+=g.dot(C[0],C[1],'eff'); notes+=g.txt(X(C[0])+8,Y(C[1])-8,'C','bold t-eff halo'); }
+    g.out('',curves,guides,labels,notes);
+    return;
+  }
+  var g2=kit(), X2=g2.X, Y2=g2.Y, fs2=g2.fs, sm=g2.small;
+  var qe=bisect(function(q){return MC(m,q)-AC(m,q);},30,110), ce=AC(m,qe);
+  if(id==='ef_prod'){
+    var cc=g2.costs(m,m,null);
+    g2.out('',cc.curves,g2.vline(qe,ce,'eff')+g2.dot(qe,ce,'eff'),cc.labels,
+      g2.axQ(X2(qe),'Q*','t-eff')+g2.leader(['lowest AC:','MC = AC'], sm?86:82, 24, qe+0.6, ce-0.4, 't-eff'));
+    return;
+  }
+  if(id==='ef_alloc'){
+    var d=function(q){return 100-0.8*q;}, s=function(q){return 10+0.75*q;};
+    var qs=90/1.55, ps=d(qs), Q1=30, Q2=86;
+    var curves=seg(g2,0,100,118,d(118),'curve c-ar')+seg(g2,0,10,118,s(118),'curve c-mc');
+    var labels=g2.txt(X2(118),Y2(d(118))-9,sm?'D':'D = AR','bold t-ar halo','end')+g2.txt(X2(110),Y2(s(110))-10,'MC','bold t-mc halo','end');
+    var guides=g2.guide(qs,ps,'eff')+g2.dot(qs,ps,'eff')+g2.vline(Q1,d(Q1),'muted')+g2.vline(Q2,s(Q2),'muted');
+    var notes='<path class="gap" d="M'+r1(X2(Q1))+' '+r1(Y2(s(Q1)))+'V'+r1(Y2(d(Q1)))+'"/><path class="gap" d="M'+r1(X2(Q2))+' '+r1(Y2(d(Q2)))+'V'+r1(Y2(s(Q2)))+'"/>';
+    var qx=spreadN([X2(Q1),X2(qs),X2(Q2)],fs2*1.7);
+    notes+=g2.axQ(qx[0],'Q_1')+g2.axQ(qx[1],'Q*','t-eff')+g2.axQ(qx[2],'Q_2')+g2.axP(Y2(ps),'P*','t-eff');
+    /* P > MC sits above the P* guide line, MC > P halfway up its gap */
+    notes+=g2.txt(X2(Q1)-8,Y2(s(Q1)+(d(Q1)-s(Q1))*0.78)+5,'P > MC','bold halo','end')+g2.txt(X2(Q2)+8,(Y2(d(Q2))+Y2(s(Q2)))/2+5,'MC > P','bold halo');
+    g2.out('',curves,guides,labels,notes);
+    return;
+  }
+  if(id==='ef_dyn'){
+    /* drawn here rather than with g.costs: AC_2 is labelled at its top-left end, because
+       under its rising right-hand end the curve itself would cross the label */
+    var now=moved(m,v.shift,te), moving=te>0.02;
+    var rb=rangeMC(m), rn=rangeMC(now), ab=rangeAC(m), an=rangeAC(now);
+    var mc0=function(q){return MC(m,q);}, ac0=function(q){return AC(m,q);}, mc1=function(q){return MC(now,q);}, ac1=function(q){return AC(now,q);};
+    var cv2='', lb2;
+    if(moving) cv2+='<path class="curve c-mc ghost" d="'+g2.path(mc0,rb[0],rb[1])+'"/><path class="curve c-ac ghost" d="'+g2.path(ac0,ab[0],ab[1])+'"/>';
+    cv2+='<path class="curve c-mc" d="'+g2.path(mc1,rn[0],rn[1])+'"/><path class="curve c-ac" d="'+g2.path(ac1,an[0],an[1])+'"/>';
+    if(moving){
+      lb2=g2.txt(X2(rb[1])-9,Y2(mc0(rb[1]))+13,'MC_1','bold t-mc halo','end')+g2.txt(X2(rn[1])+9,Y2(mc1(rn[1]))+13,'MC_2','bold t-mc halo')
+        + g2.txt(X2(ab[1]),Y2(ac0(ab[1]))-9,'AC_1','bold t-ac halo','end')+g2.txt(X2(an[0])+7,Y2(ac1(an[0]))+13,'AC_2','bold t-ac halo');
+    } else lb2=g2.txt(X2(rb[1])-9,Y2(mc0(rb[1]))+13,'MC','bold t-mc halo','end')+g2.txt(X2(ab[1]),Y2(ac0(ab[1]))-9,'AC','bold t-ac halo','end');
+    var qe1=bisect(function(q){return MC(now,q)-AC(now,q);},20,110), ce1=AC(now,qe1);
+    var gd='', nt='';
+    if(moving){
+      gd+=g2.hline(qe,ce,'muted')+g2.dot(qe,ce,'muted')+g2.hline(qe1,ce1,'eff')+g2.dot(qe1,ce1,'eff');
+      var cy=spread(Y2(ce),Y2(ce1),fs2+9);
+      nt+=g2.axP(cy[0],'C_1','t-muted')+g2.axP(cy[1],'C_2','t-eff');
+    } else { gd+=g2.hline(qe,ce)+g2.dot(qe,ce); nt+=g2.axP(Y2(ce),'C_1'); }
+    g2.out('',cv2,gd,lb2,nt);
+    return;
+  }
+  /* ef_x: actual AC drifts up from attainable AC */
+  var dX=18*te, up={c:m.c,k:m.k,q1:m.q1,F:m.F,dx:0,dy:dX}, ra=rangeAC(m), ru=rangeAC(up);
+  var cv='<path class="curve c-ac" d="'+g2.path(function(q){return AC(m,q);},ra[0],ra[1])+'"/>';
+  if(dX>0.3) cv+='<path class="curve c-mr" d="'+g2.path(function(q){return AC(up,q);},ru[0],ru[1])+'"/>';
+  var lb=g2.txt(X2(qe),Y2(ce)+fs2+8,'AC (attainable)','bold t-ac halo','middle');
+  /* above the right-hand end of the actual curve: a label inside the U would be crossed by its arms */
+  if(te>0.3) lb+=g2.txt(X2(ru[1])-2,Y2(AC(up,ru[1]))-9,'AC (actual)','bold t-mr halo','end');
+  var nx2='';
+  if(te>0.75){
+    nx2+=arrowPx(X2(34),Y2(AC(m,34))-3,X2(34),Y2(AC(up,34))+3,'leader',8)+arrowPx(X2(82),Y2(AC(m,82))-3,X2(82),Y2(AC(up,82))+3,'leader',8);
+    nx2+=g2.txt(X2(qe),Y2(ce+dX/2)+5,'X-inefficiency','bold halo','middle');
+  }
+  g2.out('',cv,'',lb,nx2);
+}
+
+/* ---------- predatory pricing: price against time ---------- */
+function renderPred(){
+  var v=cur(), g=kit({ytitle:'Price',xtitle:'Time'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var P1=64, P2=28, P3=82, vR=52, vI=40, t1=36, t2=76, tn=118*(v.anim?ease(state.t):1);
+  var d='M'+r1(X(0))+' '+r1(Y(P1));
+  if(tn<=t1) d+='H'+r1(X(tn));
+  else { d+='H'+r1(X(t1))+'V'+r1(Y(P2)); if(tn<=t2) d+='H'+r1(X(tn)); else d+='H'+r1(X(t2))+'V'+r1(Y(P3))+'H'+r1(X(tn)); }
+  var dash='stroke-dasharray:8 6;stroke-width:2.2';
+  var curves=seg(g,0,vR,118,vR,'curve c-mc',dash)+seg(g,0,vI,118,vI,'curve c-ac',dash)+'<path class="curve c-ar" d="'+d+'"/>';
+  var labels=g.txt(X(118),Y(vR)-8,'rival’s AVC','bold t-mc halo','end')+g.txt(X(118),Y(vI)-8,'incumbent’s AVC','bold t-ac halo','end');
+  var areas='', guides='', notes=g.axP(Y(P1),'P_1');
+  if(tn>t1){
+    areas+=g.box(t1,Math.min(tn,t2),P2,vI,'area a-cost');
+    notes+=g.axP(Y(P2),'P_2');
+    if(tn>t1+18) notes+=g.txt(X((t1+Math.min(tn,t2))/2),(Y(P2)+Y(vI))/2+5,sm?'loss':'incumbent’s loss','bold','middle');
+  }
+  if(tn>=t2){
+    guides+=g.dot(t2,P2);
+    notes+=g.leader(['rival leaves'], t2, 11, t2, P2-1);
+  }
+  if(tn>t2){
+    areas+=g.box(t2,tn,P1,P3,'area a-profit');
+    notes+=g.axP(Y(P3),'P_3');
+    if(tn>t2+30) notes+=g.txt(X((t2+tn)/2),(Y(P1)+Y(P3))/2+5,sm?'win back':'win back losses','bold','middle');
+  }
+  g.out(areas,curves,guides,labels,notes);
+}
+
+/* =====================================================================
+   THEME 3 CALCULATORS (shown in the sheet where the diagram normally goes)
+   ===================================================================== */
+function money(x){
+  var r=Math.round(x*100)/100, a=Math.abs(r), frac=Math.abs(a-Math.round(a))>1e-9;
+  return (r<0?'−':'')+'£'+a.toLocaleString('en-GB',{minimumFractionDigits:frac?2:0,maximumFractionDigits:2});
+}
+function fmtN(x){ return (Math.round(x*100)/100).toLocaleString('en-GB',{maximumFractionDigits:2}); }
+function setT(id,s){ var e=document.getElementById(id); if(e) e.textContent=s; }
+function cformRow(pre,key,label,val){
+  return '<label for="'+pre+'-'+key+'">'+label+'</label><input id="'+pre+'-'+key+'" type="number" inputmode="decimal" min="0" step="any" value="'+val+'">';
+}
+
+/* ---------- revenue table ---------- */
+var REV_START=[10,9,8,7,6,5,4];
+var revState={p:REV_START.slice()};
+function renderRevCalc(){
+  var h='<div class="panel-head"><strong>Price at each output</strong></div>'
+    + '<div class="minis"><span>Reset</span><button type="button" class="chip mini" data-rv="1">Handout prices</button></div>'
+    + '<div class="ctable ct-rev"><span class="ch">Q</span><span class="ch">Price</span><span class="ch">TR</span><span class="ch">AR</span><span class="ch">MR</span>';
+  for(var i=0;i<revState.p.length;i++){
+    h+='<span class="cq">'+(i+1)+'</span><input id="rv-'+i+'" type="number" inputmode="decimal" min="0" step="any" value="'+revState.p[i]+'" aria-label="Price when output is '+(i+1)+'">'
+      + '<span class="cv" id="rv-tr-'+i+'"></span><span class="cv" id="rv-ar-'+i+'"></span><span class="cv" id="rv-mr-'+i+'"></span>';
+  }
+  panel.innerHTML=h+'</div><div class="cr-out" id="rv-out"></div>';
+  updateRev();
+}
+function updateRev(){
+  var p=revState.p, n=p.length, tr=[], best=-Infinity, bi=[], i;
+  for(i=0;i<n;i++) tr[i]=p[i]*(i+1);
+  for(i=0;i<n;i++){ if(tr[i]>best+1e-9){best=tr[i];bi=[i];} else if(Math.abs(tr[i]-best)<1e-9) bi.push(i); }
+  for(i=0;i<n;i++){
+    var mr=tr[i]-(i?tr[i-1]:0);
+    setT('rv-tr-'+i,money(tr[i])); setT('rv-ar-'+i,money(tr[i]/(i+1))); setT('rv-mr-'+i,money(mr));
+    document.getElementById('rv-tr-'+i).className='cv'+(bi.indexOf(i)>=0?' hi':'');
+  }
+  var qs=bi.map(function(x){return x+1;}), last=bi[bi.length-1];
+  var h='<span class="label">Total revenue is highest</span><span class="big">'+money(best)+'</span>'
+    + '<span class="sum">at Q = '+qs.join(' and Q = ')+'</span>';
+  if(qs.length>1) h+='<span>Going from Q = '+qs[0]+' to Q = '+qs[qs.length-1]+' adds nothing to revenue: MR = 0.</span>';
+  if(last+1<n){
+    var mrNext=tr[last+1]-tr[last];
+    if(mrNext<0) h+='<span>At Q = '+(last+2)+', MR turns negative, so selling more lowers total revenue.</span>';
+  } else h+='<span>MR is still positive in the last row, so revenue would keep rising if the firm sold more.</span>';
+  document.getElementById('rv-out').innerHTML=h;
+}
+
+/* ---------- costs ---------- */
+var COST_START={fc:228000,vc:429500,q:3750};
+var costState={fc:228000,vc:429500,q:3750};
+function renderCostCalc(){
+  panel.innerHTML='<div class="panel-head"><strong>Costs and output</strong></div>'
+    + '<div class="minis"><span>Reset</span><button type="button" class="chip mini" data-cc="1">Chelsea’s Electrics</button></div>'
+    + '<div class="cform">'+cformRow('cc','fc','Total fixed cost (£)',costState.fc)+cformRow('cc','vc','Total variable cost (£)',costState.vc)+cformRow('cc','q','Output (units)',costState.q)+'</div>'
+    + '<div class="cr-out" id="cc-out"></div>';
+  updateCost();
+}
+function updateCost(){
+  var s=costState, tc=s.fc+s.vc, q=s.q, h='<span class="label">Total cost</span><span class="sum">'+money(s.fc)+' + '+money(s.vc)+' = '+money(tc)+'</span>';
+  if(q>0){
+    h+='<span class="label" style="margin-top:8px">Average total cost</span><span class="big">'+money(tc/q)+'</span>'
+      + '<span class="sum">ATC = '+money(tc)+' ÷ '+fmtN(q)+' = '+money(tc/q)+'</span>'
+      + '<span class="sum">AVC = '+money(s.vc)+' ÷ '+fmtN(q)+' = '+money(s.vc/q)+'</span>'
+      + '<span class="sum">AFC = '+money(s.fc)+' ÷ '+fmtN(q)+' = '+money(s.fc/q)+'</span>'
+      + '<span>Check: AFC + AVC = '+money(s.fc/q)+' + '+money(s.vc/q)+' = '+money(tc/q)+', which is ATC.</span>';
+  } else h+='<span>Enter an output above zero to work out the averages.</span>';
+  document.getElementById('cc-out').innerHTML=h;
+}
+
+/* ---------- accounting and economic profit ---------- */
+var PC_START={tr:46000,tc:19000,oc:30000};
+var pcState={tr:46000,tc:19000,oc:30000};
+function renderPCalc(){
+  panel.innerHTML='<div class="panel-head"><strong>Tobi’s DJ business, per year</strong></div>'
+    + '<div class="minis"><span>Reset</span><button type="button" class="chip mini" data-pc="1">Tobi’s numbers</button></div>'
+    + '<div class="cform">'+cformRow('pc','tr','Revenue (£)',pcState.tr)+cformRow('pc','tc','Costs actually paid (£)',pcState.tc)+cformRow('pc','oc','Opportunity cost: the job she gives up (£)',pcState.oc)+'</div>'
+    + '<div class="cr-out" id="pc-out"></div>';
+  updatePCalc();
+}
+function updatePCalc(){
+  var s=pcState, acc=s.tr-s.tc, eco=acc-s.oc;
+  var h='<span class="label">Accounting profit</span><span class="sum">'+money(s.tr)+' − '+money(s.tc)+' = '+money(acc)+'</span>'
+    + '<span class="label" style="margin-top:8px">Economic profit</span><span class="big">'+money(eco)+'</span>'
+    + '<span class="sum">'+money(acc)+' − '+money(s.oc)+' = '+money(eco)+'</span>';
+  if(Math.abs(eco)<0.005) h+='<span><b>Normal profit.</b> The business earns exactly what the owner gives up, so there is no reason to switch either way.</span>';
+  else if(eco>0) h+='<span><b>Supernormal profit.</b> The owner earns '+money(eco)+' more than in the next best alternative.</span>';
+  else h+='<span><b>An economic loss.</b> The owner would be '+money(-eco)+' better off in the next best alternative'+(acc>0?', even though an accountant would report a profit':'')+'.</span>';
+  h+='<span>Revenue needed for normal profit: '+money(s.tc)+' + '+money(s.oc)+' = '+money(s.tc+s.oc)+'.</span>';
+  document.getElementById('pc-out').innerHTML=h;
+}
+
+/* ---------- stay or leave (limit and predatory pricing) ---------- */
+var STAY_PRESETS={ex1:[1000,1000,2,2.5], ex2:[100,100,0.5,1], ex3:[100,100,0.5,0.4]};
+var stayState={preset:'ex1',fc:1000,q:1000,avc:2,p:2.5};
+function renderStay(){
+  var s=stayState;
+  panel.innerHTML='<div class="panel-head"><strong>The firm facing a low price</strong></div>'
+    + '<div class="minis"><span>Try</span>'
+    + '<button type="button" class="chip mini" id="st-pre-ex1" data-stay="ex1">Example 1</button>'
+    + '<button type="button" class="chip mini" id="st-pre-ex2" data-stay="ex2">Example 2</button>'
+    + '<button type="button" class="chip mini" id="st-pre-ex3" data-stay="ex3">Example 2 at £0.40</button></div>'
+    + '<div class="cform">'+cformRow('st','fc','Fixed costs (£)',s.fc)+cformRow('st','q','Output (units)',s.q)+cformRow('st','avc','Average variable cost (£)',s.avc)+cformRow('st','p','Price (£)',s.p)+'</div>'
+    + '<div class="cr-out" id="st-out"></div>';
+  updateStay();
+}
+function updateStay(){
+  var s=stayState, q=s.q, afc=q>0?s.fc/q:0, atc=afc+s.avc, stay=(s.p-atc)*q, h;
+  h='<span class="label">Costs per unit</span><span class="sum">AFC = '+money(s.fc)+' ÷ '+fmtN(q)+' = '+money(afc)+'</span>'
+    + '<span class="sum">ATC = '+money(afc)+' + '+money(s.avc)+' = '+money(atc)+'</span>'
+    + '<span class="label" style="margin-top:8px">Stay open</span><span class="sum">('+money(s.p)+' − '+money(atc)+') × '+fmtN(q)+' = '+money(stay)+'</span>'
+    + '<span class="label" style="margin-top:8px">Shut down</span><span class="sum">Still pays the fixed costs: '+money(-s.fc)+'</span>';
+  var verdict, why;
+  if(s.p>=atc-1e-9){ verdict='Stay'; why='The price covers ATC, so there is no loss. Stay in the market.'; }
+  else if(s.p>=s.avc-1e-9){ verdict='Stay for now, leave later'; why='Short run: stay open, because losing '+money(-stay)+' beats losing '+money(s.fc)+'. Long run: leave, because the price is below ATC. A rival setting this price on purpose is limit pricing.'; }
+  else { verdict='Leave now'; why='The price is below AVC, so every unit loses money before fixed costs are even counted. Producing loses '+money(-stay)+', more than the '+money(s.fc)+' lost by shutting down. A rival setting this price on purpose is predatory pricing.'; }
+  h+='<span class="big" style="margin-top:6px">'+verdict+'</span><span>'+why+'</span>';
+  document.getElementById('st-out').innerHTML=h;
+  ['ex1','ex2','ex3'].forEach(function(k){ var b=document.getElementById('st-pre-'+k); if(b) b.setAttribute('aria-pressed', s.preset===k?'true':'false'); });
+}
+
+/* =====================================================================
    STATE
    ===================================================================== */
 var state = {topic:'monopoly', view:{perfect:'pc_taker', monopoly:'profitmax', monopolistic:'mc_snp', oligopoly:'kink', contestable:'cm_mono'}, t:1, fade:true, cheater:'A'};
@@ -1886,6 +3168,17 @@ function renderMono(){
     guides += g.guide(s0.qa,s0.pa,'eff') + g.dot(s0.qa,s0.pa,'eff');
     notes += g.axP(Y(s0.pa),'P_2','t-eff') + g.axQ(X(s0.qa),'Q_2','t-eff');
     notes += g.leader(['deadweight','loss'], nx, 99, s0.qm+(s0.qa-s0.qm)*0.34, (s0.pm+s0.mcm+s0.pa)/3+2);
+  }
+  else if(id==='ob_all'){
+    guides += g.guide(s0.qm,s0.pm) + g.dot(s0.qm,s0.mcm) + g.dot(s0.qm,s0.pm);
+    guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0);
+    guides += g.guide(s0.qs,s0.ps) + g.dot(s0.qs,s0.ps);
+    var pys = spreadN([ypm,Y(s0.pr),Y(s0.ps)], fs+7), qxs = spreadN([xm,X(s0.qr),X(s0.qs)], fs*1.7);
+    notes += g.axP(pys[0],'P_1') + g.axP(pys[1],'P_2') + g.axP(pys[2],'P_3');
+    notes += g.axQ(qxs[0],'Q_1') + g.axQ(qxs[1],'Q_2') + g.axQ(qxs[2],'Q_3');
+    notes += g.txt(xm+14, Y(s0.mcm)+5, 'MR = MC', 'halo t-mc bold');
+    notes += g.txt(X(s0.qr)+8, Y(0)-10, 'MR = 0', 'halo t-mr bold');
+    notes += g.leader(['AR = AC'], g.small?88:82, 16, s0.qs, s0.ps, '');
   }
   else if(shift){
     areas += g.box(0,s0.qm,s0.cm,s0.pm,'outline') + g.box(0,s1.qm,s1.cm,s1.pm,'area a-profit');
@@ -2428,9 +3721,21 @@ panel.addEventListener('input', function(e){
    PAGE WIRING
    ===================================================================== */
 function render(){
-  var k=cur().kind, svg=!{game:1,cr:1,card:1,cacalc:1,totcalc:1,ml:1}[k];
+  var k=cur().kind, svg=!{game:1,cr:1,card:1,cacalc:1,totcalc:1,ml:1,revcalc:1,costcalc:1,pcalc:1,stay:1}[k];
   plot.hidden=!svg; panel.hidden=svg;
   if(k==='mono') renderMono();
+  else if(k==='chain') renderChain();
+  else if(k==='rev') renderRev();
+  else if(k==='cost') renderCost();
+  else if(k==='lrac') renderLRAC();
+  else if(k==='profit') renderProfits();
+  else if(k==='sat') renderSat();
+  else if(k==='eff') renderEff();
+  else if(k==='pred') renderPred();
+  else if(k==='revcalc') renderRevCalc();
+  else if(k==='costcalc') renderCostCalc();
+  else if(k==='pcalc') renderPCalc();
+  else if(k==='stay') renderStay();
   else if(k==='vs') renderVs();
   else if(k==='pd3') renderPD3();
   else if(k==='pc') renderPC();
@@ -2539,11 +3844,24 @@ window.addEventListener('hashchange', function(){
 for(var tk0 in TOPICS){ if(!state.view[tk0]) state.view[tk0]=TOPICS[tk0].first; }
 state.last={micro:'monopoly',macro:'global'};
 function renderTabs(){
-  var sec=TOPICS[state.topic].section, S=SECTIONS[sec];
+  var sec=TOPICS[state.topic].section, S=SECTIONS[sec], tabsEl=document.getElementById('tabs');
   state.last[sec]=state.topic;
-  document.getElementById('tabs').innerHTML=S.order.map(function(k){
+  function tabBtn(k){
     return '<button class="tab" role="tab" id="tab-'+k+'" data-topic="'+k+'" type="button" aria-selected="'+(k===state.topic)+'">'+TOPICS[k].label+'</button>';
-  }).join('');
+  }
+  if(S.groups){
+    /* two labelled rows of tabs, each its own tablist */
+    tabsEl.className='tabs grouped'; tabsEl.removeAttribute('role');
+    tabsEl.innerHTML=S.groups.map(function(gr){
+      return '<div class="tabgroup"><span class="tabgroup-h">'+gr[0]+'</span><div class="tabrow" role="tablist" aria-label="'+gr[0]+'">'+gr[1].map(tabBtn).join('')+'</div></div>';
+    }).join('');
+    /* on a phone the rows scroll sideways: bring the open tab into view */
+    var on=document.getElementById('tab-'+state.topic), row=on&&on.parentNode;
+    if(row && row.scrollWidth>row.clientWidth && on.offsetLeft+on.offsetWidth>row.clientWidth) row.scrollLeft=on.offsetLeft-12;
+  } else {
+    tabsEl.className='tabs'; tabsEl.setAttribute('role','tablist');
+    tabsEl.innerHTML=S.order.map(tabBtn).join('');
+  }
   var sb=document.querySelectorAll('.sec');
   for(var i=0;i<sb.length;i++) sb[i].setAttribute('aria-selected', sb[i].dataset.section===sec?'true':'false');
   document.getElementById('h-topic').textContent=S.heading;
@@ -2568,11 +3886,30 @@ panel.addEventListener('input', function(e){
   else if(id==='ml-x' || id==='ml-m'){ mlState[id.slice(3)]=val; updateML(); }
 });
 
+/* ---------- theme 3 calculators ---------- */
+panel.addEventListener('click', function(e){
+  var t=e.target.closest ? e.target : null; if(!t) return;
+  var b=t.closest('[data-stay]');
+  if(b){ var P=STAY_PRESETS[b.dataset.stay]; stayState={preset:b.dataset.stay,fc:P[0],q:P[1],avc:P[2],p:P[3]}; renderStay(); return; }
+  if(t.closest('[data-cc]')){ costState={fc:COST_START.fc,vc:COST_START.vc,q:COST_START.q}; renderCostCalc(); return; }
+  if(t.closest('[data-pc]')){ pcState={tr:PC_START.tr,tc:PC_START.tc,oc:PC_START.oc}; renderPCalc(); return; }
+  if(t.closest('[data-rv]')){ revState.p=REV_START.slice(); renderRevCalc(); }
+});
+panel.addEventListener('input', function(e){
+  var id=e.target.id||'', m, val=parseFloat(e.target.value);
+  if(!(val>=0)) return;   /* ignore blanks and negatives while typing */
+  if((m=id.match(/^rv-(\d)$/))){ revState.p[+m[1]]=val; updateRev(); }
+  else if((m=id.match(/^cc-(fc|vc|q)$/))){ costState[m[1]]=val; updateCost(); }
+  else if((m=id.match(/^pc-(tr|tc|oc)$/))){ pcState[m[1]]=val; updatePCalc(); }
+  else if((m=id.match(/^st-(fc|q|avc|p)$/))){ stayState[m[1]]=val; stayState.preset=''; updateStay(); }
+});
+
 try{
   var saved=JSON.parse(localStorage.getItem('tof-state')||'null');
   if(saved){
     if(TOPICS[saved.topic]) state.topic=saved.topic;
-    for(var tk in TOPICS){ var sv=saved.view&&saved.view[tk]; if(sv && V[sv]) state.view[tk]=sv; }
+    /* only restore a view that still lives in that tab (some views have moved tabs) */
+    for(var tk in TOPICS){ var sv=saved.view&&saved.view[tk]; if(sv && V[sv] && TOPICS[tk].groups.some(function(gr){return gr[1].indexOf(sv)>=0;})) state.view[tk]=sv; }
   }
 }catch(e){}
 var h0=readHash(); if(h0){ state.topic=h0.topic; if(h0.view) state.view[h0.topic]=h0.view; }

@@ -13,7 +13,7 @@ Live site: https://syedmominraza.github.io/econ-diagrams/
 | Page | What it is |
 |---|---|
 | `index.html` | Home: live demo, how to use it, the spec index for Themes 3 and 4, about |
-| `learn.html` | The diagrams and notes. Micro (3.4) and Macro (4.1) |
+| `learn.html` | The diagrams and notes. Micro (all of 3.1 to 3.4, except monopsony) and Macro (4.1) |
 | `practice.html` | The practice board: build a diagram from movable pieces, then reveal the answer |
 
 ## Files
@@ -34,7 +34,7 @@ There is no build step. Open `index.html` through a local web server to run it
 
 ## Links into the notes
 
-`learn.html#profit` opens the exact note with that id. `learn.html#monopoly`
+`learn.html#profit` opens the exact note with that id. `learn.html#monopoly` or `learn.html#costs`
 opens a topic, and `learn.html#macro` opens the Macro half.
 `practice.html#q=tariff` opens a practice question.
 
