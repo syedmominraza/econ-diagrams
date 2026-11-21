@@ -12,6 +12,7 @@ img{max-width:100%}
   --hl-profit:#FFDD33; --hl-cost:#FF8DBA; --hl-dwl:#FF9A3D; --hl-cs:#6FB8FF; --hl-gain:#74D99A; --hl-op:.6;
   --swipe-a:#FFE24A; --swipe-b:#FFB3D1;
   --hover-bg:#FFE24A; --hover-fg:#17203A;
+  --foot-bg:#17203A; --foot-fg:#EEF2E6; --foot-soft:#A9B3C9; --foot-line:#2E3A57; --heart:#E5484D;
   --font-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
   --font-body:"Karla","Segoe UI",system-ui,sans-serif;
   --font-hand:"Kalam","Comic Sans MS","Segoe Print",cursive;
@@ -25,6 +26,7 @@ img{max-width:100%}
     --hl-profit:#FFE066; --hl-cost:#FF8DBA; --hl-dwl:#FFA552; --hl-cs:#6FB6FF; --hl-gain:#74D69A; --hl-op:.34;
     --swipe-a:rgba(255,224,102,.3); --swipe-b:rgba(255,141,186,.3);
     --hover-bg:#FFE066; --hover-fg:#14221D;
+    --foot-bg:#0C1612; --foot-fg:#EEF2E6; --foot-soft:#94A79B; --foot-line:#24382F; --heart:#FF6B70;
     color-scheme:dark;
   }
 }
@@ -36,6 +38,7 @@ img{max-width:100%}
   --hl-profit:#FFE066; --hl-cost:#FF8DBA; --hl-dwl:#FFA552; --hl-cs:#6FB6FF; --hl-gain:#74D69A; --hl-op:.34;
   --swipe-a:rgba(255,224,102,.3); --swipe-b:rgba(255,141,186,.3);
   --hover-bg:#FFE066; --hover-fg:#14221D;
+    --foot-bg:#0C1612; --foot-fg:#EEF2E6; --foot-soft:#94A79B; --foot-line:#24382F; --heart:#FF6B70;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -45,7 +48,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
   display:flex;flex-direction:column;gap:22px}
 
-header{display:flex;flex-direction:column;gap:6px}
+.page > header{display:flex;flex-direction:column;gap:6px}
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .theme{display:flex;gap:7px}
 .credit{display:flex;flex-direction:column;align-items:flex-end;gap:3px;line-height:1;transform:rotate(-3deg);margin-right:6px}
@@ -210,5 +213,5 @@ ul.plain b{font-family:var(--font-hand);font-size:1.1rem;line-height:1.35}
 }
 .eval .label span{background:linear-gradient(transparent 40%,var(--swipe-b) 40% 95%,transparent 95%);padding:0 .25em;margin:0 -.25em;color:var(--ink)}
 .tip{font-family:var(--font-hand);font-size:1.12rem;line-height:1.4;color:var(--pen-mc);max-width:52ch}
-footer{font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:14px}
+.page-note{font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:14px}
 @media (prefers-reduced-motion: reduce){.fade{animation:none}}

@@ -1,6 +1,8 @@
 /* A-level Economics Diagrams: all diagrams, notes and controls */
 (function(){
 'use strict';
+var EMBED=/[?&]embed\b/.test(location.search);
+if(EMBED) document.documentElement.classList.add('embed');
 
 /* =====================================================================
    COST CURVES (shared by both diagrams)
@@ -2491,16 +2493,16 @@ function play(){
   }
   raf=requestAnimationFrame(frame);
 }
-function save(){ try{ localStorage.setItem('tof-state', JSON.stringify({topic:state.topic, view:state.view})); }catch(e){} }
+function save(){ if(EMBED) return; try{ localStorage.setItem('tof-state', JSON.stringify({topic:state.topic, view:state.view})); }catch(e){} }
 function setView(id){
   state.view[state.topic]=id; state.fade=!V[id].anim;
-  renderNotes(); play(); save();
+  renderNotes(); play(); save(); setHash(id);
 }
 function setTopic(t, fromHash){
   if(!TOPICS[t]) return;
   state.topic=t; state.fade=true;
   renderControls(); renderNotes(); play(); save();
-  if(!fromHash){ try{ if(location.hash!=='#'+t) location.hash=t; }catch(e){} }
+  if(!fromHash) setHash(state.view[t]);
 }
 
 document.getElementById('controls').addEventListener('click', function(e){
@@ -2513,36 +2515,24 @@ document.querySelector('.tabs').addEventListener('click', function(e){
 });
 document.getElementById('replay').addEventListener('click', play);
 
-/* ---------- light / dark mode ---------- */
-var root=document.documentElement;
-function currentMode(){
-  var a=root.getAttribute('data-theme');
-  if(a==='light'||a==='dark') return a;
-  return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+function setHash(id){ if(EMBED) return; try{ if(location.hash!=='#'+id) history.replaceState(null,'','#'+id); }catch(e){} }
+function topicOf(id){
+  for(var t in TOPICS){ var gs=TOPICS[t].groups; for(var i=0;i<gs.length;i++){ if(gs[i][1].indexOf(id)>=0) return t; } }
+  return null;
 }
-function showMode(){
-  var m=currentMode();
-  document.getElementById('theme-light').setAttribute('aria-pressed', m==='light'?'true':'false');
-  document.getElementById('theme-dark').setAttribute('aria-pressed', m==='dark'?'true':'false');
+/* a hash can name a topic (#monopoly), a section (#macro) or one exact view (#profit) */
+function readHash(){
+  var h=decodeURIComponent((location.hash||'').slice(1));
+  if(TOPICS[h]) return {topic:h, view:null};
+  if(SECTIONS[h]) return {topic:state.last[h]||SECTIONS[h].order[0], view:null};
+  if(V[h]){ var t=topicOf(h); if(t) return {topic:t, view:h}; }
+  return null;
 }
-function setMode(m){
-  root.setAttribute('data-theme', m);
-  try{ localStorage.setItem('tof-theme', m); }catch(e){}
-  showMode();
-}
-document.querySelector('.theme').addEventListener('click', function(e){
-  var b = e.target.closest ? e.target.closest('[data-mode]') : null;
-  if(b) setMode(b.dataset.mode);
-});
-try{ var savedMode=localStorage.getItem('tof-theme'); if(savedMode==='light'||savedMode==='dark') root.setAttribute('data-theme', savedMode); }catch(e){}
-showMode();
-if(window.matchMedia){
-  var mq=window.matchMedia('(prefers-color-scheme: dark)');
-  if(mq.addEventListener) mq.addEventListener('change', showMode);
-}
-if(window.MutationObserver) new MutationObserver(showMode).observe(root,{attributes:true,attributeFilter:['data-theme']});
 window.addEventListener('hashchange', function(){
-  var t=(location.hash||'').slice(1); if(TOPICS[t] && t!==state.topic) setTopic(t,true);
+  var r=readHash(); if(!r) return;
+  if(r.view) state.view[r.topic]=r.view;
+  if(r.topic!==state.topic || r.view){ state.topic=r.topic; state.fade=true; renderControls(); renderNotes(); play(); save(); }
+  var d=document.querySelector('.diagram'); if(d && d.scrollIntoView) d.scrollIntoView({block:'start'});
 });
 
 /* ---------- sections (Micro / Macro) and their tabs ---------- */
@@ -2585,8 +2575,14 @@ try{
     for(var tk in TOPICS){ var sv=saved.view&&saved.view[tk]; if(sv && V[sv]) state.view[tk]=sv; }
   }
 }catch(e){}
-var h0=(location.hash||'').slice(1); if(TOPICS[h0]) state.topic=h0; else if(SECTIONS[h0]) state.topic=SECTIONS[h0].order[0];
+var h0=readHash(); if(h0){ state.topic=h0.topic; if(h0.view) state.view[h0.topic]=h0.view; }
 renderControls(); renderNotes(); state.t=1; render();
+if(EMBED){
+  if(cur().anim) setTimeout(play, 500);
+  var tell=function(){ try{ parent.postMessage({type:'econ-embed-height', h:document.documentElement.scrollHeight, view:curId()}, location.origin==='null'?'*':location.origin); }catch(e){} };
+  if(window.ResizeObserver) new ResizeObserver(tell).observe(document.body); else window.addEventListener('load',tell);
+  tell();
+}
 
 var lastW=plot.clientWidth;
 if(window.ResizeObserver){

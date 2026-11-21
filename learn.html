@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagrams · Slaude Economics</title>
+<meta name="description" content="Interactive Edexcel A Economics diagrams for market structures and international economics, with exam-style notes.">
+<meta name="theme-color" content="#E9F0EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14221D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diagrams · Slaude Economics">
+<meta property="og:description" content="Interactive Edexcel A Economics diagrams for market structures and international economics, with exam-style notes.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Kalam:wght@400;700&family=Karla:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="site.css?v=15">
+<script>try{var m=localStorage.getItem('tof-theme');if(m==='light'||m==='dark')document.documentElement.setAttribute('data-theme',m);}catch(e){}</script>
+</head>
+<body class="learn">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="site-head-in">
+    <a class="brand" href="./" aria-label="Slaude Economics, home">
+      <img src="favicon.svg" alt="" width="30" height="30">
+      <span class="brand-name">Slaude</span><span class="brand-sub">economics</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="learn.html" data-nav="learn" aria-current="page">Diagrams</a>
+      <a href="./#spec" data-nav="spec">Spec index</a>
+      <a href="practice.html" data-nav="practice">Practise</a>
+    </nav>
+    <div class="theme" role="group" aria-label="Colour mode">
+      <button type="button" class="chip mini" id="theme-light" data-mode="light" aria-pressed="false">Light</button>
+      <button type="button" class="chip mini" id="theme-dark" data-mode="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+</header>
+<main class="page" id="main">
+  <header>
+    <div class="eyebrow" id="eyebrow">Edexcel A &middot; Theme 3</div>
+    <h1><span id="h-topic">Market structures</span>, one click at a time</h1>
+    <p class="lede"><span id="lede-scope">Section 3.4, market structures.</span> Pick what you want to see. The diagram redraws and the notes explain it the way you would write it in the exam.</p>
+  </header>
+
+  <div class="sections" role="tablist" aria-label="Micro or macro">
+    <button class="sec" role="tab" id="sec-micro" data-section="micro" type="button" aria-selected="true">Micro</button>
+    <button class="sec" role="tab" id="sec-macro" data-section="macro" type="button" aria-selected="false">Macro</button>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Topic" id="tabs"></div>
+
+  <div class="layout">
+    <section class="diagram" aria-label="Diagram">
+      <div class="sheet">
+        <div id="plot" role="img" aria-label="Diagram"></div>
+        <div id="panel" hidden></div>
+        <div class="sheet-foot">
+          <div class="showing" id="showing"></div>
+          <button class="replay" id="replay" type="button" hidden>Replay</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="side">
+      <nav class="controls" id="controls" aria-label="What to show"></nav>
+      <article class="notes" id="notes" aria-live="polite"></article>
+    </div>
+  </div>
+
+  <p class="page-note">Most diagrams carry no numbers on purpose: the labels match what you draw in the exam. Numbers appear only where the exam uses them.</p>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-in">
+    <div class="foot-cols">
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="learn.html#micro">Micro: market structures</a></li>
+          <li><a href="learn.html#macro">Macro: international economics</a></li>
+          <li><a href="./#spec">Spec index</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Practise</h2>
+        <ul>
+          <li><a href="practice.html">Draw a diagram</a></li>
+          <li><a href="practice.html#q=mono-snp">Monopoly supernormal profit</a></li>
+          <li><a href="practice.html#q=pc-entry">New firms enter</a></li>
+          <li><a href="practice.html#q=tariff">Tariff diagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Popular notes</h2>
+        <ul>
+          <li><a href="learn.html#kink">Kinked demand curve</a></li>
+          <li><a href="learn.html#pd3">Price discrimination</a></li>
+          <li><a href="learn.html#tf_areas">Tariff areas A to D</a></li>
+          <li><a href="learn.html#fx_j">J-curve</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>About</h2>
+        <ul>
+          <li><a href="./#about">About this site</a></li>
+          <li><a href="./#spec">What it covers</a></li>
+          <li><a href="https://github.com/syedmominraza/econ-diagrams">Source on GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <a class="brand" href="./" aria-label="Slaude Economics, home"><img src="favicon.svg" alt="" width="26" height="26"><span class="brand-name">Slaude</span><span class="brand-sub">economics</span></a>
+      <span>&copy; <span id="year">2026</span> Slaude</span>
+      <span>Edexcel A &middot; Themes 3 and 4</span>
+      <span class="made">Made by Syed &times; Claude with <span class="heart" aria-label="love">&#9829;</span></span>
+    </div>
+  </div>
+</footer>
+<script src="site.js?v=15"></script>
+<script src="app.js?v=15"></script>
+</body>
+</html>

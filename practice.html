@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Practise drawing · Slaude Economics</title>
+<meta name="description" content="Practise drawing A-level Economics diagrams: build the diagram from movable curves, then reveal the answer.">
+<meta name="theme-color" content="#E9F0EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14221D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Practise drawing · Slaude Economics">
+<meta property="og:description" content="Practise drawing A-level Economics diagrams: build the diagram from movable curves, then reveal the answer.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Kalam:wght@400;700&family=Karla:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="site.css?v=15">
+<script>try{var m=localStorage.getItem('tof-theme');if(m==='light'||m==='dark')document.documentElement.setAttribute('data-theme',m);}catch(e){}</script>
+</head>
+<body class="practice-page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="site-head-in">
+    <a class="brand" href="./" aria-label="Slaude Economics, home">
+      <img src="favicon.svg" alt="" width="30" height="30">
+      <span class="brand-name">Slaude</span><span class="brand-sub">economics</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="learn.html" data-nav="learn">Diagrams</a>
+      <a href="./#spec" data-nav="spec">Spec index</a>
+      <a href="practice.html" data-nav="practice" aria-current="page">Practise</a>
+    </nav>
+    <div class="theme" role="group" aria-label="Colour mode">
+      <button type="button" class="chip mini" id="theme-light" data-mode="light" aria-pressed="false">Light</button>
+      <button type="button" class="chip mini" id="theme-dark" data-mode="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+</header>
+<main class="practice" id="main">
+  <header>
+    <div class="eyebrow">Practise</div>
+    <h1>Draw it yourself</h1>
+    <p class="lede">Pick a question, build the diagram from the pieces, label your axes, then reveal the answer and tick off what you got right.</p>
+  </header>
+
+  <section class="qbar" aria-label="Question">
+    <div class="qbar-top">
+      <label class="ptitle" for="qsel" style="margin:0">Question</label>
+      <select id="qsel"></select>
+      <button type="button" class="chip" id="qprev">&larr; Previous</button>
+      <button type="button" class="chip" id="qnext">Next &rarr;</button>
+    </div>
+    <p class="qtext" id="qtext"></p>
+    <div class="qmeta" id="qmeta"></div>
+    <div class="qactions">
+      <button type="button" class="btn primary" id="reveal">Reveal answer</button>
+      <button type="button" class="btn" id="clear">Clear my drawing</button>
+    </div>
+  </section>
+
+  <div class="pgrid">
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <svg id="svg" viewBox="0 0 1000 700" role="img" aria-label="Drawing board"></svg>
+      </div>
+      <div class="board-tools">
+        <button type="button" class="chip" id="undo">Undo</button>
+        <button type="button" class="chip" id="axes1" aria-pressed="true">One diagram</button>
+        <button type="button" class="chip" id="axes2" aria-pressed="false">Two side by side</button>
+        <span class="hint">Drag to move. Pull the round handles to stretch.</span>
+      </div>
+    </div>
+
+    <aside class="pside">
+      <section aria-labelledby="pieces-title">
+        <h2 class="ptitle" id="pieces-title">Pieces: click to add</h2>
+        <div class="palette" id="palette"></div>
+      </section>
+
+      <section class="selbox" id="selbox" aria-labelledby="sel-title">
+        <h2 class="ptitle" id="sel-title" style="margin:0">Selected piece</h2>
+        <p class="sel-empty" id="sel-empty">Click a piece on the board to label it, change its colour or delete it.</p>
+        <div id="sel-tools" hidden>
+          <div class="selrow" id="row-label"><label for="sel-label">Label</label><input type="text" id="sel-label" maxlength="24" placeholder="e.g. MC or AR = D"></div>
+          <div class="selrow" id="row-style"><label for="sel-style">Line</label>
+            <select id="sel-style"><option value="solid">Solid</option><option value="dash">Dotted</option></select></div>
+          <div class="selrow" id="row-colour"><label>Colour</label><span id="swatches" class="selrow"></span></div>
+          <div class="selrow" id="row-fill"><label>Shading</label><span id="fills" class="selrow"></span></div>
+          <div class="selrow"><button type="button" class="chip" id="dup">Duplicate</button><button type="button" class="chip" id="del">Delete</button></div>
+        </div>
+      </section>
+
+      <section class="answer" id="answer" hidden aria-labelledby="ans-title">
+        <div class="a-head"><strong id="ans-title">The answer</strong><a id="ans-link" href="learn.html">Open the full notes</a></div>
+        <iframe id="ans-frame" title="Answer diagram"></iframe>
+        <div class="check">
+          <h3 class="ptitle" style="margin:0">Did you&hellip; <span class="score" id="score"></span></h3>
+          <ul id="checklist"></ul>
+        </div>
+      </section>
+      <p class="p-help">Your drawing for each question is saved in this browser, so you can come back to it.</p>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="foot-in">
+    <div class="foot-cols">
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="learn.html#micro">Micro: market structures</a></li>
+          <li><a href="learn.html#macro">Macro: international economics</a></li>
+          <li><a href="./#spec">Spec index</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Practise</h2>
+        <ul>
+          <li><a href="practice.html">Draw a diagram</a></li>
+          <li><a href="practice.html#q=mono-snp">Monopoly supernormal profit</a></li>
+          <li><a href="practice.html#q=pc-entry">New firms enter</a></li>
+          <li><a href="practice.html#q=tariff">Tariff diagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Popular notes</h2>
+        <ul>
+          <li><a href="learn.html#kink">Kinked demand curve</a></li>
+          <li><a href="learn.html#pd3">Price discrimination</a></li>
+          <li><a href="learn.html#tf_areas">Tariff areas A to D</a></li>
+          <li><a href="learn.html#fx_j">J-curve</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>About</h2>
+        <ul>
+          <li><a href="./#about">About this site</a></li>
+          <li><a href="./#spec">What it covers</a></li>
+          <li><a href="https://github.com/syedmominraza/econ-diagrams">Source on GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <a class="brand" href="./" aria-label="Slaude Economics, home"><img src="favicon.svg" alt="" width="26" height="26"><span class="brand-name">Slaude</span><span class="brand-sub">economics</span></a>
+      <span>&copy; <span id="year">2026</span> Slaude</span>
+      <span>Edexcel A &middot; Themes 3 and 4</span>
+      <span class="made">Made by Syed &times; Claude with <span class="heart" aria-label="love">&#9829;</span></span>
+    </div>
+  </div>
+</footer>
+<script src="site.js?v=15"></script>
+<script src="practice.js?v=15"></script>
+</body>
+</html>

@@ -1,38 +1,45 @@
-# A-level Economics Diagrams
+# Slaude Economics
 
 Interactive revision diagrams for Edexcel A Economics. Click a button and the
 diagram redraws, with a chain of analysis, an evaluation point and real
-examples beside it.
+examples beside it. Then practise drawing the diagram yourself.
 
 Made by Syed, with Claude.
 
-## What it covers
+Live site: https://syedmominraza.github.io/econ-diagrams/
 
-- **Micro, section 3.4:** perfect competition, monopoly (including price
-  discrimination and natural monopoly), monopolistic competition, oligopoly,
-  contestable markets.
-- **Macro, section 4.1:** globalisation, trade, protectionism, trading blocs,
-  exchange rates, balance of payments.
+## Pages
 
-It is for quick review after revision, not a replacement for class notes.
+| Page | What it is |
+|---|---|
+| `index.html` | Home: live demo, how to use it, the spec index for Themes 3 and 4, about |
+| `learn.html` | The diagrams and notes. Micro (3.4) and Macro (4.1) |
+| `practice.html` | The practice board: build a diagram from movable pieces, then reveal the answer |
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `index.html` | The page itself |
-| `style.css` | Colours, fonts and layout, including light and dark mode |
+| `style.css` | Colours, fonts and the diagram page layout, including light and dark mode |
+| `site.css` | Header, footer, home page, spec index and practice board |
+| `site.js` | Light and dark mode, shared by every page |
 | `app.js` | Every diagram, the notes for each button, and the calculators |
+| `spec.js` | The spec index: sections, spec points and which notes cover them |
+| `home.js` | Builds the spec index on the home page |
+| `practice.js` | The practice board and its questions |
 | `favicon.svg` | The icon in the browser tab |
 
-There is no build step. Open `index.html` in a browser to run it locally.
+There is no build step. Open `index.html` through a local web server to run it
+(the live demo and practice answers load `learn.html` in a frame).
+
+## Links into the notes
+
+`learn.html#profit` opens the exact note with that id. `learn.html#monopoly`
+opens a topic, and `learn.html#macro` opens the Macro half.
+`practice.html#q=tariff` opens a practice question.
 
 ## Updating the site
 
-Edit the files, then upload the changed ones to this repository
-(Add file, Upload files, Commit changes). GitHub Pages republishes
-within a minute or two.
-
-The notes for every button live in `app.js`, in the object called `V`.
-Each entry has a title, a lead line, a chain of analysis and an evaluation
-point.
+Edit the files, then commit and push, or upload the changed files on GitHub.
+When you change a `.css` or `.js` file, raise the `?v=` number where the pages
+link to it, so browsers fetch the new copy.
