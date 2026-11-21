@@ -271,8 +271,10 @@ function isStroke(p){ return !!CURVES[p.t] || p.t==='line' || p.t==='draw'; }
 /* where each axis label goes: the vertical one beside the arrow, the horizontal one under the arrow */
 function axisGeom(key){
   var ax=AXES[st.mode][(+key.charAt(1))-1]; if(!ax) return null;
-  if(key.charAt(0)==='y'){ var bw=Math.min(ax.ox-24, 140); return {x:ax.ox-14, y:ax.top+4, anchor:'end', bx:ax.ox-14-bw, by:ax.top-20, bw:bw, wrap:Math.max(6, Math.floor(bw/11.5))}; }
-  return {x:ax.right+12, y:ax.oy+52, anchor:'end', bx:ax.right+18-200, by:ax.oy+22, bw:200};
+  /* every empty label box on the board is the same size: as wide as fits left of the narrowest vertical axis */
+  var bw=Math.min(140, Math.min.apply(null, AXES[st.mode].map(function(a){ return a.ox-24; })));
+  if(key.charAt(0)==='y') return {x:ax.ox-14, y:ax.top+4, anchor:'end', bx:ax.ox-14-bw, by:ax.top-20, bw:bw, wrap:Math.max(6, Math.floor(bw/11.5))};
+  return {x:ax.right+12, y:ax.oy+52, anchor:'end', bx:ax.right+18-bw, by:ax.oy+22, bw:bw};
 }
 function axisLabel(key){
   var g=axisGeom(key); if(!g || (st.editing && st.editing.kind==='axis' && st.editing.key===key)) return '';
