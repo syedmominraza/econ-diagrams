@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A-level Economics Diagrams</title>
+<meta name="description" content="Interactive A-level Economics diagrams (Edexcel A). Click a button and the diagram redraws, with exam-style notes, real examples and calculators for market structures and international economics.">
+<meta name="theme-color" content="#E9F0EA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14221D" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A-level Economics Diagrams">
+<meta property="og:description" content="Click a button, watch the diagram change. Micro and macro, Edexcel A.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Kalam:wght@400;700&family=Karla:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="topbar">
+    <div class="theme" role="group" aria-label="Colour mode">
+      <button type="button" class="chip mini" id="theme-light" data-mode="light" aria-pressed="false">Light mode</button>
+      <button type="button" class="chip mini" id="theme-dark" data-mode="dark" aria-pressed="false">Dark mode</button>
+    </div>
+    <div class="credit"><span class="credit-main"><i>Made by</i> <b>Slaude</b></span><small>Syed &times; Claude</small></div>
+    </div>
+    <div class="eyebrow" id="eyebrow">Edexcel A &middot; Theme 3</div>
+    <h1><span id="h-topic">Market structures</span>, one click at a time</h1>
+    <p class="lede"><span id="lede-scope">Section 3.4, market structures.</span> Pick what you want to see. The diagram redraws and the notes explain it the way you would write it in the exam.</p>
+  </header>
+
+  <div class="sections" role="tablist" aria-label="Micro or macro">
+    <button class="sec" role="tab" id="sec-micro" data-section="micro" type="button" aria-selected="true">Micro</button>
+    <button class="sec" role="tab" id="sec-macro" data-section="macro" type="button" aria-selected="false">Macro</button>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Topic" id="tabs"></div>
+
+  <div class="layout">
+    <section class="diagram" aria-label="Diagram">
+      <div class="sheet">
+        <div id="plot" role="img" aria-label="Diagram"></div>
+        <div id="panel" hidden></div>
+        <div class="sheet-foot">
+          <div class="showing" id="showing"></div>
+          <button class="replay" id="replay" type="button" hidden>Replay</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="side">
+      <nav class="controls" id="controls" aria-label="What to show"></nav>
+      <article class="notes" id="notes" aria-live="polite"></article>
+    </div>
+  </div>
+
+  <footer>Most diagrams carry no numbers on purpose: the labels match what you draw in the exam. Numbers appear only where the exam uses them.</footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
