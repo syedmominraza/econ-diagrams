@@ -103,7 +103,47 @@ var QUESTIONS = [
    check:['Axes: Price level and Real GDP','AS flat at first, then curving up to vertical','Net exports rise, so AD shifts right','Real GDP and the price level both rise']},
   {id:'ppc', th:'4', spec:'4.1.2', view:'ca_gain', two:true,
    q:'The UK and Senegal specialise and trade. Draw each country’s production possibility curve and trading possibility curve.',
-   check:['Each PPC is a straight line between its two maximum outputs','Each country specialises in its comparative advantage good','The TPC pivots out from the specialised good','The TPC lies outside the PPC: gains from trade']}
+   check:['Each PPC is a straight line between its two maximum outputs','Each country specialises in its comparative advantage good','The TPC pivots out from the specialised good','The TPC lies outside the PPC: gains from trade']},
+  /* Year 12: Themes 1 and 2 */
+  {id:'ext-negprod', th:'1', spec:'1.3.2', view:'ex_negprod',
+   q:'Draw a negative externality of production. Show the market output, the socially optimal output and the welfare loss.',
+   check:['Axes labelled Costs / benefits and Quantity','MSC above MPC; MPB = MSB','Market output Qₘ where MPB = MPC; social optimum Q* where MSB = MSC','The welfare loss triangle sits between MSC and MSB, from Q* to Qₘ']},
+  {id:'ext-negcons', th:'1', spec:'1.3.2', view:'ex_negcons',
+   q:'Draw a negative externality of consumption, such as smoking. Show the over-consumption and the welfare loss.',
+   check:['MSB below MPB; MPC = MSC','Market output where MPB = MPC is above Q*, where MSB = MSC','Over-consumption marked from Q* to Qₘ','The welfare loss triangle sits between MPC and MSB']},
+  {id:'ext-poscons', th:'1', spec:'1.3.2', view:'ex_poscons',
+   q:'Draw a positive externality of consumption, such as vaccinations. Show the under-consumption and the welfare loss.',
+   check:['MSB above MPB; MPC = MSC','Market output Qₘ where MPB = MPC is below Q*, where MSB = MSC','Under-consumption marked from Qₘ to Q*','The welfare loss triangle sits between MSB and MPC, from Qₘ to Q*']},
+  {id:'ext-posprod', th:'1', spec:'1.3.2', view:'ex_posprod',
+   q:'Draw a positive externality of production. Show the under-production and the welfare loss.',
+   check:['MSC below MPC; MPB = MSB','Market output Qₘ where MPB = MPC is below Q*, where MSB = MSC','The welfare loss triangle sits between MSB and MSC, from Qₘ to Q*']},
+  {id:'ext-tax', th:'1', spec:'1.4.1', view:'ex_tax', shift:true,
+   q:'Show how an indirect tax equal to the external cost corrects a negative externality of production.',
+   check:['MPC shifts up by the tax until it lies on MSC','Output falls from Qₘ to Q* and the price rises','The welfare loss disappears','Tax = external cost: the polluter pays']},
+  {id:'gov-fail', th:'1', spec:'1.4.2', view:'ev_govfail',
+   q:'Show how a tax set above the external cost causes government failure.',
+   check:['MPC + tax lies above MSC','Output falls below Q*, the social optimum','A new welfare loss appears between Q and Q*','Caused by an information gap: the external cost is hard to measure']},
+  {id:'ped-tax', th:'1', spec:'1.2.9', view:'ev_ped', two:true,
+   q:'Use two diagrams to show how the effect of an indirect tax depends on the price elasticity of demand.',
+   check:['The same upward shift in supply in both diagrams','Inelastic demand: a large rise in price, a small fall in quantity','Elastic demand: a small rise in price, a large fall in quantity','Consumers bear most of the tax when demand is inelastic']},
+  {id:'adas-dpull', th:'2', spec:'2.4.3', view:'ad_dpull', shift:true,
+   q:'Draw an AD/AS diagram to show demand-pull inflation.',
+   check:['Axes labelled Price level and Real GDP','AD shifts right from AD₁ to AD₂','The price level rises from P₁ to P₂ and real GDP from Y₁ to Y₂','LRAS drawn vertical at full capacity']},
+  {id:'adas-cpush', th:'2', spec:'2.3.2', view:'ad_cpush', shift:true,
+   q:'Draw an AD/AS diagram to show cost-push inflation.',
+   check:['SRAS shifts left from SRAS₁ to SRAS₂','The price level rises and real GDP falls','This is stagflation']},
+  {id:'keynes-as', th:'2', spec:'2.3.3', view:'ev_capacity', shift:true,
+   q:'Use a Keynesian AS curve to show why the effect of an increase in AD depends on spare capacity.',
+   check:['AS is flat at low output, curves up, and becomes vertical at full capacity','With spare capacity, AD rising raises output with little inflation','Near full capacity, the same AD rise is mostly inflation']},
+  {id:'laffer', th:'2', spec:'2.6.2', view:'ev_laffer',
+   q:'Draw the Laffer curve and mark the revenue-maximising tax rate.',
+   check:['Axes labelled Tax revenue and Tax rate (0% to 100%)','Revenue is zero at 0% and at 100%','The curve peaks at t*, the revenue-maximising rate','Above t*, cutting the rate can raise revenue']},
+  {id:'lrpc', th:'2', spec:'2.6.4', view:'ev_lrpc', shift:true,
+   q:'Use short-run and long-run Phillips curves to show why demand-side policy cannot permanently reduce unemployment below the NAIRU.',
+   check:['LRPC vertical at the NAIRU','A move along SRPC₁ from A to B: lower unemployment, higher inflation','SRPC shifts up as inflation expectations rise','The economy ends at C: back at the NAIRU with higher inflation']},
+  {id:'kuznets', th:'2', spec:'2.5.4', view:'ev_kuz_env',
+   q:'Draw the environmental Kuznets curve and explain what it suggests about growth and the environment.',
+   check:['Environmental damage on the vertical axis, GDP per capita on the horizontal','An inverted U shape','A turning point, after which damage falls as incomes rise']}
 ];
 
 /* ======================================================================
@@ -735,7 +775,7 @@ document.getElementById('axes2').addEventListener('click', function(){ setMode('
    QUESTIONS AND THE REVEAL
    ====================================================================== */
 var qsel=document.getElementById('qsel');
-qsel.innerHTML=['3','4'].map(function(th){
+qsel.innerHTML=['1','2','3','4'].map(function(th){
   return '<optgroup label="Theme '+th+'">'+QUESTIONS.map(function(q,i){
     if(q.th!==th) return '';
     var short=q.q.split(/[.,:]/)[0];

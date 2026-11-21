@@ -170,6 +170,17 @@ h1 span{background:linear-gradient(transparent 58%,var(--swipe-a) 58% 92%,transp
 .sec:hover{background:var(--hover-bg);color:var(--hover-fg)}
 .sec[aria-selected="true"]{background:var(--ink);color:var(--paper)}
 .sec:focus-visible{outline:3px solid var(--pen-ar);outline-offset:2px}
+/* four sections: on a phone the switch becomes a 2 x 2 grid */
+@media (max-width:560px){
+  .sections{display:grid;grid-template-columns:1fr 1fr;align-self:stretch;border-radius:18px}
+  .sec{padding:.38em .6em}
+}
+/* evaluation notes: where to use it, and a model sentence */
+ul.plain.use li{grid-template-columns:9em minmax(0,1fr)}
+ul.plain.use b{font-family:var(--font-body);font-size:.88rem;line-height:1.35}
+@media (max-width:560px){ ul.plain.use li{grid-template-columns:minmax(0,1fr);gap:2px} }
+.model{border-left:4px solid var(--pen-ar);padding:2px 0 2px 14px}
+.model p:last-child{margin:0;font-family:var(--font-hand);font-size:1.08rem;line-height:1.45}
 
 /* text cards shown in the sheet (examples, consumer effects, notes-only topics) */
 .card-list{display:flex;flex-direction:column;gap:14px}

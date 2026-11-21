@@ -3,7 +3,7 @@
 'use strict';
 
 /* Old links pointed at the diagrams page with #topic or #view. Send them there. */
-var TOPIC_IDS=['growth','objectives','revenue','costs','scale','profits','efficiency','barriers','perfect','monopoly','monopolistic','oligopoly','contestable','global','trade','protect','blocs','fx','bop','micro','macro'];
+var TOPIC_IDS=['growth','objectives','revenue','costs','scale','profits','efficiency','barriers','perfect','monopoly','monopolistic','oligopoly','contestable','global','trade','protect','blocs','fx','bop','extern','adas2','e_growth','e_pc','e_fiscal','e_monetary','e_macro','e_mfail','e_gov','e_firms','e_micro','micro','macro','y12','ev'];
 var h=(location.hash||'').slice(1);
 if(h && (TOPIC_IDS.indexOf(h)>=0 || (window.VIEW_NAMES && VIEW_NAMES[h]))){ location.replace('learn.html#'+h); return; }
 
@@ -57,7 +57,7 @@ grid.addEventListener('click', function(e){
 
 var uniq={}; SPEC.forEach(function(th){ th.sections.forEach(function(s){ s.points.forEach(function(p){ (p.items||[]).forEach(function(it){ it[1].forEach(function(v){ uniq[v]=1; }); }); }); }); });
 document.getElementById('facts').innerHTML=
-  '<li><b>'+Object.keys(uniq).length+'</b>notes</li><li><b>'+(TOPIC_IDS.length-2)+'</b>topics</li><li><b>'+pointsBuilt+'</b>spec points covered</li>';
+  '<li><b>'+Object.keys(uniq).length+'</b>notes</li><li><b>'+(TOPIC_IDS.length-4)+'</b>topics</li><li><b>'+pointsBuilt+'</b>spec points covered</li>';
 
 /* size the live demo to its content */
 var fr=document.getElementById('hero-frame');

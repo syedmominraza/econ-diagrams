@@ -2951,6 +2951,855 @@ function updateStay(){
 }
 
 /* =====================================================================
+   YEAR 12 (Themes 1 and 2) AND EVALUATION POINTS
+   Year 12 MASTER handouts: Externalities (micro 16), Taxation (18),
+   Subsidies (19), Alternative intervention (20), AD/AS (macro 2 to 4),
+   plus the evaluation theories named across all of them.
+   ===================================================================== */
+SECTIONS.y12={label:'Year 12', heading:'Year 12 big topics', scope:'Themes 1 and 2: the Year 12 diagrams you still need in Year 13.',
+  groups:[['Theme 1: markets and market failure',['extern']],['Theme 2: the UK economy',['adas2']]]};
+SECTIONS.y12.order=['extern','adas2'];
+SECTIONS.ev={label:'Evaluation', heading:'Evaluation points', scope:'Named theories, curves and hypotheses that earn evaluation marks, and where to use each one.',
+  groups:[['Macro',['e_growth','e_pc','e_fiscal','e_monetary','e_macro']],['Micro',['e_mfail','e_gov','e_firms','e_micro']]]};
+SECTIONS.ev.order=SECTIONS.ev.groups[0][1].concat(SECTIONS.ev.groups[1][1]);
+
+TOPICS.extern={section:'y12',label:'Externalities',eyebrow:'Edexcel A · Theme 1 · 1.3.2 Externalities',first:'ex_negprod',groups:[
+  ['The cost-benefit diagram',['ex_base']],
+  ['Negative externalities',['ex_negprod','ex_negcons']],
+  ['Positive externalities',['ex_posprod','ex_poscons']],
+  ['Correcting them',['ex_tax','ex_sub','ex_policy']],
+  ['Apply',['ex_ex']]
+]};
+TOPICS.adas2={section:'y12',label:'AD/AS',eyebrow:'Edexcel A · Theme 2 · 2.2 to 2.4 AD, AS and equilibrium',first:'ad_base',groups:[
+  ['Classical AD/AS',['ad_base','ad_dpull','ad_cpush','ad_lras']],
+  ['Keynesian AS',['ev_capacity']]
+]};
+TOPICS.e_growth={section:'ev',label:'Growth',eyebrow:'Evaluation · Macro · Economic growth and living standards',first:'ev_kuz_env',groups:[
+  ['Kuznets curves',['ev_kuz_env','ev_kuz_ineq']],['Growth and happiness',['ev_easterlin']]]};
+TOPICS.e_pc={section:'ev',label:'Inflation and jobs',eyebrow:'Evaluation · Macro · Inflation and unemployment',first:'ev_srpc',groups:[
+  ['Phillips curve',['ev_srpc','ev_lrpc']],['Unemployment',['ev_hyst']]]};
+TOPICS.e_fiscal={section:'ev',label:'Fiscal policy',eyebrow:'Evaluation · Macro · Fiscal policy',first:'ev_laffer',groups:[
+  ['Tax',['ev_laffer']],['Spending and borrowing',['ev_crowd','ev_ricardo']],['Timing',['ev_lags']]]};
+TOPICS.e_monetary={section:'ev',label:'Monetary policy',eyebrow:'Evaluation · Macro · Monetary policy',first:'ev_liq',groups:[
+  ['When rate cuts stop working',['ev_liq']],['How people spend',['ev_lifecycle','ev_confidence']]]};
+TOPICS.e_macro={section:'ev',label:'Any macro answer',eyebrow:'Evaluation · Macro · Angles that fit almost any question',first:'ev_capacity',groups:[
+  ['Spare capacity',['ev_capacity']],['Use anywhere',['ev_macrogen']]]};
+TOPICS.e_mfail={section:'ev',label:'Market failure',eyebrow:'Evaluation · Micro · Market failure and government failure',first:'ev_govfail',groups:[
+  ['Government failure',['ev_govfail']],['Why markets fail',['ev_freerider','ev_commons','ev_asym']]]};
+TOPICS.e_gov={section:'ev',label:'Intervention',eyebrow:'Evaluation · Micro · Taxes, subsidies and other policies',first:'ev_ped',groups:[
+  ['The master point',['ev_ped']],['Choosing a policy',['ev_polluter','ev_permits','ev_nudge']],['What goes wrong',['ev_unintended','ev_capture']]]};
+TOPICS.e_firms={section:'ev',label:'Firms',eyebrow:'Evaluation · Micro · Firms and market structures',first:'ev_contest',groups:[
+  ['Is big bad?',['ev_contest','ev_scale','ev_dynamic']],['What firms want',['ev_pa']]]};
+TOPICS.e_micro={section:'ev',label:'Any micro answer',eyebrow:'Evaluation · Micro · Angles that fit almost any question',first:'ev_microgen',groups:[
+  ['Use anywhere',['ev_microgen']]]};
+
+/* ------------------------- EXTERNALITIES (1.3.2) ------------------------- */
+V.ex_base={kind:'ext', btn:'Free market', showing:'MPB = MPC: the free market outcome',
+  title:'The cost-benefit diagram',
+  lead:'Market failure diagrams use benefit and cost curves instead of demand and supply. Get this one right first.',
+  plain:[
+    ['<b class="k-ar">MPB</b>','Marginal private benefit: the demand curve. It slopes down because each extra unit gives the consumer less extra benefit.'],
+    ['<b class="k-mc">MPC</b>','Marginal private cost: the supply curve. It slopes up because each extra unit costs the firm more to make.'],
+    ['<b>MSB, MSC</b>','Marginal social benefit and cost. MSB = MPB + external benefit, and MSC = MPC + external cost.']
+  ],
+  chain:[
+    'A free market only counts private costs and benefits, so it settles where MPB = MPC, at Q<sub>m</sub> and P<sub>m</sub>.',
+    'The social optimum is where MSB = MSC, at Q*: the output that gives society the most welfare.',
+    'With no externalities, MPB = MSB and MPC = MSC, so the market already produces Q*.',
+    'Market failure happens when MPB ≠ MSB or MPC ≠ MSC: the market ignores the effect on third parties.'
+  ],
+  tip:'Label the axes Costs / benefits and Quantity, not Price and Quantity.'};
+
+V.ex_negprod={kind:'ext', btn:'Negative production', showing:'MSC above MPC: over-production',
+  title:'Negative externality of production',
+  lead:'Producing the good imposes a cost on third parties that the firm does not pay. Example: flights from London to New York, and their greenhouse gas emissions.',
+  chain:[
+    'The firm only counts its private costs, such as fuel, planes and staff, so it supplies along MPC.',
+    'Third parties bear an external cost, so the full cost to society, MSC, sits above MPC.',
+    'The market produces where MPB = MPC, at Q<sub>m</sub>. The social optimum is where MSB = MSC, at the lower Q*.',
+    'Between Q* and Q<sub>m</sub> each unit costs society more than it is worth: over-production. The shaded triangle is the welfare loss, and too many resources go into making the good (allocative inefficiency).'
+  ],
+  evaluation:'The size of the welfare loss depends on how big the external cost is, and that is hard to measure. Putting a money value on climate damage or poor health involves guesswork, which makes the right policy hard to set.',
+  tip:'The welfare loss triangle sits between MSC and MSB, from Q* to Q<sub>m</sub>, and points towards Q*.'};
+
+V.ex_negcons={kind:'ext', btn:'Negative consumption', showing:'MSB below MPB: over-consumption',
+  title:'Negative externality of consumption',
+  lead:'Consuming the good harms third parties. Example: smoking, through passive smoking.',
+  chain:[
+    'Consumers only count their private benefit, such as enjoyment, so demand follows MPB.',
+    'Third parties suffer an external cost, so the benefit to society, MSB, is below MPB.',
+    'The market settles where MPB = MPC, at Q<sub>m</sub>. The social optimum is where MSB = MSC, at the lower Q*.',
+    'The good is over-consumed by Q<sub>m</sub> − Q*, and the shaded triangle is the welfare loss.'
+  ],
+  evaluation:'Many of these goods are also demerit goods, where consumers underestimate the harm to themselves (information failure). Demand is often price inelastic and addictive, so a tax may not cut consumption much.',
+  tip:'For consumption externalities, the benefit curve moves. MPC = MSC stays where it is.'};
+
+V.ex_posprod={kind:'ext', btn:'Positive production', showing:'MSC below MPC: under-production',
+  title:'Positive externality of production',
+  lead:'Producing the good benefits third parties by lowering their costs. Example: a firm whose research into greener production can be used by other firms.',
+  chain:[
+    'The firm only counts its private costs, such as expensive research and skilled engineers, so it supplies along MPC.',
+    'Third parties gain, for example by using the new technology, so the cost to society, MSC, is below MPC.',
+    'The market produces where MPB = MPC, at Q<sub>m</sub>. The social optimum, where MSB = MSC, is the higher Q*.',
+    'The good is under-produced by Q* − Q<sub>m</sub>, and the shaded triangle is the welfare loss: too few resources go into it.'
+  ],
+  evaluation:'Firms may still invest if a patent lets them keep the reward for themselves. Without that protection, rivals free ride on the research, which is the case for government support.',
+  tip:'Another example from the handout: a new housing estate that regenerates an area, bringing jobs and new businesses.'};
+
+V.ex_poscons={kind:'ext', btn:'Positive consumption', showing:'MSB above MPB: under-consumption',
+  title:'Positive externality of consumption',
+  lead:'Consuming the good benefits third parties. Examples: education and vaccinations.',
+  chain:[
+    'Consumers only count their private benefit, such as higher future earnings from education, so demand follows MPB.',
+    'Third parties gain too: a more productive workforce, more tax revenue, less crime. So MSB is above MPB.',
+    'The market settles where MPB = MPC, at Q<sub>m</sub>. The social optimum is where MSB = MSC, at the higher Q*.',
+    'The good is under-consumed by Q* − Q<sub>m</sub>, and the shaded triangle is the welfare loss.'
+  ],
+  evaluation:'Vaccination also protects people who are not vaccinated (herd immunity), which is why the NHS gives childhood vaccines for free. Many of these goods are merit goods, which people undervalue because they lack information.',
+  tip:'For consumption externalities, the benefit curve splits: MSB above MPB.'};
+
+V.ex_tax={kind:'ext', anim:true, btn:'Tax', showing:'A tax equal to the external cost',
+  title:'Correcting a negative externality: an indirect tax',
+  lead:'A tax equal to the external cost makes the producer pay for the harm it causes. This is the polluter pays principle.',
+  chain:[
+    'The government taxes each unit by the size of the external cost.',
+    'The firm’s costs rise, so MPC shifts up by the tax until it lies on MSC.',
+    'The market now settles at Q*, the social optimum, and the price rises from P<sub>m</sub> to P*.',
+    'The externality has been internalised: the welfare loss disappears, and the tax raises revenue that can pay for cleaner alternatives.'
+  ],
+  compare:{vs:'After the tax',rows:[['Price','↑ higher'],['Quantity','↓ to Q*'],['Welfare loss','removed'],['Revenue','raised']]},
+  evaluation:'It only works this neatly if the government knows the size of the external cost. If demand is price inelastic, as for cigarettes or fuel, quantity barely falls and the tax mainly raises revenue. Taxes like these are regressive, and a high tax can push sales into illegal markets.',
+  tip:'Tax = external cost, so MPC + tax = MSC. A tax that is too high over-corrects: that is government failure.'};
+
+V.ex_sub={kind:'ext', anim:true, btn:'Subsidy', showing:'A subsidy equal to the external benefit',
+  title:'Correcting a positive externality: a subsidy',
+  lead:'A subsidy equal to the external benefit lowers the cost of supplying the good, so more is consumed. Examples: vaccinations, training, home insulation.',
+  chain:[
+    'The government pays producers a subsidy on each unit, equal to the external benefit.',
+    'Their costs fall, so MPC shifts down by the subsidy.',
+    'The market settles at Q*, where MPB meets the new cost curve. The price consumers pay falls from P<sub>m</sub> to P<sub>2</sub>.',
+    'Consumption rises to the social optimum and the welfare loss disappears.'
+  ],
+  compare:{vs:'After the subsidy',rows:[['Price','↓ lower'],['Quantity','↑ to Q*'],['Welfare loss','removed'],['Cost','taxpayers pay']]},
+  evaluation:'A subsidy has an opportunity cost: the money could have been spent elsewhere. If demand is price inelastic, consumption barely rises. Firms may come to rely on it and become inefficient, and once given, subsidies are politically hard to remove.',
+  tip:'Subsidy = external benefit, so the new cost curve crosses MPB directly below where MSB crosses MSC.'};
+
+V.ex_policy={kind:'card', btn:'Other policies', showing:'Regulation, permits, information, state provision',
+  title:'Other ways to correct externalities',
+  lead:'Taxes and subsidies are not the only option. Each alternative fixes some problems and creates others.',
+  card:{head:'The options', items:[
+    PT('Regulation',[['','Laws, limits and bans, such as emission standards for cars or the ban on smoking in public places.'],['But','Enforcement costs money, firms may break the rules, and a ban can create black markets.']]),
+    PT('Tradable pollution permits',[['','The government caps total pollution and issues permits that firms can buy and sell. Firms that can cut pollution cheaply sell their spare permits.'],['But','Setting the right cap is hard, and if too many permits are issued, or handed out free, they do little.']]),
+    PT('Information provision',[['','Campaigns and labels close the information gap, such as health warnings on cigarettes and calories on menus.'],['But','People often ignore them, and the effect is slow and hard to measure.']]),
+    PT('State provision',[['','The government provides the good itself, free at the point of use, such as NHS vaccinations and state schools.'],['But','It is expensive, has an opportunity cost, and without the profit motive services can become inefficient.']])
+  ]},
+  tip:'Use the alternatives as evaluation: "a tax may not work because demand is inelastic, so regulation may be better".'};
+
+V.ex_ex={kind:'card', btn:'Real examples', showing:'Externalities you can point to',
+  title:'Real examples: externalities',
+  lead:'Name the externality, draw the right diagram, then judge the policy used.',
+  card:{head:'Where you can see it', items:[
+    EX('Sugary drinks: the Soft Drinks Industry Levy','A tax on drinks with a lot of added sugar, aimed at obesity and its cost to the NHS. Most firms cut the sugar in their drinks to avoid paying it.','Pure fruit juice and milk-based drinks are exempt, and sugar in food is not taxed at all.','What happened','The catch'),
+    EX('London’s Ultra Low Emission Zone (ULEZ)','Older, more polluting vehicles pay a daily charge to drive in London, targeting the negative externality of exhaust fumes.','It hits people who cannot afford a newer car hardest, and it was politically unpopular.','What happened','The catch'),
+    EX('The plastic bag charge','A small charge on single-use bags in shops cut their use sharply.','Shoppers switched to thicker "bags for life", which each use more plastic.','What happened','The catch'),
+    EX('Free childhood vaccinations','The NHS gives vaccines free, because of the positive externality of herd immunity.','Uptake still depends on information and trust: when trust falls, fewer children are vaccinated.','What happened','The catch')
+  ]}};
+
+/* ------------------------- AD/AS (Theme 2) ------------------------- */
+V.ad_base={kind:'adas2', btn:'AD/AS', showing:'Equilibrium where AD meets SRAS',
+  title:'The classical AD/AS diagram',
+  lead:'The diagram behind almost every macro answer in Themes 2 and 4. The economy settles where AD meets SRAS.',
+  plain:[
+    ['<b class="k-ar">AD</b>','Aggregate demand = C + I + G + (X − M). It slopes down: a lower price level raises real wealth, lowers interest rates and makes exports more competitive.'],
+    ['<b class="k-mc">SRAS</b>','Short-run aggregate supply slopes up: with some costs fixed, a higher price level makes it profitable to produce more.'],
+    ['<b class="k-ac">LRAS</b>','Long-run aggregate supply is vertical at full capacity, Y<sub>FE</sub>. It depends on the quantity and quality of the factors of production, not on the price level.']
+  ],
+  chain:[
+    'Equilibrium is where AD = SRAS, at price level P<sub>1</sub> and real GDP Y<sub>FE</sub>.',
+    'Here that is on LRAS, so the economy is at full capacity with no output gap.',
+    'Shifts in AD or SRAS change output and prices in the short run.',
+    'Only a shift in LRAS changes the economy’s productive potential.'
+  ],
+  tip:'Label the axes Price level and Real GDP (or real national output), never Price and Quantity.'};
+
+V.ad_dpull={kind:'adas2', anim:true, sh:'ad', btn:'AD increases', showing:'Demand-pull: AD shifts right',
+  title:'An increase in AD: demand-pull inflation',
+  lead:'A rise in any component of AD, such as consumer spending, investment or exports, shifts AD to the right.',
+  chain:[
+    'AD shifts right from AD<sub>1</sub> to AD<sub>2</sub>, for example after an interest rate cut boosts consumption and investment.',
+    'Firms respond by producing more, moving up SRAS: real GDP rises from Y<sub>1</sub> to Y<sub>2</sub>.',
+    'The price level rises from P<sub>1</sub> to P<sub>2</sub>: demand-pull inflation.',
+    'Output is now beyond full capacity: a positive output gap, which cannot last.'
+  ],
+  compare:{vs:'After AD rises',rows:[['Price level','↑ higher'],['Real GDP','↑ higher'],['Unemployment','↓ lower'],['Output gap','positive']]},
+  evaluation:'How much of the rise goes into output rather than prices depends on spare capacity. With lots of spare capacity, output rises and prices barely move; near full capacity, it is mostly inflation (see Keynesian AS).'};
+
+V.ad_cpush={kind:'adas2', anim:true, sh:'sras', btn:'SRAS falls', showing:'Cost-push: SRAS shifts left',
+  title:'A fall in SRAS: cost-push inflation',
+  lead:'A rise in firms’ costs, such as energy prices, wages or a weaker pound raising import prices, shifts SRAS to the left.',
+  chain:[
+    'Higher costs mean firms supply less at every price level: SRAS shifts left from SRAS<sub>1</sub> to SRAS<sub>2</sub>.',
+    'The price level rises from P<sub>1</sub> to P<sub>2</sub>: cost-push inflation.',
+    'Real GDP falls from Y<sub>1</sub> to Y<sub>2</sub>, so unemployment rises.',
+    'Rising prices and falling output together is stagflation.'
+  ],
+  compare:{vs:'After SRAS falls',rows:[['Price level','↑ higher'],['Real GDP','↓ lower'],['Unemployment','↑ higher'],['Output gap','negative']]},
+  evaluation:'The jump in energy prices after Russia invaded Ukraine is a real example. It is a policy dilemma: raising interest rates to fight the inflation makes the fall in output worse.'};
+
+V.ad_lras={kind:'adas2', anim:true, sh:'lras', btn:'LRAS increases', showing:'More capacity: LRAS shifts right',
+  title:'An increase in LRAS: long-run growth',
+  lead:'More or better factors of production, such as a more skilled workforce, new technology or more investment, raise the economy’s productive capacity.',
+  chain:[
+    'LRAS shifts right from LRAS<sub>1</sub> to LRAS<sub>2</sub>, and SRAS shifts right with it.',
+    'Real GDP rises from Y<sub>1</sub> to Y<sub>2</sub>: the economy can produce more without overheating.',
+    'The price level falls from P<sub>1</sub> to P<sub>2</sub>.',
+    'This is sustainable, non-inflationary growth, which is the aim of supply-side policies.'
+  ],
+  compare:{vs:'After LRAS rises',rows:[['Price level','↓ lower'],['Real GDP','↑ higher'],['Capacity','↑ higher'],['Inflation','lower']]},
+  evaluation:'Supply-side improvements take years to come through, and their size is uncertain. In practice AD usually grows at the same time, so the price level is more likely to rise slowly than to fall.'};
+
+/* ------------------------- EVALUATION: MACRO ------------------------- */
+V.ev_capacity={kind:'evc', anim:true, two:true, btn:'Spare capacity', showing:'The same push on AD: output first, then prices',
+  title:'Spare capacity decides: the Keynesian AS curve',
+  lead:'Keynes argued that AS is flat when there is lots of spare capacity and becomes vertical at full capacity. So the same increase in AD can have very different effects.',
+  chain:[
+    'From 1 to 2 there is lots of spare capacity: unemployed workers and idle machines. Output rises and the price level barely moves.',
+    'From 2 to 3, bottlenecks appear as some resources run short: output rises, but so do prices.',
+    'From 3 to 4 the economy is close to full capacity: the same push on AD is mostly inflation.',
+    'Each shift in AD here is the same size. Only the starting point changes the result.'
+  ],
+  use:[['Any demand-side policy','Fiscal or monetary stimulus raises output if there is spare capacity, but mainly prices if there is not.'],['Exports and the exchange rate','A depreciation that raises net exports boosts growth only with spare capacity.'],['Recessions','The Keynesian case for government spending in a deep recession: lots of spare capacity, little risk of inflation.'],['Output gaps','A negative output gap means spare capacity; a positive one means more AD is inflationary.']],
+  line:'"However, the effect on real GDP depends on the level of spare capacity. With a large negative output gap, the economy is on the flat part of AS, so output rises with little inflation; close to full capacity, most of the rise in AD would be inflationary."',
+  tip:'Classical economists draw LRAS vertical: in the long run, more AD only raises prices.'};
+
+V.ev_kuz_env={kind:'evc', btn:'Environmental Kuznets curve', showing:'Environmental damage rises, then falls, as income grows',
+  title:'The environmental Kuznets curve',
+  lead:'Grossman and Krueger (1991): as an economy develops, environmental damage first rises, then falls once income per head passes a turning point.',
+  chain:[
+    'In early development the economy industrialises, moving from farming to factories, and pollution rises fast.',
+    'At the turning point, people are rich enough to care about clean air and water, and can afford to act on it.',
+    'Tighter regulation (such as London’s ULEZ), cleaner technology (electric cars, solar power) and a shift to services reduce the damage.',
+    'So growth can eventually help the environment, rather than only harming it.'
+  ],
+  use:[['Costs and benefits of growth','Growth does not always harm the environment: richer countries can afford cleaner technology.'],['Conflicts between objectives','Growth versus environmental protection may only be a short-run trade-off.'],['Developing economies (Theme 4)','Fast-growing economies may be on the rising side of the curve now.'],['Environmental policy','It supports regulation and clean technology rather than stopping growth.']],
+  evaluation:'Growth still means more resources used, even in a service economy: more flights, more cars. Rich countries often export their pollution by importing goods made elsewhere. Pollution depends on how good regulation is, not just on income, and the evidence is much weaker for carbon emissions than for local pollution such as smog.',
+  line:'"However, the environmental Kuznets curve suggests the trade-off may be temporary: once incomes pass a turning point, environmental damage tends to fall as regulation tightens and cleaner technology spreads."',
+  tip:'This is the version in the growth handout. The original Kuznets curve, the next button, is about inequality.'};
+
+V.ev_kuz_ineq={kind:'evc', btn:'Kuznets curve: inequality', showing:'Inequality rises, then falls, as income grows',
+  title:'The Kuznets curve: inequality',
+  lead:'Simon Kuznets argued that as a country develops, income inequality first rises, then falls.',
+  chain:[
+    'Early on, a few people move from low-paid farming into better-paid industry, and owners of capital gain most: inequality rises.',
+    'As more workers move into industry and towns, education spreads and wages rise across the economy.',
+    'Mature economies build welfare states and progressive taxes, and inequality falls.',
+    'On this view, rising inequality can be a temporary stage of growth.'
+  ],
+  use:[['Inequality (Theme 4)','Rising inequality in a developing economy may be a stage, not a permanent problem.'],['Growth and development','Growth might reduce inequality in the long run.'],['Trickle-down arguments','Supporters of growth-first policies use it; critics use the evidence against it.']],
+  evaluation:'Since the 1980s inequality has risen again in many rich countries, including the UK and the US (the dashed line). That fits Thomas Piketty’s argument that returns on wealth grow faster than the economy, so inequality rises unless governments act. The curve depends on policy choices, not just the stage of development.',
+  line:'"Kuznets suggests that inequality may fall as the economy develops; however, rising inequality in rich countries since the 1980s suggests this depends on government policy rather than happening automatically."'};
+
+V.ev_easterlin={kind:'evc', btn:'Easterlin paradox', showing:'Incomes rise, average happiness does not',
+  title:'The Easterlin paradox',
+  lead:'Richard Easterlin found that as a country gets richer over time, average happiness does not rise with it.',
+  chain:[
+    'Real GDP per head rises steadily over the decades.',
+    'Average reported happiness stays roughly flat.',
+    'People care about relative income: being richer than the people around them matters more than being richer than their grandparents were.',
+    'Growth can also bring longer hours, stress and a worse work-life balance.'
+  ],
+  use:[['Does growth raise living standards?','More output is not the same as a better quality of life, especially in rich countries.'],['Measuring living standards','An argument for wider measures, such as HDI and wellbeing, not just GDP per head.'],['Developed vs developing','Growth matters far more where people lack food, clean water and healthcare; the paradox applies mainly to rich countries.']],
+  evaluation:'Later studies dispute the paradox, finding that people in richer countries do report higher life satisfaction on average, but with diminishing returns as income rises. Either way, extra income adds less to wellbeing in a rich country than in a poor one.',
+  line:'"However, the Easterlin paradox suggests that in a developed country like the UK, further growth may do little to raise wellbeing, because people judge themselves by their relative income."'};
+
+V.ev_srpc={kind:'evc', btn:'Short-run Phillips curve', showing:'Lower unemployment, higher inflation',
+  title:'The short-run Phillips curve',
+  lead:'Bill Phillips (1958) found an inverse relationship between unemployment and wage inflation in the UK. It became a trade-off between unemployment and inflation.',
+  chain:[
+    'When unemployment is low, workers have more bargaining power and push up wages.',
+    'Wages are a large part of firms’ costs, so higher wages lead to higher prices.',
+    'So a government that boosts AD can move the economy from A to B: lower unemployment, but higher inflation.',
+    'Policy makers seem to face a choice of where to be on the curve.'
+  ],
+  use:[['Conflicts between objectives','The classic trade-off: cutting unemployment raises inflation, and fighting inflation costs jobs.'],['Demand-side policy','A stimulus lowers unemployment in the short run, at a cost.'],['Interest rate decisions','Why the Bank of England raises rates when the labour market is tight.']],
+  evaluation:'The trade-off broke down in the 1970s, when the UK had stagflation: high inflation and high unemployment together. The curve has also flattened: unions are weaker, the gig economy has grown and globalisation lets firms move jobs abroad, so low unemployment pushes up wages less than it used to.',
+  line:'"There may be a trade-off between unemployment and inflation, as the short-run Phillips curve suggests; however, the curve has flattened as workers’ bargaining power has fallen, so the inflation cost of lower unemployment may now be small."'};
+
+V.ev_lrpc={kind:'evc', anim:true, two:true, btn:'Long-run Phillips curve', showing:'A to B, then back to C at the NAIRU',
+  title:'The long-run Phillips curve and the NAIRU',
+  lead:'Milton Friedman argued the trade-off only exists in the short run. In the long run the Phillips curve is vertical at the natural rate of unemployment, the NAIRU.',
+  chain:[
+    'The economy starts at A, at the NAIRU, with inflation running at the rate everyone expects.',
+    'A demand stimulus moves it along SRPC<sub>1</sub> to B: unemployment falls and inflation rises. Workers suffer money illusion, thinking higher wages mean they are better off.',
+    'Workers realise prices have risen too and expect more inflation (adaptive expectations). They demand higher wages, so firms cut jobs, and SRPC shifts up to SRPC<sub>2</sub>.',
+    'The economy ends at C: unemployment back at the NAIRU, but with higher inflation. In the long run, demand-side policy only raises inflation.'
+  ],
+  use:[['Demand-side vs supply-side policy','Only supply-side policies can lower the NAIRU and shift LRPC left.'],['Keynesian vs monetarist debates','Monetarists use it to argue against long-run demand management.'],['Inflation targeting','Keeping expectations anchored at 2% stops SRPC shifting up.'],['Conflicts between objectives','In the long run there may be no trade-off at all.']],
+  evaluation:'With rational expectations, people may see inflation coming straight away, so there is no trade-off even in the short run. But the Bank of England has kept inflation expectations fairly stable, so the short-run curve may describe the real world better. The NAIRU is also hard to measure, so policy makers cannot be sure where it is.',
+  line:'"In the short run, expansionary policy may reduce unemployment, but monetarists argue that once inflation expectations adjust, unemployment returns to the NAIRU with higher inflation; only supply-side policies can reduce unemployment permanently."',
+  tip:'NAIRU: the non-accelerating inflation rate of unemployment, the lowest rate that can last without inflation rising. It is never zero, because there is always some frictional and structural unemployment.'};
+
+V.ev_hyst={kind:'card', btn:'Hysteresis', showing:'Unemployment causing unemployment',
+  title:'Hysteresis',
+  lead:'Hysteresis means unemployment causing unemployment: the longer people are out of work, the harder it is for them to get back in.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Long-term unemployed workers lose skills and motivation, and employers see a long gap on a CV as a warning sign. So a recession can leave unemployment higher long after demand has recovered.']]},
+    {h:'In practice', l:[['','When mines and factories closed in parts of northern England and Wales, some areas were left with high unemployment for decades.']]},
+    {h:'The other side', l:[['','Retraining, apprenticeships and job-search support can break the cycle, and a tight labour market pulls people back in.']]}
+  ]},
+  use:[['Costs of unemployment','The cost lasts beyond the recession itself.'],['Recessions and output gaps','The Keynesian case for acting fast: a deep negative output gap can reduce LRAS.'],['Supply-side policy','Training and education can reduce it.'],['Benefits','Lower benefits push people back to work, but too low and job search suffers.']],
+  line:'"However, the longer the recession lasts, the more likely hysteresis becomes as the long-term unemployed lose skills; this could reduce LRAS, which makes a quick policy response more important."'};
+
+V.ev_laffer={kind:'evc', btn:'Laffer curve', showing:'Past t*, higher tax rates raise less revenue',
+  title:'The Laffer curve',
+  lead:'Arthur Laffer argued that once tax rates pass a certain level, raising them further reduces tax revenue.',
+  chain:[
+    'At a 0% tax rate the government raises nothing. At 100% nobody would work or declare income, so it raises nothing again.',
+    'In between, revenue rises to a peak at the revenue-maximising rate, t*.',
+    'Above t*, very high rates mean people work less, avoid or evade tax, or leave the country (human capital flight).',
+    'So above t*, cutting the tax rate can actually raise revenue. Two different rates, A and B, can raise the same revenue.'
+  ],
+  use:[['Income tax and supply-side policy','Cutting high tax rates may boost incentives to work, and could even raise revenue.'],['Raising the top rate to reduce inequality','A higher top rate may raise little extra if the rich avoid it or leave.'],['Corporation tax','Lower rates may attract firms, and countries cutting rates to compete risk a race to the bottom.'],['Fiscal policy and the deficit','Tax rises may not close the deficit as much as planned.']],
+  evaluation:'Nobody knows exactly where t* is, and it differs for each tax and each country. Most UK tax rates are thought to be below the peak, so cuts usually lose revenue. The 2022 mini-budget’s unfunded tax cuts, partly justified by this kind of argument, caused turmoil in financial markets and were mostly reversed.',
+  line:'"However, according to the Laffer curve, if the tax rate is already above the revenue-maximising rate, a rise could reduce revenue as people work less, avoid tax or move abroad, although where this rate lies is uncertain."',
+  tip:'Draw it as a hill from 0% to 100%, and mark t* at the top.'};
+
+V.ev_crowd={kind:'card', btn:'Crowding out', showing:'Government borrowing can squeeze private investment',
+  title:'Crowding out, and crowding in',
+  lead:'Expansionary fiscal policy is often paid for by borrowing. That borrowing can push up interest rates and squeeze out private investment.',
+  card:{head:'The idea', items:[
+    {h:'Crowding out', l:[['','The government borrows more, raising demand for loanable funds and pushing up interest rates. Firms find it dearer to borrow, so private investment falls, offsetting the rise in G. AD may barely move.']]},
+    {h:'Crowding in', l:[['','Government spending can also encourage private spending: shops, offices and homes have gone up around new Elizabeth line stations.']]},
+    {h:'When it matters', l:[['','In a recession, firms are not investing anyway because confidence is low, so there is little to crowd out. Near full capacity, crowding out is more likely.']]}
+  ]},
+  use:[['Fiscal policy','Extra government spending may not raise AD as much as the multiplier suggests.'],['Budget deficits and debt','Heavy borrowing raises interest costs across the economy.'],['Infrastructure','Projects such as the Elizabeth line can crowd in private investment.']],
+  line:'"However, if the extra spending is financed by borrowing, it may crowd out private investment as interest rates rise, although in a recession, when business confidence is low, this effect is likely to be small."'};
+
+V.ev_ricardo={kind:'card', btn:'Ricardian equivalence', showing:'People save tax cuts, expecting future tax rises',
+  title:'Ricardian equivalence',
+  lead:'Robert Barro’s idea, building on David Ricardo: if the government cuts taxes and borrows to pay for it, people expect higher taxes later, so they save the tax cut instead of spending it.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Borrowing today has to be repaid with taxes tomorrow. Households who see this coming save now to pay those future taxes, so consumption does not rise and the multiplier is small.']]},
+    {h:'Why it may not hold', l:[['','Many households live month to month and spend any extra income, and few think about government debt when they shop.']]},
+    {h:'When it is most likely', l:[['','When debt is already high and in the news, so people expect tax rises, and when confidence is low.']]}
+  ]},
+  use:[['Tax cuts to boost AD','A tax cut paid for by borrowing may not raise consumption.'],['Fiscal stimulus','The multiplier may be smaller than expected.'],['High national debt','Worries about future taxes can weaken any stimulus.']],
+  line:'"However, if households expect the borrowing to mean higher taxes in future, they may save the tax cut (Ricardian equivalence), so consumption and AD rise by less than expected."'};
+
+V.ev_lags={kind:'card', btn:'Time lags', showing:'Policies take time to work',
+  title:'Time lags',
+  lead:'Every policy takes time: to spot the problem, decide what to do, put it in place, and for people to respond.',
+  card:{head:'The idea', items:[
+    {h:'Fiscal policy', l:[['','Tax and spending changes usually wait for a Budget and must pass through Parliament. Big projects take years to start.']]},
+    {h:'Monetary policy', l:[['','The Bank of England can change interest rates quickly, but the full effect on spending and inflation takes well over a year, as mortgage deals and loans come up for renewal.']]},
+    {h:'Supply-side policy', l:[['','Education and infrastructure take years, even decades, to raise productivity.']]},
+    {h:'Automatic stabilisers', l:[['','Benefit spending and tax revenue adjust on their own as the economy changes, with no delay to decide, which is why they are often more reliable than discretionary policy.']]}
+  ]},
+  use:[['Any policy question','By the time it works the problem may have changed: a stimulus could arrive in a boom.'],['Monetary vs fiscal policy','Monetary policy is quicker to change, but slow to take full effect.'],['Supply-side policy','Its benefits come in the long run, so it cannot fix a recession.']],
+  line:'"However, there are significant time lags: by the time the policy takes full effect, the economy may already be recovering, so it could destabilise the economy rather than stabilise it."'};
+
+V.ev_liq={kind:'card', btn:'Liquidity trap and QE', showing:'When interest rates cannot fall further',
+  title:'The liquidity trap and quantitative easing',
+  lead:'A liquidity trap is when interest rates can fall no further, and monetary policy can no longer boost aggregate demand.',
+  card:{head:'The idea', items:[
+    {h:'The trap', l:[['','When rates are already close to zero, the central bank cannot cut much further. And when confidence is very low, even cheap borrowing does not get people spending.']]},
+    {h:'Quantitative easing (QE)', l:[['','The central bank creates money to buy bonds, pushing down longer-term interest rates and raising asset prices. The Bank of England used it after the 2008 financial crisis and during Covid.']]},
+    {h:'The limits of QE', l:[['','It raises the prices of shares and houses, which mainly helps people who already own them, so it can widen wealth inequality. The money may also sit with banks and firms rather than being spent.']]}
+  ]},
+  use:[['Monetary policy','Cutting rates may not work if they are already near zero or confidence is low.'],['Recessions and deflation','Why governments turned to fiscal policy and QE after the financial crisis and during Covid.'],['Inequality','QE can widen wealth inequality.']],
+  line:'"However, with interest rates already close to zero, the economy may be in a liquidity trap, so further cuts would have little effect on AD and the central bank might need quantitative easing or fiscal support instead."'};
+
+V.ev_lifecycle={kind:'card', btn:'Life cycle hypothesis', showing:'People smooth spending over their lives',
+  title:'The life cycle hypothesis and the wealth effect',
+  lead:'Franco Modigliani (1957): people smooth their consumption over their lifetime, borrowing when income is low, saving when it is high, and running down savings in retirement.',
+  card:{head:'The idea', items:[
+    {h:'Smoothing', l:[['','Consumption depends on expected lifetime income and wealth, not just this month’s pay, so a one-off change in income may barely change spending.']]},
+    {h:'The wealth effect', l:[['','When house or share prices rise, people feel richer and more confident, and spend more. Lower interest rates raise asset prices, so they work partly through wealth.']]},
+    {h:'Limits', l:[['','Research in the UK suggests a fifth to a quarter of people do not plan for the long term, and many cannot borrow when they want to, so their spending follows their income closely.']]}
+  ]},
+  use:[['Interest rate changes','Their effect on consumption depends partly on house prices and wealth.'],['Temporary tax cuts','People may save them rather than spend them.'],['Consumption and AD','Why consumption is more stable than income.']],
+  line:'"However, according to the life cycle hypothesis, a temporary tax cut may be largely saved as households smooth consumption over their lifetimes, so the boost to AD could be small."'};
+
+V.ev_confidence={kind:'card', btn:'Confidence', showing:'Keynes’s animal spirits',
+  title:'Confidence: Keynes’s animal spirits',
+  lead:'Keynes argued that spending and investment depend heavily on confidence, which he called animal spirits, not just on interest rates and incomes.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','When firms and households are pessimistic they hold back spending, whatever the interest rate. When they are optimistic they spend and invest more, and the multiplier amplifies it.']]},
+    {h:'In practice', l:[['','In times of uncertainty, such as the Covid pandemic, firms delay investment even when borrowing is cheap.']]},
+    {h:'Why it matters for policy', l:[['','It is the main reason monetary and fiscal policy can work less well in a deep recession, and why Keynes argued for government spending to fill the gap.']]}
+  ]},
+  use:[['Monetary policy','A rate cut may not raise investment if business confidence is low.'],['Tax cuts','Worried households may save the extra income (a low MPC).'],['Investment and growth','Uncertainty holds back investment.']],
+  line:'"However, the impact depends on consumer and business confidence: if confidence is low, firms may not invest even at low interest rates, so the rise in AD may be limited."'};
+
+V.ev_macrogen={kind:'card', btn:'Use anywhere', showing:'Six angles that fit almost any macro answer',
+  title:'Six evaluation angles for any macro question',
+  lead:'If you are stuck for evaluation, one of these almost always applies. Make it specific to the question.',
+  card:{head:'The angles', items:[
+    PT('1. Magnitude',[['','How big is the change? A small rate cut is not the same as a large one.']]),
+    PT('2. Spare capacity',[['','Is there a negative output gap? It decides whether more AD means growth or inflation.']]),
+    PT('3. Time',[['','Short run versus long run, and the time lags before a policy works.']]),
+    PT('4. Confidence',[['','Low confidence weakens almost every policy that relies on spending.']]),
+    PT('5. Other things changing',[['','Ceteris paribus rarely holds: a global recession or energy shock can swamp the policy.']]),
+    PT('6. Conflicts',[['','Fixing one objective can harm another: growth against inflation, the environment or the current account.']])
+  ]},
+  use:[['Any 25-mark macro essay','Pick the two most relevant angles and develop each one fully, rather than listing all six.']],
+  line:'"The effectiveness of the policy depends on the size of the output gap: with lots of spare capacity, …"',
+  tip:'Evaluation needs a reason and a judgement. Say which way it goes and why, not just "it depends".'};
+
+/* ------------------------- EVALUATION: MICRO ------------------------- */
+V.ev_govfail={kind:'ext', btn:'Government failure', showing:'A tax set too high over-corrects',
+  title:'Government failure',
+  lead:'Government failure is when intervention makes the allocation of resources worse rather than better. Here a tax set above the external cost over-corrects.',
+  chain:[
+    'The government cannot measure the external cost exactly, and sets the tax too high.',
+    'MPC shifts up past MSC, to MPC + tax.',
+    'Output falls below the social optimum, to Q<sub>t</sub>: now too little is produced.',
+    'A new welfare loss appears, between Q<sub>t</sub> and Q*: the intervention has created its own inefficiency.'
+  ],
+  use:[['Any government intervention','Taxes, subsidies, regulation and price controls can all over- or under-correct.'],['Information gaps','The government rarely knows the true size of an externality.'],['Unintended consequences','Black markets, smuggling, firms moving abroad.'],['Political self-interest','Policies may be chosen to win votes rather than to correct a market failure.']],
+  evaluation:'The causes in the spec: distortion of price signals, unintended consequences, excessive administrative costs and information gaps. It does not mean the government should never act; it means the cost of intervening should be weighed against the cost of the market failure.',
+  line:'"However, the government may not know the true size of the external cost, so the tax could be set too high, over-correcting the market and causing government failure."'};
+
+V.ev_freerider={kind:'card', btn:'Free rider problem', showing:'Why public goods are not provided',
+  title:'The free rider problem',
+  lead:'People can benefit from a public good without paying for it, so a private firm cannot charge for it and the market does not provide it.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Public goods are non-excludable (you cannot stop people using them) and non-rival (one person’s use does not reduce anyone else’s). So everyone waits for someone else to pay, and the good is not provided: a missing market.']]},
+    {h:'Examples', l:[['','Street lights, national defence, flood defences, lighthouses.']]},
+    {h:'Limits', l:[['','Technology makes more goods excludable, through paywalls, subscriptions and toll roads, and quasi-public goods such as roads can be partly charged for.']]}
+  ]},
+  use:[['Public goods','The reason the state provides them, paid for by taxes.'],['Climate change','Countries can free ride on others cutting emissions, which makes international deals hard.'],['Vaccination','Unvaccinated people free ride on herd immunity.'],['Positive production externalities','Rivals free ride on one firm’s research.']],
+  line:'"Because of the free rider problem, the market would under-provide this good, which justifies government provision; however, the government may not know how much people value it, so it may provide too much or too little."'};
+
+V.ev_commons={kind:'card', btn:'Tragedy of the commons', showing:'Shared resources get overused',
+  title:'The tragedy of the commons',
+  lead:'When a resource is shared and nobody owns it, each user takes as much as they can, and the resource is overused or destroyed.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Each fishing boat gains the full value of an extra catch but bears only a tiny share of the damage to fish stocks. So everyone overfishes, even though all would be better off holding back.']]},
+    {h:'Examples', l:[['','Overfishing, clean air, the atmosphere, congestion on busy roads.']]},
+    {h:'Solutions', l:[['','Quotas, licences, tradable permits, or giving someone ownership (property rights) so they have a reason to look after the resource.']]}
+  ]},
+  use:[['Negative externalities','Explains why environmental damage keeps happening.'],['Sustainability and growth','Growth can run down shared natural resources.'],['Choosing a policy','Supports quotas and permits over a simple tax.']],
+  line:'"This is an example of the tragedy of the commons: because no one owns the resource, each user ignores the damage they cause to others, so regulation such as quotas may be needed."'};
+
+V.ev_asym={kind:'card', btn:'Asymmetric information', showing:'One side knows more than the other',
+  title:'Asymmetric information and moral hazard',
+  lead:'Asymmetric information is when one party to a transaction knows more than the other. It leads to bad decisions and market failure.',
+  card:{head:'The idea', items:[
+    {h:'Asymmetric information', l:[['','A second-hand car seller knows whether the car is any good; the buyer does not. A doctor knows more than the patient, so could recommend treatment that is not needed.']]},
+    {h:'Moral hazard', l:[['','Someone protected from risk takes more of it, because someone else bears the cost. Insured drivers may drive less carefully, and banks that expect to be bailed out take bigger risks, as before the 2008 financial crisis.']]},
+    {h:'Solutions', l:[['','Regulation, warranties, reviews and ratings, and making the risk-taker bear some of the cost, such as an insurance excess.']]}
+  ]},
+  use:[['Information gaps','Why merit goods are under-consumed and demerit goods over-consumed.'],['Healthcare and education','A case for state provision or regulation.'],['Banks and the financial sector','Moral hazard after bailouts.'],['Firms','The principal–agent problem is asymmetric information between owners and managers.']],
+  line:'"However, the market may fail because of asymmetric information: consumers cannot judge quality, so regulation or information provision may be needed."'};
+
+V.ev_ped={kind:'evc', btn:'It depends on PED', showing:'Who pays a tax, and how far consumption falls',
+  title:'Price elasticity: the master evaluation point',
+  lead:'Almost every intervention depends on price elasticity of demand. The same tax has very different effects on an inelastic good and an elastic one.',
+  chain:[
+    'The tax shifts supply up by the same amount in both diagrams.',
+    'Inelastic demand (left): the price rises a lot and quantity barely falls. Consumers pay most of the tax (the upper box).',
+    'Elastic demand (right): the price rises a little and quantity falls a lot. Producers pay most of the tax (the lower box).',
+    'So a tax on an inelastic good raises lots of revenue but barely changes behaviour; on an elastic good it changes behaviour but raises less.'
+  ],
+  use:[['Taxes on demerit goods','Cigarettes, alcohol and fuel are inelastic: the tax raises revenue but consumption falls little.'],['Subsidies','If demand is inelastic, a subsidy barely raises consumption.'],['Minimum prices and wages','The effect on quantity depends on elasticity.'],['Exchange rates (Theme 4)','A depreciation improves the trade balance only if demand for exports and imports is elastic enough: Marshall–Lerner.'],['Monopoly and price discrimination','Firms charge more where demand is inelastic.']],
+  evaluation:'Demand is usually more elastic in the long run as people find substitutes: drivers switch to electric cars over years, not weeks. So a tax that seems to fail at first can work over time.',
+  line:'"However, since demand for cigarettes is price inelastic, the tax may do little to reduce consumption; it mainly raises revenue, and as a regressive tax it hits low-income smokers hardest."'};
+
+V.ev_polluter={kind:'card', btn:'Polluter pays', showing:'Make the polluter bear the cost',
+  title:'The polluter pays principle',
+  lead:'Whoever causes pollution should pay for the damage, so the cost is internalised instead of falling on third parties.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Taxes, charges and permits make the polluter pay the external cost. The price then reflects the full cost to society, so less is produced and consumed.']]},
+    {h:'Examples', l:[['','Fuel duty, landfill tax, London’s ULEZ charge, the plastic bag charge.']]},
+    {h:'Limits', l:[['','The cost is often passed on to consumers in higher prices, especially when demand is inelastic, so the polluter may not really pay. Measuring the damage in money is difficult.']]}
+  ]},
+  use:[['Taxes on negative externalities','The principle behind a tax equal to the external cost.'],['Fairness','It feels fair, but can be regressive for fuel and energy.'],['Comparing policies','Taxes and permits follow it; subsidies for clean alternatives do not.']],
+  line:'"The tax follows the polluter pays principle and internalises the externality; however, if demand is inelastic, firms can pass most of it on to consumers, so the polluter may bear little of the cost."'};
+
+V.ev_permits={kind:'card', btn:'Tradable permits', showing:'Cap the pollution, let firms trade',
+  title:'Tradable pollution permits',
+  lead:'The government sets a cap on total pollution and issues permits up to that cap. Firms that pollute less can sell their spare permits to firms that need more.',
+  card:{head:'The idea', items:[
+    {h:'Why it works', l:[['','The government fixes the quantity of pollution instead of guessing the right tax. Firms that can cut pollution cheaply do so and sell their permits, so pollution is cut where it is cheapest. Lowering the cap over time pushes the permit price up.']]},
+    {h:'Examples', l:[['','The EU Emissions Trading System, and the UK’s own emissions trading scheme for power stations, heavy industry and aviation.']]},
+    {h:'Limits', l:[['','The cap is hard to set: issue too many permits and the price collapses. Permits handed out free reward polluters. Monitoring costs money, and rich firms or countries can simply buy permits and carry on polluting.']]}
+  ]},
+  use:[['Climate change and negative production externalities','A market-based alternative to taxes.'],['Comparing policies','More certainty over the amount of pollution than a tax, less over the price.'],['Government failure','Setting the cap needs information the government may not have.']],
+  line:'"Tradable permits give certainty over the quantity of pollution, unlike a tax; however, if too many permits are issued, the permit price will be low and firms will have little reason to cut emissions."'};
+
+V.ev_nudge={kind:'card', btn:'Nudges', showing:'Change the choice, not the price',
+  title:'Nudges and choice architecture',
+  lead:'A nudge changes the way a choice is presented so people make better decisions, without banning anything or changing prices much.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','People do not always act rationally: they stick with the default and follow what others do. Changing the default or the framing can change behaviour cheaply.']]},
+    {h:'Examples', l:[['','Workplace pensions in the UK enrol workers automatically, so far more people save. England switched to an opt-out system for organ donation. Larger shops can no longer put sweets and crisps at the checkout.']]},
+    {h:'Limits', l:[['','The effects can be small, and some people see nudges as manipulation. They work less well against addiction, where a tax or a ban may be needed.']]}
+  ]},
+  use:[['Alternatives to taxes and bans','A cheaper option that keeps freedom of choice.'],['Information failure and demerit goods','Helps people act in their own long-term interest.'],['Behavioural economics','Bounded rationality, defaults and social norms.']],
+  line:'"An alternative would be a nudge, such as making the healthier option the default; this is cheap and keeps freedom of choice, but its effect may be too small for an addictive good."'};
+
+V.ev_unintended={kind:'card', btn:'Unintended consequences', showing:'When intervention backfires',
+  title:'Unintended consequences',
+  lead:'Interventions change behaviour in ways the government did not plan, which can undo the policy or create new problems.',
+  card:{head:'The idea', items:[
+    {h:'Price controls', l:[['','A maximum price, such as a rent cap, creates a shortage: landlords supply fewer homes and black markets appear. A minimum price creates a surplus.']]},
+    {h:'Taxes and bans', l:[['','High taxes on cigarettes and alcohol encourage smuggling and illegal sales. Banning a product can push it into an unregulated market.']]},
+    {h:'Minimum unit pricing on alcohol', l:[['','Scotland and Wales set a minimum price per unit of alcohol, aimed at cheap, strong drinks. Critics argue it also costs moderate drinkers on low incomes, while heavy drinkers may cut spending on food instead.']]}
+  ]},
+  use:[['Any intervention','Always ask how firms and consumers will react.'],['Price controls','Shortages, surpluses and black markets.'],['Taxes on demerit goods','Smuggling and illegal markets.'],['Government failure','Unintended consequences are one of its causes.']],
+  line:'"However, the policy may have unintended consequences: a high tax could encourage smuggling, so consumption of untaxed, unregulated cigarettes may rise."'};
+
+V.ev_capture={kind:'card', btn:'Regulatory capture', showing:'When the regulator serves the industry',
+  title:'Regulatory capture',
+  lead:'Regulatory capture is when a regulator ends up acting in the interests of the firms it regulates rather than consumers.',
+  card:{head:'The idea', items:[
+    {h:'How it happens', l:[['','Regulators rely on firms for information (asymmetric information), staff move between the regulator and the industry, and firms lobby hard. Over time the regulator may go easy on them.']]},
+    {h:'Example', l:[['','Critics argued that Ofwat allowed water companies to build up heavy debts and pay large dividends while sewage spills continued.']]},
+    {h:'Solutions', l:[['','Independent regulators with real powers, transparency, and the threat of large fines or breaking firms up.']]}
+  ]},
+  use:[['Regulating monopolies','A price cap only works if the regulator is tough.'],['Privatised utilities','Water, energy and rail.'],['Government failure','Capture is one reason intervention fails.']],
+  line:'"However, regulation may be undermined by regulatory capture: if the regulator depends on the firm for information, it may set a price cap that is too generous."'};
+
+V.ev_contest={kind:'card', btn:'Contestability', showing:'The threat of entry can be enough',
+  title:'Contestability: the threat of entry',
+  lead:'A firm with monopoly power may still behave competitively if the market is contestable: if new firms could enter easily, the threat alone keeps prices down.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','With low barriers to entry and exit and low sunk costs, a firm charging high prices invites hit-and-run entry, so it prices close to average cost.']]},
+    {h:'Examples', l:[['','Uber and Bolt shook up taxis, and app-only banks such as Monzo pushed high-street banks to improve.']]},
+    {h:'Limits', l:[['','No market is perfectly contestable, and firms can raise barriers through advertising, patents or mergers.']]}
+  ]},
+  use:[['Any monopoly or oligopoly question','A high market share alone does not prove consumers are harmed.'],['Mergers and competition policy','A merger in a contestable market is less of a worry.'],['Efficiency','Contestable markets push firms towards productive and allocative efficiency.']],
+  line:'"However, even with a large market share, the firm may keep prices low if the market is contestable, because supernormal profit would attract hit-and-run entry."',
+  tip:'The diagrams are in Micro, Contestable markets.'};
+
+V.ev_scale={kind:'card', btn:'Economies of scale', showing:'Big can mean cheaper',
+  title:'Economies of scale: is big always bad?',
+  lead:'A large firm with monopoly power may still charge less than many small firms could, because its average costs are lower.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Bulk buying, better technology and spreading fixed costs cut average costs. Even after taking supernormal profit, the price can be below what small competitive firms would need to charge.']]},
+    {h:'Natural monopoly', l:[['','Where one firm can supply the whole market most cheaply, such as water pipes or rail track, competition would mean wasteful duplication.']]},
+    {h:'Limits', l:[['','Savings are only passed on if the firm faces competition or regulation. Big firms can also suffer diseconomies of scale and X-inefficiency.']]}
+  ]},
+  use:[['Monopoly and mergers','The benefit of size can outweigh the cost of market power.'],['Barriers to entry','The same economies of scale keep rivals out.'],['Growth of firms','A reason for horizontal integration.']],
+  line:'"However, the merged firm may gain significant economies of scale, lowering average costs; if these savings are passed on, consumers could face lower prices despite less competition."',
+  tip:'The diagrams are in Micro, Economies of scale, and in Monopoly, Natural monopoly.'};
+
+V.ev_dynamic={kind:'card', btn:'Dynamic efficiency', showing:'Profit today, innovation tomorrow',
+  title:'Dynamic efficiency: the case for profit',
+  lead:'Supernormal profit is not all bad: it can pay for research and development that brings new products and lower costs over time.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Firms with market power and supernormal profit can afford risky research, and patents protect the reward, which encourages innovation in the first place.']]},
+    {h:'Examples', l:[['','Drug firms fund new medicines from their profits, and tech giants spend heavily on AI research.']]},
+    {h:'Limits', l:[['','Without competition, the firm may not bother to innovate and may become X-inefficient instead. Big firms may buy up start-ups to shut down future rivals rather than to innovate.']]}
+  ]},
+  use:[['Monopoly and oligopoly','Static inefficiency now can be outweighed by dynamic gains later.'],['Patents and barriers to entry','The trade-off between innovation and high prices.'],['Efficiency questions','Static versus dynamic efficiency.']],
+  line:'"However, the supernormal profit may be reinvested in research and development, leading to dynamic efficiency, although with little competition the firm may lack the incentive to do so."',
+  tip:'The diagrams are in Micro, Efficiency.'};
+
+V.ev_pa={kind:'card', btn:'Principal–agent problem', showing:'Owners and managers want different things',
+  title:'The principal–agent problem',
+  lead:'When owners (principals) hire managers (agents) to run a firm, the managers may pursue their own goals instead of the owners’.',
+  card:{head:'The idea', items:[
+    {h:'How it works', l:[['','Managers know more about the business than shareholders do (asymmetric information), so they can chase growth, sales or their own pay instead of profit.']]},
+    {h:'Where you see it', l:[['','Large plcs with thousands of shareholders, and the public sector, where taxpayers are the principals.']]},
+    {h:'Solutions', l:[['','Bonuses linked to profit or the share price, share options, and closer monitoring by shareholders.']]}
+  ]},
+  use:[['Objectives of firms','Why firms may not profit maximise.'],['Behaviour of firms','Why a firm might choose revenue or sales maximisation.'],['Public sector and nationalisation','Weak incentives to keep costs down.']],
+  line:'"However, the firm may not profit maximise: because of the principal–agent problem, managers may prefer to maximise sales, which would mean a lower price and higher output."',
+  tip:'The diagrams are in Micro, Objectives.'};
+
+V.ev_microgen={kind:'card', btn:'Use anywhere', showing:'Six angles that fit almost any micro answer',
+  title:'Six evaluation angles for any micro question',
+  lead:'If you are stuck for evaluation, one of these almost always applies. Make it specific to the market in the question.',
+  card:{head:'The angles', items:[
+    PT('1. Elasticity',[['','PED, PES or YED decide how big the effect is. Inelastic demand means a small change in quantity.']]),
+    PT('2. Time',[['','Short run versus long run: supply and demand both become more elastic over time.']]),
+    PT('3. Size',[['','How big is the tax, subsidy, externality or price change?']]),
+    PT('4. Information',[['','Does the government know enough to set the policy right? If not, there is a risk of government failure.']]),
+    PT('5. Stakeholders',[['','Who wins and who loses: consumers, producers, workers, third parties, the government.']]),
+    PT('6. Alternatives',[['','Would another policy work better: a tax, regulation, permits, information or a nudge?']])
+  ]},
+  use:[['Any 25-mark micro essay','Pick the two most relevant angles and develop each one fully, rather than listing all six.']],
+  line:'"The effect depends on the price elasticity of demand: since demand for …"',
+  tip:'Evaluation needs a reason and a judgement. Say which way it goes and why, not just "it depends".'};
+
+/* ---------- externality diagrams: straight-line cost-benefit model ---------- */
+var EXT={a:100,b:0.8,c:10,d:0.6,e:22};
+/* a straight line drawn only where it is on the sheet (2 <= p <= PTOP, 0 <= q <= 116) */
+function linSeg(g,fn,cls,qmaxDraw){
+  var qm=qmaxDraw||116, f0=fn(0), s=(fn(qm)-f0)/qm, lo, hi;
+  if(s>0){ lo=Math.max(0,(2-f0)/s); hi=Math.min(qm,(PTOP-f0)/s); }
+  else { lo=Math.max(0,(PTOP-f0)/s); hi=Math.min(qm,(2-f0)/s); }
+  return '<path class="curve '+cls+'" d="M'+r1(g.X(lo))+' '+r1(g.Y(fn(lo)))+'L'+r1(g.X(hi))+' '+r1(g.Y(fn(hi)))+'"/>';
+}
+/* label beside a straight line: above a falling line, under a rising one, so the line runs away from the text */
+function linLab(g,fn,q,text,cls){
+  var rising=fn(q+1)>fn(q);
+  return g.txt(g.X(q)+7, g.Y(fn(q))+(rising?g.fs+3:-7), text, 'bold halo '+cls);
+}
+/* somewhere above every curve for a short note (tries a few centres, returns [q,p]) */
+function freeSpot(g,fns,text,cands){
+  var hw=text.length*g.fs*0.27/(g.pw/QMAX)+2, need=(8)/(g.ph/PMAX)+1.5;
+  for(var i=0;i<cands.length;i++){
+    var qc=cands[i], top=0;
+    for(var q=qc-hw;q<=qc+hw;q+=1) fns.forEach(function(f){ var v=f(q); if(v<PTOP+6 && v>top) top=v; });
+    if(top+need<=100) return [qc,top+need];
+  }
+  return null;
+}
+function renderExt(){
+  var id=curId(), v=V[id], te=v.anim?ease(state.t):1, E=EXT;
+  var g=kit({ytitle:'Costs / benefits',xtitle:'Quantity'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var mpb=function(q){return E.a-E.b*q;}, mpc=function(q){return E.c+E.d*q;};
+  var curves='', labels='', guides='', notes='', areas='';
+  var lq=sm?80:88;                        /* where the curve labels sit */
+  function cross(f1,f2){ return bisect(function(q){return f1(q)-f2(q);},0,116); }
+  function tri(qa,qb,fTop,fBot){          /* welfare loss between two curves from qa to qb, closing at the crossing */
+    var d='', n=24, k, q;
+    for(k=0;k<=n;k++){ q=qa+(qb-qa)*k/n; d+=(k?'L':'M')+r1(X(q))+' '+r1(Y(fTop(q))); }
+    for(k=n;k>=0;k--){ q=qa+(qb-qa)*k/n; d+='L'+r1(X(q))+' '+r1(Y(fBot(q))); }
+    return '<path class="area a-dwl" d="'+d+'Z"/>';
+  }
+  function wlNote(fns,q,p){ var s=freeSpot(g,fns,'welfare loss',[50,60,40,70,30,80]); return s?g.leader(['welfare loss'],s[0],s[1],q,p):''; }
+  function gapArrows(qa,qb,word){
+    var y=Y(0)-11, a=X(Math.min(qa,qb))+3, b=X(Math.max(qa,qb))-3, out=arrowPx(a,y,b,y,'leader',6)+arrowPx(b,y,a,y,'leader',6);
+    if(!sm) out+=g.txt((a+b)/2,y-7,word,'bold halo','middle');
+    return out;
+  }
+  function axes2(qm,pm,qs,ps,labQ,labP,mutedM){
+    var qx=spreadN([X(Math.min(qm,qs)),X(Math.max(qm,qs))],fs*1.8), py=spreadN([Y(Math.max(pm,ps)),Y(Math.min(pm,ps))],fs+7);
+    var mFirst=qm<qs, mTop=pm>ps;
+    return g.axQ(qx[mFirst?0:1],labQ[0],mutedM?'t-muted':'')+g.axQ(qx[mFirst?1:0],labQ[1],'t-eff')
+         + g.axP(py[mTop?0:1],labP[0],mutedM?'t-muted':'')+g.axP(py[mTop?1:0],labP[1],'t-eff');
+  }
+  var qm=cross(mpb,mpc), pm=mpb(qm);
+  if(id==='ex_base'){
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc');
+    labels+=linLab(g,mpb,lq,sm?'MPB':'MPB = D','t-ar')+linLab(g,mpc,lq,sm?'MPC':'MPC = S','t-mc');
+    guides+=g.guide(qm,pm)+g.dot(qm,pm);
+    notes+=g.axP(Y(pm),'P_m')+g.axQ(X(qm),'Q_m');
+  }
+  else if(id==='ex_negprod' || id==='ex_tax' || id==='ev_govfail'){
+    var msc=function(q){return mpc(q)+E.e;}, qs=cross(mpb,msc), ps=mpb(qs);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,msc,'c-ac');
+    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,msc,lq-8,(id==='ex_tax'&&te>0.97)?'MSC = MPC + tax':'MSC','t-ac');
+    if(id==='ex_negprod'){
+      curves+=linSeg(g,mpc,'c-mc'); labels+=linLab(g,mpc,lq,'MPC','t-mc');
+      areas+=tri(qs,qm,msc,mpb);
+      guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs,ps,'eff')+g.dot(qs,ps,'eff');
+      notes+=axes2(qm,pm,qs,ps,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qs,qm,'over-production');
+      notes+=wlNote([mpb,msc,mpc],(2*qm+qs)/3,(msc(qm)+pm+ps)/3);
+    } else if(id==='ex_tax'){
+      var t=E.e*te, mt=function(q){return mpc(q)+t;}, qt=cross(mpb,mt), pt=mpb(qt);
+      curves+=linSeg(g,mpc,'c-mc ghost')+(te>0.02?linSeg(g,mt,'c-mc'):'');
+      labels+=linLab(g,mpc,lq,'MPC','t-mc');
+      if(qt-qs>0.3) areas+=tri(qs,qt,msc,mpb);
+      if(te>0.12) notes+=arrowPx(X(24),Y(mpc(24))-3,X(24),Y(mt(24))+3,'leader',7)+g.txt(X(24)+7,(Y(mpc(24))+Y(mt(24)))/2+5,'tax','bold halo');
+      guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qt,pt,te>0.97?'eff':'')+g.dot(qt,pt,te>0.97?'eff':'');
+      notes+=axes2(qm,pm,qt,pt,['Q_m',te>0.97?'Q*':'Q'],['P_m',te>0.97?'P*':'P'],true);
+    } else {
+      var tg=E.e*1.6, mg=function(q){return mpc(q)+tg;}, qg=cross(mpb,mg), pg=mpb(qg);
+      curves+=linSeg(g,mpc,'c-mc ghost')+linSeg(g,mg,'c-mc');
+      labels+=linLab(g,mg,lq-16,'MPC + tax','t-mc')+linLab(g,mpc,lq,'MPC','t-mc');
+      areas+=tri(qg,qs,mpb,msc);
+      guides+=g.vline(qm,pm,'muted')+g.guide(qs,ps,'eff')+g.dot(qs,ps,'eff')+g.guide(qg,pg)+g.dot(qg,pg);
+      var qx=spreadN([X(qg),X(qs),X(qm)],fs*1.8);
+      notes+=g.axQ(qx[0],'Q_t')+g.axQ(qx[1],'Q*','t-eff')+g.axQ(qx[2],'Q_m','t-muted')+gapArrows(qg,qs,'under-production');
+      notes+=wlNote([mpb,msc,mg],(2*qg+qs)/3,(mpb(qg)+msc(qg)+ps)/3);
+    }
+  }
+  else if(id==='ex_negcons'){
+    var msb=function(q){return mpb(q)-E.e;}, qs2=cross(msb,mpc), ps2=mpc(qs2);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,msb,'c-ac')+linSeg(g,mpc,'c-mc');
+    labels+=linLab(g,mpb,lq+4,'MPB','t-ar')+linLab(g,msb,lq,'MSB','t-ac')+linLab(g,mpc,lq,'MPC = MSC','t-mc');
+    areas+=tri(qs2,qm,mpc,msb);
+    guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs2,ps2,'eff')+g.dot(qs2,ps2,'eff');
+    notes+=axes2(qm,pm,qs2,ps2,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qs2,qm,'over-consumption');
+    notes+=wlNote([mpb,msb,mpc],(2*qm+qs2)/3,(pm+msb(qm)+ps2)/3);
+  }
+  else if(id==='ex_posprod'){
+    var msc2=function(q){return mpc(q)-E.e;}, qs3=cross(mpb,msc2), ps3=mpb(qs3);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc')+linSeg(g,msc2,'c-ac');
+    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,mpc,lq-14,'MPC','t-mc')+linLab(g,msc2,sm?36:40,'MSC','t-ac');
+    areas+=tri(qm,qs3,mpb,msc2);
+    guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs3,ps3,'eff')+g.dot(qs3,ps3,'eff');
+    notes+=axes2(qm,pm,qs3,ps3,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qm,qs3,'under-production');
+    notes+=wlNote([mpb,mpc,msc2],(2*qm+qs3)/3,(pm+msc2(qm)+ps3)/3);
+  }
+  else if(id==='ex_poscons' || id==='ex_sub'){
+    var msb2=function(q){return mpb(q)+E.e;}, qs4=cross(msb2,mpc), ps4=mpc(qs4);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,msb2,'c-ac');
+    /* MSB is labelled left of where it crosses MPC, so the rising cost line cannot run through it */
+    labels+=linLab(g,mpb,lq+4,'MPB','t-ar')+linLab(g,msb2,sm?88:92,'MSB','t-ac');
+    if(id==='ex_poscons'){
+      curves+=linSeg(g,mpc,'c-mc'); labels+=linLab(g,mpc,sm?30:34,'MPC = MSC','t-mc');
+      areas+=tri(qm,qs4,msb2,mpc);
+      guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs4,ps4,'eff')+g.dot(qs4,ps4,'eff');
+      notes+=axes2(qm,pm,qs4,ps4,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qm,qs4,'under-consumption');
+      notes+=wlNote([mpb,msb2,mpc],(2*qm+qs4)/3,(pm+msb2(qm)+ps4)/3);
+    } else {
+      var s=E.e*te, ms=function(q){return mpc(q)-s;}, q2=cross(mpb,ms), p2=mpb(q2);
+      curves+=linSeg(g,mpc,'c-mc'+(te>0.02?' ghost':''))+(te>0.02?linSeg(g,ms,'c-mc'):'');
+      labels+=linLab(g,mpc,sm?30:34,sm?'MSC':'MPC = MSC','t-mc')+(te>0.5&&!sm?linLab(g,ms,94,'MPC − subsidy','t-mc'):'');
+      if(qs4-q2>0.3) areas+=tri(q2,qs4,msb2,mpc);
+      if(te>0.12) notes+=arrowPx(X(52),Y(mpc(52))+3,X(52),Y(ms(52))-3,'leader',7)+(sm?'':g.txt(X(52)+7,(Y(mpc(52))+Y(ms(52)))/2+5,'subsidy','bold halo'));
+      guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(q2,p2,te>0.97?'eff':'')+g.dot(q2,p2,te>0.97?'eff':'');
+      notes+=axes2(qm,pm,q2,p2,['Q_m',te>0.97?'Q*':'Q'],['P_m','P_2'],true);
+    }
+  }
+  g.out(areas,curves,guides,labels,notes);
+}
+
+/* ---------- classical AD/AS: straight AD and SRAS, vertical LRAS ---------- */
+var AD2={a:110,b:0.85,s:-5.5,k:0.8,yfe:70};
+function renderAD2(){
+  var v=cur(), te=v.anim?ease(state.t):1, M=AD2;
+  var g=kit({ytitle:'Price level',xtitle:'Real GDP'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var dA=v.sh==='ad'?25*te:0, dS=v.sh==='sras'?20*te:(v.sh==='lras'?-29.7*te:0), dL=v.sh==='lras'?18*te:0;
+  var ad=function(A){return function(y){return A-M.b*y;};}, sras=function(S){return function(y){return S+M.k*y;};};
+  var A0=M.a, A1=M.a+dA, S0=M.s, S1=M.s+dS, L0=M.yfe, L1=M.yfe+dL, moving=te>0.02 && !!v.sh;
+  /* labels sit well right of equilibrium: AD above its line, SRAS under its line */
+  var curves='', labels='', guides='', notes='', lq=sm?98:102;
+  function lras(L,cls,name,left){
+    curves+='<path class="curve c-ac'+(cls||'')+'" d="M'+r1(X(L))+' '+r1(Y(PTOP))+'V'+r1(Y(0))+'"/>';
+    labels+=g.txt(X(L)+(left?-6:6),Y(PTOP)+12,name,'bold t-ac halo',left?'end':'start');
+  }
+  if(v.sh==='ad' && moving){ curves+=linSeg(g,ad(A0),'c-ar ghost'); labels+=linLab(g,ad(A0),lq+2,'AD_1','t-ar'); curves+=linSeg(g,ad(A1),'c-ar'); labels+=linLab(g,ad(A1),lq+2,'AD_2','t-ar'); }
+  else { curves+=linSeg(g,ad(A0),'c-ar'); labels+=linLab(g,ad(A0),v.sh==='lras'?(sm?108:110):lq+2,'AD','t-ar'); }
+  if((v.sh==='sras'||v.sh==='lras') && moving){ curves+=linSeg(g,sras(S0),'c-mc ghost')+linSeg(g,sras(S1),'c-mc'); labels+=linLab(g,sras(S0),lq,'SRAS_1','t-mc')+linLab(g,sras(S1),lq,'SRAS_2','t-mc'); }
+  else { curves+=linSeg(g,sras(S0),'c-mc'); labels+=linLab(g,sras(S0),lq,'SRAS','t-mc'); }
+  if(v.sh==='lras' && moving){ lras(L0,' ghost','LRAS_1',true); lras(L1,'','LRAS_2',false); }
+  else lras(L0,'','LRAS',false);
+  function eq(A,S){ var y=(A-S)/(M.b+M.k); return {y:y,p:A-M.b*y}; }
+  var e0=eq(A0,S0), e1=eq(A1,S1);
+  if(!moving){
+    guides+=g.guide(e0.y,e0.p)+g.dot(e0.y,e0.p);
+    notes+=g.axP(Y(e0.p),'P_1')+g.axQ(X(e0.y),v.sh?'Y_1':'Y_FE');
+  } else {
+    guides+=g.guide(e0.y,e0.p,'muted')+g.dot(e0.y,e0.p,'muted')+g.guide(e1.y,e1.p)+g.dot(e1.y,e1.p);
+    var py=spread(Y(e0.p),Y(e1.p),fs+9), qx=spread(X(e0.y),X(e1.y),fs*1.7);
+    notes+=g.axP(py[0],'P_1','t-muted')+g.axQ(qx[0],'Y_1','t-muted')+g.axP(py[1],'P_2')+g.axQ(qx[1],'Y_2');
+  }
+  g.out('',curves,guides,labels,notes);
+}
+
+/* ---------- evaluation diagrams ---------- */
+function renderEv(){
+  var id=curId(), v=V[id], t=v.anim?state.t:1, te=v.anim?ease(state.t):1, d, i, n;
+  if(id==='ev_ped'){ renderPedTax(); return; }
+  if(id==='ev_capacity'){
+    var g=kit({ytitle:'Price level',xtitle:'Real GDP'}), X=g.X, Y=g.Y, fs=g.fs;
+    d='M'+r1(X(0))+' '+r1(Y(30))+'H'+r1(X(45));
+    var yTop=91.25; for(i=1;i<=60;i++){ var yy=45+(yTop-45)*i/60; d+='L'+r1(X(yy))+' '+r1(Y(asP(yy))); }
+    var curves='<path class="curve c-ac" d="'+d+'"/>', labels=g.txt(X(yTop)-9,Y(asP(yTop))+13,'AS','bold t-ac halo','end'), guides='', notes='';
+    var As=[45,75,105,135], A=45+90*te, eqY=function(Ad){ return Ad-0.9*45>=30 ? bisect(function(z){return Ad-0.9*z-asP(z);},45.01,94.5) : (Ad-30)/0.9; };
+    function adLine(Ad,cls,name){
+      var y0=Math.max(0,(Ad-PTOP)/0.9), y1=Math.min(117,(Ad-4)/0.9);
+      curves+='<path class="curve c-ar'+cls+'" d="M'+r1(X(y0))+' '+r1(Y(Ad-0.9*y0))+'L'+r1(X(y1))+' '+r1(Y(Ad-0.9*y1))+'"/>';
+      if(name) labels+=g.txt(X(y0)+(y0>0?7:8),Y(Ad-0.9*y0)+(y0>0?13:-7),name,'bold t-ar halo');
+    }
+    var pts=As.map(function(a){var y=eqY(a); return [y, a-0.9*y];}), qx=spreadN(pts.map(function(p){return X(p[0]);}),fs*1.7);
+    for(i=0;i<4;i++){
+      if(As[i]>A+0.01) continue;
+      var last=(i===3 || As[i+1]>A+0.01) && te>=0.999;
+      adLine(As[i], last?'':' ghost', 'AD_'+(i+1));
+      guides+=g.vline(pts[i][0],pts[i][1],last?'':'muted')+g.dot(pts[i][0],pts[i][1]);
+      notes+=g.txt(X(pts[i][0])+7,Y(pts[i][1])-7,String(i+1),'bold halo')+g.axQ(qx[i],'Y_'+(i+1),last?'':'t-muted');
+    }
+    if(te<0.999){ var yn=eqY(A); adLine(A,'',''); guides+=g.dot(yn,A-0.9*yn,'eff'); }
+    g.out('',curves,guides,labels,notes);
+    return;
+  }
+  if(id==='ev_srpc' || id==='ev_lrpc'){
+    var g2=kit({qmax:12,pmax:12,ytitle:'Inflation (%)',xtitle:'Unemployment (%)'}), X2=g2.X, Y2=g2.Y, fs2=g2.fs, top=12*PTOP/PMAX;
+    var pc=function(shift){return function(u){return 9/(u-1.5)+shift;};};
+    function pcPath(f,cls){ var u0=bisect(function(u){return f(u)-top;},1.6,6), dd='', k; for(k=0;k<=70;k++){ var u=u0+(11.5-u0)*k/70; dd+=(k?'L':'M')+r1(X2(u))+' '+r1(Y2(f(u))); } return '<path class="curve '+cls+'" d="'+dd+'"/>'; }
+    var c2='', l2='', gd2='', nt2='', ua=6, ub=3.5, sh=2.5, f1=pc(0);
+    var letter=function(u,p,s,dx,dy){return g2.txt(X2(u)+dx,Y2(p)+dy,s,'bold halo');};
+    if(id==='ev_srpc'){
+      c2+=pcPath(f1,'c-mc'); l2+=g2.txt(X2(11.5),Y2(f1(11.5))-9,'SRPC','bold t-mc halo','end');
+      gd2+=g2.guide(ua,f1(ua),'muted')+g2.dot(ua,f1(ua))+g2.guide(ub,f1(ub))+g2.dot(ub,f1(ub));
+      nt2+=letter(ua,f1(ua),'A',8,-8)+letter(ub,f1(ub),'B',8,-8);
+      var mid=4.6; nt2+=arrowPx(X2(5.6)-2,Y2(f1(5.6))-10,X2(mid)-2,Y2(f1(mid))-10,'leader',7);
+      nt2+=g2.leader(['boost AD:','lower unemployment,','higher inflation'], 8.6, 9.6, 4.4, f1(4.4)+0.15);
+    } else {
+      var s1=t<0.5?0:sh*ease((t-0.5)/0.5), u1, p1;
+      if(t<0.5){ var a=ease(t/0.5); u1=ua+(ub-ua)*a; p1=f1(u1); } else { var b=ease((t-0.5)/0.5); u1=ub+(ua-ub)*b; p1=f1(ub); }
+      c2+='<path class="curve c-ac" d="M'+r1(X2(ua))+' '+r1(Y2(top))+'V'+r1(Y2(0))+'"/>';
+      l2+=g2.txt(X2(ua)+6,Y2(top)+12,'LRPC','bold t-ac halo');
+      c2+=pcPath(f1,'c-mc'+(s1>0.05?' ghost':'')); l2+=g2.txt(X2(11.5),Y2(f1(11.5))-9,'SRPC_1','bold t-mc halo','end');
+      if(s1>0.05){ var f2=pc(s1); c2+=pcPath(f2,'c-mc'); l2+=g2.txt(X2(11.5),Y2(f2(11.5))-9,'SRPC_2','bold t-mc halo','end'); }
+      gd2+=g2.dot(ua,f1(ua))+(t>=0.5?g2.dot(ub,f1(ub)):'')+(t>=1?g2.dot(ua,f1(ub),'eff'):'');
+      nt2+=letter(ua,f1(ua),'A',-20,fs2+4)+(t>=0.5?letter(ub,f1(ub),'B',-20,fs2+4):'')+(t>=1?letter(ua,f1(ub),'C',8,-8):'');
+      if(t>0 && t<1) gd2+=g2.dot(u1,p1,'eff');
+      nt2+=g2.axQ(X2(ua),'NAIRU','t-ac');
+    }
+    g2.out('',c2,gd2,l2,nt2);
+    return;
+  }
+  if(id==='ev_laffer'){
+    var g3=kit({qmax:110,pmax:110,ytitle:'Tax revenue',xtitle:'Tax rate'}), X3=g3.X, Y3=g3.Y;
+    var R=function(tr){ var x=tr/100; return x<=0||x>=1 ? 0 : 310*x*Math.pow(1-x,0.8); };
+    var ts=100/1.8, ta=30, ra=R(ta), tb=bisect(function(x){return R(x)-ra;},ts,99.5);
+    d=''; for(i=0;i<=90;i++){ var tr=100*i/90; d+=(i?'L':'M')+r1(X3(tr))+' '+r1(Y3(R(tr))); }
+    var cv='<path class="curve c-ar" d="'+d+'"/>';
+    var gd3=g3.vline(ts,R(ts),'eff')+g3.dot(ts,R(ts),'eff')+'<path class="guide muted" d="M'+r1(X3(0))+' '+r1(Y3(ra))+'H'+r1(X3(tb))+'"/>'+g3.vline(ta,ra,'muted')+g3.vline(tb,ra,'muted')+g3.dot(ta,ra)+g3.dot(tb,ra);
+    var nt3=g3.axQ(X3(ts),'t*','t-eff')+g3.axQ(X3(100),'100%')+g3.txt(X3(ta)-8,Y3(ra)-8,'A','bold halo','end')+g3.txt(X3(tb)+8,Y3(ra)-8,'B','bold halo')
+      + g3.txt(X3(ts),Y3(R(ts))-11,'most revenue','bold t-eff halo','middle');
+    g3.out('',cv,gd3,'',nt3);
+    return;
+  }
+  if(id==='ev_kuz_env' || id==='ev_kuz_ineq'){
+    var env=(id==='ev_kuz_env'), g4=kit({ytitle:env?'Environmental damage':'Income inequality',xtitle:'GDP per capita'}), X4=g4.X, Y4=g4.Y, sm4=g4.small;
+    var K=function(y){ return 88*Math.pow(y/48,1.6)*Math.exp(1.6*(1-y/48)); };
+    d=''; for(i=0;i<=90;i++){ var y=1+115*i/90; d+=(i?'L':'M')+r1(X4(y))+' '+r1(Y4(K(y))); }
+    var cv4='<path class="curve c-ar" d="'+d+'"/>', nt4='', gd4=g4.vline(48,88,'eff')+g4.dot(48,88,'eff');
+    nt4+=g4.axQ(X4(48),'turning point','t-eff');
+    if(env){
+      nt4+=g4.txt(X4(sm4?21:22),Y4(8),sm4?'industry':'industry grows','bold t-muted halo','middle')+g4.txt(X4(sm4?92:88),Y4(8),sm4?'services':'services, clean tech','bold t-muted halo','middle');
+    } else {
+      var up=function(y){ return K(92)+0.035*(y-92)*(y-92); };
+      d=''; for(i=0;i<=30;i++){ var y2=92+24*i/30; d+=(i?'L':'M')+r1(X4(y2))+' '+r1(Y4(up(y2))); }
+      cv4+='<path class="curve c-ar" style="stroke-dasharray:6 6" d="'+d+'"/>';
+      nt4+=g4.txt(X4(116),Y4(up(116))-9,'rising again?','bold t-ar halo','end');
+      nt4+=g4.txt(X4(sm4?21:22),Y4(8),sm4?'early growth':'early growth','bold t-muted halo','middle');
+    }
+    g4.out('',cv4,gd4,'',nt4);
+    return;
+  }
+  if(id==='ev_easterlin'){
+    var g5=kit({ytitle:'Index',xtitle:'Time'}), X5=g5.X, Y5=g5.Y;
+    var gdp=function(x){return 16+0.6*x+0.001*x*x;}, hap=function(x){return 52+2.2*Math.sin(x/6.5)+1.3*Math.sin(x/2.7);};
+    var p1='', p2=''; for(i=0;i<=90;i++){ var x=4+112*i/90; p1+=(i?'L':'M')+r1(X5(x))+' '+r1(Y5(gdp(x))); p2+=(i?'L':'M')+r1(X5(x))+' '+r1(Y5(hap(x))); }
+    var cv5='<path class="curve c-ar" d="'+p1+'"/><path class="curve c-mc" d="'+p2+'"/>';
+    var lb5=g5.txt(X5(100)-8,Y5(gdp(100))-8,'real GDP per head','bold t-ar halo','end')+g5.txt(X5(116),Y5(hap(116))+g5.fs+6,'average happiness','bold t-mc halo','end');
+    g5.out('',cv5,'',lb5,'');
+    return;
+  }
+}
+/* the same tax on inelastic and elastic demand, side by side */
+function renderPedTax(){
+  var small=(plot.clientWidth||640)<480, tax=24;
+  var specs=[{a:146,b:2.2,head:small?'Inelastic':'Inelastic demand'},{a:62.75,b:0.35,head:small?'Elastic':'Elastic demand'}];
+  var inner='', first=null;
+  specs.forEach(function(s,i){
+    var g=kit({n:2,i:i,head:s.head,ytitle:'Price',xtitle:'Quantity'}), X=g.X, Y=g.Y, fs=g.fs;
+    if(!first) first=g;
+    var D=function(q){return s.a-s.b*q;}, S1=function(q){return 20+0.6*q;}, S2=function(q){return 20+tax+0.6*q;};
+    var q1=(s.a-20)/(s.b+0.6), p1=D(q1), q2=(s.a-20-tax)/(s.b+0.6), p2=D(q2), pp=p2-tax;
+    var curves=linSeg(g,D,'c-ar')+linSeg(g,S1,'c-mc ghost')+linSeg(g,S2,'c-mc');
+    var labels=linLab(g,D,i===0?Math.max(22,(s.a-100)/s.b):92,'D','t-ar')+linLab(g,S1,96,'S','t-mc')+linLab(g,S2,70,'S + tax','t-mc');
+    var areas=g.box(0,q2,p1,p2,'area a-cost')+g.box(0,q2,pp,p1,'area a-cs');
+    var guides=g.guide(q1,p1,'muted')+g.dot(q1,p1,'muted')+g.guide(q2,p2)+g.dot(q2,p2)+g.hline(q2,pp)+g.dot(q2,pp);
+    var py=spreadN([Y(p2),Y(p1),Y(pp)],fs+9), qx=spreadN([X(q2),X(q1)],fs*1.7);
+    var notes=g.axP(py[0],'P_2')+g.axP(py[1],'P_1','t-muted')+g.axQ(qx[0],'Q_2')+g.axQ(qx[1],'Q_1','t-muted');
+    inner+=g.compose(areas,curves,guides,labels,notes);
+  });
+  wrapSvg(first,inner);
+}
+
+/* =====================================================================
    STATE
    ===================================================================== */
 var state = {topic:'monopoly', view:{perfect:'pc_taker', monopoly:'profitmax', monopolistic:'mc_snp', oligopoly:'kink', contestable:'cm_mono'}, t:1, fade:true, cheater:'A'};
@@ -3724,6 +4573,9 @@ function render(){
   var k=cur().kind, svg=!{game:1,cr:1,card:1,cacalc:1,totcalc:1,ml:1,revcalc:1,costcalc:1,pcalc:1,stay:1}[k];
   plot.hidden=!svg; panel.hidden=svg;
   if(k==='mono') renderMono();
+  else if(k==='ext') renderExt();
+  else if(k==='adas2') renderAD2();
+  else if(k==='evc') renderEv();
   else if(k==='chain') renderChain();
   else if(k==='rev') renderRev();
   else if(k==='cost') renderCost();
@@ -3763,7 +4615,11 @@ function renderNotes(){
       + v.compare.rows.map(function(r){return '<div><span>'+r[0]+'</span><strong>'+r[1]+'</strong></div>';}).join('')+'</div></div>';
   if(v.chain) h+='<div><p class="label">Chain of analysis</p><ol class="chain">'
       + v.chain.map(function(s){return '<li><span>'+s+'</span></li>';}).join('')+'</ol></div>';
+  /* evaluation-section extras: where the idea earns marks, and a sentence to adapt */
+  if(v.use) h+='<div><p class="label">Where to use it</p><ul class="plain use">'
+      + v.use.map(function(r){return '<li><b>'+r[0]+'</b><span>'+r[1]+'</span></li>';}).join('')+'</ul></div>';
   if(v.evaluation) h+='<div class="eval"><p class="label"><span>Evaluation</span></p><p>'+v.evaluation+'</p></div>';
+  if(v.line) h+='<div class="model"><p class="label">Write it like this</p><p>'+v.line+'</p></div>';
   if(v.tip) h+='<p class="tip">'+v.tip+'</p>';
   document.getElementById('notes').innerHTML=h;
   document.getElementById('showing').textContent=v.showing;
@@ -3842,7 +4698,7 @@ window.addEventListener('hashchange', function(){
 
 /* ---------- sections (Micro / Macro) and their tabs ---------- */
 for(var tk0 in TOPICS){ if(!state.view[tk0]) state.view[tk0]=TOPICS[tk0].first; }
-state.last={micro:'monopoly',macro:'global'};
+state.last={micro:'monopoly',macro:'global',y12:'extern',ev:'e_fiscal'};
 function renderTabs(){
   var sec=TOPICS[state.topic].section, S=SECTIONS[sec], tabsEl=document.getElementById('tabs');
   state.last[sec]=state.topic;

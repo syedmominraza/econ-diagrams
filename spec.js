@@ -1,7 +1,103 @@
-/* Spec index: Pearson Edexcel A level Economics A (9EC0), Themes 3 and 4.
+/* Spec index: Pearson Edexcel A level Economics A (9EC0), Themes 1 to 4.
    Section and subsection titles follow the specification. Each item lists
-   the notes on this site that cover it (by view id in learn.html). */
+   the notes on this site that cover it (by view id in learn.html).
+   Themes 1 and 2 only cover the Year 12 big topics and evaluation points. */
 var SPEC = [
+ {id:'t1', title:'Theme 1', name:'Introduction to markets and market failure', sections:[
+  {code:'1.1', name:'Nature of economics', points:[
+    {code:'1.1.1', name:'Economics as a social science'},
+    {code:'1.1.2', name:'Positive and normative economic statements'},
+    {code:'1.1.3', name:'The economic problem'},
+    {code:'1.1.4', name:'Production possibility frontiers'},
+    {code:'1.1.5', name:'Specialisation and the division of labour'},
+    {code:'1.1.6', name:'Free market economies, mixed economy and command economy'}
+  ]},
+  {code:'1.2', name:'How markets work', points:[
+    {code:'1.2.1', name:'Rational decision making'},
+    {code:'1.2.2', name:'Demand'},
+    {code:'1.2.3', name:'Price, income and cross elasticities of demand', items:[['Price elasticity as evaluation', ['ev_ped']]]},
+    {code:'1.2.4', name:'Supply'},
+    {code:'1.2.5', name:'Elasticity of supply'},
+    {code:'1.2.6', name:'Price determination'},
+    {code:'1.2.7', name:'Price mechanism'},
+    {code:'1.2.8', name:'Consumer and producer surplus'},
+    {code:'1.2.9', name:'Indirect taxes and subsidies', items:[
+      ['Taxes and subsidies to correct externalities', ['ex_tax','ex_sub']],
+      ['Who pays the tax: incidence and PED', ['ev_ped']]
+    ]},
+    {code:'1.2.10', name:'Alternative views of consumer behaviour', items:[['Nudges and defaults', ['ev_nudge']]]}
+  ]},
+  {code:'1.3', name:'Market failure', points:[
+    {code:'1.3.1', name:'Types of market failure', items:[['The cost-benefit diagram', ['ex_base']]]},
+    {code:'1.3.2', name:'Externalities', items:[
+      ['Negative externalities of production and consumption', ['ex_negprod','ex_negcons']],
+      ['Positive externalities of production and consumption', ['ex_posprod','ex_poscons']],
+      ['Real examples', ['ex_ex']],
+      ['The tragedy of the commons', ['ev_commons']]
+    ]},
+    {code:'1.3.3', name:'Public goods', items:[['The free rider problem', ['ev_freerider']]]},
+    {code:'1.3.4', name:'Information gaps', items:[['Asymmetric information and moral hazard', ['ev_asym']]]}
+  ]},
+  {code:'1.4', name:'Government intervention', points:[
+    {code:'1.4.1', name:'Government intervention in markets', items:[
+      ['Indirect taxes and subsidies', ['ex_tax','ex_sub']],
+      ['Regulation, permits, information and state provision', ['ex_policy','ev_permits']],
+      ['The polluter pays principle', ['ev_polluter']],
+      ['Evaluation angles for any micro answer', ['ev_microgen']]
+    ]},
+    {code:'1.4.2', name:'Government failure', items:[
+      ['Over-correction and the causes of government failure', ['ev_govfail','ev_unintended']],
+      ['Regulatory capture', ['ev_capture']]
+    ]}
+  ]}
+ ]},
+ {id:'t2', title:'Theme 2', name:'The UK economy: performance and policies', sections:[
+  {code:'2.1', name:'Measures of economic performance', points:[
+    {code:'2.1.1', name:'Economic growth', items:[['Growth and happiness: the Easterlin paradox', ['ev_easterlin']]]},
+    {code:'2.1.2', name:'Inflation'},
+    {code:'2.1.3', name:'Employment and unemployment', items:[['Hysteresis', ['ev_hyst']]]},
+    {code:'2.1.4', name:'Balance of payments'}
+  ]},
+  {code:'2.2', name:'Aggregate demand (AD)', points:[
+    {code:'2.2.1', name:'The characteristics of AD', items:[['The AD curve and its shifts', ['ad_base','ad_dpull']]]},
+    {code:'2.2.2', name:'Consumption (C)', items:[['The life cycle hypothesis and the wealth effect', ['ev_lifecycle']],['Confidence', ['ev_confidence']]]},
+    {code:'2.2.3', name:'Investment (I)', items:[['Animal spirits', ['ev_confidence']]]},
+    {code:'2.2.4', name:'Government expenditure (G)', items:[['Crowding out and crowding in', ['ev_crowd']]]},
+    {code:'2.2.5', name:'Net trade (X–M)'}
+  ]},
+  {code:'2.3', name:'Aggregate supply (AS)', points:[
+    {code:'2.3.1', name:'The characteristics of AS', items:[['SRAS and LRAS', ['ad_base']]]},
+    {code:'2.3.2', name:'Short-run AS', items:[['A fall in SRAS: cost-push', ['ad_cpush']]]},
+    {code:'2.3.3', name:'Long-run AS', items:[['An increase in LRAS', ['ad_lras']],['Keynesian and classical LRAS', ['ev_capacity']]]}
+  ]},
+  {code:'2.4', name:'National income', points:[
+    {code:'2.4.1', name:'National income'},
+    {code:'2.4.2', name:'Injections and withdrawals'},
+    {code:'2.4.3', name:'Equilibrium levels of real national output', items:[['AD/AS equilibrium and shifts', ['ad_base','ad_dpull','ad_cpush','ad_lras']]]},
+    {code:'2.4.4', name:'The multiplier', items:[['Why the multiplier may be small', ['ev_ricardo','ev_confidence']]]}
+  ]},
+  {code:'2.5', name:'Economic growth', points:[
+    {code:'2.5.1', name:'Causes of growth'},
+    {code:'2.5.2', name:'Output gaps', items:[['Spare capacity', ['ev_capacity']],['Hysteresis', ['ev_hyst']]]},
+    {code:'2.5.3', name:'Trade (business) cycle'},
+    {code:'2.5.4', name:'The impact of economic growth', items:[['Environmental Kuznets curve', ['ev_kuz_env']],['Easterlin paradox', ['ev_easterlin']]]}
+  ]},
+  {code:'2.6', name:'Macroeconomic objectives and policies', points:[
+    {code:'2.6.1', name:'Possible macroeconomic objectives'},
+    {code:'2.6.2', name:'Demand-side policies', items:[
+      ['Laffer curve', ['ev_laffer']],
+      ['Crowding out and Ricardian equivalence', ['ev_crowd','ev_ricardo']],
+      ['Liquidity trap and quantitative easing', ['ev_liq']],
+      ['Time lags', ['ev_lags']]
+    ]},
+    {code:'2.6.3', name:'Supply-side policies', items:[['Tax cuts and incentives: the Laffer curve', ['ev_laffer']]]},
+    {code:'2.6.4', name:'Conflicts and trade-offs between objectives and policies', items:[
+      ['The Phillips curve', ['ev_srpc','ev_lrpc']],
+      ['Growth versus the environment', ['ev_kuz_env']],
+      ['Evaluation angles for any macro answer', ['ev_macrogen']]
+    ]}
+  ]}
+ ]},
  {id:'t3', title:'Theme 3', name:'Business behaviour and the labour market', sections:[
   {code:'3.1', name:'Business growth', points:[
     {code:'3.1.1', name:'Sizes and types of firms', items:[
@@ -22,7 +118,7 @@ var SPEC = [
   ]},
   {code:'3.2', name:'Business objectives', points:[
     {code:'3.2.1', name:'Business objectives', items:[
-      ['Why firms may not profit maximise', ['ob_why']],
+      ['Why firms may not profit maximise', ['ob_why','ev_pa']],
       ['Profit, revenue and sales maximisation', ['ob_all','profitmax','revmax','salesmax']],
       ['Satisficing and the minimum profit constraint', ['ob_sat']],
       ['Growth, utility, survival and CSR', ['ob_other']],
@@ -45,7 +141,7 @@ var SPEC = [
       ['External economies and diseconomies of scale', ['sc_ext','sc_extdis']],
       ['Minimum efficient scale', ['sc_lrac','sc_fall']],
       ['Short-run and long-run average cost', ['sc_env']],
-      ['Evaluation and examples', ['sc_eval','sc_ex']]
+      ['Evaluation and examples', ['sc_eval','sc_ex','ev_scale']]
     ]},
     {code:'3.3.4', name:'Normal profits, supernormal profits and losses', items:[
       ['Accounting and economic profit', ['pf_calc']],
@@ -58,7 +154,7 @@ var SPEC = [
     {code:'3.4.1', name:'Efficiency', items:[
       ['Allocative efficiency', ['ef_alloc','alloc','vs_dwl']],
       ['Productive efficiency', ['ef_prod','prod']],
-      ['Dynamic efficiency', ['ef_ppf','ef_dyn']],
+      ['Dynamic efficiency', ['ef_ppf','ef_dyn','ev_dynamic']],
       ['X-inefficiency', ['ef_x']],
       ['Efficiency in different market structures', ['ef_table','pc_lr','mc_eff','dwl','cm_eff']]
     ]},
@@ -90,7 +186,7 @@ var SPEC = [
     {code:'3.4.6', name:'Monopsony'},
     {code:'3.4.7', name:'Contestability', items:[
       ['Characteristics of contestable markets', ['cm_mono','ct_ex']],
-      ['How firms behave', ['cm_threat','cm_eff','ct_cons']],
+      ['How firms behave', ['cm_threat','cm_eff','ct_cons','ev_contest']],
       ['Barriers to entry and sunk costs', ['cm_hit','br_exit']],
       ['Types of barrier to entry and exit', ['br_types','br_exit','br_ex']],
       ['Economies of scale, limit and predatory pricing', ['br_eos','br_limit','br_pred','br_calc']]
@@ -103,7 +199,7 @@ var SPEC = [
   ]},
   {code:'3.6', name:'Government intervention', partial:true, points:[
     {code:'3.6.1', name:'Government intervention', items:[['Price regulation of a natural monopoly', ['nm_reg']]]},
-    {code:'3.6.2', name:'The impact of government intervention'}
+    {code:'3.6.2', name:'The impact of government intervention', items:[['Regulatory capture', ['ev_capture']]]}
   ]}
  ]},
  {id:'t4', title:'Theme 4', name:'A global perspective', sections:[
@@ -149,7 +245,7 @@ var SPEC = [
   ]},
   {code:'4.2', name:'Poverty and inequality', points:[
     {code:'4.2.1', name:'Absolute and relative poverty'},
-    {code:'4.2.2', name:'Inequality'}
+    {code:'4.2.2', name:'Inequality', items:[['The Kuznets curve', ['ev_kuz_ineq']]]}
   ]},
   {code:'4.3', name:'Emerging and developing economies', points:[
     {code:'4.3.1', name:'Measures of development'},
@@ -171,4 +267,4 @@ var SPEC = [
 ];
 
 /* button name of every note, generated from app.js */
-var VIEW_NAMES = {"base": "The curves", "profitmax": "Profit max point", "profit": "Supernormal profit", "trtc": "Revenue and cost", "revmax": "Revenue max", "salesmax": "Sales max", "alloc": "Allocative", "prod": "Productive", "dwl": "Deadweight loss", "costup": "Variable costs rise", "costdown": "Variable costs fall", "fixed": "Fixed costs rise", "srlr": "Short run vs long run", "vs_pc": "Perfect competition", "vs_mono": "Monopoly", "vs_dwl": "Welfare loss", "vs_pd": "First degree", "pd3_one": "Third degree: one price", "pd3": "Third degree: two prices", "nm_base": "The curves", "nm_profit": "Unregulated", "nm_reg": "Regulated price", "pc_taker": "Price taker", "pc_snp": "Supernormal profit", "pc_loss": "Loss", "pc_entry": "Profit attracts entry", "pc_exit": "Losses cause exit", "pc_lr": "Long-run equilibrium", "mc_snp": "Supernormal profit", "mc_loss": "Loss", "mc_entry": "Profit attracts entry", "mc_exit": "Losses cause exit", "mc_lr": "Long-run equilibrium", "mc_eff": "Efficiency", "cm_mono": "Monopoly outcome", "cm_hit": "Hit-and-run entry", "cm_threat": "Threat of entry", "cm_eff": "Efficiency", "kink": "The kink", "raise": "Raise price", "cut": "Cut price", "mrgap": "The MR gap", "eqm": "Equilibrium and profit", "rigid": "Price rigidity", "bigcost": "Large cost rise", "g_collude": "Why collude", "g_cheat": "Incentive to cheat", "g_dom": "Dominant strategy", "g_nash": "Nash equilibrium", "cr": "Concentration ratio", "pc_ex": "Real examples", "pc_cons": "Consumers", "mn_ex": "Real examples", "mn_cons": "Consumers", "mcp_ex": "Real examples", "mcp_cons": "Consumers", "ol_ex": "Real examples", "ol_cons": "Consumers", "ct_ex": "Real examples", "ct_cons": "Consumers", "gr_types": "Types of firm", "gr_organic": "Organic growth", "gr_ext": "Mergers and takeovers", "gr_horiz": "Horizontal", "gr_fwd": "Forward vertical", "gr_back": "Backward vertical", "gr_cong": "Conglomerate", "gr_limits": "Constraints on growth", "gr_demerge": "Demergers", "gr_ex": "Real examples", "ob_why": "Why not profit max?", "ob_all": "All three objectives", "ob_sat": "Minimum profit constraint", "ob_other": "Other objectives", "ob_types": "By type of firm", "ob_ex": "Real examples", "rv_armr": "AR and MR", "rv_ped": "PED along AR", "rv_tr": "Total revenue", "rv_taker": "Price taker", "rv_calc": "Revenue calculator", "co_srlr": "Fixed and variable", "co_total": "Total costs", "co_avg": "Average and marginal", "co_mcac": "Why MC cuts AC", "co_dr": "Diminishing returns", "co_calc": "Cost calculator", "sc_lrac": "LRAC", "sc_env": "SRAC and LRAC", "sc_fall": "Always falling", "sc_int": "Internal economies", "sc_dis": "Internal diseconomies", "sc_ext": "External economies", "sc_extdis": "External diseconomies", "sc_ex": "Real examples", "sc_eval": "Evaluation", "pf_calc": "Accounting vs economic", "pf_types": "Supernormal, normal, loss", "pf_max": "MR = MC", "pf_stay": "Loss but stay open", "pf_shut": "Shut-down points", "ef_prod": "Productive", "ef_alloc": "Allocative", "ef_ppf": "On a PPF", "ef_dyn": "Dynamic", "ef_x": "X-inefficiency", "ef_table": "By market structure", "br_types": "Barriers to entry", "br_exit": "Barriers to exit", "br_eos": "Economies of scale", "br_limit": "Limit pricing", "br_pred": "Predatory pricing", "br_calc": "Stay or leave?", "br_ex": "Real examples", "gl_causes": "Causes", "gl_dev": "Developed countries", "gl_ldc": "Developing countries", "gl_ex": "Real examples", "ca_abs": "Absolute advantage", "ca_comp": "Comparative advantage", "ca_gain": "Gains from trade", "ca_tot": "Terms of trade shift", "ca_calc": "Opportunity cost calculator", "tot_calc": "Terms of trade calculator", "ca_ex": "Real examples", "ca_limits": "Limits of the theory", "tf_free": "Free trade", "tf_tariff": "Tariff", "tf_areas": "Who gains and loses", "qt": "Quota", "sb": "Subsidy", "pr_other": "Non-tariff barriers", "pr_ex": "Real examples", "pr_eval": "For and against", "bl_stages": "Stages of integration", "bl_mu": "Monetary union", "bl_create": "Trade creation", "bl_divert": "Trade diversion", "bl_ex": "Real examples", "bl_wto": "The WTO", "fx_base": "The market for pounds", "fx_dup": "Demand for £ rises", "fx_sup": "Supply of £ rises", "fx_fix_buy": "Defending a fixed rate", "fx_fix_sell": "Keeping a currency weak", "fx_sys": "Floating vs fixed", "fx_adas": "On the economy", "fx_j": "J-curve", "fx_ml": "Marshall-Lerner", "fx_ex": "Real examples", "fx_terms": "Key terms", "bp_struct": "Structure", "bp_causes": "Causes of a deficit", "bp_ad": "Effect on AD", "bp_eval": "Does it matter?", "bp_ex": "Real examples", "bp_fix": "Reducing a deficit"};
+var VIEW_NAMES = {"base": "The curves", "profitmax": "Profit max point", "profit": "Supernormal profit", "trtc": "Revenue and cost", "revmax": "Revenue max", "salesmax": "Sales max", "alloc": "Allocative", "prod": "Productive", "dwl": "Deadweight loss", "costup": "Variable costs rise", "costdown": "Variable costs fall", "fixed": "Fixed costs rise", "srlr": "Short run vs long run", "vs_pc": "Perfect competition", "vs_mono": "Monopoly", "vs_dwl": "Welfare loss", "vs_pd": "First degree", "pd3_one": "Third degree: one price", "pd3": "Third degree: two prices", "nm_base": "The curves", "nm_profit": "Unregulated", "nm_reg": "Regulated price", "pc_taker": "Price taker", "pc_snp": "Supernormal profit", "pc_loss": "Loss", "pc_entry": "Profit attracts entry", "pc_exit": "Losses cause exit", "pc_lr": "Long-run equilibrium", "mc_snp": "Supernormal profit", "mc_loss": "Loss", "mc_entry": "Profit attracts entry", "mc_exit": "Losses cause exit", "mc_lr": "Long-run equilibrium", "mc_eff": "Efficiency", "cm_mono": "Monopoly outcome", "cm_hit": "Hit-and-run entry", "cm_threat": "Threat of entry", "cm_eff": "Efficiency", "kink": "The kink", "raise": "Raise price", "cut": "Cut price", "mrgap": "The MR gap", "eqm": "Equilibrium and profit", "rigid": "Price rigidity", "bigcost": "Large cost rise", "g_collude": "Why collude", "g_cheat": "Incentive to cheat", "g_dom": "Dominant strategy", "g_nash": "Nash equilibrium", "cr": "Concentration ratio", "pc_ex": "Real examples", "pc_cons": "Consumers", "mn_ex": "Real examples", "mn_cons": "Consumers", "mcp_ex": "Real examples", "mcp_cons": "Consumers", "ol_ex": "Real examples", "ol_cons": "Consumers", "ct_ex": "Real examples", "ct_cons": "Consumers", "gr_types": "Types of firm", "gr_organic": "Organic growth", "gr_ext": "Mergers and takeovers", "gr_horiz": "Horizontal", "gr_fwd": "Forward vertical", "gr_back": "Backward vertical", "gr_cong": "Conglomerate", "gr_limits": "Constraints on growth", "gr_demerge": "Demergers", "gr_ex": "Real examples", "ob_why": "Why not profit max?", "ob_all": "All three objectives", "ob_sat": "Minimum profit constraint", "ob_other": "Other objectives", "ob_types": "By type of firm", "ob_ex": "Real examples", "rv_armr": "AR and MR", "rv_ped": "PED along AR", "rv_tr": "Total revenue", "rv_taker": "Price taker", "rv_calc": "Revenue calculator", "co_srlr": "Fixed and variable", "co_total": "Total costs", "co_avg": "Average and marginal", "co_mcac": "Why MC cuts AC", "co_dr": "Diminishing returns", "co_calc": "Cost calculator", "sc_lrac": "LRAC", "sc_env": "SRAC and LRAC", "sc_fall": "Always falling", "sc_int": "Internal economies", "sc_dis": "Internal diseconomies", "sc_ext": "External economies", "sc_extdis": "External diseconomies", "sc_ex": "Real examples", "sc_eval": "Evaluation", "pf_calc": "Accounting vs economic", "pf_types": "Supernormal, normal, loss", "pf_max": "MR = MC", "pf_stay": "Loss but stay open", "pf_shut": "Shut-down points", "ef_prod": "Productive", "ef_alloc": "Allocative", "ef_ppf": "On a PPF", "ef_dyn": "Dynamic", "ef_x": "X-inefficiency", "ef_table": "By market structure", "br_types": "Barriers to entry", "br_exit": "Barriers to exit", "br_eos": "Economies of scale", "br_limit": "Limit pricing", "br_pred": "Predatory pricing", "br_calc": "Stay or leave?", "br_ex": "Real examples", "gl_causes": "Causes", "gl_dev": "Developed countries", "gl_ldc": "Developing countries", "gl_ex": "Real examples", "ca_abs": "Absolute advantage", "ca_comp": "Comparative advantage", "ca_gain": "Gains from trade", "ca_tot": "Terms of trade shift", "ca_calc": "Opportunity cost calculator", "tot_calc": "Terms of trade calculator", "ca_ex": "Real examples", "ca_limits": "Limits of the theory", "tf_free": "Free trade", "tf_tariff": "Tariff", "tf_areas": "Who gains and loses", "qt": "Quota", "sb": "Subsidy", "pr_other": "Non-tariff barriers", "pr_ex": "Real examples", "pr_eval": "For and against", "bl_stages": "Stages of integration", "bl_mu": "Monetary union", "bl_create": "Trade creation", "bl_divert": "Trade diversion", "bl_ex": "Real examples", "bl_wto": "The WTO", "fx_base": "The market for pounds", "fx_dup": "Demand for £ rises", "fx_sup": "Supply of £ rises", "fx_fix_buy": "Defending a fixed rate", "fx_fix_sell": "Keeping a currency weak", "fx_sys": "Floating vs fixed", "fx_adas": "On the economy", "fx_j": "J-curve", "fx_ml": "Marshall-Lerner", "fx_ex": "Real examples", "fx_terms": "Key terms", "bp_struct": "Structure", "bp_causes": "Causes of a deficit", "bp_ad": "Effect on AD", "bp_eval": "Does it matter?", "bp_ex": "Real examples", "bp_fix": "Reducing a deficit", "ex_base": "Free market", "ex_negprod": "Negative production", "ex_negcons": "Negative consumption", "ex_posprod": "Positive production", "ex_poscons": "Positive consumption", "ex_tax": "Tax", "ex_sub": "Subsidy", "ex_policy": "Other policies", "ex_ex": "Real examples", "ad_base": "AD/AS", "ad_dpull": "AD increases", "ad_cpush": "SRAS falls", "ad_lras": "LRAS increases", "ev_capacity": "Spare capacity", "ev_kuz_env": "Environmental Kuznets curve", "ev_kuz_ineq": "Kuznets curve: inequality", "ev_easterlin": "Easterlin paradox", "ev_srpc": "Short-run Phillips curve", "ev_lrpc": "Long-run Phillips curve", "ev_hyst": "Hysteresis", "ev_laffer": "Laffer curve", "ev_crowd": "Crowding out", "ev_ricardo": "Ricardian equivalence", "ev_lags": "Time lags", "ev_liq": "Liquidity trap and QE", "ev_lifecycle": "Life cycle hypothesis", "ev_confidence": "Confidence", "ev_macrogen": "Use anywhere", "ev_govfail": "Government failure", "ev_freerider": "Free rider problem", "ev_commons": "Tragedy of the commons", "ev_asym": "Asymmetric information", "ev_ped": "It depends on PED", "ev_polluter": "Polluter pays", "ev_permits": "Tradable permits", "ev_nudge": "Nudges", "ev_unintended": "Unintended consequences", "ev_capture": "Regulatory capture", "ev_contest": "Contestability", "ev_scale": "Economies of scale", "ev_dynamic": "Dynamic efficiency", "ev_pa": "Principal–agent problem", "ev_microgen": "Use anywhere"};
