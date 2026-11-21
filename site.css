@@ -168,8 +168,8 @@ html.embed .sheet{border:0;box-shadow:none}
 .board-tools .hint{font-size:.82rem;color:var(--ink-soft);margin-left:auto}
 .pside{display:flex;flex-direction:column;gap:16px;min-width:0}
 .ptitle{margin:0 0 8px;font-size:.74rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
-.palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.tile{display:flex;flex-direction:column;align-items:center;gap:4px;font:inherit;font-family:var(--font-hand);font-weight:700;font-size:1rem;color:var(--ink);
+.palette{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:104px;gap:8px}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:100%;font:inherit;font-family:var(--font-hand);font-weight:700;font-size:1rem;color:var(--ink);
   background:var(--sheet);border:2px solid var(--ink);border-radius:6px;padding:6px 4px 4px;cursor:pointer;min-width:0}
 .tile svg{width:100%;max-width:74px;height:40px;display:block}
 .tile:hover{background:var(--hover-bg);color:var(--hover-fg)}
@@ -246,3 +246,9 @@ html.embed .sheet{border:0;box-shadow:none}
 .board.tool-eraser, .board.tool-eraser *{cursor:cell}
 .tooltile[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .tooltile[aria-pressed="true"] .ic{stroke:var(--paper)}
+
+/* practice: points, the eraser outline */
+.pdot{stroke:var(--sheet);stroke-width:2.5}
+.hit-dot{fill:transparent;cursor:move}
+.eraser-cur{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4;opacity:.75;pointer-events:none}
+.board.tool-eraser svg, .board.tool-eraser svg *{cursor:none}
