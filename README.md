@@ -2,7 +2,7 @@
 
 Interactive revision diagrams for Edexcel A Economics. Click a button and the
 diagram redraws, with a chain of analysis, an evaluation point and real
-examples beside it. Then practise drawing the diagram yourself.
+examples beside it. Then draw the diagram yourself on the practice board.
 
 Made by Syed, with Claude.
 
