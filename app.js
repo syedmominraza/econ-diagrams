@@ -83,7 +83,7 @@ var TOPICS = {
   monopolistic:{eyebrow:'Edexcel A · Theme 3 · 3.4.3 Monopolistic competition', first:'mc_snp', groups:[
     ['Short run',['mc_snp','mc_loss']],
     ['Long run',['mc_entry','mc_exit','mc_lr']],
-    ['Efficiency',['mc_eff']]
+    ['How efficient is it?',['mc_eff']]
   ]},
   oligopoly:{eyebrow:'Edexcel A · Theme 3 · 3.4.4 Oligopoly', first:'kink', groups:[
     ['Kinked demand curve',['kink','raise','cut','mrgap']],
@@ -145,7 +145,7 @@ var V = {
     ],
     evaluation:'A larger revenue box does not mean a larger profit box. If the firm pushes output past Q<sub>1</sub>, revenue can still rise while profit falls. That is the difference between revenue maximisation and profit maximisation.'},
 
-  revmax:{kind:'mono', btn:'Revenue max', showing:'Revenue maximisation: MR = 0',
+  revmax:{kind:'mono', anim:true, btn:'Revenue max', showing:'Revenue maximisation: MR = 0',
     title:'Revenue maximisation: MR = 0',
     lead:'A firm that wants the highest possible total revenue keeps producing until the last unit adds nothing to revenue.',
     chain:[
@@ -158,7 +158,7 @@ var V = {
     evaluation:'Managers may choose this when their pay or status depends on the size of the firm more than on profit. Shareholders may accept it as long as profit stays high enough to satisfy them (profit satisficing). Here AR is still above AC, so the firm still earns supernormal profit.',
     tip:'Where MR = 0, demand is unit elastic (PED = −1). Worth one line in a longer answer.'},
 
-  salesmax:{kind:'mono', btn:'Sales max', showing:'Sales maximisation: AR = AC',
+  salesmax:{kind:'mono', anim:true, btn:'Sales max', showing:'Sales maximisation: AR = AC',
     title:'Sales maximisation: AR = AC',
     lead:'The firm sells as much as it can without making a loss, so it expands until price only just covers average cost.',
     chain:[
@@ -170,7 +170,7 @@ var V = {
     compare:{vs:'Compared with profit maximisation',rows:[['Price','↓ lowest'],['Output','↑ highest'],['Revenue','below its max'],['Profit','normal only']]},
     evaluation:'This is hard to keep up in the long run because shareholders want a return. It is more likely a short-run tactic, after which the firm goes back to profit maximising. Consumers gain from low prices while it lasts.'},
 
-  alloc:{kind:'mono', btn:'Allocative', showing:'Allocative efficiency: P = MC',
+  alloc:{kind:'mono', anim:true, btn:'Allocative', showing:'Allocative efficiency: P = MC',
     title:'Allocative efficiency: P = MC',
     lead:'Resources are allocated efficiently when the price consumers pay equals the cost of making the last unit. A monopolist does not produce there.',
     chain:[
@@ -265,7 +265,7 @@ var V = {
     ],
     tip:'Label the points with letters. You can then name an area, such as triangle AEP<sub>PC</sub>, without shading everything.'},
 
-  vs_mono:{kind:'vs', btn:'Monopoly', showing:'Monopoly outcome: points B and C',
+  vs_mono:{kind:'vs', anim:true, two:true, btn:'Monopoly', showing:'Monopoly outcome: points B and C',
     title:'The monopoly outcome',
     lead:'Now one firm takes over the whole market with the same costs. It is a price maker, so it uses MR, not AR, to choose its output.',
     chain:[
@@ -289,7 +289,7 @@ var V = {
     evaluation:'The triangle is smaller when demand is elastic, because the monopolist cannot push the price far above MC. It may also be offset by lower costs from economies of scale, or by dynamic efficiency over time.',
     tip:'The rectangle is a transfer. The triangle is the loss. Mixing them up is the common error.'},
 
-  vs_pd:{kind:'vs', btn:'First degree', showing:'Perfect price discrimination: AR becomes MR',
+  vs_pd:{kind:'vs', anim:true, two:true, btn:'First degree', showing:'Perfect price discrimination: AR becomes MR',
     title:'Perfect price discrimination',
     lead:'Suppose the monopolist could charge every consumer the most they are willing to pay (first degree price discrimination). The demand curve then becomes its marginal revenue curve.',
     chain:[
@@ -313,7 +313,7 @@ var V = {
     ],
     tip:'MC is drawn flat and equal to AC to keep the three diagrams simple. The same MC line runs across all three, and the price axis is the same in each.'},
 
-  pd3:{kind:'pd3', btn:'Third degree: two prices', showing:'MR = MC in each market: A pays more, B pays less',
+  pd3:{kind:'pd3', anim:true, btn:'Third degree: two prices', showing:'MR = MC in each market: A pays more, B pays less',
     title:'Third degree price discrimination',
     lead:'If the firm can split its customers into groups with different elasticities, and stop resale between them, it sets MR = MC in each market separately.',
     chain:[
@@ -349,7 +349,7 @@ var V = {
     ],
     evaluation:'Natural monopolies often supply essentials such as water, where demand is inelastic. That makes high prices particularly damaging for consumers, and it is the main argument for regulating them.'},
 
-  nm_reg:{kind:'nat', btn:'Regulated price', showing:'Regulated at P = MC: the firm needs a subsidy',
+  nm_reg:{kind:'nat', anim:true, btn:'Regulated price', showing:'Regulated at P = MC: the firm needs a subsidy',
     title:'Regulation: price set where P = MC',
     lead:'To get the allocatively efficient outcome, a regulator can force the firm to charge P<sub>R</sub>, where AR meets MC.',
     chain:[
@@ -837,7 +837,7 @@ SECTIONS.micro.order=SECTIONS.micro.groups[0][1].concat(SECTIONS.micro.groups[1]
 TOPICS.monopoly.groups=TOPICS.monopoly.groups.filter(function(gr){return gr[0]!=='Other objectives';});
 
 TOPICS.growth={section:'micro',label:'Business growth',eyebrow:'Edexcel A · Theme 3 · 3.1 Business growth',first:'gr_horiz',groups:[
-  ['Types of firm',['gr_types']],
+  ['The basics',['gr_types']],
   ['How firms grow',['gr_organic','gr_ext']],
   ['Integration',['gr_horiz','gr_fwd','gr_back','gr_cong']],
   ['Limits and demergers',['gr_limits','gr_demerge']],
@@ -847,7 +847,7 @@ TOPICS.objectives={section:'micro',label:'Objectives',eyebrow:'Edexcel A · Them
   ['Why not profit?',['ob_why']],
   ['Maximising objectives',['ob_all','revmax','salesmax']],
   ['Satisficing and other aims',['ob_sat','ob_other']],
-  ['By type of firm',['ob_types','ob_ex']]
+  ['Who wants what',['ob_types','ob_ex']]
 ]};
 TOPICS.revenue={section:'micro',label:'Revenue',eyebrow:'Edexcel A · Theme 3 · 3.3.1 Revenue',first:'rv_armr',groups:[
   ['Price makers',['rv_armr','rv_ped','rv_tr']],
@@ -855,7 +855,7 @@ TOPICS.revenue={section:'micro',label:'Revenue',eyebrow:'Edexcel A · Theme 3 ·
   ['Work it out',['rv_calc']]
 ]};
 TOPICS.costs={section:'micro',label:'Costs',eyebrow:'Edexcel A · Theme 3 · 3.3.2 Costs',first:'co_avg',groups:[
-  ['Fixed and variable',['co_srlr']],
+  ['The basics',['co_srlr']],
   ['Cost curves',['co_total','co_avg','co_mcac']],
   ['Why the curves bend',['co_dr']],
   ['Work it out',['co_calc']]
@@ -874,7 +874,7 @@ TOPICS.profits={section:'micro',label:'Profit',eyebrow:'Edexcel A · Theme 3 · 
 TOPICS.efficiency={section:'micro',label:'Efficiency',eyebrow:'Edexcel A · Theme 3 · 3.4.1 Efficiency',first:'ef_prod',groups:[
   ['Static efficiency',['ef_prod','ef_alloc']],
   ['Dynamic efficiency',['ef_ppf','ef_dyn']],
-  ['X-inefficiency',['ef_x']],
+  ['Slack',['ef_x']],
   ['Compare',['ef_table']]
 ]};
 TOPICS.barriers={section:'micro',label:'Barriers to entry',eyebrow:'Edexcel A · Theme 3 · 3.4.7 Barriers to entry and exit',first:'br_eos',groups:[
@@ -1005,7 +1005,7 @@ V.ob_why={kind:'card', btn:'Why not profit max?', showing:'Two problems with the
   ]},
   tip:'Say why the assumption may fail, then evaluate: profit is still the long-run goal for most private firms.'};
 
-V.ob_all={kind:'mono', btn:'All three objectives', showing:'Profit, revenue and sales max compared',
+V.ob_all={kind:'mono', anim:true, two:true, btn:'All three objectives', showing:'Profit, revenue and sales max compared',
   title:'Three objectives on one diagram',
   lead:'Each objective picks a different point on the same diagram. Learn where each one sits, then how price and output compare.',
   plain:[
@@ -1016,7 +1016,7 @@ V.ob_all={kind:'mono', btn:'All three objectives', showing:'Profit, revenue and 
   evaluation:'Moving from Q<sub>1</sub> to Q<sub>3</sub>, consumers get more output at a lower price, but the firm gives up profit. Which objective a firm follows depends on who controls it, and how closely the owners can watch the managers.',
   tip:'On the usual diagram, Q<sub>1</sub> &lt; Q<sub>2</sub> &lt; Q<sub>3</sub> and P<sub>1</sub> &gt; P<sub>2</sub> &gt; P<sub>3</sub>. Every price is read off AR.'};
 
-V.ob_sat={kind:'sat', btn:'Minimum profit constraint', showing:'Satisficing: more output than profit max, less than sales max',
+V.ob_sat={kind:'sat', anim:true, btn:'Minimum profit constraint', showing:'Satisficing: more output than profit max, less than sales max',
   title:'Satisficing: the minimum profit constraint',
   lead:'Managers cannot ignore profit altogether, or the shareholders would replace them. So they chase their own objective only as far as a minimum level of profit allows.',
   chain:[
@@ -1510,7 +1510,7 @@ TOPICS.global={section:'macro',label:'Globalisation',eyebrow:'Edexcel A · Theme
 ]};
 TOPICS.trade={section:'macro',label:'Trade',eyebrow:'Edexcel A · Theme 4 · 4.1.2 Specialisation and trade',first:'ca_comp',groups:[
   ['Advantage',['ca_abs','ca_comp']],
-  ['Gains from trade',['ca_gain','ca_tot']],
+  ['Trading',['ca_gain','ca_tot']],
   ['Work it out',['ca_calc','tot_calc']],
   ['Apply and evaluate',['ca_ex','ca_limits']]
 ]};
@@ -1692,7 +1692,7 @@ V.tf_areas={kind:'trade', tr:'areas', btn:'Who gains and loses', showing:'Four a
   compare:{vs:'Winners and losers',rows:[['Consumers','lose'],['Domestic firms','gain'],['Government','gains'],['Foreign firms','lose']]},
   evaluation:'Tariffs invite retaliation, so exporters can lose their foreign markets. They are also regressive, because lower-income households spend a larger share of their income on goods.'};
 
-V.qt={kind:'trade', tr:'quota', btn:'Quota', showing:'A limit on the quantity imported',
+V.qt={kind:'trade', tr:'quota', anim:true, btn:'Quota', showing:'A limit on the quantity imported',
   title:'A quota',
   lead:'A quota is a physical limit on the quantity of a good that can be imported.',
   chain:[
@@ -1767,7 +1767,7 @@ V.bl_mu={kind:'card', btn:'Monetary union', showing:'One currency, one interest 
     PT('Conditions for success',[['Similar economies','Members’ booms and recessions need to happen together, so one interest rate fits all.'],['Flexible labour markets','Workers need to be able to move from high-unemployment regions to where the jobs are. Language differences make this hard.']])
   ]}};
 
-V.bl_create={kind:'trade', tr:'create', btn:'Trade creation', showing:'Removing the tariff lowers the price',
+V.bl_create={kind:'trade', tr:'create', anim:true, btn:'Trade creation', showing:'Removing the tariff lowers the price',
   title:'Trade creation',
   lead:'Joining a customs union removes the tariff on imports from other members, so the country can buy from more efficient producers.',
   chain:[
@@ -1779,7 +1779,7 @@ V.bl_create={kind:'trade', tr:'create', btn:'Trade creation', showing:'Removing 
   compare:{vs:'After joining',rows:[['Price','↓ lower'],['Consumers','gain'],['Domestic firms','lose'],['Net welfare','↑ B + D']]},
   tip:'It is the tariff diagram run backwards.'};
 
-V.bl_divert={kind:'trade', tr:'divert', btn:'Trade diversion', showing:'Imports switch to a dearer producer',
+V.bl_divert={kind:'trade', tr:'divert', anim:true, two:true, btn:'Trade diversion', showing:'Imports switch to a dearer producer',
   title:'Trade diversion',
   lead:'A customs union can also switch imports away from the cheapest producer in the world to a dearer one inside the union.',
   chain:[
@@ -2021,10 +2021,11 @@ function renderTrade(){
     if(name) labels+=g.txt(X(q1)-9,Y(p(q1))+13,name,'bold t-ac halo','end');
   }
   /* the four areas between a low and a high price */
-  function band(lo,hi,cols){
+  function band(lo,hi,cols,quiet){
     var q={a:trQs(lo),b:trQs(hi),c:trQd(hi),d:trQd(lo)};
     areas+=poly([[0,lo],[0,hi],[q.b,hi],[q.a,lo]],cols[0])+poly([[q.a,lo],[q.b,hi],[q.b,lo]],cols[1])
          + g.box(q.b,q.c,lo,hi,'area '+cols[2])+poly([[q.c,lo],[q.c,hi],[q.d,lo]],cols[3]);
+    if(quiet) return q;   /* while animating: just the areas growing */
     notes+=letter(q.a*0.5,(lo+hi)/2,'A')+letter((q.a+2*q.b)/3-0.5,(2*lo+hi)/3,'B')+letter((q.b+q.c)/2,(lo+hi)/2,'C')+letter((2*q.c+q.d)/3+0.5,(2*lo+hi)/3,'D');
     guides+=g.vline(q.a,lo)+g.vline(q.b,hi)+g.vline(q.c,hi)+g.vline(q.d,lo)+g.dot(q.a,lo)+g.dot(q.b,hi)+g.dot(q.c,hi)+g.dot(q.d,lo);
     return q;
@@ -2060,6 +2061,13 @@ function renderTrade(){
     q=band(W1,W2,['a-cs','a-dwl','a-profit','a-dwl']); qNames(q,['Q_1','Q_3','Q_4','Q_2']);
     notes+=g.axP(Y(W1),'P_1')+g.axP(Y(W2),'P_2');
   }
+  else if(m==='quota' && v.anim && state.t<0.97){
+    /* the quota bites: imports are capped, so total supply runs out at a higher price */
+    var pq=W1+(W2-W1)*ease(state.t);
+    sLine(0,0,sName); sLine(trQd(pq)-trQs(pq),0,''); hl(W1,'S world');
+    if(pq-W1>0.4) band(W1,pq,['a-cs','a-dwl','a-cost','a-dwl'],true);
+    guides+=g.dot(trQd(pq),pq); notes+=g.axP(Y(W1),'P_1');
+  }
   else if(m==='quota'){
     sLine(0,0,sName); sLine(trQd(W2)-trQs(W2),0,'S total'); hl(W1,'S world');
     q=band(W1,W2,['a-cs','a-dwl','a-cost','a-dwl']); qNames(q,['Q_1','Q_4','Q_3','Q_2']);
@@ -2076,10 +2084,24 @@ function renderTrade(){
     notes+=g.axP(Y(W1),'P_1')+g.axQ(qs[0],'Q_1','t-muted')+(te>0.02?g.axQ(qs[1],'Q_3'):'')+g.axQ(X(q2),'Q_2');
     if(te>0.7) notes+=g.txt(X(q3/2),Y(W1+s/2)+5,'subsidy','bold','middle')+bracket(q3,q2,W1,'imports');
   }
+  else if(m==='create' && v.anim && state.t<0.97){
+    /* inside the union the tariff goes, and the import price falls */
+    var pc2=W2+(W1-W2)*ease(state.t);
+    sLine(0,0,sName); hl(W2,'S world + tariff',true); hl(pc2,'');
+    if(W2-pc2>0.4) band(pc2,W2,['a-cs','a-gain','a-profit','a-gain'],true);
+    notes+=g.axP(Y(W2),'P_1');
+  }
   else if(m==='create'){
     sLine(0,0,sName); hl(W2,'S world + tariff'); hl(W1,'S customs union',false,true);
     q=band(W1,W2,['a-cs','a-gain','a-profit','a-gain']); qNames(q,['Q_3','Q_1','Q_2','Q_4']);
     notes+=g.axP(Y(W2),'P_1')+g.axP(Y(W1),'P_2');
+  }
+  else if(m==='divert' && v.anim && state.t<0.97){
+    /* joining the union removes the tariff on Germany only: once Germany undercuts Japan + tariff, imports switch */
+    var ger=46+(28-46)*ease(state.t), pd2=Math.min(38,ger);
+    sLine(0,0,sName); hl(20,'S Japan',true); hl(38,'S Japan + tariff'); hl(ger,'');
+    if(38-pd2>0.4) band(pd2,38,['a-cs','a-gain','a-profit','a-gain'],true);
+    notes+=g.axP(Y(38),'P_1');
   }
   else if(m==='divert'){
     sLine(0,0,sName);
@@ -2716,9 +2738,12 @@ function renderSat(){
   var g=kit({qmax:80,pmax:top*1.32,ytitle:'Supernormal profit'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
   var lim=top*0.45, qStar=bisect(function(q){return pi(q)-lim;},s.qm,qb);
   var curves='<path class="curve c-ar" d="'+g.path(pi,qa,qb)+'"/>'+seg(g,0,lim,78,lim,'curve c-mc');
-  var guides=g.vline(s.qm,top,'muted')+g.dot(s.qm,top)+g.vline(qStar,lim,'eff')+g.dot(qStar,lim,'eff')+g.dot(qb,0);
+  var tsat=V.ob_sat.anim?ease(state.t):1;
+  var guides=g.vline(s.qm,top,'muted')+g.dot(s.qm,top)+g.dot(qb,0);
   var qx=spreadN([X(s.qm),X(qStar),X(qb)],fs*2.4);
-  var notes=g.axQ(qx[0],'Q_PM')+g.axQ(qx[1],'Q_VM*','t-eff')+g.axQ(qx[2],'Q_VM');
+  var notes=g.axQ(qx[0],'Q_PM')+g.axQ(qx[2],'Q_VM');
+  if(tsat<0.999){ var qz=qb+(qStar-qb)*tsat; guides+=g.dot(qz,pi(qz),'eff'); }
+  else { guides+=g.vline(qStar,lim,'eff')+g.dot(qStar,lim,'eff'); notes+=g.axQ(qx[1],'Q_VM*','t-eff'); }
   notes+=g.leader(['minimum profit','constraint'], sm?62:66, top*1.2, 74, lim, '');
   notes+=g.txt(X(s.qm),Y(top)-11,'most profit','bold halo','middle');
   g.out('',curves,guides,'',notes);
@@ -2967,6 +2992,7 @@ TOPICS.extern={section:'y12',label:'Externalities',eyebrow:'Edexcel A · Theme 1
   ['The cost-benefit diagram',['ex_base']],
   ['Negative externalities',['ex_negprod','ex_negcons']],
   ['Positive externalities',['ex_posprod','ex_poscons']],
+  ['Welfare loss',['ex_wl']],
   ['Correcting them',['ex_tax','ex_sub','ex_policy']],
   ['Apply',['ex_ex']]
 ]};
@@ -2983,9 +3009,9 @@ TOPICS.e_fiscal={section:'ev',label:'Fiscal policy',eyebrow:'Evaluation · Macro
 TOPICS.e_monetary={section:'ev',label:'Monetary policy',eyebrow:'Evaluation · Macro · Monetary policy',first:'ev_liq',groups:[
   ['When rate cuts stop working',['ev_liq']],['How people spend',['ev_lifecycle','ev_confidence']]]};
 TOPICS.e_macro={section:'ev',label:'Any macro answer',eyebrow:'Evaluation · Macro · Angles that fit almost any question',first:'ev_capacity',groups:[
-  ['Spare capacity',['ev_capacity']],['Use anywhere',['ev_macrogen']]]};
+  ['The key diagram',['ev_capacity']],['Use anywhere',['ev_macrogen']]]};
 TOPICS.e_mfail={section:'ev',label:'Market failure',eyebrow:'Evaluation · Micro · Market failure and government failure',first:'ev_govfail',groups:[
-  ['Government failure',['ev_govfail']],['Why markets fail',['ev_freerider','ev_commons','ev_asym']]]};
+  ['When fixing it fails',['ev_govfail']],['Why markets fail',['ev_freerider','ev_commons','ev_asym']]]};
 TOPICS.e_gov={section:'ev',label:'Intervention',eyebrow:'Evaluation · Micro · Taxes, subsidies and other policies',first:'ev_ped',groups:[
   ['The master point',['ev_ped']],['Choosing a policy',['ev_polluter','ev_permits','ev_nudge']],['What goes wrong',['ev_unintended','ev_capture']]]};
 TOPICS.e_firms={section:'ev',label:'Firms',eyebrow:'Evaluation · Micro · Firms and market structures',first:'ev_contest',groups:[
@@ -3010,7 +3036,7 @@ V.ex_base={kind:'ext', btn:'Free market', showing:'MPB = MPC: the free market ou
   ],
   tip:'Label the axes Costs / benefits and Quantity, not Price and Quantity.'};
 
-V.ex_negprod={kind:'ext', btn:'Negative production', showing:'MSC above MPC: over-production',
+V.ex_negprod={kind:'ext', anim:true, two:true, grow:true, btn:'Negative production', showing:'MSC above MPC: over-production',
   title:'Negative externality of production',
   lead:'Producing the good imposes a cost on third parties that the firm does not pay. Example: flights from London to New York, and their greenhouse gas emissions.',
   chain:[
@@ -3022,7 +3048,7 @@ V.ex_negprod={kind:'ext', btn:'Negative production', showing:'MSC above MPC: ove
   evaluation:'The size of the welfare loss depends on how big the external cost is, and that is hard to measure. Putting a money value on climate damage or poor health involves guesswork, which makes the right policy hard to set.',
   tip:'The welfare loss triangle sits between MSC and MSB, from Q* to Q<sub>m</sub>, and points towards Q*.'};
 
-V.ex_negcons={kind:'ext', btn:'Negative consumption', showing:'MSB below MPB: over-consumption',
+V.ex_negcons={kind:'ext', anim:true, two:true, grow:true, btn:'Negative consumption', showing:'MSB below MPB: over-consumption',
   title:'Negative externality of consumption',
   lead:'Consuming the good harms third parties. Example: smoking, through passive smoking.',
   chain:[
@@ -3034,7 +3060,7 @@ V.ex_negcons={kind:'ext', btn:'Negative consumption', showing:'MSB below MPB: ov
   evaluation:'Many of these goods are also demerit goods, where consumers underestimate the harm to themselves (information failure). Demand is often price inelastic and addictive, so a tax may not cut consumption much.',
   tip:'For consumption externalities, the benefit curve moves. MPC = MSC stays where it is.'};
 
-V.ex_posprod={kind:'ext', btn:'Positive production', showing:'MSC below MPC: under-production',
+V.ex_posprod={kind:'ext', anim:true, two:true, grow:true, btn:'Positive production', showing:'MSC below MPC: under-production',
   title:'Positive externality of production',
   lead:'Producing the good benefits third parties by lowering their costs. Example: a firm whose research into greener production can be used by other firms.',
   chain:[
@@ -3046,7 +3072,7 @@ V.ex_posprod={kind:'ext', btn:'Positive production', showing:'MSC below MPC: und
   evaluation:'Firms may still invest if a patent lets them keep the reward for themselves. Without that protection, rivals free ride on the research, which is the case for government support.',
   tip:'Another example from the handout: a new housing estate that regenerates an area, bringing jobs and new businesses.'};
 
-V.ex_poscons={kind:'ext', btn:'Positive consumption', showing:'MSB above MPB: under-consumption',
+V.ex_poscons={kind:'ext', anim:true, two:true, grow:true, btn:'Positive consumption', showing:'MSB above MPB: under-consumption',
   title:'Positive externality of consumption',
   lead:'Consuming the good benefits third parties. Examples: education and vaccinations.',
   chain:[
@@ -3057,6 +3083,18 @@ V.ex_poscons={kind:'ext', btn:'Positive consumption', showing:'MSB above MPB: un
   ],
   evaluation:'Vaccination also protects people who are not vaccinated (herd immunity), which is why the NHS gives childhood vaccines for free. Many of these goods are merit goods, which people undervalue because they lack information.',
   tip:'For consumption externalities, the benefit curve splits: MSB above MPB.'};
+
+V.ex_wl={kind:'ext', anim:true, dur:5200, btn:'Find the welfare loss', showing:'Four steps to the welfare loss triangle',
+  title:'How to find the welfare loss',
+  lead:'The same four steps work on every externality diagram. Watch them in order, then try them on the other four diagrams.',
+  chain:[
+    'Find the market outcome, where the private curves cross (MPB = MPC). That gives Q<sub>m</sub>.',
+    'Find the social optimum, where the social curves cross (MSB = MSC). That gives Q*.',
+    'From the market point, go straight up or down to the social curve that has moved away from its private curve. Here that is up to MSC. This line is the vertical side of the triangle, at Q<sub>m</sub>.',
+    'Join both ends of that line to the social optimum point, and shade the triangle. That is the welfare loss.'
+  ],
+  compare:{vs:'Step 3: from Q<sub>m</sub>, go',rows:[['Negative production','up to MSC'],['Negative consumption','down to MSB'],['Positive production','down to MSC'],['Positive consumption','up to MSB']]},
+  tip:'The triangle always points at Q*, and its vertical side always sits at Q<sub>m</sub>. If step 3 takes you to MPC or MPB, you are on the wrong curve.'};
 
 V.ex_tax={kind:'ext', anim:true, btn:'Tax', showing:'A tax equal to the external cost',
   title:'Correcting a negative externality: an indirect tax',
@@ -3172,7 +3210,7 @@ V.ev_capacity={kind:'evc', anim:true, two:true, btn:'Spare capacity', showing:'T
   line:'"However, the effect on real GDP depends on the level of spare capacity. With a large negative output gap, the economy is on the flat part of AS, so output rises with little inflation; close to full capacity, most of the rise in AD would be inflationary."',
   tip:'Classical economists draw LRAS vertical: in the long run, more AD only raises prices.'};
 
-V.ev_kuz_env={kind:'evc', btn:'Environmental Kuznets curve', showing:'Environmental damage rises, then falls, as income grows',
+V.ev_kuz_env={kind:'evc', anim:true, two:true, btn:'Environmental Kuznets curve', showing:'Environmental damage rises, then falls, as income grows',
   title:'The environmental Kuznets curve',
   lead:'Grossman and Krueger (1991): as an economy develops, environmental damage first rises, then falls once income per head passes a turning point.',
   chain:[
@@ -3186,7 +3224,7 @@ V.ev_kuz_env={kind:'evc', btn:'Environmental Kuznets curve', showing:'Environmen
   line:'"However, the environmental Kuznets curve suggests the trade-off may be temporary: once incomes pass a turning point, environmental damage tends to fall as regulation tightens and cleaner technology spreads."',
   tip:'This is the version in the growth handout. The original Kuznets curve, the next button, is about inequality.'};
 
-V.ev_kuz_ineq={kind:'evc', btn:'Kuznets curve: inequality', showing:'Inequality rises, then falls, as income grows',
+V.ev_kuz_ineq={kind:'evc', anim:true, two:true, btn:'Kuznets curve: inequality', showing:'Inequality rises, then falls, as income grows',
   title:'The Kuznets curve: inequality',
   lead:'Simon Kuznets argued that as a country develops, income inequality first rises, then falls.',
   chain:[
@@ -3199,7 +3237,7 @@ V.ev_kuz_ineq={kind:'evc', btn:'Kuznets curve: inequality', showing:'Inequality 
   evaluation:'Since the 1980s inequality has risen again in many rich countries, including the UK and the US (the dashed line). That fits Thomas Piketty’s argument that returns on wealth grow faster than the economy, so inequality rises unless governments act. The curve depends on policy choices, not just the stage of development.',
   line:'"Kuznets suggests that inequality may fall as the economy develops; however, rising inequality in rich countries since the 1980s suggests this depends on government policy rather than happening automatically."'};
 
-V.ev_easterlin={kind:'evc', btn:'Easterlin paradox', showing:'Incomes rise, average happiness does not',
+V.ev_easterlin={kind:'evc', anim:true, two:true, btn:'Easterlin paradox', showing:'Incomes rise, average happiness does not',
   title:'The Easterlin paradox',
   lead:'Richard Easterlin found that as a country gets richer over time, average happiness does not rise with it.',
   chain:[
@@ -3212,7 +3250,7 @@ V.ev_easterlin={kind:'evc', btn:'Easterlin paradox', showing:'Incomes rise, aver
   evaluation:'Later studies dispute the paradox, finding that people in richer countries do report higher life satisfaction on average, but with diminishing returns as income rises. Either way, extra income adds less to wellbeing in a rich country than in a poor one.',
   line:'"However, the Easterlin paradox suggests that in a developed country like the UK, further growth may do little to raise wellbeing, because people judge themselves by their relative income."'};
 
-V.ev_srpc={kind:'evc', btn:'Short-run Phillips curve', showing:'Lower unemployment, higher inflation',
+V.ev_srpc={kind:'evc', anim:true, btn:'Short-run Phillips curve', showing:'Lower unemployment, higher inflation',
   title:'The short-run Phillips curve',
   lead:'Bill Phillips (1958) found an inverse relationship between unemployment and wage inflation in the UK. It became a trade-off between unemployment and inflation.',
   chain:[
@@ -3250,7 +3288,7 @@ V.ev_hyst={kind:'card', btn:'Hysteresis', showing:'Unemployment causing unemploy
   use:[['Costs of unemployment','The cost lasts beyond the recession itself.'],['Recessions and output gaps','The Keynesian case for acting fast: a deep negative output gap can reduce LRAS.'],['Supply-side policy','Training and education can reduce it.'],['Benefits','Lower benefits push people back to work, but too low and job search suffers.']],
   line:'"However, the longer the recession lasts, the more likely hysteresis becomes as the long-term unemployed lose skills; this could reduce LRAS, which makes a quick policy response more important."'};
 
-V.ev_laffer={kind:'evc', btn:'Laffer curve', showing:'Past t*, higher tax rates raise less revenue',
+V.ev_laffer={kind:'evc', anim:true, two:true, btn:'Laffer curve', showing:'Past t*, higher tax rates raise less revenue',
   title:'The Laffer curve',
   lead:'Arthur Laffer argued that once tax rates pass a certain level, raising them further reduces tax revenue.',
   chain:[
@@ -3331,7 +3369,7 @@ V.ev_confidence={kind:'card', btn:'Confidence', showing:'Keynes’s animal spiri
   use:[['Monetary policy','A rate cut may not raise investment if business confidence is low.'],['Tax cuts','Worried households may save the extra income (a low MPC).'],['Investment and growth','Uncertainty holds back investment.']],
   line:'"However, the impact depends on consumer and business confidence: if confidence is low, firms may not invest even at low interest rates, so the rise in AD may be limited."'};
 
-V.ev_macrogen={kind:'card', btn:'Use anywhere', showing:'Six angles that fit almost any macro answer',
+V.ev_macrogen={kind:'card', btn:'Six angles', showing:'Six angles that fit almost any macro answer',
   title:'Six evaluation angles for any macro question',
   lead:'If you are stuck for evaluation, one of these almost always applies. Make it specific to the question.',
   card:{head:'The angles', items:[
@@ -3347,7 +3385,7 @@ V.ev_macrogen={kind:'card', btn:'Use anywhere', showing:'Six angles that fit alm
   tip:'Evaluation needs a reason and a judgement. Say which way it goes and why, not just "it depends".'};
 
 /* ------------------------- EVALUATION: MICRO ------------------------- */
-V.ev_govfail={kind:'ext', btn:'Government failure', showing:'A tax set too high over-corrects',
+V.ev_govfail={kind:'ext', anim:true, two:true, btn:'Government failure', showing:'A tax set too high over-corrects',
   title:'Government failure',
   lead:'Government failure is when intervention makes the allocation of resources worse rather than better. Here a tax set above the external cost over-corrects.',
   chain:[
@@ -3393,7 +3431,7 @@ V.ev_asym={kind:'card', btn:'Asymmetric information', showing:'One side knows mo
   use:[['Information gaps','Why merit goods are under-consumed and demerit goods over-consumed.'],['Healthcare and education','A case for state provision or regulation.'],['Banks and the financial sector','Moral hazard after bailouts.'],['Firms','The principal–agent problem is asymmetric information between owners and managers.']],
   line:'"However, the market may fail because of asymmetric information: consumers cannot judge quality, so regulation or information provision may be needed."'};
 
-V.ev_ped={kind:'evc', btn:'It depends on PED', showing:'Who pays a tax, and how far consumption falls',
+V.ev_ped={kind:'evc', anim:true, btn:'It depends on PED', showing:'Who pays a tax, and how far consumption falls',
   title:'Price elasticity: the master evaluation point',
   lead:'Almost every intervention depends on price elasticity of demand. The same tax has very different effects on an inelastic good and an elastic one.',
   chain:[
@@ -3509,7 +3547,7 @@ V.ev_pa={kind:'card', btn:'Principal–agent problem', showing:'Owners and manag
   line:'"However, the firm may not profit maximise: because of the principal–agent problem, managers may prefer to maximise sales, which would mean a lower price and higher output."',
   tip:'The diagrams are in Micro, Objectives.'};
 
-V.ev_microgen={kind:'card', btn:'Use anywhere', showing:'Six angles that fit almost any micro answer',
+V.ev_microgen={kind:'card', btn:'Six angles', showing:'Six angles that fit almost any micro answer',
   title:'Six evaluation angles for any micro question',
   lead:'If you are stuck for evaluation, one of these almost always applies. Make it specific to the market in the question.',
   card:{head:'The angles', items:[
@@ -3549,13 +3587,16 @@ function freeSpot(g,fns,text,cands){
   return null;
 }
 function renderExt(){
-  var id=curId(), v=V[id], te=v.anim?ease(state.t):1, E=EXT;
+  var id=curId(), v=V[id], te=v.anim?ease(state.t):1, t=v.anim?state.t:1, E=EXT;
   var g=kit({ytitle:'Costs / benefits',xtitle:'Quantity'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
   var mpb=function(q){return E.a-E.b*q;}, mpc=function(q){return E.c+E.d*q;};
   var curves='', labels='', guides='', notes='', areas='';
   var lq=sm?80:88;                        /* where the curve labels sit */
+  /* the four externality views grow out of the free market: the social curve
+     peels away from the private one and the welfare loss shades in as it goes */
+  var grow=v.grow?te:1, ee=E.e*grow, split=grow>0.12, done=grow>0.97;
   function cross(f1,f2){ return bisect(function(q){return f1(q)-f2(q);},0,116); }
-  function tri(qa,qb,fTop,fBot){          /* welfare loss between two curves from qa to qb, closing at the crossing */
+  function tri(qa,qb,fTop,fBot){          /* welfare loss between two curves from qa to qb */
     var d='', n=24, k, q;
     for(k=0;k<=n;k++){ q=qa+(qb-qa)*k/n; d+=(k?'L':'M')+r1(X(q))+' '+r1(Y(fTop(q))); }
     for(k=n;k>=0;k--){ q=qa+(qb-qa)*k/n; d+='L'+r1(X(q))+' '+r1(Y(fBot(q))); }
@@ -3573,6 +3614,13 @@ function renderExt(){
     return g.axQ(qx[mFirst?0:1],labQ[0],mutedM?'t-muted':'')+g.axQ(qx[mFirst?1:0],labQ[1],'t-eff')
          + g.axP(py[mTop?0:1],labP[0],mutedM?'t-muted':'')+g.axP(py[mTop?1:0],labP[1],'t-eff');
   }
+  /* market point, then the optimum point once the curves have split */
+  function points(qm,pm,qs,ps,over,word,fns,tq,tp){
+    if(!split){ guides+=g.guide(qm,pm)+g.dot(qm,pm); notes+=g.axP(Y(pm),'P_m')+g.axQ(X(qm),'Q_m'); return; }
+    guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs,ps,'eff')+g.dot(qs,ps,'eff');
+    notes+=axes2(qm,pm,qs,ps,['Q_m','Q*'],['P_m','P*'],true);
+    if(done) notes+=gapArrows(qs,qm,word)+wlNote(fns,tq,tp);
+  }
   var qm=cross(mpb,mpc), pm=mpb(qm);
   if(id==='ex_base'){
     curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc');
@@ -3580,66 +3628,85 @@ function renderExt(){
     guides+=g.guide(qm,pm)+g.dot(qm,pm);
     notes+=g.axP(Y(pm),'P_m')+g.axQ(X(qm),'Q_m');
   }
-  else if(id==='ex_negprod' || id==='ex_tax' || id==='ev_govfail'){
-    var msc=function(q){return mpc(q)+E.e;}, qs=cross(mpb,msc), ps=mpb(qs);
-    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,msc,'c-ac');
-    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,msc,lq-8,(id==='ex_tax'&&te>0.97)?'MSC = MPC + tax':'MSC','t-ac');
-    if(id==='ex_negprod'){
-      curves+=linSeg(g,mpc,'c-mc'); labels+=linLab(g,mpc,lq,'MPC','t-mc');
-      areas+=tri(qs,qm,msc,mpb);
-      guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs,ps,'eff')+g.dot(qs,ps,'eff');
-      notes+=axes2(qm,pm,qs,ps,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qs,qm,'over-production');
-      notes+=wlNote([mpb,msc,mpc],(2*qm+qs)/3,(msc(qm)+pm+ps)/3);
-    } else if(id==='ex_tax'){
-      var t=E.e*te, mt=function(q){return mpc(q)+t;}, qt=cross(mpb,mt), pt=mpb(qt);
+  else if(id==='ex_negprod'){
+    var msc=function(q){return mpc(q)+ee;}, qs=cross(mpb,msc), ps=mpb(qs);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc')+(split?linSeg(g,msc,'c-ac'):'');
+    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,mpc,lq,split?'MPC':'MPC = MSC','t-mc')+(split?linLab(g,msc,lq-8,'MSC','t-ac'):'');
+    if(qm-qs>0.3) areas+=tri(qs,qm,msc,mpb);
+    points(qm,pm,qs,ps,true,'over-production',[mpb,msc,mpc],(2*qm+qs)/3,(msc(qm)+pm+ps)/3);
+  }
+  else if(id==='ex_wl'){
+    /* the method, one step at a time: market point, optimum, up to the moved curve, join and shade */
+    var mscW=function(q){return mpc(q)+E.e;}, qw=cross(mpb,mscW), pw=mpb(qw), top=mscW(qm), s=t*4;
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc')+linSeg(g,mscW,'c-ac');
+    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,mpc,lq,'MPC','t-mc')+linLab(g,mscW,lq-8,'MSC','t-ac');
+    var step=function(n,x,y,anchor){ return g.txt(x,y,String(n),'bold halo t-eff',anchor||'start'); };
+    if(s>=0.1){ guides+=g.guide(qm,pm)+g.dot(qm,pm); notes+=step(1,X(qm)+10,Y(pm)+5); }
+    if(s>=1){ guides+=g.guide(qw,pw,'eff')+g.dot(qw,pw,'eff'); notes+=step(2,X(qw)-10,Y(pw)-6,'end'); }
+    var qx=spreadN([X(qw),X(qm)],fs*1.8), py=spreadN([Y(pw),Y(pm)],fs+7);
+    notes+=(s>=0.1?g.axQ(qx[1],'Q_m')+g.axP(py[1],'P_m'):'')+(s>=1?g.axQ(qx[0],'Q*','t-eff')+g.axP(py[0],'P*','t-eff'):'');
+    if(s>=2){
+      var f3=Math.min(1,s-2), p3=pm+(top-pm)*f3;
+      notes+='<path class="gap" d="M'+r1(X(qm))+' '+r1(Y(pm))+'V'+r1(Y(p3))+'"/>';
+      if(f3>=1) notes+=g.dot(qm,top,'eff')+step(3,X(qm)+10,Y(top)+5);
+    }
+    if(s>=3){
+      var f4=Math.min(1,(s-3)/0.6), qe=qm+(qw-qm)*f4, pe=top+(pw-top)*f4;
+      notes+='<path class="gap" d="M'+r1(X(qm))+' '+r1(Y(top))+'L'+r1(X(qe))+' '+r1(Y(pe))+'"/>';
+      if(s>=3.6){ areas+=tri(qw,qm,mscW,mpb); notes+=step(4,X((2*qm+qw)/3)-4,Y((top+pm+pw)/3)+5,'middle'); }
+    }
+  }
+  else if(id==='ex_tax' || id==='ev_govfail'){
+    var mscT=function(q){return mpc(q)+E.e;}, qsT=cross(mpb,mscT), psT=mpb(qsT);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mscT,'c-ac');
+    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,mscT,lq-8,(id==='ex_tax'&&te>0.97)?'MSC = MPC + tax':'MSC','t-ac');
+    if(id==='ex_tax'){
+      var tx=E.e*te, mt=function(q){return mpc(q)+tx;}, qt=cross(mpb,mt), pt=mpb(qt);
       curves+=linSeg(g,mpc,'c-mc ghost')+(te>0.02?linSeg(g,mt,'c-mc'):'');
       labels+=linLab(g,mpc,lq,'MPC','t-mc');
-      if(qt-qs>0.3) areas+=tri(qs,qt,msc,mpb);
+      if(qt-qsT>0.3) areas+=tri(qsT,qt,mscT,mpb);
       if(te>0.12) notes+=arrowPx(X(24),Y(mpc(24))-3,X(24),Y(mt(24))+3,'leader',7)+g.txt(X(24)+7,(Y(mpc(24))+Y(mt(24)))/2+5,'tax','bold halo');
       guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qt,pt,te>0.97?'eff':'')+g.dot(qt,pt,te>0.97?'eff':'');
       notes+=axes2(qm,pm,qt,pt,['Q_m',te>0.97?'Q*':'Q'],['P_m',te>0.97?'P*':'P'],true);
     } else {
-      var tg=E.e*1.6, mg=function(q){return mpc(q)+tg;}, qg=cross(mpb,mg), pg=mpb(qg);
-      curves+=linSeg(g,mpc,'c-mc ghost')+linSeg(g,mg,'c-mc');
-      labels+=linLab(g,mg,lq-16,'MPC + tax','t-mc')+linLab(g,mpc,lq,'MPC','t-mc');
-      areas+=tri(qg,qs,mpb,msc);
-      guides+=g.vline(qm,pm,'muted')+g.guide(qs,ps,'eff')+g.dot(qs,ps,'eff')+g.guide(qg,pg)+g.dot(qg,pg);
-      var qx=spreadN([X(qg),X(qs),X(qm)],fs*1.8);
-      notes+=g.axQ(qx[0],'Q_t')+g.axQ(qx[1],'Q*','t-eff')+g.axQ(qx[2],'Q_m','t-muted')+gapArrows(qg,qs,'under-production');
-      notes+=wlNote([mpb,msc,mg],(2*qg+qs)/3,(mpb(qg)+msc(qg)+ps)/3);
+      /* the tax keeps rising past the external cost: over-production shrinks, then under-production opens up */
+      var tg=E.e*1.6*te, mg=function(q){return mpc(q)+tg;}, qg=cross(mpb,mg), pg=mpb(qg);
+      curves+=linSeg(g,mpc,'c-mc ghost')+(te>0.02?linSeg(g,mg,'c-mc'):'');
+      labels+=(te>0.97?linLab(g,mg,lq-16,'MPC + tax','t-mc'):'')+linLab(g,mpc,lq,'MPC','t-mc');
+      if(qg-qsT>0.3) areas+=tri(qsT,qg,mscT,mpb); else if(qsT-qg>0.3) areas+=tri(qg,qsT,mpb,mscT);
+      if(te<0.97){ guides+=g.guide(qg,pg)+g.dot(qg,pg)+g.guide(qsT,psT,'eff')+g.dot(qsT,psT,'eff'); }
+      else {
+        guides+=g.vline(qm,pm,'muted')+g.guide(qsT,psT,'eff')+g.dot(qsT,psT,'eff')+g.guide(qg,pg)+g.dot(qg,pg);
+        var qx3=spreadN([X(qg),X(qsT),X(qm)],fs*1.8);
+        notes+=g.axQ(qx3[0],'Q_t')+g.axQ(qx3[1],'Q*','t-eff')+g.axQ(qx3[2],'Q_m','t-muted')+gapArrows(qg,qsT,'under-production');
+        notes+=wlNote([mpb,mscT,mg],(2*qg+qsT)/3,(mpb(qg)+mscT(qg)+psT)/3);
+      }
     }
   }
   else if(id==='ex_negcons'){
-    var msb=function(q){return mpb(q)-E.e;}, qs2=cross(msb,mpc), ps2=mpc(qs2);
-    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,msb,'c-ac')+linSeg(g,mpc,'c-mc');
-    labels+=linLab(g,mpb,lq+4,'MPB','t-ar')+linLab(g,msb,lq,'MSB','t-ac')+linLab(g,mpc,lq,'MPC = MSC','t-mc');
-    areas+=tri(qs2,qm,mpc,msb);
-    guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs2,ps2,'eff')+g.dot(qs2,ps2,'eff');
-    notes+=axes2(qm,pm,qs2,ps2,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qs2,qm,'over-consumption');
-    notes+=wlNote([mpb,msb,mpc],(2*qm+qs2)/3,(pm+msb(qm)+ps2)/3);
+    var msb=function(q){return mpb(q)-ee;}, qs2=cross(msb,mpc), ps2=mpc(qs2);
+    curves+=linSeg(g,mpb,'c-ar')+(split?linSeg(g,msb,'c-ac'):'')+linSeg(g,mpc,'c-mc');
+    labels+=linLab(g,mpb,lq+4,split?'MPB':'MPB = MSB','t-ar')+(split?linLab(g,msb,lq,'MSB','t-ac'):'')+linLab(g,mpc,lq,'MPC = MSC','t-mc');
+    if(qm-qs2>0.3) areas+=tri(qs2,qm,mpc,msb);
+    points(qm,pm,qs2,ps2,true,'over-consumption',[mpb,msb,mpc],(2*qm+qs2)/3,(pm+msb(qm)+ps2)/3);
   }
   else if(id==='ex_posprod'){
-    var msc2=function(q){return mpc(q)-E.e;}, qs3=cross(mpb,msc2), ps3=mpb(qs3);
-    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc')+linSeg(g,msc2,'c-ac');
-    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,mpc,lq-14,'MPC','t-mc')+linLab(g,msc2,sm?36:40,'MSC','t-ac');
-    areas+=tri(qm,qs3,mpb,msc2);
-    guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs3,ps3,'eff')+g.dot(qs3,ps3,'eff');
-    notes+=axes2(qm,pm,qs3,ps3,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qm,qs3,'under-production');
-    notes+=wlNote([mpb,mpc,msc2],(2*qm+qs3)/3,(pm+msc2(qm)+ps3)/3);
+    var msc2=function(q){return mpc(q)-ee;}, qs3=cross(mpb,msc2), ps3=mpb(qs3);
+    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,mpc,'c-mc')+(split?linSeg(g,msc2,'c-ac'):'');
+    labels+=linLab(g,mpb,lq,'MPB = MSB','t-ar')+linLab(g,mpc,lq-14,split?'MPC':'MPC = MSC','t-mc')+(split?linLab(g,msc2,sm?36:40,'MSC','t-ac'):'');
+    if(qs3-qm>0.3) areas+=tri(qm,qs3,mpb,msc2);
+    points(qm,pm,qs3,ps3,false,'under-production',[mpb,mpc,msc2],(2*qm+qs3)/3,(pm+msc2(qm)+ps3)/3);
   }
   else if(id==='ex_poscons' || id==='ex_sub'){
-    var msb2=function(q){return mpb(q)+E.e;}, qs4=cross(msb2,mpc), ps4=mpc(qs4);
-    curves+=linSeg(g,mpb,'c-ar')+linSeg(g,msb2,'c-ac');
-    /* MSB is labelled left of where it crosses MPC, so the rising cost line cannot run through it */
-    labels+=linLab(g,mpb,lq+4,'MPB','t-ar')+linLab(g,msb2,sm?88:92,'MSB','t-ac');
+    var eb=id==='ex_sub'?E.e:ee, msb2=function(q){return mpb(q)+eb;}, qs4=cross(msb2,mpc), ps4=mpc(qs4), split4=id==='ex_sub'||split;
+    curves+=linSeg(g,mpb,'c-ar')+(split4?linSeg(g,msb2,'c-ac'):'');
+    labels+=linLab(g,mpb,lq+4,split4?'MPB':'MPB = MSB','t-ar')+(split4?linLab(g,msb2,sm?88:92,'MSB','t-ac'):'');
     if(id==='ex_poscons'){
       curves+=linSeg(g,mpc,'c-mc'); labels+=linLab(g,mpc,sm?30:34,'MPC = MSC','t-mc');
-      areas+=tri(qm,qs4,msb2,mpc);
-      guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qs4,ps4,'eff')+g.dot(qs4,ps4,'eff');
-      notes+=axes2(qm,pm,qs4,ps4,['Q_m','Q*'],['P_m','P*'],true)+gapArrows(qm,qs4,'under-consumption');
-      notes+=wlNote([mpb,msb2,mpc],(2*qm+qs4)/3,(pm+msb2(qm)+ps4)/3);
+      if(qs4-qm>0.3) areas+=tri(qm,qs4,msb2,mpc);
+      points(qm,pm,qs4,ps4,false,'under-consumption',[mpb,msb2,mpc],(2*qm+qs4)/3,(pm+msb2(qm)+ps4)/3);
     } else {
-      var s=E.e*te, ms=function(q){return mpc(q)-s;}, q2=cross(mpb,ms), p2=mpb(q2);
+      var sb=E.e*te, ms=function(q){return mpc(q)-sb;}, q2=cross(mpb,ms), p2=mpb(q2);
       curves+=linSeg(g,mpc,'c-mc'+(te>0.02?' ghost':''))+(te>0.02?linSeg(g,ms,'c-mc'):'');
       labels+=linLab(g,mpc,sm?30:34,sm?'MSC':'MPC = MSC','t-mc')+(te>0.5&&!sm?linLab(g,ms,94,'MPC − subsidy','t-mc'):'');
       if(qs4-q2>0.3) areas+=tri(q2,qs4,msb2,mpc);
@@ -3719,10 +3786,13 @@ function renderEv(){
     var letter=function(u,p,s,dx,dy){return g2.txt(X2(u)+dx,Y2(p)+dy,s,'bold halo');};
     if(id==='ev_srpc'){
       c2+=pcPath(f1,'c-mc'); l2+=g2.txt(X2(11.5),Y2(f1(11.5))-9,'SRPC','bold t-mc halo','end');
-      gd2+=g2.guide(ua,f1(ua),'muted')+g2.dot(ua,f1(ua))+g2.guide(ub,f1(ub))+g2.dot(ub,f1(ub));
-      nt2+=letter(ua,f1(ua),'A',8,-8)+letter(ub,f1(ub),'B',8,-8);
-      var mid=4.6; nt2+=arrowPx(X2(5.6)-2,Y2(f1(5.6))-10,X2(mid)-2,Y2(f1(mid))-10,'leader',7);
-      nt2+=g2.leader(['boost AD:','lower unemployment,','higher inflation'], 8.6, 9.6, 4.4, f1(4.4)+0.15);
+      gd2+=g2.guide(ua,f1(ua),'muted')+g2.dot(ua,f1(ua)); nt2+=letter(ua,f1(ua),'A',8,-8);
+      if(te<0.999){ var uz=ua+(ub-ua)*te; gd2+=g2.dot(uz,f1(uz),'eff'); }
+      else {
+        gd2+=g2.guide(ub,f1(ub))+g2.dot(ub,f1(ub)); nt2+=letter(ub,f1(ub),'B',8,-8);
+        var mid=4.6; nt2+=arrowPx(X2(5.6)-2,Y2(f1(5.6))-10,X2(mid)-2,Y2(f1(mid))-10,'leader',7);
+        nt2+=g2.leader(['boost AD:','lower unemployment,','higher inflation'], 8.6, 9.6, 4.4, f1(4.4)+0.15);
+      }
     } else {
       var s1=t<0.5?0:sh*ease((t-0.5)/0.5), u1, p1;
       if(t<0.5){ var a=ease(t/0.5); u1=ua+(ub-ua)*a; p1=f1(u1); } else { var b=ease((t-0.5)/0.5); u1=ub+(ua-ub)*b; p1=f1(ub); }
@@ -3742,8 +3812,9 @@ function renderEv(){
     var g3=kit({qmax:110,pmax:110,ytitle:'Tax revenue',xtitle:'Tax rate'}), X3=g3.X, Y3=g3.Y;
     var R=function(tr){ var x=tr/100; return x<=0||x>=1 ? 0 : 310*x*Math.pow(1-x,0.8); };
     var ts=100/1.8, ta=30, ra=R(ta), tb=bisect(function(x){return R(x)-ra;},ts,99.5);
-    d=''; for(i=0;i<=90;i++){ var tr=100*i/90; d+=(i?'L':'M')+r1(X3(tr))+' '+r1(Y3(R(tr))); }
+    var tEnd=100*te; d=''; for(i=0;i<=90;i++){ var tr=tEnd*i/90; d+=(i?'L':'M')+r1(X3(tr))+' '+r1(Y3(R(tr))); }
     var cv='<path class="curve c-ar" d="'+d+'"/>';
+    if(te<0.999){ g3.out('',cv,g3.dot(tEnd,R(tEnd),'eff'),'',g3.axQ(X3(100),'100%')); return; }   /* the rate rises: revenue climbs, peaks, then falls */
     var gd3=g3.vline(ts,R(ts),'eff')+g3.dot(ts,R(ts),'eff')+'<path class="guide muted" d="M'+r1(X3(0))+' '+r1(Y3(ra))+'H'+r1(X3(tb))+'"/>'+g3.vline(ta,ra,'muted')+g3.vline(tb,ra,'muted')+g3.dot(ta,ra)+g3.dot(tb,ra);
     var nt3=g3.axQ(X3(ts),'t*','t-eff')+g3.axQ(X3(100),'100%')+g3.txt(X3(ta)-8,Y3(ra)-8,'A','bold halo','end')+g3.txt(X3(tb)+8,Y3(ra)-8,'B','bold halo')
       + g3.txt(X3(ts),Y3(R(ts))-11,'most revenue','bold t-eff halo','middle');
@@ -3753,8 +3824,9 @@ function renderEv(){
   if(id==='ev_kuz_env' || id==='ev_kuz_ineq'){
     var env=(id==='ev_kuz_env'), g4=kit({ytitle:env?'Environmental damage':'Income inequality',xtitle:'GDP per capita'}), X4=g4.X, Y4=g4.Y, sm4=g4.small;
     var K=function(y){ return 88*Math.pow(y/48,1.6)*Math.exp(1.6*(1-y/48)); };
-    d=''; for(i=0;i<=90;i++){ var y=1+115*i/90; d+=(i?'L':'M')+r1(X4(y))+' '+r1(Y4(K(y))); }
+    var yEnd=1+115*te; d=''; for(i=0;i<=90;i++){ var y=1+(yEnd-1)*i/90; d+=(i?'L':'M')+r1(X4(y))+' '+r1(Y4(K(y))); }
     var cv4='<path class="curve c-ar" d="'+d+'"/>', nt4='', gd4=g4.vline(48,88,'eff')+g4.dot(48,88,'eff');
+    if(te<0.999){ g4.out('',cv4,g4.dot(yEnd,K(yEnd),'eff'),'',''); return; }   /* the economy grows along the curve */
     nt4+=g4.axQ(X4(48),'turning point','t-eff');
     if(env){
       nt4+=g4.txt(X4(sm4?21:22),Y4(8),sm4?'industry':'industry grows','bold t-muted halo','middle')+g4.txt(X4(sm4?92:88),Y4(8),sm4?'services':'services, clean tech','bold t-muted halo','middle');
@@ -3771,8 +3843,9 @@ function renderEv(){
   if(id==='ev_easterlin'){
     var g5=kit({ytitle:'Index',xtitle:'Time'}), X5=g5.X, Y5=g5.Y;
     var gdp=function(x){return 16+0.6*x+0.001*x*x;}, hap=function(x){return 52+2.2*Math.sin(x/6.5)+1.3*Math.sin(x/2.7);};
-    var p1='', p2=''; for(i=0;i<=90;i++){ var x=4+112*i/90; p1+=(i?'L':'M')+r1(X5(x))+' '+r1(Y5(gdp(x))); p2+=(i?'L':'M')+r1(X5(x))+' '+r1(Y5(hap(x))); }
+    var xEnd=4+112*te, p1='', p2=''; for(i=0;i<=90;i++){ var x=4+(xEnd-4)*i/90; p1+=(i?'L':'M')+r1(X5(x))+' '+r1(Y5(gdp(x))); p2+=(i?'L':'M')+r1(X5(x))+' '+r1(Y5(hap(x))); }
     var cv5='<path class="curve c-ar" d="'+p1+'"/><path class="curve c-mc" d="'+p2+'"/>';
+    if(te<0.999){ g5.out('',cv5,g5.dot(xEnd,gdp(xEnd),'eff')+g5.dot(xEnd,hap(xEnd),'eff'),'',''); return; }   /* decades pass: income climbs, happiness does not */
     var lb5=g5.txt(X5(100)-8,Y5(gdp(100))-8,'real GDP per head','bold t-ar halo','end')+g5.txt(X5(116),Y5(hap(116))+g5.fs+6,'average happiness','bold t-mc halo','end');
     g5.out('',cv5,'',lb5,'');
     return;
@@ -3780,13 +3853,20 @@ function renderEv(){
 }
 /* the same tax on inelastic and elastic demand, side by side */
 function renderPedTax(){
-  var small=(plot.clientWidth||640)<480, tax=24;
+  var small=(plot.clientWidth||640)<480, tax=24*(V.ev_ped.anim?ease(state.t):1), full=tax>23.9;
   var specs=[{a:146,b:2.2,head:small?'Inelastic':'Inelastic demand'},{a:62.75,b:0.35,head:small?'Elastic':'Elastic demand'}];
   var inner='', first=null;
   specs.forEach(function(s,i){
     var g=kit({n:2,i:i,head:s.head,ytitle:'Price',xtitle:'Quantity'}), X=g.X, Y=g.Y, fs=g.fs;
     if(!first) first=g;
     var D=function(q){return s.a-s.b*q;}, S1=function(q){return 20+0.6*q;}, S2=function(q){return 20+tax+0.6*q;};
+    if(!full){
+      var qq1=(s.a-20)/(s.b+0.6), pp1=D(qq1), qq2=(s.a-20-tax)/(s.b+0.6), pp2=D(qq2);
+      var cvA=linSeg(g,D,'c-ar')+linSeg(g,S1,'c-mc ghost')+(tax>0.3?linSeg(g,S2,'c-mc'):'');
+      var arA=tax>0.3?g.box(0,qq2,pp1,pp2,'area a-cost')+g.box(0,qq2,pp2-tax,pp1,'area a-cs'):'';
+      inner+=g.compose(arA,cvA,g.guide(qq1,pp1,'muted')+g.dot(qq1,pp1,'muted')+g.dot(qq2,pp2),'',g.axP(Y(pp1),'P_1','t-muted'));
+      return;
+    }
     var q1=(s.a-20)/(s.b+0.6), p1=D(q1), q2=(s.a-20-tax)/(s.b+0.6), p2=D(q2), pp=p2-tax;
     var curves=linSeg(g,D,'c-ar')+linSeg(g,S1,'c-mc ghost')+linSeg(g,S2,'c-mc');
     var labels=linLab(g,D,i===0?Math.max(22,(s.a-100)/s.b):92,'D','t-ar')+linLab(g,S1,96,'S','t-mc')+linLab(g,S2,70,'S + tax','t-mc');
@@ -3935,6 +4015,7 @@ function spread(a,b,minGap){
 function renderMono(){
   var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id], shift=v.shift;
   var te = shift ? ease(state.t) : 0;
+  var tm = (v.anim && !shift) ? ease(state.t) : 1;   /* slides away from profit max (revenue, sales, P = MC) */
   var now = shift ? moved(MONO,shift,te) : MONO;
   var s0=solveMono(MONO), s1 = shift ? solveMono(now) : s0;
   var areas='', guides='', notes='';
@@ -3980,6 +4061,12 @@ function renderMono(){
     notes += g.txt(X(s0.qm*0.36), Y(s0.cm*0.45), 'total cost', 'bold', 'middle');
     notes += g.leader(['total revenue','= both boxes'], g.small?nx-4:nx+3, 97, s0.qm, s0.pm);
   }
+  else if((id==='revmax' || id==='salesmax' || id==='alloc') && tm<0.999){
+    mutedPM();
+    var tq = id==='revmax' ? s0.qr : (id==='salesmax' ? s0.qs : s0.qa), qn = s0.qm+(tq-s0.qm)*tm, pn = mAR(qn);
+    guides += g.guide(qn,pn,'eff') + g.dot(qn,pn,'eff');
+    if(id==='alloc') guides += g.dot(s0.qm,s0.mcm,'muted');
+  }
   else if(id==='revmax'){
     mutedPM();
     guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0);
@@ -4019,15 +4106,14 @@ function renderMono(){
     notes += g.leader(['deadweight','loss'], nx, 99, s0.qm+(s0.qa-s0.qm)*0.34, (s0.pm+s0.mcm+s0.pa)/3+2);
   }
   else if(id==='ob_all'){
+    /* profit max, then slide down AR to revenue max, then on to sales max */
+    var tt = v.anim ? state.t : 1, r2 = tt>=0.5, r3 = tt>=1;
     guides += g.guide(s0.qm,s0.pm) + g.dot(s0.qm,s0.mcm) + g.dot(s0.qm,s0.pm);
-    guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0);
-    guides += g.guide(s0.qs,s0.ps) + g.dot(s0.qs,s0.ps);
     var pys = spreadN([ypm,Y(s0.pr),Y(s0.ps)], fs+7), qxs = spreadN([xm,X(s0.qr),X(s0.qs)], fs*1.7);
-    notes += g.axP(pys[0],'P_1') + g.axP(pys[1],'P_2') + g.axP(pys[2],'P_3');
-    notes += g.axQ(qxs[0],'Q_1') + g.axQ(qxs[1],'Q_2') + g.axQ(qxs[2],'Q_3');
-    notes += g.txt(xm+14, Y(s0.mcm)+5, 'MR = MC', 'halo t-mc bold');
-    notes += g.txt(X(s0.qr)+8, Y(0)-10, 'MR = 0', 'halo t-mr bold');
-    notes += g.leader(['AR = AC'], g.small?88:82, 16, s0.qs, s0.ps, '');
+    notes += g.axP(pys[0],'P_1') + g.axQ(qxs[0],'Q_1') + g.txt(xm+14, Y(s0.mcm)+5, 'MR = MC', 'halo t-mc bold');
+    if(r2){ guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0); notes += g.axP(pys[1],'P_2') + g.axQ(qxs[1],'Q_2') + g.txt(X(s0.qr)+8, Y(0)-10, 'MR = 0', 'halo t-mr bold'); }
+    if(r3){ guides += g.guide(s0.qs,s0.ps) + g.dot(s0.qs,s0.ps); notes += g.axP(pys[2],'P_3') + g.axQ(qxs[2],'Q_3') + g.leader(['AR = AC'], g.small?88:82, 16, s0.qs, s0.ps, ''); }
+    if(!r3){ var a2 = !r2 ? ease(tt/0.5) : ease((tt-0.5)/0.5), qa0 = !r2 ? s0.qm : s0.qr, qa1 = !r2 ? s0.qr : s0.qs, qz = qa0+(qa1-qa0)*a2; guides += g.dot(qz,mAR(qz),'eff'); }
   }
   else if(shift){
     areas += g.box(0,s0.qm,s0.cm,s0.pm,'outline') + g.box(0,s1.qm,s1.cm,s1.pm,'area a-profit');
@@ -4052,6 +4138,8 @@ function renderMono(){
 function renderVs(){
   var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId();
   var a=100, b=0.8, mc=36, qm=(a-mc)/(2*b), pm=a-b*qm, qpc=(a-mc)/b, pd=(id==='vs_pd');
+  /* first degree: MR swings up onto AR as the firm learns to charge each buyer their own price */
+  var tp=(pd && V[id].anim) ? ease(state.t) : 1, mrEnd=Math.min(112, a/((2-tp)*b));
   function ar(q){return a-b*q;}
   function mr(q){return a-2*b*q;}
   function poly(pts,cls){
@@ -4060,9 +4148,10 @@ function renderVs(){
   function letter(q,p,s,dx,dy){return g.txt(X(q)+dx, Y(p)+dy, s, 'bold halo');}
   var areas='', guides='', notes='';
   var curves = '<path class="curve c-ar" d="'+g.path(ar,0,112)+'"/>'
-    + '<path class="curve c-mr'+(pd?' ghost':'')+'" d="'+g.path(mr,0,a/(2*b))+'"/>'
+    + (pd ? '<path class="curve c-mr'+(tp>0.98?' ghost':'')+'" d="M'+r1(X(0))+' '+r1(Y(a))+'L'+r1(X(mrEnd))+' '+r1(Y(a-(2-tp)*b*mrEnd))+'"/>'
+          : '<path class="curve c-mr" d="'+g.path(mr,0,a/(2*b))+'"/>')
     + '<path class="curve c-mc" d="M'+r1(X(0))+' '+r1(Y(mc))+'H'+r1(X(116))+'"/>';
-  var labels = g.txt(X(118), Y(ar(100))-12, pd?'AR = MR':(g.small?'AR':'AR = D'), 'bold t-ar halo', 'end')
+  var labels = g.txt(X(118), Y(ar(100))-12, pd?(tp>0.98?'AR = MR':'AR'):(g.small?'AR':'AR = D'), 'bold t-ar halo', 'end')
     + g.txt(X(116), Y(mc)-9, 'MC = AC', 'bold t-mc halo', 'end');
   if(!pd) labels += g.txt(X(56)+9, Y(5), 'MR', 'bold t-mr halo');
 
@@ -4078,6 +4167,13 @@ function renderVs(){
     guides += pcGuide; notes += pcAxis + AE;
     notes += g.txt2(X(48), Y(48), 'consumer', 'surplus', 'bold', 'middle');
   }
+  else if(id==='vs_mono' && V[id].anim && state.t<0.999){
+    /* one firm takes over: price climbs up AR from E to B, consumer surplus shrinks, profit and the loss appear */
+    var tv=ease(state.t), qv=qpc+(qm-qpc)*tv, pv=ar(qv);
+    areas += poly([[0,a],[qv,pv],[0,pv]],'area a-cs');
+    if(tv>0.02) areas += g.box(0,qv,mc,pv,'area a-profit') + poly([[qv,pv],[qv,mc],[qpc,mc]],'area a-dwl');
+    guides += pcGuide + g.guide(qv,pv) + g.dot(qv,pv); notes += pcAxis + AE;
+  }
   else if(id==='vs_mono'){
     areas += poly([[0,a],[qm,pm],[0,pm]],'area a-cs') + g.box(0,qm,mc,pm,'area a-profit') + poly([[qm,pm],[qm,mc],[qpc,mc]],'area a-dwl');
     guides += pcGuide + mGuide; notes += pcAxis + mAxis + AE + BC;
@@ -4088,6 +4184,12 @@ function renderVs(){
     guides += pcGuide + mGuide; notes += pcAxis + mAxis + AE + BC;
     notes += g.txt(X(13), Y(49), 'transfer', 'bold', 'middle');
     notes += g.leader(['deadweight','loss'], 70, 84, 52, 46);
+  }
+  else if(pd && tp<0.999){
+    /* the single-price profit box stretches into the whole triangle; consumer surplus shrinks to nothing */
+    var qd=(a-mc)/((2-tp)*b), topY=pm+(a-pm)*tp;
+    areas += poly([[0,a],[qd,ar(qd)],[0,topY]],'area a-cs') + poly([[0,topY],[qd,ar(qd)],[qd,mc],[0,mc]],'area a-profit');
+    guides += g.guide(qd,ar(qd)) + g.dot(qd,ar(qd)) + g.dot(qd,mc); notes += g.axP(Y(mc),'P_PC','t-eff');
   }
   else if(pd){
     areas += poly([[0,a],[qpc,mc],[0,mc]],'area a-profit');
@@ -4131,6 +4233,12 @@ function renderNat(){
     notes+=g.axP(Y(pm),'P_1')+g.axP(Y(cm),'C')+g.axQ(X(qm),'Q_1');
     notes+=g.txt2(X(qm/2),(Y(pm)+Y(cm))/2-fs*0.2,'supernormal','profit','bold','middle');
   }
+  else if(id==='nm_reg' && V.nm_reg.anim && state.t<0.999){
+    var tn=ease(state.t), pn=pm+(pr-pm)*tn, qn=(a-pn)/b, cn=ac(qn);
+    areas+=g.box(0,qn,Math.min(pn,cn),Math.max(pn,cn),'area '+(pn>cn?'a-profit':'a-cost'));
+    guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(qn,pn)+g.dot(qn,pn)+g.hline(qn,cn)+g.dot(qn,cn);
+    notes+=g.axP(Y(pm),'P_1','t-muted')+g.axQ(X(qm),'Q_1','t-muted');
+  }
   else if(id==='nm_reg'){
     areas+=g.box(0,qr,pr,cr,'area a-cost');
     guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted');
@@ -4150,7 +4258,7 @@ function renderNat(){
    line. With both markets served that is the exact sum, so Q1 = QA + QB.
    ===================================================================== */
 function renderPD3(){
-  var two=(curId()==='pd3'), mc=30;
+  var two=(curId()==='pd3'), mc=30, tw=(two && V.pd3.anim) ? ease(state.t) : 1;
   var A={a:100,b:1}, B={a:62,b:0.9};
   var bW=1/(1/A.b+1/B.b), aW=bW*(A.a/A.b+B.a/B.b), p1=(aW+mc)/2;
   var small=(plot.clientWidth||640)<480;
@@ -4182,6 +4290,12 @@ function renderPD3(){
       areas+=g.box(0,q1,mc,p1,'area a-profit');
       guides+=g.guide(q1,p1)+g.dot(q1,p1)+(i===2?g.dot(q1,mc):'');
       notes+=g.axP(Y(p1),'P_1')+(i===2?g.axQ(X(q1),'Q_1'):'');
+    } else if(i<2 && tw<0.999){
+      /* the single price P1 moves up in the inelastic market and down in the elastic one */
+      var pw=p1+(ps-p1)*tw, qw=(s.a-pw)/s.b;
+      areas+=g.box(0,qw,mc,pw,'area a-profit');
+      guides+='<path class="guide muted" d="M'+r1(X(0))+' '+r1(Y(p1))+'H'+r1(X(s.qmax))+'"/>'+g.guide(qw,pw)+g.dot(qw,pw);
+      notes+=g.axP(Y(p1),'P_1','t-muted');
     } else if(i<2){
       areas+=g.box(0,qs,mc,ps,'area a-profit');
       guides+='<path class="guide muted" d="M'+r1(X(0))+' '+r1(Y(p1))+'H'+r1(X(s.qmax))+'"/>'+g.guide(qs,ps)+g.dot(qs,ps)+g.dot(qs,mc);
@@ -4643,7 +4757,7 @@ function renderControls(){
 function play(){
   cancelAnimationFrame(raf);
   if(!cur().anim || reduceMotion){ state.t=1; render(); return; }
-  var start=null, hold=350, dur=cur().two?2300:1100;
+  var start=null, hold=350, dur=cur().dur||(cur().two?2300:1100);
   state.t=0; render();
   function frame(ts){
     if(start===null) start=ts;

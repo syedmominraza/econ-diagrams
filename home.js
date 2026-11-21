@@ -11,7 +11,8 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
 function firstView(p){ return p.items && p.items.length ? p.items[0][1][0] : null; }
 var CHEV='<svg class="chev" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-function sectionStatus(sec){
+function sectionStatus(sec, th){
+  if(th && th.brief) return ['part','Key topics'];   /* Themes 1 and 2 list only what the site covers */
   var built=0, all=sec.points.length;
   sec.points.forEach(function(p){ if(p.items) built++; });
   if(built===0) return ['soon','Coming soon'];
@@ -24,7 +25,7 @@ function sectionStatus(sec){
 var n=0, views=0, pointsBuilt=0;
 var html=SPEC.map(function(th){
   var secs=th.sections.map(function(sec){
-    var st=sectionStatus(sec);
+    var st=sectionStatus(sec, th);
     var pts=sec.points.map(function(p){
       var fv=firstView(p), id='pt-'+(n++);
       if(!fv) return '<li class="pt"><div class="pt-row"><span class="pt-link"><span class="code">'+p.code+'</span><span>'+esc(p.name)+' <span class="soon-note">coming soon</span></span></span></div></li>';
@@ -43,7 +44,7 @@ var html=SPEC.map(function(th){
     return '<details class="sect"'+(sec.open?' open':'')+'><summary><span class="code">'+sec.code+'</span><span class="sect-name">'+esc(sec.name)+'</span>'
       + '<span class="status '+st[0]+'">'+st[1]+'</span>'+CHEV+'</summary><ul class="pts">'+pts+'</ul></details>';
   }).join('');
-  return '<article class="theme-card"><header><span>'+th.title+'</span><h3>'+esc(th.name)+'</h3></header>'+secs+'</article>';
+  return '<article class="theme-card"><header><span>'+th.title+'</span><h3>'+esc(th.name)+'</h3>'+(th.note?'<p class="theme-note"><b>'+esc(th.note)+'</b></p>':'')+'</header>'+secs+'</article>';
 }).join('');
 var grid=document.getElementById('spec-grid');
 grid.innerHTML=html;
