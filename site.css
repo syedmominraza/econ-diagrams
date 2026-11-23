@@ -254,3 +254,22 @@ html.embed .sheet{border:0;box-shadow:none}
 .hit-dot{fill:transparent;cursor:move}
 .eraser-cur{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4;opacity:.75;pointer-events:none}
 .board.tool-eraser svg, .board.tool-eraser svg *{cursor:none}
+
+/* practice: pencil snapping, press and hold to move, the eraser's dropdown */
+.board{-webkit-touch-callout:none}
+.snap-ghost{fill:none;stroke:var(--pen-ar);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2 9;opacity:0;pointer-events:none;animation:snap-in linear forwards}
+@keyframes snap-in{to{opacity:.8}}
+.pc.snapped{animation:snap-pop .25s ease-out}
+@keyframes snap-pop{from{stroke-width:7}}
+.pc.lifted{stroke-width:5.5}
+.lifted{filter:drop-shadow(0 4px 5px rgba(23,32,58,.35))}
+.board.lifting, .board.lifting *{cursor:grabbing}
+.tile.pick{cursor:default;padding:5px 6px 6px;gap:3px}
+.pick-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;flex:1 1 auto;min-height:0;width:100%;padding:0;margin:0;border:0;border-radius:4px;background:none;color:inherit;font:inherit;cursor:pointer}
+.pick-btn svg{height:30px}
+.pick-btn:focus-visible{outline:3px solid var(--pen-ar);outline-offset:2px}
+.tile.pick select{font:inherit;font-family:var(--font-body);font-size:.78rem;font-weight:700;line-height:1.2;border:1.5px solid var(--ink);border-radius:4px;background:var(--paper);color:var(--ink);padding:.15em .2em;width:100%;cursor:pointer}
+.tile.pick.on{background:var(--ink);color:var(--paper)}
+.tile.pick.on .ic{stroke:var(--paper)}
+@media (pointer:coarse){ .tile.pick select{font-size:16px} }
+@media (prefers-reduced-motion:reduce){ .pc.snapped{animation:none} }

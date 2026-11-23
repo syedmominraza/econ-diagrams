@@ -168,7 +168,8 @@ var AXES = {
 /* ======================================================================
    STATE
    ====================================================================== */
-var st = {q:0, pieces:[], axes:{}, mode:'one', sel:null, revealed:false, n:0, editing:null, tool:'select'};
+var st = {q:0, pieces:[], axes:{}, mode:'one', sel:null, revealed:false, n:0, editing:null, tool:'select', eraser:'part', lift:null};
+try{ if(localStorage.getItem('slaude-practice:eraser')==='whole') st.eraser='whole'; }catch(err){}
 var undoStack = [];
 var svg = document.getElementById('svg'), board = document.getElementById('board');
 
@@ -202,10 +203,11 @@ function curvePath(p){
     return s;
   }).join(' ');
 }
-function drawPath(pts){
+/* freehand lines are smoothed; snapped boxes, triangles and circles (sharp) keep straight edges */
+function drawPath(pts, sharp){
   if(!pts.length) return '';
   var d='M'+r1(pts[0][0])+' '+r1(pts[0][1]);
-  if(pts.length<3){ for(var i=1;i<pts.length;i++) d+='L'+r1(pts[i][0])+' '+r1(pts[i][1]); return d; }
+  if(sharp || pts.length<3){ for(var i=1;i<pts.length;i++) d+='L'+r1(pts[i][0])+' '+r1(pts[i][1]); return d; }
   for(var j=1;j<pts.length-1;j++){
     var mx=(pts[j][0]+pts[j+1][0])/2, my=(pts[j][1]+pts[j+1][1])/2;
     d+='Q'+r1(pts[j][0])+' '+r1(pts[j][1])+' '+r1(mx)+' '+r1(my);
@@ -241,19 +243,21 @@ function render(){
   st.pieces.forEach(function(p){
     if(p.id===st.sel) sel=p;
     var col=p.col||'ink';
+    /* a piece picked up with a press and hold is drawn lifted while it moves */
+    var up=(st.lift && st.lift.id===p.id), lf=(up && !st.lift.label)?' lifted':'', llf=(up && st.lift.label)?' lifted':'';
     if(p.t==='box'){
-      shades+=eraseMask(p)+'<rect class="shade f-'+p.fill+'" data-id="'+p.id+'"'+maskAttr(p)+' x="'+r1(p.x)+'" y="'+r1(p.y)+'" width="'+r1(p.w)+'" height="'+r1(p.h)+'"/>';
+      shades+=eraseMask(p)+'<rect class="shade f-'+p.fill+lf+'" data-id="'+p.id+'"'+maskAttr(p)+' x="'+r1(p.x)+'" y="'+r1(p.y)+'" width="'+r1(p.w)+'" height="'+r1(p.h)+'"/>';
     } else if(p.t==='tri'){
-      shades+=eraseMask(p)+'<polygon class="shade f-'+p.fill+'" data-id="'+p.id+'"'+maskAttr(p)+' points="'+p.p.map(function(v){return r1(v[0])+','+r1(v[1]);}).join(' ')+'"/>';
+      shades+=eraseMask(p)+'<polygon class="shade f-'+p.fill+lf+'" data-id="'+p.id+'"'+maskAttr(p)+' points="'+p.p.map(function(v){return r1(v[0])+','+r1(v[1]);}).join(' ')+'"/>';
     } else if(p.t==='pt'){
-      strokes+='<g><circle class="pdot t-'+col+'" cx="'+r1(p.x)+'" cy="'+r1(p.y)+'" r="7"/><circle class="hit-dot" data-id="'+p.id+'" cx="'+r1(p.x)+'" cy="'+r1(p.y)+'" r="20"/></g>';
-      if(p.label && !isEditing(p.id)) texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" data-role="label" x="'+r1(p.x+p.lx)+'" y="'+r1(p.y+p.ly)+'">'+fmt(p.label)+'</text>';
+      strokes+='<g><circle class="pdot t-'+col+lf+'" cx="'+r1(p.x)+'" cy="'+r1(p.y)+'" r="7"/><circle class="hit-dot" data-id="'+p.id+'" cx="'+r1(p.x)+'" cy="'+r1(p.y)+'" r="20"/></g>';
+      if(p.label && !isEditing(p.id)) texts+='<text class="lab t-'+col+llf+'" data-id="'+p.id+'" data-role="label" x="'+r1(p.x+p.lx)+'" y="'+r1(p.y+p.ly)+'">'+fmt(p.label)+'</text>';
     } else if(p.t==='text'){
-      if(!isEditing(p.id)) texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" x="'+r1(p.x)+'" y="'+r1(p.y)+'">'+fmt(p.label||'')+'</text>';
+      if(!isEditing(p.id)) texts+='<text class="lab t-'+col+lf+'" data-id="'+p.id+'" x="'+r1(p.x)+'" y="'+r1(p.y)+'">'+fmt(p.label||'')+'</text>';
     } else {
-      var d = p.t==='line' ? 'M'+r1(p.x1)+' '+r1(p.y1)+'L'+r1(p.x2)+' '+r1(p.y2) : p.t==='draw' ? drawPath(p.pts) : curvePath(p);
-      strokes+='<g><path class="pc k-'+col+(p.dash?' dash':'')+'" d="'+d+'"/><path class="hit" data-id="'+p.id+'" d="'+d+'"/>';
-      if(p.label && !isEditing(p.id)){ var an=labelAnchor(p); texts+='<text class="lab t-'+col+'" data-id="'+p.id+'" data-role="label" x="'+r1(an[0]+p.lx)+'" y="'+r1(an[1]+p.ly)+'">'+fmt(p.label)+'</text>'; }
+      var d = p.t==='line' ? 'M'+r1(p.x1)+' '+r1(p.y1)+'L'+r1(p.x2)+' '+r1(p.y2) : p.t==='draw' ? drawPath(p.pts, p.sharp) : curvePath(p);
+      strokes+='<g><path class="pc k-'+col+(p.dash?' dash':'')+lf+'" d="'+d+'"/><path class="hit" data-id="'+p.id+'" d="'+d+'"/>';
+      if(p.label && !isEditing(p.id)){ var an=labelAnchor(p); texts+='<text class="lab t-'+col+llf+'" data-id="'+p.id+'" data-role="label" x="'+r1(an[0]+p.lx)+'" y="'+r1(an[1]+p.ly)+'">'+fmt(p.label)+'</text>'; }
       strokes+='</g>';
     }
   });
@@ -329,7 +333,8 @@ function add(t, opt){
   else if(t==='pt'){ p.x=480+k; p.y=340+k; p.label=''; p.col='ink'; p.lx=12; p.ly=-14; }
   st.pieces.push(p); st.sel=p.id;
   render(); save();
-  if(p.t==='text' || p.t==='line') openEditor({kind:'piece', id:p.id});
+  /* only a text label asks for its words straight away; a line is labelled later with a double-tap */
+  if(p.t==='text') openEditor({kind:'piece', id:p.id});
 }
 function get(id){ for(var i=0;i<st.pieces.length;i++) if(st.pieces[i].id===id) return st.pieces[i]; return null; }
 
@@ -343,8 +348,11 @@ function pt(e){
   return {x:q.x, y:q.y};
 }
 function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+/* capture fails if the pointer has already gone; the drag still works without it */
+function capture(id){ try{ svg.setPointerCapture(id); }catch(err){} }
 svg.addEventListener('pointerdown', function(e){
   if(e.button!==undefined && e.button!==0) return;
+  if(drag) clearHold(drag);
   /* labels are <text> with <tspan>s inside (for subscripts and wrapped lines), so look at the parents too */
   var t=e.target;
   function up(attr){ var el=t.closest ? t.closest('['+attr+']') : null; return el && svg.contains(el) ? el : null; }
@@ -356,24 +364,26 @@ svg.addEventListener('pointerdown', function(e){
     var e0=pt(e), a0=[e0.x,e0.y];
     drag={mode:'erase', before:snapshot(), last:a0, sh:{}};
     eraseSeg(drag, a0, a0);
-    svg.setPointerCapture(e.pointerId); e.preventDefault(); return;
+    capture(e.pointerId); e.preventDefault(); return;
   }
-  if(axk){ commitEdit(); drag={mode:'axis', key:axk}; svg.setPointerCapture(e.pointerId); e.preventDefault(); return; }
+  if(axk){ commitEdit(); drag={mode:'axis', key:axk}; capture(e.pointerId); e.preventDefault(); return; }
   if(st.editing) commitEdit();
   var p0=pt(e);
-  if(st.tool==='pencil'){
-    st.sel=null; render();
-    drag={mode:'draw', pts:[[p0.x,p0.y]], before:snapshot()};
-    var tmp=document.createElementNS('http://www.w3.org/2000/svg','path'); tmp.setAttribute('class','pc k-ink'); tmp.setAttribute('id','ink-now'); svg.appendChild(tmp);
-    svg.setPointerCapture(e.pointerId); e.preventDefault(); return;
-  }
+  /* the round handles of a selected piece stretch it, with any tool */
   if(h && st.sel){ drag={mode:'handle', h:h, start:p0, before:snapshot(), orig:JSON.parse(JSON.stringify(get(st.sel)))}; }
+  else if(st.tool==='pencil'){
+    if(st.sel){ st.sel=null; render(); }
+    /* hit and role remember what was under the pen: a press and hold there picks it up, a double-tap labels it */
+    drag={mode:'draw', pts:[[p0.x,p0.y]], cur:[p0.x,p0.y], before:snapshot(), hit:id, role:role, anchor:[e.clientX,e.clientY], moved:false};
+    var tmp=document.createElementNS(SVGNS,'path'); tmp.setAttribute('class','pc k-ink'); tmp.setAttribute('id','ink-now'); svg.appendChild(tmp);
+    armHold(drag, LIFT_MS);
+  }
   else if(id){
     st.sel=id; var p=get(id);
     drag={mode: role==='label' ? 'label' : 'move', id:id, role:role, start:p0, before:snapshot(), orig:JSON.parse(JSON.stringify(p))};
     render();
   } else { if(st.sel){ st.sel=null; render(); } return; }
-  svg.setPointerCapture(e.pointerId);
+  capture(e.pointerId);
   e.preventDefault();
 });
 svg.addEventListener('pointermove', function(e){
@@ -383,13 +393,7 @@ svg.addEventListener('pointermove', function(e){
     if(dist(b1, drag.last)<2) return;
     eraseSeg(drag, drag.last, b1); drag.last=b1; return;
   }
-  if(drag.mode==='draw'){
-    var q0=pt(e), last=drag.pts[drag.pts.length-1];
-    if(Math.abs(q0.x-last[0])+Math.abs(q0.y-last[1])<5) return;
-    drag.pts.push([clamp(q0.x,0,W), clamp(q0.y,0,H)]);
-    var tmp=document.getElementById('ink-now'); if(tmp) tmp.setAttribute('d', drawPath(drag.pts));
-    return;
-  }
+  if(drag.mode==='draw'){ penMove(drag, e); return; }
   var p=get(st.sel); if(!p) return;
   var q=pt(e), dx=q.x-drag.start.x, dy=q.y-drag.start.y, o=drag.orig;
   if(!drag.moved && Math.abs(dx)+Math.abs(dy)<4) return;
@@ -415,23 +419,20 @@ svg.addEventListener('pointermove', function(e){
 });
 function endDrag(){
   if(!drag) return;
-  var d=drag; drag=null;
+  var d=drag; drag=null; clearHold(d);
+  if(st.lift){ st.lift=null; board.classList.remove('lifting'); }
   /* an empty axis box opens with one click; a placed axis label needs a double-click */
   if(d.mode==='axis'){ if(!st.axes[d.key] || isDouble('ax:'+d.key)) openEditor({kind:'axis', key:d.key}); return; }
   if(d.mode==='erase'){ if(snapshot()!==d.before){ pushUndo(d.before); save(); } return; }
-  if(d.mode==='draw'){
-    if(d.pts.length<3){ render(); return; }
-    var np={id:uid(), t:'draw', pts:d.pts, col:'ink', dash:false, label:'', lx:10, ly:-12};
-    st.pieces.push(np); st.sel=np.id; pushUndo(d.before); save(); render();
-    openEditor({kind:'piece', id:np.id});   /* every new line gets a label box */
-    return;
-  }
+  if(d.mode==='draw'){ endStroke(d); return; }
   if(snapshot()!==d.before){ pushUndo(d.before); save(); }
+  /* a press and hold is not a tap; the piece stays selected so its handles and options show */
+  if(d.lifted){ lastTap={key:null, t:0}; render(); return; }
   /* one click selects (and a drag moves); a double-click on a piece or its label edits the label */
   if(!d.moved && d.id){
     if(isDouble('p:'+d.id)){
       var p=get(d.id);
-      if(p && (isStroke(p) || p.t==='text' || p.t==='pt')) openEditor({kind:'piece', id:p.id});
+      if(p && canLabel(p)) openEditor({kind:'piece', id:p.id});
     }
   } else lastTap={key:null, t:0};
 }
@@ -441,8 +442,236 @@ function isDouble(key){
   lastTap = dbl ? {key:null, t:0} : {key:key, t:now};
   return dbl;
 }
+function canLabel(p){ return isStroke(p) || p.t==='text' || p.t==='pt'; }
 svg.addEventListener('pointerup', endDrag);
 svg.addEventListener('pointercancel', endDrag);
+/* only when the board itself loses the pointer: on touch screens the line first touched holds it,
+   and handing it to the board fires (and bubbles) this event from the line, which must not end the drag */
+svg.addEventListener('lostpointercapture', function(e){ if(e.target===svg) endDrag(); });
+/* a long press must not open the browser's own menu over the board */
+board.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+/* ======================================================================
+   PENCIL: draw freely. Hold the pen still at the end of a stroke and it
+   snaps to a clean straight line, smooth curve, box, triangle or circle,
+   as on an iPad; a light preview shows what it will become first. Press
+   and hold a line without moving to pick it up and move it. A double-tap
+   opens its label box: nothing asks for a label straight after drawing.
+   ====================================================================== */
+var SNAP_MS=1000, PREVIEW_MS=300, LIFT_MS=500, STILL_PX=6;
+/* a tiny buzz on phones that support it (the browser only allows it once the page has been tapped) */
+function buzz(){
+  try{ if(navigator.vibrate && !(navigator.userActivation && !navigator.userActivation.hasBeenActive)) navigator.vibrate(12); }catch(err){}
+}
+/* restart the countdown: a hold of LIFT_MS before moving lifts a piece, a pause of SNAP_MS after moving snaps the stroke */
+function armHold(d, ms){
+  clearHold(d);
+  d.hold=setTimeout(function(){ onHold(d); }, ms);
+  if(d.moved) d.prev=setTimeout(function(){ preview(d); }, PREVIEW_MS);
+}
+function clearHold(d){ clearTimeout(d.hold); clearTimeout(d.prev); hidePreview(); }
+function strokeNow(d){
+  var P=d.pts.slice();
+  if(dist(P[P.length-1], d.cur)>0.5) P.push(d.cur.slice());
+  return P;
+}
+function penMove(d, e){
+  var q=pt(e), c=[clamp(q.x,0,W), clamp(q.y,0,H)];
+  d.cur=c;
+  /* once a line has snapped, keep holding and move to swing its end round */
+  if(d.snapped){ if(d.snapped.t==='line'){ d.snapped.b=straighten(d.snapped.a, c); showSnap(d); } return; }
+  /* small wobbles of the hand do not count as moving */
+  var mx=e.clientX-d.anchor[0], my=e.clientY-d.anchor[1];
+  if(mx*mx+my*my>STILL_PX*STILL_PX){ d.anchor=[e.clientX,e.clientY]; d.moved=true; armHold(d, SNAP_MS); }
+  var last=d.pts[d.pts.length-1];
+  if(Math.abs(c[0]-last[0])+Math.abs(c[1]-last[1])<5) return;
+  d.pts.push(c);
+  var tmp=document.getElementById('ink-now'); if(tmp) tmp.setAttribute('d', drawPath(d.pts));
+}
+function preview(d){
+  if(drag!==d || d.snapped) return;
+  var s=recognise(strokeNow(d)); if(!s) return;
+  var g=document.createElementNS(SVGNS,'path');
+  g.setAttribute('id','snap-ghost'); g.setAttribute('class','snap-ghost'); g.setAttribute('d', shapePath(s));
+  g.style.animationDuration=(SNAP_MS-PREVIEW_MS)+'ms';
+  svg.appendChild(g);
+}
+function hidePreview(){ var g=document.getElementById('snap-ghost'); if(g) g.parentNode.removeChild(g); }
+function onHold(d){
+  if(drag!==d || d.snapped) return;
+  hidePreview();
+  if(!d.moved){ if(d.hit) liftPiece(d); return; }
+  var s=recognise(strokeNow(d)); if(!s) return;
+  d.snapped=s; buzz(); showSnap(d);
+}
+function showSnap(d){
+  var tmp=document.getElementById('ink-now'); if(!tmp) return;
+  tmp.setAttribute('d', shapePath(d.snapped)); tmp.setAttribute('class','pc k-ink snapped');
+}
+function shapePath(s){ return s.t==='line' ? 'M'+r1(s.a[0])+' '+r1(s.a[1])+'L'+r1(s.b[0])+' '+r1(s.b[1]) : drawPath(s.pts, s.sharp); }
+/* press and hold on a piece without moving: pick it up, then drag to move it */
+function liftPiece(d){
+  var p=get(d.hit); if(!p) return;
+  var lab=(d.role==='label');
+  drag={mode: lab?'label':'move', id:p.id, role:d.role, start:{x:d.cur[0], y:d.cur[1]}, before:d.before, orig:JSON.parse(JSON.stringify(p)), lifted:true};
+  st.sel=p.id; st.lift={id:p.id, label:lab};
+  board.classList.add('lifting');
+  buzz(); render();
+}
+function endStroke(d){
+  var s=d.snapped, np=null;
+  if(s && s.t==='line') np={id:uid(), t:'line', x1:r1(s.a[0]), y1:r1(s.a[1]), x2:r1(s.b[0]), y2:r1(s.b[1]), col:'ink', dash:false, label:'', lx:10, ly:-12};
+  else if(s) np={id:uid(), t:'draw', pts:s.pts, sharp:!!s.sharp, col:'ink', dash:false, label:'', lx:10, ly:-12};
+  else if(d.moved) np={id:uid(), t:'draw', pts:strokeNow(d), col:'ink', dash:false, label:'', lx:10, ly:-12};
+  if(np){ st.pieces.push(np); pushUndo(d.before); save(); render(); lastTap={key:null, t:0}; return; }
+  render();
+  /* a tap rather than a line: a second tap on the same line or label opens its label box */
+  if(d.hit && isDouble('p:'+d.hit)){ var p=get(d.hit); if(p && canLabel(p)) openEditor({kind:'piece', id:p.id}); }
+}
+
+/* ---------- recognising the shape ---------- */
+function extent(P){
+  var b={x0:1e9, y0:1e9, x1:-1e9, y1:-1e9};
+  P.forEach(function(q){ b.x0=Math.min(b.x0,q[0]); b.x1=Math.max(b.x1,q[0]); b.y0=Math.min(b.y0,q[1]); b.y1=Math.max(b.y1,q[1]); });
+  b.w=b.x1-b.x0; b.h=b.y1-b.y0; return b;
+}
+/* Ramer-Douglas-Peucker: keep only the points where the stroke really bends */
+function rdp(P, eps){
+  if(P.length<3) return P.slice();
+  var a=P[0], b=P[P.length-1], k=0, m=-1;
+  for(var i=1;i<P.length-1;i++){ var dd=distToSeg(P[i],a,b); if(dd>m){ m=dd; k=i; } }
+  if(m<=eps) return [a,b];
+  return rdp(P.slice(0,k+1),eps).slice(0,-1).concat(rdp(P.slice(k),eps));
+}
+function turnAt(u,v,w){ var t=Math.abs(Math.atan2(w[1]-v[1],w[0]-v[0])-Math.atan2(v[1]-u[1],v[0]-u[0]))*180/Math.PI; return t>180?360-t:t; }
+function edgeAngle(u,v){ return Math.abs(Math.atan2(v[1]-u[1], v[0]-u[0])*180/Math.PI); }
+function nearFlat(g,tol){ return g<tol || g>180-tol; }
+function nearUp(g,tol){ return Math.abs(g-90)<tol; }
+function rounded(P){ return P.map(function(v){ return [r1(v[0]), r1(v[1])]; }); }
+/* a nearly level or nearly upright line is made exactly level or upright */
+function straighten(a,b){
+  var g=edgeAngle(a,b);
+  if(nearFlat(g,6)) return [b[0], a[1]];
+  if(nearUp(g,6)) return [a[0], b[1]];
+  return b.slice();
+}
+function recognise(P){
+  if(P.length<3) return null;
+  var len=polyLen(P), px=W/(board.clientWidth||W);   /* board units per screen pixel */
+  if(len<20*px) return null;
+  var a=P[0], b=P[P.length-1], bb=extent(P), size=Math.max(bb.w,bb.h,1), chord=dist(a,b);
+  /* a straight line: every point stays close to the line from start to end */
+  var dev=0; P.forEach(function(q){ dev=Math.max(dev, distToSeg(q,a,b)); });
+  if(chord>0.8*len && dev<=Math.max(4*px, 0.05*chord)) return {t:'line', a:a.slice(), b:straighten(a,b)};
+  /* a closed shape: in its second half the pen comes back to the start, or runs a little past it */
+  var ci=-1, cd=1e9, run=0;
+  for(var i=1;i<P.length;i++){ run+=dist(P[i-1],P[i]); if(run>0.5*len){ var dd=dist(P[i],a); if(dd<cd){ cd=dd; ci=i; } } }
+  if(ci>0 && cd<0.2*size && Math.min(bb.w,bb.h)>0.15*size) return closedShape(P.slice(0,ci+1), a);
+  return smoothCurve(P, size, px);
+}
+function closedShape(L, start){
+  var bb=extent(L), size=Math.max(bb.w,bb.h), spread=radialSpread(L,bb), c=corners(L,size);
+  var straightSides=(c.length===3 || c.length===4) && polyFit(L,c)<0.09*size;
+  if(spread>0.07 && straightSides){
+    if(c.length===3 && triArea(c)>0.2*bb.w*bb.h) return {t:'poly', sharp:true, pts:closeLoop(tidyPoly(c))};
+    if(c.length===4){
+      var square=c.every(function(v,i){ return Math.abs(turnAt(c[(i+3)%4], v, c[(i+1)%4])-90)<25; });
+      var level=c.every(function(v,i){ var g=edgeAngle(v, c[(i+1)%4]); return nearFlat(g,15) || nearUp(g,15); });
+      return {t:'poly', sharp:true, pts:(square && level) ? boxPts(extent(c)) : closeLoop(tidyPoly(c))};
+    }
+  }
+  if(spread<0.13) return {t:'poly', sharp:true, pts:ovalPts(bb, start)};
+  return null;
+}
+/* the corners of a closed stroke: split it at the point furthest from the start, simplify each half */
+function corners(L, size){
+  var k=0, m=-1;
+  for(var i=1;i<L.length;i++){ var dd=dist(L[0],L[i]); if(dd>m){ m=dd; k=i; } }
+  var eps=Math.max(4, 0.07*size);
+  var c=rdp(L.slice(0,k+1),eps).slice(0,-1).concat(rdp(L.slice(k),eps));
+  c.pop();   /* the last point is back at the start */
+  var j=0;
+  while(c.length>3 && j<c.length){ if(dist(c[j], c[(j+1)%c.length])<0.12*size) c.splice((j+1)%c.length,1); else j++; }
+  while(c.length>3){
+    var mi=-1, mt=1e9;
+    for(var q=0;q<c.length;q++){ var tt=turnAt(c[(q+c.length-1)%c.length], c[q], c[(q+1)%c.length]); if(tt<mt){ mt=tt; mi=q; } }
+    if(mt>=35) break;
+    c.splice(mi,1);
+  }
+  return c;
+}
+/* how far the stroke strays from the straight sides joining its corners */
+function polyFit(L, c){
+  var worst=0;
+  L.forEach(function(q){ var best=1e9; for(var i=0;i<c.length;i++) best=Math.min(best, distToSeg(q, c[i], c[(i+1)%c.length])); worst=Math.max(worst, best); });
+  return worst;
+}
+/* how evenly the stroke sits round the centre of its box: small for an ellipse, larger for corners */
+function radialSpread(L, bb){
+  var cx=(bb.x0+bb.x1)/2, cy=(bb.y0+bb.y1)/2, rx=Math.max(1,bb.w/2), ry=Math.max(1,bb.h/2), s=0, s2=0;
+  L.forEach(function(q){ var u=(q[0]-cx)/rx, v=(q[1]-cy)/ry, r=Math.sqrt(u*u+v*v); s+=r; s2+=r*r; });
+  var mean=s/L.length; return Math.sqrt(Math.max(0, s2/L.length-mean*mean))/mean;
+}
+function triArea(c){ return Math.abs((c[1][0]-c[0][0])*(c[2][1]-c[0][1])-(c[2][0]-c[0][0])*(c[1][1]-c[0][1]))/2; }
+/* sides that are nearly level or upright are made exactly so */
+function tidyPoly(c){
+  c=c.map(function(v){ return v.slice(); });
+  for(var i=0;i<c.length;i++){
+    var u=c[i], v=c[(i+1)%c.length], g=edgeAngle(u,v);
+    if(nearFlat(g,8)){ var y=(u[1]+v[1])/2; u[1]=y; v[1]=y; }
+    else if(nearUp(g,8)){ var x=(u[0]+v[0])/2; u[0]=x; v[0]=x; }
+  }
+  return c;
+}
+function closeLoop(c){ return rounded(c.concat([c[0]])); }
+function boxPts(b){
+  var x0=b.x0, y0=b.y0, w=b.w, h=b.h;
+  if(Math.abs(w-h)<0.1*Math.max(w,h)){ var s=(w+h)/2; x0+=(w-s)/2; y0+=(h-s)/2; w=h=s; }   /* nearly square: square */
+  return rounded([[x0,y0],[x0+w,y0],[x0+w,y0+h],[x0,y0+h],[x0,y0]]);
+}
+function ovalPts(b, start){
+  var cx=(b.x0+b.x1)/2, cy=(b.y0+b.y1)/2, rx=b.w/2, ry=b.h/2, out=[];
+  if(Math.abs(rx-ry)<0.12*Math.max(rx,ry)){ rx=ry=(rx+ry)/2; }   /* nearly round: a circle */
+  var t0=Math.atan2((start[1]-cy)/ry, (start[0]-cx)/rx);         /* begin where the pen began */
+  for(var i=0;i<=72;i++){ var t=t0+i/72*2*Math.PI; out.push([cx+rx*Math.cos(t), cy+ry*Math.sin(t)]); }
+  return rounded(out);
+}
+/* an open stroke that is not straight becomes one smooth curve, if a single curve fits it well */
+function smoothCurve(P, size, px){
+  var f=fitCubic(P); if(!f || f.err>Math.max(6*px, 0.06*size)) return null;
+  var A=P[0], B=P[P.length-1], n=Math.max(12, Math.min(64, Math.round(polyLen(P)/14))), out=[];
+  for(var i=0;i<=n;i++) out.push(bez(A, f.c1, f.c2, B, i/n));
+  return {t:'curve', pts:rounded(out)};
+}
+/* least-squares cubic Bezier with the ends fixed, refining where each point sits along it */
+function fitCubic(P){
+  var n=P.length, A=P[0], B=P[n-1], T=[0], L=0, c1=null, c2=null;
+  for(var i=1;i<n;i++){ L+=dist(P[i-1],P[i]); T.push(L); }
+  if(!L) return null;
+  T=T.map(function(t){ return t/L; });
+  for(var it=0; it<4; it++){
+    var a11=0, a12=0, a22=0, x1=0, y1=0, x2=0, y2=0;
+    for(var j=0;j<n;j++){
+      var t=T[j], u=1-t, b0=u*u*u, b1=3*u*u*t, b2=3*u*t*t, b3=t*t*t;
+      var rx=P[j][0]-b0*A[0]-b3*B[0], ry=P[j][1]-b0*A[1]-b3*B[1];
+      a11+=b1*b1; a12+=b1*b2; a22+=b2*b2; x1+=b1*rx; y1+=b1*ry; x2+=b2*rx; y2+=b2*ry;
+    }
+    var det=a11*a22-a12*a12; if(Math.abs(det)<1e-9) return null;
+    c1=[(x1*a22-x2*a12)/det, (y1*a22-y2*a12)/det];
+    c2=[(a11*x2-a12*x1)/det, (a11*y2-a12*y1)/det];
+    for(var k=1;k<n-1;k++) T[k]=nearestT(A, c1, c2, B, P[k], T[k]);
+  }
+  var err=0; for(var m=0;m<n;m++) err=Math.max(err, dist(bez(A,c1,c2,B,T[m]), P[m]));
+  return {c1:c1, c2:c2, err:err};
+}
+/* one Newton step towards the point on the curve nearest q */
+function nearestT(p0,p1,p2,p3,q,t){
+  var u=1-t, B=bez(p0,p1,p2,p3,t);
+  var d1=[3*u*u*(p1[0]-p0[0])+6*u*t*(p2[0]-p1[0])+3*t*t*(p3[0]-p2[0]), 3*u*u*(p1[1]-p0[1])+6*u*t*(p2[1]-p1[1])+3*t*t*(p3[1]-p2[1])];
+  var d2=[6*u*(p2[0]-2*p1[0]+p0[0])+6*t*(p3[0]-2*p2[0]+p1[0]), 6*u*(p2[1]-2*p1[1]+p0[1])+6*t*(p3[1]-2*p2[1]+p1[1])];
+  var dx=B[0]-q[0], dy=B[1]-q[1], num=dx*d1[0]+dy*d1[1], den=d1[0]*d1[0]+d1[1]*d1[1]+dx*d2[0]+dy*d2[1];
+  return den ? Math.max(0, Math.min(1, t-num/den)) : t;
+}
 
 /* ======================================================================
    ERASER: works like a real eraser. Lines and curves are cut where it
@@ -466,7 +695,7 @@ function strokePoints(p){
   if(p.t==='line'){ var a=[p.x1,p.y1], b=[p.x2,p.y2]; out.push(a); sampleInto(out, function(t){ return lerp(a,b,t); }, dist(a,b)); return out; }
   if(p.t==='draw'){
     var P=p.pts; out.push(P[0]);
-    if(P.length<3){ for(var i=1;i<P.length;i++){ var s0=P[i-1], e0=P[i]; sampleInto(out, function(t){ return lerp(s0,e0,t); }, dist(s0,e0)); } return out; }
+    if(P.length<3 || p.sharp){ for(var i=1;i<P.length;i++){ var s0=P[i-1], e0=P[i]; sampleInto(out, function(t){ return lerp(s0,e0,t); }, dist(s0,e0)); } return out; }
     var cur=P[0];
     for(var j=1;j<P.length-1;j++){
       var c=P[j], m=[(P[j][0]+P[j+1][0])/2, (P[j][1]+P[j+1][1])/2], st0=cur;
@@ -532,9 +761,10 @@ function eraseMask(p){
       }).join('')
     + '</mask>';
 }
-/* rub out along the eraser's path from a to b */
+/* rub out along the eraser's path from a to b. "Whole stroke" removes every line, curve or
+   shading it touches in one go; "Normal" rubs out just the part under it */
 function eraseSeg(dr, a, b){
-  var changed=false, out=[];
+  var changed=false, out=[], whole=(st.eraser==='whole');
   ['y1','x1','y2','x2'].forEach(function(k){ var r=axisRect(k); if(r && nearRect(a,b,r,ER_R*0.6)){ st.axes[k]=''; changed=true; } });
   st.pieces.forEach(function(p){
     if(p.t==='text'){
@@ -547,6 +777,7 @@ function eraseSeg(dr, a, b){
       out.push(p); return;
     }
     if(p.t==='box' || p.t==='tri'){
+      if(whole && shadeTouched(p,a,b)){ changed=true; if(st.sel===p.id) st.sel=null; return; }
       if(shadeTouched(p,a,b)){
         var la=toLocal(p,a), lb=toLocal(p,b);
         if(la && lb){
@@ -563,6 +794,7 @@ function eraseSeg(dr, a, b){
     var pts=strokePoints(p), keep=pts.map(function(q){ return distToSeg(q,a,b)>ER_R; });
     if(keep.every(function(x){ return x; })){ out.push(p); return; }
     changed=true;
+    if(whole){ if(st.sel===p.id) st.sel=null; return; }
     var runs=[], cur=[];
     pts.forEach(function(q,i){ if(keep[i]) cur.push(q); else { if(cur.length) runs.push(cur); cur=[]; } });
     if(cur.length) runs.push(cur);
@@ -571,6 +803,8 @@ function eraseSeg(dr, a, b){
     var frags=runs.map(function(r){
       var z=r[r.length-1];
       if(p.t==='line') return {id:uid(), t:'line', x1:r[0][0], y1:r[0][1], x2:z[0], y2:z[1], col:p.col, dash:p.dash, label:'', lx:10, ly:-12};
+      /* pieces of a snapped box, triangle or circle keep their straight edges and sharp corners */
+      if(p.sharp) return {id:uid(), t:'draw', pts:rounded(rdp(r, 0.6)), sharp:true, col:p.col, dash:p.dash, label:'', lx:10, ly:-12};
       return {id:uid(), t:'draw', pts:thin(r), col:p.col, dash:p.dash, label:'', lx:10, ly:-12};
     });
     /* the label stays where it was, on the nearest piece that is left */
@@ -593,6 +827,14 @@ svg.addEventListener('pointermove', function(e){
   c.setAttribute('cx', r1(q.x)); c.setAttribute('cy', r1(q.y));
 });
 svg.addEventListener('pointerleave', function(){ st.cursor=null; var c=document.getElementById('eraser-cur'); if(c) c.parentNode.removeChild(c); });
+/* "tap" on a touch screen, "click" with a mouse */
+var TAP=(window.matchMedia && window.matchMedia('(pointer:coarse)').matches) ? 'tap' : 'click';
+function showHint(){
+  var hint=document.querySelector('.board-tools .hint'); if(!hint) return;
+  hint.textContent = st.tool==='pencil' ? 'Pencil: hold still at the end of a line to snap it straight, or a shape neat. Double-'+TAP+' a line to label it; press and hold to move it.'
+    : st.tool==='eraser' ? (st.eraser==='whole' ? 'Eraser: touch a line, curve or shading to remove all of it. Esc to stop.' : 'Eraser: rub over a line, curve or shading to remove just that part. Esc to stop.')
+    : 'Drag to move a piece or its label. Double-'+TAP+' a line or label to type its label. Delete removes what is selected.';
+}
 function setTool(t){
   if(st.editing) commitEdit();
   st.tool = (st.tool===t && t!=='select') ? 'select' : t;
@@ -600,10 +842,8 @@ function setTool(t){
   board.classList.toggle('tool-eraser', st.tool==='eraser');
   var b=document.querySelectorAll('[data-tool]');
   for(var i=0;i<b.length;i++) b[i].setAttribute('aria-pressed', b[i].dataset.tool===st.tool?'true':'false');
-  var hint=document.querySelector('.board-tools .hint');
-  if(hint) hint.textContent = st.tool==='pencil' ? 'Pencil: drag to draw a line, then type its label and press Enter. Esc to stop.'
-    : st.tool==='eraser' ? 'Eraser: rub over a line, curve or shading to remove just that part. Esc to stop.'
-    : 'Drag to move a piece or its label. Double-click a line or label to type its label. Delete removes what is selected.';
+  var et=document.getElementById('eraser-tile'); if(et) et.classList.toggle('on', st.tool==='eraser');
+  showHint();
   if(st.tool!=='eraser') st.cursor=null;
   st.sel=null; render();
 }
@@ -751,8 +991,19 @@ document.getElementById('palette').innerHTML=pal.map(function(t){
   return '<button type="button" class="tile" data-add="'+t[0]+'" aria-label="Add '+t[1]+'">'+icon(t[0])+'<span>'+t[1]+'</span></button>';
 }).join('');
 document.getElementById('tools').innerHTML=tools.map(function(t){
+  /* the eraser tile has a dropdown: rub out part of a line, or remove the whole stroke */
+  if(t[0]==='eraser') return '<div class="tile tooltile pick" id="eraser-tile"><button type="button" class="pick-btn" data-tool="eraser" aria-pressed="false" aria-label="Eraser tool">'+icon('eraser')+'<span>Eraser</span></button>'
+    + '<select id="eraser-mode" aria-label="What the eraser removes"><option value="part">Normal</option><option value="whole">Whole</option></select></div>';
   return '<button type="button" class="tile tooltile" data-tool="'+t[0]+'" aria-pressed="'+(t[0]==='select')+'" aria-label="'+t[1]+' tool">'+icon(t[0])+'<span>'+t[1]+'</span></button>';
 }).join('');
+var eraserMode=document.getElementById('eraser-mode');
+eraserMode.value=st.eraser;
+eraserMode.addEventListener('change', function(){
+  st.eraser = eraserMode.value==='whole' ? 'whole' : 'part';
+  try{ localStorage.setItem('slaude-practice:eraser', st.eraser); }catch(err){}
+  if(st.tool!=='eraser') setTool('eraser'); else showHint();
+});
+showHint();
 document.getElementById('palette').addEventListener('click', function(e){
   var b=e.target.closest('[data-add]'); if(!b) return;
   if(st.tool!=='select') setTool('select');
