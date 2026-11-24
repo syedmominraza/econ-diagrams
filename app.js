@@ -99,7 +99,7 @@ var TOPICS = {
 
 var V = {
   /* ------------------------- MONOPOLY ------------------------- */
-  base:{kind:'mono', btn:'The curves', showing:'The four curves',
+  base:{terms:[["Monopoly", "A single seller. In UK competition law, a firm with 25% or more of a market has monopoly power."], ["Price maker", "A firm that sets its own price and faces a downward-sloping demand curve."]], traps:["Draw MR below AR and <b>twice as steep</b>, starting from the same point on the price axis."], kind:'mono', btn:'The curves', showing:'The four curves',
     title:'The four curves',
     lead:'Every monopoly diagram starts with these. Get the shapes and the crossing points right before adding anything else.',
     plain:[
@@ -110,7 +110,7 @@ var V = {
     ],
     tip:'Drawing tip: start MR and AR from the same point on the vertical axis, and make MR twice as steep.'},
 
-  profitmax:{kind:'mono', btn:'Profit max point', showing:'Profit maximisation: MR = MC',
+  profitmax:{traps:["Find the output where MR = MC, then go <b>up to AR</b> for the price. Never read the price across from MC."], kind:'mono', btn:'Profit max point', showing:'Profit maximisation: MR = MC',
     title:'Profit maximisation: MR = MC',
     lead:'A profit-maximising monopolist chooses the output where marginal revenue equals marginal cost, then charges the highest price consumers will pay for it.',
     chain:[
@@ -122,7 +122,7 @@ var V = {
     evaluation:'Firms may not profit maximise in practice. They rarely know their exact MR and MC, and managers may prefer revenue or sales growth when owners cannot monitor them closely (the principal–agent problem).',
     tip:'Most common mistake: reading the price off where MR meets MC. Always go up to AR.'},
 
-  profit:{kind:'mono', btn:'Supernormal profit', showing:'Supernormal profit box',
+  profit:{traps:["The profit box runs from the price down to <b>AC</b> at Q<sub>1</sub>, not down to MC."], kind:'mono', btn:'Supernormal profit', showing:'Supernormal profit box',
     title:'Supernormal profit',
     lead:'At Q<sub>1</sub> the price is above average cost, so the firm earns more than the normal profit needed to stay in the industry.',
     chain:[
@@ -145,7 +145,7 @@ var V = {
     ],
     evaluation:'A larger revenue box does not mean a larger profit box. If the firm pushes output past Q<sub>1</sub>, revenue can still rise while profit falls. That is the difference between revenue maximisation and profit maximisation.'},
 
-  revmax:{kind:'mono', anim:true, btn:'Revenue max', showing:'Revenue maximisation: MR = 0',
+  revmax:{terms:[["Revenue maximisation", "Producing where MR = 0, so total revenue is as large as possible."]], traps:["Revenue is maximised where <b>MR = 0</b>, not where MR = MC."], kind:'mono', anim:true, btn:'Revenue max', showing:'Revenue maximisation: MR = 0',
     title:'Revenue maximisation: MR = 0',
     lead:'A firm that wants the highest possible total revenue keeps producing until the last unit adds nothing to revenue.',
     chain:[
@@ -158,7 +158,7 @@ var V = {
     evaluation:'Managers may choose this when their pay or status depends on the size of the firm more than on profit. Shareholders may accept it as long as profit stays high enough to satisfy them (profit satisficing). Here AR is still above AC, so the firm still earns supernormal profit.',
     tip:'Where MR = 0, demand is unit elastic (PED = −1). Worth one line in a longer answer.'},
 
-  salesmax:{kind:'mono', anim:true, btn:'Sales max', showing:'Sales maximisation: AR = AC',
+  salesmax:{terms:[["Sales maximisation", "Selling as many units as possible without making an economic loss: where AR = AC."]], traps:["Sales maximisation is at <b>AR = AC</b>, the furthest output that still earns normal profit."], kind:'mono', anim:true, btn:'Sales max', showing:'Sales maximisation: AR = AC',
     title:'Sales maximisation: AR = AC',
     lead:'The firm sells as much as it can without making a loss, so it expands until price only just covers average cost.',
     chain:[
@@ -170,7 +170,7 @@ var V = {
     compare:{vs:'Compared with profit maximisation',rows:[['Price','↓ lowest'],['Output','↑ highest'],['Revenue','below its max'],['Profit','normal only']]},
     evaluation:'This is hard to keep up in the long run because shareholders want a return. It is more likely a short-run tactic, after which the firm goes back to profit maximising. Consumers gain from low prices while it lasts.'},
 
-  alloc:{kind:'mono', anim:true, btn:'Allocative', showing:'Allocative efficiency: P = MC',
+  alloc:{traps:["The allocatively efficient output is where AR (demand) meets MC. The monopolist produces less than this."], kind:'mono', anim:true, btn:'Allocative', showing:'Allocative efficiency: P = MC',
     title:'Allocative efficiency: P = MC',
     lead:'Resources are allocated efficiently when the price consumers pay equals the cost of making the last unit. A monopolist does not produce there.',
     chain:[
@@ -193,7 +193,7 @@ var V = {
     ],
     evaluation:'With no competition the firm may not even stay on its AC curve: slack management and overstaffing push actual costs above it (X-inefficiency). On the other hand, one large firm may still produce at lower average cost than several small ones could, as with a natural monopoly.'},
 
-  dwl:{kind:'mono', btn:'Deadweight loss', showing:'Deadweight welfare loss',
+  dwl:{traps:["The deadweight loss triangle sits between AR and MC, from the monopoly output to the allocatively efficient output. It does not touch MR or AC."], kind:'mono', btn:'Deadweight loss', showing:'Deadweight welfare loss',
     title:'Deadweight welfare loss',
     lead:'By restricting output to raise the price, the monopolist destroys some welfare that nobody gets.',
     chain:[
@@ -205,7 +205,7 @@ var V = {
     evaluation:'The size of the loss depends on how far output is restricted, which depends on the elasticity of demand. It may be outweighed over time if supernormal profit funds innovation that lowers costs or improves products (dynamic efficiency).',
     tip:'The triangle sits between AR and MC. It does not touch AC or MR.'},
 
-  costup:{kind:'mono', anim:true, shift:{dx:5,dy:9}, btn:'Variable costs rise', showing:'Variable costs rise: MC and AC shift up',
+  costup:{traps:["A variable-cost rise shifts <b>MC and AC</b>. MR = MC moves to a lower output, so the price rises."], kind:'mono', anim:true, shift:{dx:5,dy:9}, btn:'Variable costs rise', showing:'Variable costs rise: MC and AC shift up',
     title:'Variable costs rise',
     lead:'For example, raw materials or wages become more expensive. Both cost curves move, so the firm changes its price and output.',
     chain:[
@@ -229,7 +229,7 @@ var V = {
     compare:{vs:'After the shift',rows:[['Price','↓ lower'],['Output','↑ higher'],['Revenue','↑ higher'],['Profit','↑ higher']]},
     evaluation:'Consumers gain from a lower price, but only part of the cost saving is passed on. With no rivals, nothing forces the monopolist to pass on the rest, so most of the gain is kept as profit.'},
 
-  fixed:{kind:'mono', anim:true, shift:{dF:400}, btn:'Fixed costs rise', showing:'Fixed costs rise: only AC shifts',
+  fixed:{traps:["A fixed-cost rise shifts <b>AC only</b>. MR = MC does not move, so price and output stay the same and only profit shrinks."], kind:'mono', anim:true, shift:{dF:400}, btn:'Fixed costs rise', showing:'Fixed costs rise: only AC shifts',
     title:'Fixed costs rise',
     lead:'For example, higher rent, business rates or a lump-sum tax. This one catches people out because price and output do not change.',
     chain:[
@@ -289,7 +289,7 @@ var V = {
     evaluation:'The triangle is smaller when demand is elastic, because the monopolist cannot push the price far above MC. It may also be offset by lower costs from economies of scale, or by dynamic efficiency over time.',
     tip:'The rectangle is a transfer. The triangle is the loss. Mixing them up is the common error.'},
 
-  vs_pd:{kind:'vs', anim:true, two:true, btn:'First degree', showing:'Perfect price discrimination: AR becomes MR',
+  vs_pd:{terms:[["Perfect (first degree) price discrimination", "Charging every customer the most they are willing to pay, so all consumer surplus becomes producer surplus."]], kind:'vs', anim:true, two:true, btn:'First degree', showing:'Perfect price discrimination: AR becomes MR',
     title:'Perfect price discrimination',
     lead:'Suppose the monopolist could charge every consumer the most they are willing to pay (first degree price discrimination). The demand curve then becomes its marginal revenue curve.',
     chain:[
@@ -313,7 +313,7 @@ var V = {
     ],
     tip:'MC is drawn flat and equal to AC to keep the three diagrams simple. The same MC line runs across all three, and the price axis is the same in each.'},
 
-  pd3:{kind:'pd3', anim:true, btn:'Third degree: two prices', showing:'MR = MC in each market: A pays more, B pays less',
+  pd3:{terms:[["Third degree price discrimination", "Charging different groups different prices for the same product with the same costs."]], traps:["Conditions: market power, groups with <b>different PEDs</b> that can be kept apart, and no resale. The higher price goes to the group with <b>inelastic</b> demand."], kind:'pd3', anim:true, btn:'Third degree: two prices', showing:'MR = MC in each market: A pays more, B pays less',
     title:'Third degree price discrimination',
     lead:'If the firm can split its customers into groups with different elasticities, and stop resale between them, it sets MR = MC in each market separately.',
     chain:[
@@ -327,7 +327,7 @@ var V = {
     tip:'Write "relatively inelastic", not just "inelastic". A profit maximiser never prices on the inelastic part of its demand curve, because MR is negative there.'},
 
   /* ------------------------- NATURAL MONOPOLY ------------------------- */
-  nm_base:{kind:'nat', btn:'The curves', showing:'AC falls across the whole market',
+  nm_base:{terms:[["Natural monopoly", "An industry where one firm can supply the whole market at lower average cost than two or more firms could, because economies of scale are so large."]], traps:["A natural monopoly’s LRAC is still falling where it meets demand, so MC is below AC there."], kind:'nat', btn:'The curves', showing:'AC falls across the whole market',
     title:'Natural monopoly',
     lead:'A natural monopoly is an industry where economies of scale are so large that one firm can supply the whole market at a lower average cost than two or more firms could.',
     chain:[
@@ -349,7 +349,7 @@ var V = {
     ],
     evaluation:'Natural monopolies often supply essentials such as water, where demand is inelastic. That makes high prices particularly damaging for consumers, and it is the main argument for regulating them.'},
 
-  nm_reg:{kind:'nat', anim:true, btn:'Regulated price', showing:'Regulated at P = MC: the firm needs a subsidy',
+  nm_reg:{traps:["At P = MC a natural monopoly makes an economic loss (P is below AC), so it needs a subsidy, or regulators set P = AC instead."], kind:'nat', anim:true, btn:'Regulated price', showing:'Regulated at P = MC: the firm needs a subsidy',
     title:'Regulation: price set where P = MC',
     lead:'To get the allocatively efficient outcome, a regulator can force the firm to charge P<sub>R</sub>, where AR meets MC.',
     chain:[
@@ -362,7 +362,7 @@ var V = {
     evaluation:'A guaranteed subsidy removes the incentive to keep costs down: if costs rise the subsidy rises, so X-inefficiency develops, and the firm may overstate its costs. The regulator needs accurate information and may be captured by the firm it regulates. The alternative is nationalisation, which stops consumers being exploited but also has no profit incentive.'},
 
   /* ------------------------- PERFECT COMPETITION ------------------------- */
-  pc_taker:{kind:'pc', p0:62, btn:'Price taker', showing:'Industry sets the price, the firm takes it',
+  pc_taker:{terms:[["Perfect competition", "Many firms, identical products, no barriers to entry or exit, and perfect information."]], traps:["Draw the industry and the firm side by side. The price set in the industry is the firm’s AR = MR line."], kind:'pc', p0:62, btn:'Price taker', showing:'Industry sets the price, the firm takes it',
     title:'The firm is a price taker',
     lead:'In perfect competition the price is set by the whole industry. Each firm is too small to affect it, so it takes that price as given.',
     chain:[
@@ -373,7 +373,7 @@ var V = {
     ],
     tip:'Draw the two diagrams side by side and carry the price across with a dashed line.'},
 
-  pc_snp:{kind:'pc', p0:62, costs:true, btn:'Supernormal profit', showing:'Short run: price above AC',
+  pc_snp:{traps:["Short-run supernormal profit is the box between price and AC, at the output where MR = MC."], kind:'pc', p0:62, costs:true, btn:'Supernormal profit', showing:'Short run: price above AC',
     title:'Short run: supernormal profit',
     lead:'The firm chooses its output where MC = MR. If the market price is above average cost at that output, it makes supernormal profit.',
     chain:[
@@ -395,7 +395,7 @@ var V = {
     ],
     evaluation:'If the price falls below average variable cost, the firm is better off shutting down straight away, because producing would add to its losses. In the long run it leaves the industry unless the price recovers.'},
 
-  pc_entry:{kind:'pc', p0:62, toLR:true, costs:true, anim:true, btn:'Profit attracts entry', showing:'Entry: supply shifts right, price falls',
+  pc_entry:{traps:["Entry shifts <b>industry supply</b> right. The firm’s AR = MR line falls with the price until only normal profit is left."], kind:'pc', p0:62, toLR:true, costs:true, anim:true, btn:'Profit attracts entry', showing:'Entry: supply shifts right, price falls',
     title:'Long run: profit attracts entry',
     lead:'Supernormal profit does not last. Perfect knowledge means outsiders can see it, and no barriers to entry means they can come in.',
     chain:[
@@ -418,7 +418,7 @@ var V = {
     ],
     compare:{vs:'After exit',rows:[['Price','↑ higher'],['Industry output','↓ lower'],['Firm output','↑ higher'],['Profit','normal']]}},
 
-  pc_lr:{kind:'pc', lr:true, costs:true, btn:'Long-run equilibrium', showing:'AC = AR = MR = MC',
+  pc_lr:{traps:["In long-run equilibrium P = MC = minimum AC: allocatively and productively efficient."], kind:'pc', lr:true, costs:true, btn:'Long-run equilibrium', showing:'AC = AR = MR = MC',
     title:'Long-run equilibrium',
     lead:'In the long run every firm ends up at the bottom of its AC curve, where AC = AR = MR = MC.',
     chain:[
@@ -431,7 +431,7 @@ var V = {
     evaluation:'There is no dynamic efficiency: firms have no supernormal profit to fund research, and perfect knowledge means rivals would copy any innovation at once. Products are identical, so consumers get low prices but no choice. Very few real markets meet all the assumptions, so the model is mainly a benchmark for judging other market structures.'},
 
   /* ------------------------- MONOPOLISTIC COMPETITION ------------------------- */
-  mc_snp:{kind:'mcomp', a:'snp', btn:'Supernormal profit', showing:'Short run: AR above AC',
+  mc_snp:{terms:[["Monopolistic competition", "Many firms selling slightly different products, with low barriers to entry."]], kind:'mcomp', a:'snp', btn:'Supernormal profit', showing:'Short run: AR above AC',
     title:'Short run: supernormal profit',
     lead:'Each firm sells a slightly different product, so it has a little market power and faces a downward-sloping demand curve. In the short run it behaves like a small monopolist.',
     chain:[
@@ -452,7 +452,7 @@ var V = {
       'It carries on in the short run as long as the price covers its variable costs.'
     ]},
 
-  mc_entry:{kind:'mcomp', a:'snp', anim:true, btn:'Profit attracts entry', showing:'Entry: AR and MR shift left',
+  mc_entry:{traps:["Entry shifts each firm’s <b>AR and MR left</b>, and makes its demand more elastic, until AR just touches AC."], kind:'mcomp', a:'snp', anim:true, btn:'Profit attracts entry', showing:'Entry: AR and MR shift left',
     title:'Long run: entry removes the profit',
     lead:'There are no barriers to entry, so supernormal profit attracts new firms selling close substitutes.',
     chain:[
@@ -475,7 +475,7 @@ var V = {
     ],
     compare:{vs:'After exit',rows:[['Price','↑ higher'],['Firm output','↑ higher'],['Profit','normal'],['Firms','↓ fewer']]}},
 
-  mc_lr:{kind:'mcomp', a:'lr', btn:'Long-run equilibrium', showing:'AR is tangent to AC',
+  mc_lr:{traps:["In the long run AR is tangent to AC at the MR = MC output, so only normal profit. That point is <b>not</b> the lowest point of AC."], kind:'mcomp', a:'lr', btn:'Long-run equilibrium', showing:'AR is tangent to AC',
     title:'Long-run equilibrium',
     lead:'In the long run AR is tangent to AC. The firm still has a downward-sloping demand curve, but it makes only normal profit.',
     chain:[
@@ -487,7 +487,7 @@ var V = {
     compare:{vs:'In the long run',rows:[['Profit','normal'],['Price','above MC'],['Output','below MES'],['Products','differentiated']]},
     tip:'The tangency must sit directly above the point where MR = MC. Draw the vertical line first, then make AR touch AC on it.'},
 
-  mc_eff:{kind:'mcomp', a:'lr', btn:'Efficiency', showing:'Excess capacity, and price above MC',
+  mc_eff:{terms:[["Excess capacity", "The gap between the output a firm produces and the output at minimum AC."]], traps:["In the long run monopolistic competition is neither allocatively efficient (P > MC) nor productively efficient (not at minimum AC)."], kind:'mcomp', a:'lr', btn:'Efficiency', showing:'Excess capacity, and price above MC',
     title:'Efficiency and excess capacity',
     lead:'Even with only normal profit, the long-run outcome is not efficient. The tangency is on the falling part of AC.',
     chain:[
@@ -500,7 +500,7 @@ var V = {
     evaluation:'The inefficiency is the price of variety. Consumers get choice and firms compete on quality, which perfect competition cannot offer. Dynamic efficiency is debatable: firms have a strong incentive to innovate to stand out, but without supernormal profit they may lack the funds.'},
 
   /* ------------------------- CONTESTABLE MARKETS ------------------------- */
-  cm_mono:{kind:'cont', btn:'Monopoly outcome', showing:'With no threat of entry: MR = MC',
+  cm_mono:{terms:[["Contestable market", "A market that firms can enter and leave easily, with no sunk costs, so the threat of entry disciplines the firms already in it."], ["Sunk costs", "Costs a firm cannot get back when it leaves, such as advertising."]], traps:["Contestability is about the <b>threat</b> of entry, not the number of firms. Do not confuse it with competition: a market with one firm can be highly contestable. Examiners keep seeing this mix-up."], kind:'cont', btn:'Monopoly outcome', showing:'With no threat of entry: MR = MC',
     title:'The starting point: a monopoly',
     lead:'Traditional theory says a firm with no rivals restricts output and raises its price. Contestable market theory asks whether that still holds when new firms could enter easily.',
     chain:[
@@ -511,7 +511,7 @@ var V = {
     ],
     tip:'A market is perfectly contestable when there are no barriers to entry or exit. The key condition is no sunk costs.'},
 
-  cm_hit:{kind:'cont', btn:'Hit-and-run entry', showing:'Supernormal profit invites entry',
+  cm_hit:{terms:[["Hit-and-run entry", "Entering to take the supernormal profit, then leaving before the incumbent can respond."]], kind:'cont', btn:'Hit-and-run entry', showing:'Supernormal profit invites entry',
     title:'Hit-and-run entry',
     lead:'If entering and leaving cost nothing, supernormal profit is an open invitation.',
     chain:[
@@ -522,7 +522,7 @@ var V = {
     ],
     evaluation:'This needs entrants to face no disadvantage at all: no brand loyalty to overcome, no sunk costs such as advertising, and no risk of the incumbent cutting its price to keep them out (limit pricing). In practice at least some of these exist.'},
 
-  cm_threat:{kind:'cont', anim:true, btn:'Threat of entry', showing:'Price falls until AR = AC',
+  cm_threat:{traps:["In a perfectly contestable market the incumbent prices close to AC, earning normal profit, because any supernormal profit would invite entry."], kind:'cont', anim:true, btn:'Threat of entry', showing:'Price falls until AR = AC',
     title:'The threat of entry lowers the price',
     lead:'To give entrants no reason to come in, the incumbent prices so that there is no supernormal profit to take.',
     chain:[
@@ -547,7 +547,7 @@ var V = {
     evaluation:'No market is perfectly contestable, so treat this as a direction, not a guaranteed result: the lower the barriers to entry and exit, the closer the outcome gets to it. The internet has made many markets more contestable, for example online travel agents competing with traditional operators.'},
 
   /* ------------------------- OLIGOPOLY ------------------------- */
-  kink:{kind:'kink', btn:'The kink', showing:'The kinked demand curve',
+  kink:{terms:[["Oligopoly", "A market dominated by a few large firms that depend on each other, with high barriers to entry."], ["Interdependence", "Each firm’s best decision depends on how its rivals react."]], traps:["Explain the kink with rivals’ reactions: they <b>ignore</b> a price rise (demand elastic above P) but <b>match</b> a price cut (inelastic below P)."], kind:'kink', btn:'The kink', showing:'The kinked demand curve',
     title:'The kinked demand curve',
     lead:'Oligopolists are interdependent, so the demand one firm faces depends on how its rivals react. They react differently to a price rise and a price cut, which bends the demand curve at the current price, P<sub>1</sub>.',
     plain:[
@@ -581,7 +581,7 @@ var V = {
     compare:{vs:'After the price cut',rows:[['Price','↓ a lot'],['Quantity','↑ a little'],['Revenue','↓ lower'],['Demand','inelastic']]},
     evaluation:'A cut can still pay off if the firm has lower costs than its rivals and can survive a price war longer than they can, or if the aim is to force a rival out of the market (predatory pricing).'},
 
-  mrgap:{kind:'kink', btn:'The MR gap', showing:'Discontinuous marginal revenue',
+  mrgap:{traps:["MC can move anywhere inside the gap in MR without changing price or output. That is the source of price rigidity."], kind:'kink', btn:'The MR gap', showing:'Discontinuous marginal revenue',
     title:'The gap in marginal revenue',
     lead:'Because AR changes slope at the kink, MR cannot be one continuous line. It drops straight down at Q<sub>1</sub>.',
     chain:[
@@ -628,7 +628,7 @@ var V = {
     compare:{vs:'After the shift',rows:[['Price','↑ higher'],['Output','↓ lower'],['Profit','↓ much lower'],['Rigidity','breaks']]},
     evaluation:'If the cost rise hits every firm in the industry, such as higher energy prices, they all face the same pressure and prices are likely to rise together. Rigidity only holds for small changes.'},
 
-  g_collude:{kind:'game', cell:'HH', btn:'Why collude', showing:'Both charge a high price: £10m each',
+  g_collude:{terms:[["Collusion", "Firms cooperating, openly or tacitly, to limit competition, for example by fixing prices."], ["Cartel", "A formal agreement between firms to fix prices or output."]], traps:["Collusion is illegal in the UK: the CMA can fine firms. Tacit collusion, such as price leadership, is harder to prove."], kind:'game', cell:'HH', btn:'Why collude', showing:'Both charge a high price: £10m each',
     title:'Why firms collude',
     lead:'Two firms each choose a high or a low price. Each firm’s profit depends on what the other one does. Click any box in the matrix to see that outcome.',
     chain:[
@@ -650,7 +650,7 @@ var V = {
     ],
     evaluation:'Cheating pays in a one-off game. If firms deal with each other year after year, the threat of retaliation in later rounds can keep both at the high price.'},
 
-  g_dom:{kind:'game', cell:'', best:true, btn:'Dominant strategy', showing:'Circled = best response to the rival',
+  g_dom:{terms:[["Dominant strategy", "The best choice for a player whatever the other player does."]], kind:'game', cell:'', best:true, btn:'Dominant strategy', showing:'Circled = best response to the rival',
     title:'The dominant strategy',
     lead:'Take each firm in turn and ask what its best response is to each thing the rival might do. The circled profits are those best responses.',
     chain:[
@@ -661,7 +661,7 @@ var V = {
     ],
     tip:'In the exam, go through one firm’s choices line by line like this. That is the analysis.'},
 
-  g_nash:{kind:'game', cell:'LL', best:true, btn:'Nash equilibrium', showing:'Both charge a low price: £5m each',
+  g_nash:{terms:[["Nash equilibrium", "An outcome where neither player can do better by changing strategy on their own."]], traps:["Use payoffs that fit the question’s context. Examiners saw pre-learnt matrices with numbers that made no sense for the firms in the question."], kind:'game', cell:'LL', best:true, btn:'Nash equilibrium', showing:'Both charge a low price: £5m each',
     title:'Nash equilibrium',
     lead:'Both firms follow their dominant strategy and charge a low price. Neither can do better by changing its own decision.',
     chain:[
@@ -673,7 +673,7 @@ var V = {
     compare:{vs:'Compared with colluding',rows:[['Price','↓ lower'],['Profit each','↓ £5m'],['Joint profit','↓ £10m'],['Consumers','gain']]},
     evaluation:'Consumers gain from low prices while the price war lasts. Firms know this outcome is bad for them, which is why oligopolists prefer non-price competition: branding, quality, location and after-sales service.'},
 
-  cr:{kind:'cr', btn:'Concentration ratio', showing:'Type in market shares to recalculate',
+  cr:{terms:[["Concentration ratio", "The combined market share of the largest n firms, such as a 4-firm ratio."]], work:{"q": "The four largest firms in a market have shares of 30%, 20%, 15% and 10%. What is the 4-firm concentration ratio?", "steps": ["Add the four largest shares: 30 + 20 + 15 + 10 = <b>75%</b>.", "A high share held by just a few firms is a sign of oligopoly."], "ans": "75%, written as a 4-firm concentration ratio of 75%."}, traps:["A concentration ratio is a <b>share of the market</b>, not a number of firms."], kind:'cr', btn:'Concentration ratio', showing:'Type in market shares to recalculate',
     title:'Concentration ratio',
     lead:'The n-firm concentration ratio is the combined market share of the n largest firms. It is the quickest test of whether a market is an oligopoly.',
     chain:[
@@ -885,7 +885,7 @@ TOPICS.barriers={section:'micro',label:'Barriers to entry',eyebrow:'Edexcel A ·
 ]};
 
 /* ------------------------- BUSINESS GROWTH (3.1) ------------------------- */
-V.gr_types={kind:'card', btn:'Types of firm', showing:'Size, ownership and aims',
+V.gr_types={terms:[["Public sector", "Organisations owned and run by the government, such as the NHS."], ["Private sector", "Firms owned by individuals or shareholders."], ["Not-for-profit", "An organisation that puts any surplus back into its aims, such as a charity."]], traps:["Not-for-profit does not mean making no money: any surplus goes back into the organisation’s aims instead of to owners."], kind:'card', btn:'Types of firm', showing:'Size, ownership and aims',
   title:'Types of firm',
   lead:'Firms differ in size, in who owns them and in what they are trying to achieve. Each difference changes how the firm behaves.',
   card:{head:'Four distinctions', items:[
@@ -896,7 +896,7 @@ V.gr_types={kind:'card', btn:'Types of firm', showing:'Size, ownership and aims'
   ]},
   tip:'If a question mentions a plc, think principal–agent problem straight away.'};
 
-V.gr_organic={kind:'card', btn:'Organic growth', showing:'Growing from within',
+V.gr_organic={terms:[["Organic growth", "Growing from within: more output, new products or new markets, paid for from profit or borrowing."]], kind:'card', btn:'Organic growth', showing:'Growing from within',
   title:'Organic growth',
   lead:'Organic (internal) growth is when a firm expands using its own resources, usually by reinvesting its profit.',
   card:{head:'Growing from within', items:[
@@ -906,7 +906,7 @@ V.gr_organic={kind:'card', btn:'Organic growth', showing:'Growing from within',
   ]},
   tip:'Internal growth is mostly used by smaller firms: it is cheap, and they still have plenty of customers who have never bought from them.'};
 
-V.gr_ext={kind:'card', btn:'Mergers and takeovers', showing:'Growing by joining or buying',
+V.gr_ext={terms:[["Merger", "Two firms agree to join into one."], ["Takeover", "One firm buys a controlling stake in another, whether or not it agrees."]], kind:'card', btn:'Mergers and takeovers', showing:'Growing by joining or buying',
   title:'Mergers and takeovers',
   lead:'External (inorganic) growth is when a firm grows by joining with, or buying, another firm.',
   card:{head:'Growing from outside', items:[
@@ -917,7 +917,7 @@ V.gr_ext={kind:'card', btn:'Mergers and takeovers', showing:'Growing by joining 
   ]},
   evaluation:'Many takeovers fail to deliver what they promise, because of culture clashes and diseconomies of scale. Large firms whose sales have stopped growing often buy firms in faster-growing markets, because external growth is the quickest way in.'};
 
-V.gr_horiz={kind:'chain', anim:true, btn:'Horizontal', showing:'Joining a rival at the same stage',
+V.gr_horiz={terms:[["Horizontal integration", "Joining a firm at the same stage of production in the same industry."]], traps:["Name the stage of production. Same stage: horizontal. One stage nearer the consumer: forward vertical. Nearer the raw materials: backward vertical. Unrelated: conglomerate."], kind:'chain', anim:true, btn:'Horizontal', showing:'Joining a rival at the same stage',
   title:'Horizontal integration',
   lead:'Two firms at the same stage of production, in the same market, join together. Here Nike takes over its rival, Adidas.',
   chain:[
@@ -929,7 +929,7 @@ V.gr_horiz={kind:'chain', anim:true, btn:'Horizontal', showing:'Joining a rival 
   evaluation:'Taking over a rival is expensive, and changes after the takeover can cost staff and customer loyalty. Real example: Facebook bought Instagram, a rival photo-sharing app, and US regulators later took Meta to court arguing it had bought out its competition.',
   tip:'Same stage, same market: horizontal.'};
 
-V.gr_fwd={kind:'chain', anim:true, btn:'Forward vertical', showing:'Taking over a later stage',
+V.gr_fwd={terms:[["Forward vertical integration", "Joining a firm at a later stage of production, closer to the consumer."]], kind:'chain', anim:true, btn:'Forward vertical', showing:'Taking over a later stage',
   title:'Forward vertical integration',
   lead:'A firm takes over a business at a later stage of the supply chain, closer to the customer. Here Nike takes over JD Sports, a retailer.',
   chain:[
@@ -941,7 +941,7 @@ V.gr_fwd={kind:'chain', anim:true, btn:'Forward vertical', showing:'Taking over 
   evaluation:'Retailing is a different skill from making trainers, and spreading resources across both can hurt the core business. Real example: Apple sells through its own Apple Stores and website, so it controls how iPhones are sold.',
   tip:'Forward = towards the customer.'};
 
-V.gr_back={kind:'chain', anim:true, btn:'Backward vertical', showing:'Taking over an earlier stage',
+V.gr_back={terms:[["Backward vertical integration", "Joining a firm at an earlier stage of production, closer to the raw materials."]], kind:'chain', anim:true, btn:'Backward vertical', showing:'Taking over an earlier stage',
   title:'Backward vertical integration',
   lead:'A firm takes over a business at an earlier stage of the supply chain, such as a supplier of raw materials. Here Nike takes over a cotton producer.',
   chain:[
@@ -953,7 +953,7 @@ V.gr_back={kind:'chain', anim:true, btn:'Backward vertical', showing:'Taking ove
   evaluation:'Farming is a very different business, and Nike can no longer shop around for cheaper cotton. Real example: Microsoft, which makes the Xbox and runs Game Pass, bought Activision Blizzard, the maker of Call of Duty. Games are an input to Game Pass, so this was backward integration, and partly horizontal too, since Microsoft already made games. The CMA only approved it after Microsoft agreed to sell the cloud gaming rights to Ubisoft.',
   tip:'Backward = towards the raw materials.'};
 
-V.gr_cong={kind:'chain', anim:true, btn:'Conglomerate', showing:'Joining a firm in another market',
+V.gr_cong={terms:[["Conglomerate integration", "Joining a firm in an unrelated industry."]], kind:'chain', anim:true, btn:'Conglomerate', showing:'Joining a firm in another market',
   title:'Conglomerate integration',
   lead:'Firms in unrelated markets join together. Here Nike takes over Peloton, which makes exercise bikes.',
   chain:[
@@ -976,7 +976,7 @@ V.gr_limits={kind:'card', btn:'Constraints on growth', showing:'What stops firms
     PT('Diseconomies of scale',[['','A firm that grows too big can see its average costs rise.']])
   ]}};
 
-V.gr_demerge={kind:'card', btn:'Demergers', showing:'When firms split up',
+V.gr_demerge={terms:[["Demerger", "Splitting one firm into separate businesses."]], traps:["The spec asks for the impact on <b>businesses, workers and consumers</b>: cover all three."], kind:'card', btn:'Demergers', showing:'When firms split up',
   title:'Demergers',
   lead:'A demerger is when a firm splits into two or more separate firms.',
   card:{head:'Splitting up', items:[
@@ -995,7 +995,7 @@ V.gr_ex={kind:'card', btn:'Real examples', showing:'Growth you can point to',
   ]}};
 
 /* ------------------------- OBJECTIVES (3.2) ------------------------- */
-V.ob_why={kind:'card', btn:'Why not profit max?', showing:'Two problems with the assumption',
+V.ob_why={terms:[["Principal–agent problem", "Shareholders (principals) want maximum profit, but the managers they hire (agents) may chase their own goals, such as size or pay."], ["Divorce of ownership from control", "In large firms, the people who own the firm are not the people who run it."]], kind:'card', btn:'Why not profit max?', showing:'Two problems with the assumption',
   title:'Why firms may not profit maximise',
   lead:'The theory assumes firms produce where MC = MR. In practice many do not, for two main reasons.',
   card:{head:'Two problems', items:[
@@ -1005,7 +1005,7 @@ V.ob_why={kind:'card', btn:'Why not profit max?', showing:'Two problems with the
   ]},
   tip:'Say why the assumption may fail, then evaluate: profit is still the long-run goal for most private firms.'};
 
-V.ob_all={kind:'mono', anim:true, two:true, btn:'All three objectives', showing:'Profit, revenue and sales max compared',
+V.ob_all={work:{"q": "A firm maximises profit at 40 units, where price is £30 and AC is £20. If it maximises revenue instead, it sells 60 units at £24, with AC of £21. By how much does supernormal profit change?", "steps": ["Profit maximisation: (£30 − £20) × 40 = <b>£400</b>.", "Revenue maximisation: (£24 − £21) × 60 = <b>£180</b>.", "Change = £180 − £400 = <b>−£220</b>."], "ans": "Supernormal profit falls by £220. Work out the profit at each output first, then subtract, and give a money change unless a percentage is asked for."}, traps:["On the diagram, output rises from profit max (MR = MC) to revenue max (MR = 0) to sales max (AR = AC). Price goes the other way.", "Examiners saw students subtract the wrong figures, or give a percentage when a money change was asked for."], kind:'mono', anim:true, two:true, btn:'All three objectives', showing:'Profit, revenue and sales max compared',
   title:'Three objectives on one diagram',
   lead:'Each objective picks a different point on the same diagram. Learn where each one sits, then how price and output compare.',
   plain:[
@@ -1016,7 +1016,7 @@ V.ob_all={kind:'mono', anim:true, two:true, btn:'All three objectives', showing:
   evaluation:'Moving from Q<sub>1</sub> to Q<sub>3</sub>, consumers get more output at a lower price, but the firm gives up profit. Which objective a firm follows depends on who controls it, and how closely the owners can watch the managers.',
   tip:'On the usual diagram, Q<sub>1</sub> &lt; Q<sub>2</sub> &lt; Q<sub>3</sub> and P<sub>1</sub> &gt; P<sub>2</sub> &gt; P<sub>3</sub>. Every price is read off AR.'};
 
-V.ob_sat={kind:'sat', anim:true, btn:'Minimum profit constraint', showing:'Satisficing: more output than profit max, less than sales max',
+V.ob_sat={terms:[["Satisficing", "Aiming for a satisfactory profit instead of the maximum, so that other goals can be met."]], kind:'sat', anim:true, btn:'Minimum profit constraint', showing:'Satisficing: more output than profit max, less than sales max',
   title:'Satisficing: the minimum profit constraint',
   lead:'Managers cannot ignore profit altogether, or the shareholders would replace them. So they chase their own objective only as far as a minimum level of profit allows.',
   chain:[
@@ -1060,7 +1060,7 @@ V.ob_ex={kind:'card', btn:'Real examples', showing:'Objectives you can point to'
   ]}};
 
 /* ------------------------- REVENUE (3.3.1) ------------------------- */
-V.rv_armr={kind:'rev', btn:'AR and MR', showing:'MR falls twice as steeply as AR',
+V.rv_armr={terms:[["Average revenue (AR)", "Total revenue ÷ quantity, which is the price."], ["Marginal revenue (MR)", "The change in total revenue from selling one more unit."]], work:{"q": "At £10 a firm sells 5 units. To sell a 6th it must cut the price to £9. What is MR on the 6th unit?", "steps": ["TR at 5 units = £10 × 5 = £50.", "TR at 6 units = £9 × 6 = £54.", "MR = £54 − £50 = <b>£4</b>: well below the new price of £9, because the cut applies to every unit."], "ans": "£4. MR is below AR whenever the firm has to cut its price to sell more."}, traps:["MR keeps falling past zero. Beyond the output where MR = 0, total revenue <b>falls</b>.", "For a straight-line AR, MR starts at the same point on the price axis and is <b>twice as steep</b>."], kind:'rev', btn:'AR and MR', showing:'MR falls twice as steeply as AR',
   title:'Average and marginal revenue',
   lead:'Most firms are price makers: to sell more, they have to cut the price. So average revenue slopes down, and marginal revenue falls even faster.',
   plain:[
@@ -1076,7 +1076,7 @@ V.rv_armr={kind:'rev', btn:'AR and MR', showing:'MR falls twice as steeply as AR
   ],
   tip:'Start AR and MR at the same point on the vertical axis. MR meets the output axis halfway to where AR would.'};
 
-V.rv_ped={kind:'rev', btn:'PED along AR', showing:'Elastic at the top, inelastic at the bottom',
+V.rv_ped={terms:[["Price elasticity of demand (PED)", "How much quantity demanded responds to a price change: % change in quantity ÷ % change in price."]], traps:["PED is not constant along a straight demand curve: elastic above the midpoint, 1 at it, inelastic below it."], kind:'rev', btn:'PED along AR', showing:'Elastic at the top, inelastic at the bottom',
   title:'Price elasticity of demand along AR',
   lead:'PED is not the same all the way along a straight demand curve. It falls as you move down the curve, and that decides whether MR is positive or negative.',
   chain:[
@@ -1088,7 +1088,7 @@ V.rv_ped={kind:'rev', btn:'PED along AR', showing:'Elastic at the top, inelastic
   evaluation:'This is why a football club that adds seats can end up with less revenue. If demand for tickets is inelastic, it has to cut prices so far to fill the extra seats that total revenue falls.',
   tip:'A profit maximiser always produces on the elastic part of AR, because MR = MC needs MR to be positive.'};
 
-V.rv_tr={kind:'rev', anim:true, two:true, btn:'Total revenue', showing:'TR is highest where MR = 0',
+V.rv_tr={traps:["Total revenue is highest where <b>MR = 0</b> and PED = 1, at the top of the TR hill."], kind:'rev', anim:true, two:true, btn:'Total revenue', showing:'TR is highest where MR = 0',
   title:'Total revenue: the TR hill',
   lead:'Total revenue rises while MR is positive, peaks where MR = 0, and falls once MR turns negative.',
   chain:[
@@ -1099,7 +1099,7 @@ V.rv_tr={kind:'rev', anim:true, two:true, btn:'Total revenue', showing:'TR is hi
   ],
   tip:'MR is the slope of TR. Where TR is steepest MR is highest, and where TR is flat at the top MR is zero.'};
 
-V.rv_taker={kind:'rev', btn:'Price taker', showing:'AR = MR, and TR is a straight line',
+V.rv_taker={terms:[["Price taker", "A firm that must accept the market price, because it is too small to affect it."]], traps:["For a price taker, AR = MR = price: one horizontal line. TR is a straight line from the origin."], kind:'rev', btn:'Price taker', showing:'AR = MR, and TR is a straight line',
   title:'Revenue for a price taker',
   lead:'A firm in perfect competition can sell as much as it likes at the market price, so its revenue curves look completely different.',
   chain:[
@@ -1122,7 +1122,7 @@ V.rv_calc={kind:'revcalc', btn:'Revenue calculator', showing:'Type in the prices
   tip:'The first unit’s MR equals its TR, because total revenue at zero output is zero.'};
 
 /* ------------------------- COSTS (3.3.2) ------------------------- */
-V.co_srlr={kind:'card', btn:'Fixed and variable', showing:'Short run and long run costs',
+V.co_srlr={terms:[["Fixed costs", "Costs that do not change with output in the short run, such as rent."], ["Variable costs", "Costs that rise with output, such as raw materials."], ["Short run", "The period when at least one factor of production is fixed."]], traps:["Say which cost has changed, then move the right curves. A fixed-cost change moves AFC and AC only; a variable-cost change moves MC, AVC and AC."], kind:'card', btn:'Fixed and variable', showing:'Short run and long run costs',
   title:'Fixed and variable costs',
   lead:'In the short run at least one factor of production, usually capital, is fixed. In the long run every factor can be changed, so every cost is variable.',
   card:{head:'Two kinds of cost', items:[
@@ -1133,7 +1133,7 @@ V.co_srlr={kind:'card', btn:'Fixed and variable', showing:'Short run and long ru
   ]},
   tip:'For a coffee shop, the rent is fixed. The beans, milk and cups are variable.'};
 
-V.co_total={kind:'cost', btn:'Total costs', showing:'TC = TFC + TVC',
+V.co_total={terms:[["Total cost", "Total fixed cost + total variable cost."]], kind:'cost', btn:'Total costs', showing:'TC = TFC + TVC',
   title:'Total cost curves',
   lead:'Total cost is fixed cost plus variable cost. The two total curves run parallel, with fixed cost as the gap between them.',
   chain:[
@@ -1144,7 +1144,7 @@ V.co_total={kind:'cost', btn:'Total costs', showing:'TC = TFC + TVC',
   ],
   tip:'The vertical gap between TC and TVC is TFC, and it is the same at every output.'};
 
-V.co_avg={kind:'cost', btn:'Average and marginal', showing:'ATC, AVC, AFC and MC',
+V.co_avg={terms:[["Average total cost (ATC)", "Total cost ÷ output, which equals AFC + AVC."], ["Marginal cost (MC)", "The change in total cost from producing one more unit."]], work:{"q": "A firm has fixed costs of £200. Making 50 units costs £300 in variable costs. Find AFC, AVC and ATC.", "steps": ["AFC = £200 ÷ 50 = <b>£4</b>.", "AVC = £300 ÷ 50 = <b>£6</b>.", "ATC = AFC + AVC = <b>£10</b>, the same as total cost £500 ÷ 50."], "ans": "AFC £4, AVC £6, ATC £10."}, traps:["AFC falls all the time as output rises, because the same fixed cost is spread more thinly. That is why AVC and ATC get closer together."], kind:'cost', btn:'Average and marginal', showing:'ATC, AVC, AFC and MC',
   title:'Average and marginal cost curves',
   lead:'The four short-run curves. Get their shapes and crossing points right, and every firm diagram follows from them.',
   plain:[
@@ -1155,7 +1155,7 @@ V.co_avg={kind:'cost', btn:'Average and marginal', showing:'ATC, AVC, AFC and MC
   ],
   tip:'ATC and AVC get closer together as output rises, because AFC keeps shrinking. They never touch.'};
 
-V.co_mcac={kind:'cost', btn:'Why MC cuts AC', showing:'MC below AC: AC falls; above: AC rises',
+V.co_mcac={traps:["MC cuts AVC and AC at their <b>lowest</b> points. Draw it that way every time."], kind:'cost', btn:'Why MC cuts AC', showing:'MC below AC: AC falls; above: AC rises',
   title:'Why MC cuts AC at its lowest point',
   lead:'This is maths, and examiners check it on every diagram: MC must cut AC at the lowest point of AC.',
   chain:[
@@ -1166,7 +1166,7 @@ V.co_mcac={kind:'cost', btn:'Why MC cuts AC', showing:'MC below AC: AC falls; ab
   ],
   tip:'Think of test scores. If your next mark is below your average, your average falls, even if that mark beats your last one.'};
 
-V.co_dr={kind:'cost', btn:'Diminishing returns', showing:'MP and AP mirror MC and AVC',
+V.co_dr={terms:[["Diminishing marginal returns", "As more of a variable factor is added to a fixed factor, the extra output from each extra unit eventually falls."]], traps:["Diminishing returns is a <b>short-run</b> idea, because one factor is fixed. Diseconomies of scale are the long-run idea. Do not mix them up."], kind:'cost', btn:'Diminishing returns', showing:'MP and AP mirror MC and AVC',
   title:'Diminishing marginal returns',
   lead:'In the short run capital is fixed. Adding more and more workers to the same machines explains the shape of the short-run cost curves.',
   chain:[
@@ -1190,7 +1190,7 @@ V.co_calc={kind:'costcalc', btn:'Cost calculator', showing:'Type in the costs to
   tip:'The starting numbers are Chelsea’s Electrics: rent of £10,000 a month and six staff on £18,000 a year are fixed; the products it buys in to sell are variable.'};
 
 /* ------------------------- ECONOMIES OF SCALE (3.3.3) ------------------------- */
-V.sc_lrac={kind:'lrac', btn:'LRAC', showing:'Economies, MES, diseconomies',
+V.sc_lrac={terms:[["Economies of scale", "Falling long-run average cost as output rises."], ["Minimum efficient scale (MES)", "The lowest output at which long-run average cost reaches its minimum."], ["Diseconomies of scale", "Rising long-run average cost as output rises."]], traps:["Economies of scale are a <b>long-run</b> idea, with every factor variable. Do not explain them with diminishing returns."], kind:'lrac', btn:'LRAC', showing:'Economies, MES, diseconomies',
   title:'Economies and diseconomies of scale',
   lead:'In the long run a firm can change all its inputs and choose its scale. The long-run average cost curve (LRAC) shows the lowest average cost at each output.',
   chain:[
@@ -1202,7 +1202,7 @@ V.sc_lrac={kind:'lrac', btn:'LRAC', showing:'Economies, MES, diseconomies',
   evaluation:'In many industries LRAC is flat for a long stretch after the MES, so firms of quite different sizes can have similar costs. Where the MES is a large share of the whole market there is only room for a few firms, which links economies of scale to market structure.',
   tip:'Economies of scale are a long-run idea. Short-run AC rises because of diminishing returns.'};
 
-V.sc_env={kind:'lrac', anim:true, two:true, btn:'SRAC and LRAC', showing:'British Airways adds more planes',
+V.sc_env={traps:["LRAC is the envelope of the SRAC curves: each SRAC touches it once. It only touches an SRAC at that SRAC’s lowest point at the MES."], kind:'lrac', anim:true, two:true, btn:'SRAC and LRAC', showing:'British Airways adds more planes',
   title:'Short-run and long-run average cost',
   lead:'Each short-run average cost curve (SRAC) is for one fixed amount of capital. LRAC wraps around all of them: it is the lowest cost the firm can reach at each output once capital can change.',
   chain:[
@@ -1226,7 +1226,7 @@ V.sc_fall={kind:'lrac', btn:'Always falling', showing:'Economies of scale never 
   evaluation:'Digital products work in a similar way. A streaming service pays a fortune to make a show, but one more subscriber costs it almost nothing, so its average cost per subscriber keeps falling as it grows. That is part of why a few giants dominate streaming.',
   tip:'Draw LRAC falling and flattening out, but never turning back up.'};
 
-V.sc_int={kind:'card', btn:'Internal economies', showing:'Six ways bigger means cheaper',
+V.sc_int={terms:[["Internal economies of scale", "Cost savings from a firm’s own growth, such as bulk buying or specialist managers."]], traps:["Name the type (technical, purchasing, managerial, financial, marketing, risk-bearing) and explain <b>why</b> the cost per unit falls."], kind:'card', btn:'Internal economies', showing:'Six ways bigger means cheaper',
   title:'Internal economies of scale',
   lead:'Internal economies of scale lower a firm’s long-run average cost as the firm itself grows. Learn six.',
   card:{head:'Six internal economies of scale', items:[
@@ -1250,7 +1250,7 @@ V.sc_dis={kind:'card', btn:'Internal diseconomies', showing:'Why big can get exp
   ]},
   evaluation:'Firms try to avoid diseconomies by splitting into smaller units, cutting layers of management, or demerging parts of the business.'};
 
-V.sc_ext={kind:'lrac', anim:true, shiftL:-14, btn:'External economies', showing:'The industry grows: LRAC shifts down',
+V.sc_ext={terms:[["External economies of scale", "Cost savings from the whole industry growing, such as skilled local workers or specialist suppliers nearby."]], traps:["External economies shift the whole LRAC <b>down</b>. Internal economies are a movement <b>along</b> it."], kind:'lrac', anim:true, shiftL:-14, btn:'External economies', showing:'The industry grows: LRAC shifts down',
   title:'External economies of scale',
   lead:'External economies lower a firm’s average cost because the whole industry grows, even if the firm itself stays the same size. LRAC shifts down.',
   chain:[
@@ -1262,7 +1262,7 @@ V.sc_ext={kind:'lrac', anim:true, shiftL:-14, btn:'External economies', showing:
   evaluation:'Games studios cluster in places such as Leamington Spa and Dundee. Universities there run games courses, so studios can hire skilled developers, and specialist firms for motion capture, testing and voice acting set up nearby.',
   tip:'Internal economies: a movement along LRAC. External economies: a shift of the whole curve.'};
 
-V.sc_extdis={kind:'lrac', anim:true, shiftL:14, btn:'External diseconomies', showing:'The industry grows too much: LRAC shifts up',
+V.sc_extdis={terms:[["External diseconomies of scale", "Rising costs from the whole industry growing, such as congestion or higher local wages."]], kind:'lrac', anim:true, shiftL:14, btn:'External diseconomies', showing:'The industry grows too much: LRAC shifts up',
   title:'External diseconomies of scale',
   lead:'If an industry grows too much, its firms compete for the same scarce resources and every firm’s costs rise. LRAC shifts up.',
   chain:[
@@ -1292,7 +1292,7 @@ V.sc_eval={kind:'card', btn:'Evaluation', showing:'How much do they matter?',
   ]}};
 
 /* ------------------------- PROFIT (3.3.4) ------------------------- */
-V.pf_calc={kind:'pcalc', btn:'Accounting vs economic', showing:'Type in the numbers to recalculate',
+V.pf_calc={terms:[["Accounting profit", "Revenue minus explicit costs."], ["Economic profit", "Revenue minus explicit costs and the opportunity cost of the owner’s time and money."]], kind:'pcalc', btn:'Accounting vs economic', showing:'Type in the numbers to recalculate',
   title:'Accounting profit and economic profit',
   lead:'Economists count the opportunity cost of what the owner gives up. Accountants do not. The same business can make a profit for one and a loss for the other.',
   chain:[
@@ -1304,7 +1304,7 @@ V.pf_calc={kind:'pcalc', btn:'Accounting vs economic', showing:'Type in the numb
   evaluation:'Supernormal profit is economic profit above zero. It signals to other firms that the industry is worth entering.',
   tip:'Tobi would give up a £30,000 data science job to run a DJ business. She needs £49,000 of revenue just to make normal profit.'};
 
-V.pf_types={kind:'profit', btn:'Supernormal, normal, loss', showing:'AR against AC at the chosen output',
+V.pf_types={terms:[["Normal profit", "The minimum profit needed to keep resources in their current use: where AR = AC."], ["Supernormal profit", "Profit above normal profit: AR is above AC."], ["Economic loss", "AR is below AC: the firm earns less than normal profit."]], work:{"q": "At the profit-maximising output of 100 units, price is £12 and average cost is £9. What is supernormal profit?", "steps": ["Profit per unit = AR − AC = £12 − £9 = £3.", "Supernormal profit = £3 × 100 = <b>£300</b>."], "ans": "£300: the box from AC up to the price, across to the output."}, traps:["Read profit at the output where <b>MR = MC</b>. Compare AR with AC at that output, not where AC is lowest."], kind:'profit', btn:'Supernormal, normal, loss', showing:'AR against AC at the chosen output',
   title:'Supernormal profit, normal profit and losses',
   lead:'The firm chooses its output where MR = MC. Then compare average revenue with average cost at that output.',
   plain:[
@@ -1315,7 +1315,7 @@ V.pf_types={kind:'profit', btn:'Supernormal, normal, loss', showing:'AR against 
   evaluation:'A loss in the short run does not mean the firm closes. It keeps producing as long as the price covers average variable cost, because its fixed costs have to be paid either way.',
   tip:'Read the profit or loss at the output where MR = MC, not where AR crosses AC.'};
 
-V.pf_max={kind:'profit', btn:'MR = MC', showing:'The biggest gap between TR and TC',
+V.pf_max={traps:["Profit is maximised where MR = MC <b>and</b> MC is rising, cutting MR from below."], kind:'profit', btn:'MR = MC', showing:'The biggest gap between TR and TC',
   title:'The profit-maximising rule: MR = MC',
   lead:'Profit is the gap between total revenue and total cost. It is biggest at the output where MR = MC. The firm here is a price taker, as in your handout.',
   chain:[
@@ -1327,7 +1327,7 @@ V.pf_max={kind:'profit', btn:'MR = MC', showing:'The biggest gap between TR and 
   evaluation:'This assumes firms know their marginal costs and revenues, and want as much profit as possible. In practice they rarely do either, which is why other objectives exist.',
   tip:'At Q<sub>1</sub>, TR and TC have the same slope. The slope of TR is MR and the slope of TC is MC.'};
 
-V.pf_stay={kind:'profit', btn:'Loss but stay open', showing:'Price covers AVC: stay open for now',
+V.pf_stay={terms:[["Short-run shut-down point", "The price equal to minimum AVC. Below it, the firm loses less by closing."]], work:{"q": "A firm sells at £8. Its AVC is £6 and its ATC is £10. Should it keep producing in the short run?", "steps": ["Price is below ATC, so it makes an economic loss of £2 on each unit.", "But price is above AVC, so each unit also covers £2 of fixed costs.", "If it shut, it would still pay all its fixed costs and lose more."], "ans": "Keep producing in the short run. If nothing changes, it leaves in the long run."}, traps:["Short run: stay open if price covers <b>AVC</b>. Long run: leave if price does not cover <b>ATC</b>."], kind:'profit', btn:'Loss but stay open', showing:'Price covers AVC: stay open for now',
   title:'Making a loss but staying open',
   lead:'If the price is below average total cost but above average variable cost, the firm makes a loss but should keep producing in the short run.',
   chain:[
@@ -1339,7 +1339,7 @@ V.pf_stay={kind:'profit', btn:'Loss but stay open', showing:'Price covers AVC: s
   evaluation:'In the long run the firm can get out of its fixed costs, so if the price stays below ATC it leaves the industry.',
   tip:'Loss if it stays open: the top box. Loss if it shuts: both boxes together, which is all of its fixed cost.'};
 
-V.pf_shut={kind:'profit', btn:'Shut-down points', showing:'Short run: lowest AVC; long run: lowest ATC',
+V.pf_shut={terms:[["Long-run shut-down point", "The price equal to minimum ATC. Below it, the firm leaves the industry in the long run."]], kind:'profit', btn:'Shut-down points', showing:'Short run: lowest AVC; long run: lowest ATC',
   title:'Short-run and long-run shut-down points',
   lead:'How low can the price go before the firm stops producing? The answer is different in the short run and the long run.',
   chain:[
@@ -1352,7 +1352,7 @@ V.pf_shut={kind:'profit', btn:'Shut-down points', showing:'Short run: lowest AVC
   tip:'Both shut-down points are where MC cuts the curve, because MC passes through the lowest point of AVC and of ATC. Try it with numbers: <a href="#br_calc">Stay or leave? calculator</a>.'};
 
 /* ------------------------- EFFICIENCY (3.4.1) ------------------------- */
-V.ef_prod={kind:'eff', btn:'Productive', showing:'Lowest point on AC',
+V.ef_prod={terms:[["Productive efficiency", "Producing at the lowest point of average cost, where MC = AC."]], traps:["Productive efficiency is about the firm’s costs (lowest AC). Allocative efficiency is about producing what consumers value (P = MC)."], kind:'eff', btn:'Productive', showing:'Lowest point on AC',
   title:'Productive efficiency',
   lead:'A firm is productively efficient when it produces at the lowest point on its average cost curve: the most output from the fewest resources.',
   chain:[
@@ -1363,7 +1363,7 @@ V.ef_prod={kind:'eff', btn:'Productive', showing:'Lowest point on AC',
   ],
   tip:'For the whole economy, productive efficiency means producing on the production possibility frontier.'};
 
-V.ef_alloc={kind:'eff', btn:'Allocative', showing:'P = MC, and what happens either side',
+V.ef_alloc={terms:[["Allocative efficiency", "Resources go to the goods consumers value most: price equals marginal cost (P = MC)."]], traps:["Examiners found many students unsure what allocative efficiency means. Learn the definition and the condition together: <b>P = MC</b>."], kind:'eff', btn:'Allocative', showing:'P = MC, and what happens either side',
   title:'Allocative efficiency: P = MC',
   lead:'Resources are allocated efficiently when the mix of goods produced matches what consumers want. The condition is price = marginal cost.',
   chain:[
@@ -1374,7 +1374,7 @@ V.ef_alloc={kind:'eff', btn:'Allocative', showing:'P = MC, and what happens eith
   ],
   tip:'Monopoly, oligopoly and monopolistic competition all produce where P &gt; MC, so they make too little.'};
 
-V.ef_ppf={kind:'eff', anim:true, btn:'On a PPF', showing:'Productive: on the frontier; dynamic: shifting it out',
+V.ef_ppf={terms:[["Dynamic efficiency", "Lower costs and better products over time, through investment and innovation."]], kind:'eff', anim:true, btn:'On a PPF', showing:'Productive: on the frontier; dynamic: shifting it out',
   title:'Productive and dynamic efficiency on a PPF',
   lead:'For the whole economy, productive efficiency means being on the production possibility frontier. Dynamic efficiency shifts the frontier out over time.',
   chain:[
@@ -1385,7 +1385,7 @@ V.ef_ppf={kind:'eff', anim:true, btn:'On a PPF', showing:'Productive: on the fro
   ],
   tip:'Productive efficiency is about using today’s resources well. Dynamic efficiency is about improving over time.'};
 
-V.ef_dyn={kind:'eff', anim:true, shift:{dx:-6,dy:-12}, btn:'Dynamic', showing:'Research shifts costs down over time',
+V.ef_dyn={traps:["Dynamic efficiency needs <b>supernormal profit to invest</b> and a reason to innovate. Say which of the two the market structure gives."], kind:'eff', anim:true, shift:{dx:-6,dy:-12}, btn:'Dynamic', showing:'Research shifts costs down over time',
   title:'Dynamic efficiency',
   lead:'A firm is dynamically efficient when it invests enough in research and development to bring in new production techniques and new products over time.',
   chain:[
@@ -1397,7 +1397,7 @@ V.ef_dyn={kind:'eff', anim:true, shift:{dx:-6,dy:-12}, btn:'Dynamic', showing:'R
   evaluation:'Many firms underinvest. Short-term thinking (inertia) means managers favour profit now, and firms may not train their workers for fear that rivals will poach them. Monopolies and oligopolies can afford research, but they only spend on it if competition, or the threat of it, pushes them to.',
   tip:'Static efficiency (productive and allocative) is at one moment in time. Dynamic efficiency is over time, and the two can conflict.'};
 
-V.ef_x={kind:'eff', anim:true, btn:'X-inefficiency', showing:'Actual AC above attainable AC',
+V.ef_x={terms:[["X-inefficiency", "Producing above the lowest possible AC because of organisational slack, often when competition is weak."]], traps:["X-inefficiency is a point <b>above</b> the AC curve, not a point on it."], kind:'eff', anim:true, btn:'X-inefficiency', showing:'Actual AC above attainable AC',
   title:'X-inefficiency',
   lead:'X-inefficiency occurs when actual average cost is greater than attainable average cost.',
   chain:[
@@ -1421,7 +1421,7 @@ V.ef_table={kind:'card', btn:'By market structure', showing:'Which efficiencies 
   tip:'Static efficiency and dynamic efficiency often pull in opposite directions. That trade-off is your evaluation.'};
 
 /* ------------------------- BARRIERS TO ENTRY ------------------------- */
-V.br_types={kind:'card', btn:'Barriers to entry', showing:'Seven barriers, with examples',
+V.br_types={terms:[["Barrier to entry", "Anything that makes it hard for a new firm to enter a market."]], traps:["Explain how each barrier works: why does it raise a newcomer’s costs or risk? A list of barriers earns little."], kind:'card', btn:'Barriers to entry', showing:'Seven barriers, with examples',
   title:'Barriers to entry',
   lead:'Barriers to entry are obstacles that stop new firms entering a market. How competitive a market is depends heavily on how easily new firms can get in.',
   card:{head:'Seven barriers', items:[
@@ -1435,7 +1435,7 @@ V.br_types={kind:'card', btn:'Barriers to entry', showing:'Seven barriers, with 
   ]},
   tip:'Limit pricing keeps firms out. Predatory pricing drives firms out.'};
 
-V.br_exit={kind:'card', btn:'Barriers to exit', showing:'What stops firms leaving',
+V.br_exit={terms:[["Barrier to exit", "Anything that makes it costly to leave a market, such as sunk costs or long contracts."]], kind:'card', btn:'Barriers to exit', showing:'What stops firms leaving',
   title:'Barriers to exit',
   lead:'Barriers to exit are obstacles to leaving a market. They matter for entry too: a firm that cannot get out easily will think twice before coming in.',
   card:{head:'Why leaving is hard', items:[
@@ -1456,7 +1456,7 @@ V.br_eos={kind:'lrac', btn:'Economies of scale', showing:'The incumbent’s cost
   ],
   evaluation:'This barrier is strongest where the minimum efficient scale is a large share of the market. New technology can lower it: selling online let small firms reach customers without big shops.'};
 
-V.br_limit={kind:'lrac', anim:true, btn:'Limit pricing', showing:'Price cut to just below the newcomer’s cost',
+V.br_limit={terms:[["Limit pricing", "Setting the price low enough that a new entrant, with higher costs, could not make a profit."]], traps:["Limit pricing sets the price at or just below the <b>entrant’s</b> AC. The incumbent still makes some profit."], kind:'lrac', anim:true, btn:'Limit pricing', showing:'Price cut to just below the newcomer’s cost',
   title:'Limit pricing',
   lead:'The incumbent deliberately sets a low price, limiting its own profit, so that a new firm with higher costs would make a loss if it entered.',
   chain:[
@@ -1468,7 +1468,7 @@ V.br_limit={kind:'lrac', anim:true, btn:'Limit pricing', showing:'Price cut to j
   evaluation:'Limit pricing gives up some profit now to protect profit in the future. It only works if the incumbent really does have lower costs, and if newcomers believe the low price will last. Consumers gain from the lower price, but miss out on extra competition.',
   tip:'The limit price is below the newcomer’s average cost but above the incumbent’s.'};
 
-V.br_pred={kind:'pred', anim:true, two:true, btn:'Predatory pricing', showing:'Price below AVC until the rival leaves',
+V.br_pred={terms:[["Predatory pricing", "Pricing below cost to drive a rival out, then raising prices again."]], traps:["Predatory pricing is <b>illegal</b> and loss-making in the short run. Limit pricing is legal and stays profitable."], kind:'pred', anim:true, two:true, btn:'Predatory pricing', showing:'Price below AVC until the rival leaves',
   title:'Predatory pricing',
   lead:'The incumbent sets a price below average variable cost, making a loss on purpose, to drive a rival out of the market. Then it raises the price again.',
   chain:[
@@ -1537,7 +1537,7 @@ TOPICS.bop={section:'macro',label:'Balance of payments',eyebrow:'Edexcel A · Th
 ]};
 
 /* ------------------------- GLOBALISATION ------------------------- */
-V.gl_causes={kind:'card', btn:'Causes', showing:'Four causes, each with a limit',
+V.gl_causes={terms:[["Globalisation", "The growing interconnection and interdependence of economies through trade, migration, capital flows and technology."], ["Multinational company (MNC)", "A firm that produces or sells in more than one country."], ["Trade liberalisation", "Cutting tariffs and other barriers to trade."]], traps:["A question on the <b>causes</b> of globalisation wants why it happened (trade liberalisation, transport, communication, politics), not its effects."], kind:'card', btn:'Causes', showing:'Four causes, each with a limit',
   title:'Why globalisation happened',
   lead:'Globalisation is the growing interconnection and interdependence of economies through trade, migration, financial flows and technology.',
   card:{head:'Four causes', items:[
@@ -1548,7 +1548,7 @@ V.gl_causes={kind:'card', btn:'Causes', showing:'Four causes, each with a limit'
   ]},
   tip:'The result is more multinational companies (MNCs): firms that produce and sell in many countries.'};
 
-V.gl_dev={kind:'card', btn:'Developed countries', showing:'Gains and costs for richer countries',
+V.gl_dev={terms:[["Deindustrialisation", "The long-run fall in manufacturing’s share of output and jobs."], ["Contagion", "A shock in one economy spreading to others through trade and financial links."]], traps:["Say who gains and who loses. Consumers gain a little each; particular workers and regions lose a lot."], kind:'card', btn:'Developed countries', showing:'Gains and costs for richer countries',
   title:'Impact on developed countries',
   lead:'The effects of globalisation depend on the kind of country. For a developed economy such as the UK:',
   card:{head:'Developed countries', items:[
@@ -1557,7 +1557,7 @@ V.gl_dev={kind:'card', btn:'Developed countries', showing:'Gains and costs for r
   ]},
   evaluation:'The gains are spread thinly across all consumers, while the losses fall heavily on particular regions and workers. That is why globalisation can raise national income and still be unpopular.'};
 
-V.gl_ldc={kind:'card', btn:'Developing countries', showing:'Gains and costs for poorer countries',
+V.gl_ldc={terms:[["Prebisch–Singer hypothesis", "Primary goods’ prices rise more slowly than manufactured goods’ prices, so primary exporters’ terms of trade worsen over time."], ["Brain drain", "Skilled workers leaving for higher pay abroad."]], traps:["Developing countries are not all the same: the effects depend on what they export and how far they can diversify."], kind:'card', btn:'Developing countries', showing:'Gains and costs for poorer countries',
   title:'Impact on developing countries',
   lead:'Developing countries gain in different ways, and face a problem with what they export.',
   card:{head:'Developing countries', items:[
@@ -1576,7 +1576,7 @@ V.gl_ex={kind:'card', btn:'Real examples', showing:'Globalisation you can point 
   ]}};
 
 /* ------------------------- TRADE ------------------------- */
-V.ca_abs={kind:'ppc', ppc:'abs', btn:'Absolute advantage', showing:'One country is better at each good',
+V.ca_abs={terms:[["Absolute advantage", "Producing more of a good than another country with the same resources."], ["Specialisation", "Concentrating on a narrow range of goods."]], traps:["Absolute advantage alone does not explain trade. The gains come from <b>comparative</b> advantage, which compares opportunity costs."], kind:'ppc', ppc:'abs', btn:'Absolute advantage', showing:'One country is better at each good',
   title:'Absolute advantage',
   lead:'A country has an absolute advantage in a good when it can produce more of it than another country using the same resources.',
   chain:[
@@ -1587,7 +1587,7 @@ V.ca_abs={kind:'ppc', ppc:'abs', btn:'Absolute advantage', showing:'One country 
   ],
   tip:'More output from the same resources: that is how trade helps with the basic economic problem.'};
 
-V.ca_comp={kind:'ppc', ppc:'comp', btn:'Comparative advantage', showing:'Compare opportunity costs, not outputs',
+V.ca_comp={terms:[["Comparative advantage", "Producing a good at a lower opportunity cost than another country."], ["Opportunity cost", "The next best alternative given up."]], work:{"q": "The UK can make 600 petrol or 600 clothes. Senegal can make 200 petrol or 400 clothes. Who has the comparative advantage in each good?", "steps": ["UK: 1 petrol costs 600 ÷ 600 = <b>1 clothes</b>. Senegal: 1 petrol costs 400 ÷ 200 = <b>2 clothes</b>.", "The UK gives up less to make petrol, so it has the comparative advantage in <b>petrol</b>.", "UK: 1 clothes costs 1 petrol. Senegal: 1 clothes costs 200 ÷ 400 = <b>0.5 petrol</b>.", "Senegal gives up less to make clothes, so it has the comparative advantage in <b>clothes</b>."], "ans": "The UK specialises in petrol and Senegal in clothes. Write both opportunity costs before saying who specialises in what."}, traps:["Compare <b>opportunity costs</b>, not outputs. A country can be worse at making everything and still have a comparative advantage.", "Opportunity cost = what you give up ÷ what you gain. Getting it upside down is the most common slip."], kind:'ppc', ppc:'comp', btn:'Comparative advantage', showing:'Compare opportunity costs, not outputs',
   title:'Comparative advantage',
   lead:'Even if one country is better at producing everything, both can still gain from trade. What matters is opportunity cost.',
   chain:[
@@ -1598,7 +1598,7 @@ V.ca_comp={kind:'ppc', ppc:'comp', btn:'Comparative advantage', showing:'Compare
   ],
   tip:'The slope of each PPC is the opportunity cost. If the slopes differ, there are gains from trade.'};
 
-V.ca_gain={kind:'ppc', ppc:'gain', anim:true, btn:'Gains from trade', showing:'Trading at 1 clothes = 0.75 petrol',
+V.ca_gain={terms:[["Trading rate", "The rate at which one good swaps for the other. It must lie between the two countries’ opportunity costs."], ["Trading possibility curve (TPC)", "What a country can consume by specialising and trading. It lies outside its PPC."]], traps:["The trading rate must lie <b>between</b> the two opportunity costs, or one country would be better off not trading."], kind:'ppc', ppc:'gain', anim:true, btn:'Gains from trade', showing:'Trading at 1 clothes = 0.75 petrol',
   title:'Gains from trade',
   lead:'Each country specialises in the good where it has the comparative advantage. They then trade at a rate between their two opportunity costs.',
   chain:[
@@ -1609,7 +1609,7 @@ V.ca_gain={kind:'ppc', ppc:'gain', anim:true, btn:'Gains from trade', showing:'T
   ],
   tip:'The TPC starts from the good the country specialises in, and pivots outward.'};
 
-V.ca_tot={kind:'ppc', ppc:'tot', anim:true, btn:'Terms of trade shift', showing:'Now 1 clothes = 0.6 petrol',
+V.ca_tot={traps:["A change in the terms of trade changes <b>how</b> the gains are shared, not whether both gain, as long as the rate stays between the two opportunity costs."], kind:'ppc', ppc:'tot', anim:true, btn:'Terms of trade shift', showing:'Now 1 clothes = 0.6 petrol',
   title:'When the terms of trade shift',
   lead:'The rate at which the two goods are exchanged is the terms of trade. It decides how the gains are shared.',
   chain:[
@@ -1630,7 +1630,7 @@ V.ca_calc={kind:'cacalc', btn:'Opportunity cost calculator', showing:'Type in th
   ],
   tip:'In the exam, write out both opportunity costs before you say who specialises in what.'};
 
-V.tot_calc={kind:'totcalc', btn:'Terms of trade calculator', showing:'Export prices against import prices',
+V.tot_calc={terms:[["Terms of trade", "Index of export prices ÷ index of import prices × 100."], ["Improvement", "A rise in the terms of trade: each unit of exports pays for more imports."]], work:{"q": "Export prices rise from an index of 100 to 110. Import prices rise from 100 to 104. What happens to the terms of trade?", "steps": ["Terms of trade = 110 ÷ 104 × 100 = <b>105.8</b> (to 1 d.p.).", "They started at 100 ÷ 100 × 100 = 100, so they have risen by 5.8 points: an <b>improvement</b>.", "Each unit of exports now pays for more imports."], "ans": "An improvement, to 105.8. Whether it is good news depends on PED for exports: if demand is elastic, export revenue may fall."}, traps:["An improvement is not always good: dearer exports lose sales if demand for them is price elastic.", "The answer is an index number, not a percentage or an amount of money."], kind:'totcalc', btn:'Terms of trade calculator', showing:'Export prices against import prices',
   title:'Terms of trade',
   lead:'Terms of trade = index of export prices ÷ index of import prices × 100.',
   chain:[
@@ -1648,7 +1648,7 @@ V.ca_ex={kind:'card', btn:'Real examples', showing:'Who specialises in what',
     EX('The UK: games, music and finance','The UK’s advantage is in skilled services. Grand Theft Auto is developed by Rockstar North in Edinburgh, and UK music and banking sell worldwide.','Manufacturing shrank as production moved abroad, leaving structural unemployment in some regions.','What it shows','The catch')
   ]}};
 
-V.ca_limits={kind:'card', btn:'Limits of the theory', showing:'Why real trade does not follow the model exactly',
+V.ca_limits={traps:["These are your evaluation points for any question on specialisation and trade. Pick the one that fits the context instead of listing all five."], kind:'card', btn:'Limits of the theory', showing:'Why real trade does not follow the model exactly',
   title:'Limits of comparative advantage',
   lead:'The theory rests on assumptions that often do not hold.',
   card:{head:'Evaluation points', items:[
@@ -1657,7 +1657,7 @@ V.ca_limits={kind:'card', btn:'Limits of the theory', showing:'Why real trade do
   ]}};
 
 /* ------------------------- PROTECTIONISM ------------------------- */
-V.tf_free={kind:'trade', tr:'free', btn:'Free trade', showing:'Imports fill the gap at the world price',
+V.tf_free={terms:[["World price", "The price at which the country can import as much as it wants."], ["Free trade", "Trade with no tariffs, quotas or other barriers."]], traps:["World supply is horizontal at the world price: the country is too small to move the world price."], kind:'trade', tr:'free', btn:'Free trade', showing:'Imports fill the gap at the world price',
   title:'Free trade',
   lead:'The country can import as much as it wants at the world price, so world supply is drawn as a horizontal line.',
   chain:[
@@ -1668,7 +1668,7 @@ V.tf_free={kind:'trade', tr:'free', btn:'Free trade', showing:'Imports fill the 
   ],
   tip:'World supply is perfectly elastic because foreign producers can meet any amount this country demands.'};
 
-V.tf_tariff={kind:'trade', tr:'tariff', anim:true, btn:'Tariff', showing:'A tariff raises the price of imports',
+V.tf_tariff={terms:[["Tariff", "A tax on imports."], ["Protectionism", "Policies that shield domestic producers from foreign competition."]], traps:["Show the tariff as world supply moving <b>up</b> by the size of the tariff, and mark both changes: domestic supply rises (Q<sub>1</sub> to Q<sub>3</sub>) and demand falls (Q<sub>2</sub> to Q<sub>4</sub>)."], kind:'trade', tr:'tariff', anim:true, btn:'Tariff', showing:'A tariff raises the price of imports',
   title:'A tariff is imposed',
   lead:'A tariff is a tax on imports. It raises the price that imports sell for at home.',
   chain:[
@@ -1680,7 +1680,7 @@ V.tf_tariff={kind:'trade', tr:'tariff', anim:true, btn:'Tariff', showing:'A tari
   compare:{vs:'After the tariff',rows:[['Price','↑ higher'],['Domestic output','↑ higher'],['Consumption','↓ lower'],['Imports','↓ lower']]},
   evaluation:'A tariff works poorly if demand for the import is inelastic, because people keep buying it, or if domestic firms cannot easily expand output.'};
 
-V.tf_areas={kind:'trade', tr:'areas', btn:'Who gains and loses', showing:'Four areas between the two prices',
+V.tf_areas={work:{"q": "The world price is £10 and a £2 tariff is added. After the tariff, domestic firms supply 30 units and consumers buy 50. How much tariff revenue is raised?", "steps": ["Imports after the tariff = 50 − 30 = <b>20 units</b>.", "Revenue = tariff × imports = £2 × 20 = <b>£40</b>. That is area C."], "ans": "£40. Revenue is the tariff times the imports that remain, not times total consumption."}, traps:["Tariff revenue is the tariff × <b>remaining imports</b> (area C), not × total consumption.", "The deadweight losses are B and D: B from inefficient domestic production, D from lost consumption."], kind:'trade', tr:'areas', btn:'Who gains and loses', showing:'Four areas between the two prices',
   title:'Who gains and who loses',
   lead:'Label the four areas between the two prices. Consumers lose all of them, A + B + C + D, and each area ends up somewhere different.',
   plain:[
@@ -1692,7 +1692,7 @@ V.tf_areas={kind:'trade', tr:'areas', btn:'Who gains and loses', showing:'Four a
   compare:{vs:'Winners and losers',rows:[['Consumers','lose'],['Domestic firms','gain'],['Government','gains'],['Foreign firms','lose']]},
   evaluation:'Tariffs invite retaliation, so exporters can lose their foreign markets. They are also regressive, because lower-income households spend a larger share of their income on goods.'};
 
-V.qt={kind:'trade', tr:'quota', anim:true, btn:'Quota', showing:'A limit on the quantity imported',
+V.qt={terms:[["Quota", "A physical limit on the quantity of a good that can be imported."]], traps:["With a quota, area C goes to the <b>foreign firms</b> still allowed in, who sell at the higher price. The government gets nothing."], kind:'trade', tr:'quota', anim:true, btn:'Quota', showing:'A limit on the quantity imported',
   title:'A quota',
   lead:'A quota is a physical limit on the quantity of a good that can be imported.',
   chain:[
@@ -1704,7 +1704,7 @@ V.qt={kind:'trade', tr:'quota', anim:true, btn:'Quota', showing:'A limit on the 
   compare:{vs:'After the quota',rows:[['Price','↑ higher'],['Domestic output','↑ higher'],['Imports','↓ lower'],['Tax revenue','none']]},
   evaluation:'A quota gives certainty over the quantity of imports, but unlike a tariff it raises no revenue. Protected domestic firms may also become X-inefficient.'};
 
-V.sb={kind:'trade', tr:'subsidy', anim:true, btn:'Subsidy', showing:'A subsidy shifts domestic supply right',
+V.sb={terms:[["Domestic subsidy", "A payment per unit to domestic producers that lowers their costs."]], traps:["Under a subsidy consumers still pay the world price. It is the <b>domestic supply curve</b> that shifts, not world supply."], kind:'trade', tr:'subsidy', anim:true, btn:'Subsidy', showing:'A subsidy shifts domestic supply right',
   title:'A subsidy to domestic producers',
   lead:'The government pays domestic firms for each unit they make, which lowers their costs.',
   chain:[
@@ -1716,14 +1716,14 @@ V.sb={kind:'trade', tr:'subsidy', anim:true, btn:'Subsidy', showing:'A subsidy s
   compare:{vs:'After the subsidy',rows:[['Price','= same'],['Domestic output','↑ higher'],['Imports','↓ lower'],['Government','pays']]},
   evaluation:'Consumers do not pay more, but taxpayers do, and that money has an opportunity cost. Firms may come to depend on the subsidy and stop trying to cut costs.'};
 
-V.pr_other={kind:'card', btn:'Non-tariff barriers', showing:'Other ways to restrict trade',
+V.pr_other={terms:[["Non-tariff barrier", "Any restriction on trade other than a tariff, such as a quota, an embargo or a product standard."]], kind:'card', btn:'Non-tariff barriers', showing:'Other ways to restrict trade',
   title:'Other restrictions on trade',
   lead:'Not all protection is a tax or a limit on quantity.',
   card:{head:'Non-tariff barriers', items:[
     PT('Embargo',[['What','A ban on trade in certain goods or with a certain country.'],['Example','The UK stopped buying energy from Russia.']]),
     PT('Technical barriers',[['What','Product standards, labelling rules and paperwork that raise costs for foreign firms.'],['Example','The UK does not accept chlorine-washed chicken, which protects UK chicken farmers.']]),
     PT('Export subsidies',[['What','Payments that lower costs for domestic firms so they can sell more cheaply.'],['Example','Farm support under the EU’s Common Agricultural Policy.']]),
-    PT('Capital controls',[['What','Limits on how much money can move into or out of a country.'],['','']])
+    PT('Capital controls',[['What','Limits on how much money can move into or out of a country.'],['Example','Iceland limited money leaving the country after its banks collapsed.']])
   ]},
   tip:'Developing countries find technical standards hardest to meet, so these barriers often hit them most.'};
 
@@ -1736,7 +1736,7 @@ V.pr_ex={kind:'card', btn:'Real examples', showing:'Protectionism in the news',
     EX('Chlorinated chicken','The UK does not allow chicken washed in chlorine, which is common in the US.','A technical barrier: a food standard that also shields UK farmers from cheaper imports.','What happened','What it shows')
   ]}};
 
-V.pr_eval={kind:'card', btn:'For and against', showing:'The case for and against protection',
+V.pr_eval={traps:["Evaluate with <b>PED for imports</b>, how fast domestic firms can expand, and the risk of retaliation. Then judge: does protection buy time, or prop up inefficiency?"], kind:'card', btn:'For and against', showing:'The case for and against protection',
   title:'Evaluating protectionism',
   lead:'Most arguments for protection are about buying time. Most arguments against are about efficiency and retaliation.',
   card:{head:'The arguments', items:[
@@ -1746,7 +1746,7 @@ V.pr_eval={kind:'card', btn:'For and against', showing:'The case for and against
   evaluation:'How well protection works depends on the price elasticity of demand for imports, how easily domestic firms can expand, and the size of the country: a large economy is less likely to face retaliation.'};
 
 /* ------------------------- TRADING BLOCS ------------------------- */
-V.bl_stages={kind:'card', btn:'Stages of integration', showing:'Each stage adds one more feature',
+V.bl_stages={terms:[["Free trade area", "Members remove trade barriers between themselves but keep their own tariffs on outsiders."], ["Customs union", "A free trade area plus a common external tariff."], ["Common external tariff", "The same tariff charged by every member on goods from outside."]], traps:["The difference between a free trade area and a customs union is the <b>common external tariff</b>. Say so in so many words."], kind:'card', btn:'Stages of integration', showing:'Each stage adds one more feature',
   title:'Stages of economic integration',
   lead:'Economic integration is an agreement between countries to remove barriers to trade, and at later stages to the movement of workers and capital.',
   card:{head:'From least to most integrated', items:[
@@ -1758,7 +1758,7 @@ V.bl_stages={kind:'card', btn:'Stages of integration', showing:'Each stage adds 
   ]},
   tip:'Each stage keeps everything from the stage before and adds one thing. Learn the one thing each adds.'};
 
-V.bl_mu={kind:'card', btn:'Monetary union', showing:'One currency, one interest rate',
+V.bl_mu={terms:[["Monetary union", "Members share one currency and one central bank, so one interest rate."], ["Optimal currency area", "A group of economies similar enough that one interest rate suits them all."]], traps:["The big cost is losing your own interest rate and exchange rate. Link it to a member in recession that cannot devalue."], kind:'card', btn:'Monetary union', showing:'One currency, one interest rate',
   title:'Monetary union: the Eurozone',
   lead:'Members share a currency and a central bank. That removes some costs and one important tool.',
   card:{head:'The Eurozone', items:[
@@ -1767,7 +1767,7 @@ V.bl_mu={kind:'card', btn:'Monetary union', showing:'One currency, one interest 
     PT('Conditions for success',[['Similar economies','Members’ booms and recessions need to happen together, so one interest rate fits all.'],['Flexible labour markets','Workers need to be able to move from high-unemployment regions to where the jobs are. Language differences make this hard.']])
   ]}};
 
-V.bl_create={kind:'trade', tr:'create', anim:true, btn:'Trade creation', showing:'Removing the tariff lowers the price',
+V.bl_create={terms:[["Trade creation", "Joining a customs union replaces dearer domestic output with cheaper imports from members."]], traps:["The net gain is <b>B + D</b>: consumers gain A + B + C + D, but producers lose A and the government loses the tariff revenue C."], kind:'trade', tr:'create', anim:true, btn:'Trade creation', showing:'Removing the tariff lowers the price',
   title:'Trade creation',
   lead:'Joining a customs union removes the tariff on imports from other members, so the country can buy from more efficient producers.',
   chain:[
@@ -1779,7 +1779,7 @@ V.bl_create={kind:'trade', tr:'create', anim:true, btn:'Trade creation', showing
   compare:{vs:'After joining',rows:[['Price','↓ lower'],['Consumers','gain'],['Domestic firms','lose'],['Net welfare','↑ B + D']]},
   tip:'It is the tariff diagram run backwards.'};
 
-V.bl_divert={kind:'trade', tr:'divert', anim:true, two:true, btn:'Trade diversion', showing:'Imports switch to a dearer producer',
+V.bl_divert={terms:[["Trade diversion", "Joining a customs union switches imports from the cheapest producer in the world to a dearer member."]], traps:["Trade diversion has a <b>loss</b>, area E, as well as the consumer gain. On this test the union is worth joining only if B + D is bigger than E."], kind:'trade', tr:'divert', anim:true, two:true, btn:'Trade diversion', showing:'Imports switch to a dearer producer',
   title:'Trade diversion',
   lead:'A customs union can also switch imports away from the cheapest producer in the world to a dearer one inside the union.',
   chain:[
@@ -1800,7 +1800,7 @@ V.bl_ex={kind:'card', btn:'Real examples', showing:'Blocs in practice',
     EX('The US, Mexico and Canada','Their free trade agreement, which replaced NAFTA, lets car parts cross the three borders without tariffs while each country keeps its own tariffs on everyone else.','A free trade area: no common external tariff.','What happened','What it shows')
   ]}};
 
-V.bl_wto={kind:'card', btn:'The WTO', showing:'Its role, and where blocs clash with it',
+V.bl_wto={terms:[["World Trade Organisation (WTO)", "The body that sets the rules for trade between its members, negotiates cuts in barriers and settles disputes."]], traps:["Trading blocs can <b>clash</b> with the WTO: a common external tariff treats non-members worse than members."], kind:'card', btn:'The WTO', showing:'Its role, and where blocs clash with it',
   title:'The World Trade Organisation',
   lead:'The WTO promotes free trade between its members.',
   card:{head:'The WTO', items:[
@@ -1810,7 +1810,7 @@ V.bl_wto={kind:'card', btn:'The WTO', showing:'Its role, and where blocs clash w
   tip:'To show the effect of the WTO on a diagram, draw the tariff diagram with the tariff being removed.'};
 
 /* ------------------------- EXCHANGE RATES ------------------------- */
-V.fx_base={kind:'fx', btn:'The market for pounds', showing:'Supply and demand set the exchange rate',
+V.fx_base={terms:[["Exchange rate", "The price of one currency in terms of another."], ["Floating exchange rate", "A rate set by supply and demand, with no target."]], traps:["Demand for £ comes from foreigners buying UK things; supply of £ comes from UK residents buying foreign things. Mix them up and every shift goes the wrong way."], kind:'fx', btn:'The market for pounds', showing:'Supply and demand set the exchange rate',
   title:'The market for pounds',
   lead:'An exchange rate is the price of one currency in terms of another. In a floating system it is set by supply and demand.',
   plain:[
@@ -1820,7 +1820,7 @@ V.fx_base={kind:'fx', btn:'The market for pounds', showing:'Supply and demand se
   ],
   tip:'Label the axes "Price of £ (in $)" and "Quantity of £". Do not write "price" and "quantity" alone.'};
 
-V.fx_dup={kind:'fx', anim:true, d1:24, btn:'Demand for £ rises', showing:'Appreciation: the pound rises',
+V.fx_dup={terms:[["Appreciation", "A rise in a floating currency’s value caused by market forces."], ["Hot money", "Short-term money that moves between countries chasing the best interest rate."]], work:{"q": "£1 = $1.25 and a UK firm sells a game for £40. The pound appreciates to £1 = $1.40. What happens to the dollar price?", "steps": ["Before: £40 × 1.25 = <b>$50</b>.", "After: £40 × 1.40 = <b>$56</b>.", "The same game now costs Americans $6 more, so UK exports are less competitive."], "ans": "It rises from $50 to $56: an appreciation makes exports dearer abroad."}, traps:["After an appreciation, imports get <b>cheaper</b> and exports <b>dearer</b>. SPICED: Strong Pound, Imports Cheap, Exports Dear."], kind:'fx', anim:true, d1:24, btn:'Demand for £ rises', showing:'Appreciation: the pound rises',
   title:'Demand for pounds rises',
   lead:'Anything that makes foreigners want more pounds pushes the exchange rate up.',
   chain:[
@@ -1831,7 +1831,7 @@ V.fx_dup={kind:'fx', anim:true, d1:24, btn:'Demand for £ rises', showing:'Appre
   ],
   compare:{vs:'After the appreciation',rows:[['Exchange rate','↑ higher'],['Imports','cheaper'],['Exports','dearer'],['Holidays abroad','cheaper']]}};
 
-V.fx_sup={kind:'fx', anim:true, s1:24, btn:'Supply of £ rises', showing:'Depreciation: the pound falls',
+V.fx_sup={terms:[["Depreciation", "A fall in a floating currency’s value caused by market forces."]], traps:["A depreciation makes exports cheaper and imports dearer. WPIDEC: Weak Pound, Imports Dear, Exports Cheap."], kind:'fx', anim:true, s1:24, btn:'Supply of £ rises', showing:'Depreciation: the pound falls',
   title:'Supply of pounds rises',
   lead:'Anything that makes people sell more pounds pushes the exchange rate down.',
   chain:[
@@ -1842,7 +1842,7 @@ V.fx_sup={kind:'fx', anim:true, s1:24, btn:'Supply of £ rises', showing:'Deprec
   ],
   compare:{vs:'After the depreciation',rows:[['Exchange rate','↓ lower'],['Imports','dearer'],['Exports','cheaper'],['Holidays abroad','dearer']]}};
 
-V.fx_fix_buy={kind:'fx', anim:true, two:true, s1:24, d2:24, btn:'Defending a fixed rate', showing:'The central bank buys pounds to hold the rate',
+V.fx_fix_buy={terms:[["Fixed exchange rate", "A rate pegged to another currency and defended by the central bank."], ["Foreign currency reserves", "Foreign money and gold the central bank holds, and can use to buy its own currency."]], traps:["To hold its currency <b>up</b>, the central bank <b>buys</b> it (demand shifts right) or raises interest rates."], kind:'fx', anim:true, two:true, s1:24, d2:24, btn:'Defending a fixed rate', showing:'The central bank buys pounds to hold the rate',
   title:'Defending a fixed rate',
   lead:'In a fixed system the central bank commits to keeping the rate at e<sub>1</sub>, so it has to cancel out any pressure on it.',
   chain:[
@@ -1853,7 +1853,7 @@ V.fx_fix_buy={kind:'fx', anim:true, two:true, s1:24, d2:24, btn:'Defending a fix
   ],
   evaluation:'Reserves run out, and high interest rates hurt the domestic economy. On Black Wednesday in 1992 the UK could not keep the pound inside the Exchange Rate Mechanism and had to let it fall.'};
 
-V.fx_fix_sell={kind:'fx', anim:true, two:true, cur:true, d1:24, s2:24, btn:'Keeping a currency weak', showing:'The central bank sells its own currency',
+V.fx_fix_sell={traps:["To keep its currency <b>down</b>, the central bank <b>sells</b> it (supply shifts right) or cuts interest rates."], kind:'fx', anim:true, two:true, cur:true, d1:24, s2:24, btn:'Keeping a currency weak', showing:'The central bank sells its own currency',
   title:'Keeping a currency weak',
   lead:'A country may want a low exchange rate to keep its exports cheap. China has done this with the yuan.',
   chain:[
@@ -1864,7 +1864,7 @@ V.fx_fix_sell={kind:'fx', anim:true, two:true, cur:true, d1:24, s2:24, btn:'Keep
   ],
   evaluation:'Trading partners may see this as unfair and respond with tariffs, as the US has with China.'};
 
-V.fx_sys={kind:'card', btn:'Floating vs fixed', showing:'The case for each system',
+V.fx_sys={terms:[["Managed exchange rate", "The rate floats, but the central bank steps in when it moves too far."], ["Hedging", "Paying to lock in an exchange rate now, to avoid the risk of it moving later."]], kind:'card', btn:'Floating vs fixed', showing:'The case for each system',
   title:'Floating and fixed systems compared',
   lead:'A managed system sits between the two: the rate floats, but the central bank steps in when it moves too far.',
   card:{head:'Two systems', items:[
@@ -1874,7 +1874,7 @@ V.fx_sys={kind:'card', btn:'Floating vs fixed', showing:'The case for each syste
     PT('Fixed: against',[['Reserves','The central bank needs large reserves of foreign currency to defend the rate.'],['Lost control','Interest rates have to be set to hold the rate, even in a recession.'],['Speculative attack','If traders think the rate cannot hold, they sell the currency and can force it down.']])
   ]}};
 
-V.fx_adas={kind:'adas', anim:true, da:22, btn:'On the economy', showing:'Depreciation shifts AD right',
+V.fx_adas={traps:["A depreciation shifts AD right <b>and</b> can shift SRAS left, because imported inputs cost more. Show both if the question is about inflation."], kind:'adas', anim:true, da:22, btn:'On the economy', showing:'Depreciation shifts AD right',
   title:'A depreciation and the economy',
   lead:'A weaker pound makes exports cheaper and imports dearer, so net exports rise.',
   chain:[
@@ -1886,7 +1886,7 @@ V.fx_adas={kind:'adas', anim:true, da:22, btn:'On the economy', showing:'Depreci
   compare:{vs:'After a depreciation',rows:[['Growth','↑ higher'],['Unemployment','↓ lower'],['Inflation','↑ higher'],['Foreign investment','UK assets cheaper']]},
   evaluation:'How much output rises depends on spare capacity: close to full capacity, most of the effect is on prices. It also depends on the Marshall-Lerner condition and the J-curve.'};
 
-V.fx_j={kind:'jcurve', anim:true, btn:'J-curve', showing:'Worse first, then better',
+V.fx_j={terms:[["J-curve", "The current account worsens straight after a depreciation, then improves as demand responds."]], traps:["Explain the dip with <b>inelastic short-run demand</b>: contracts, habits, time to notice. The J-curve and Marshall–Lerner go together."], kind:'jcurve', anim:true, btn:'J-curve', showing:'Worse first, then better',
   title:'The J-curve',
   lead:'After a depreciation the current account usually gets worse before it gets better.',
   chain:[
@@ -1897,7 +1897,7 @@ V.fx_j={kind:'jcurve', anim:true, btn:'J-curve', showing:'Worse first, then bett
   ],
   tip:'Short run: demand is inelastic, so Marshall-Lerner fails. Long run: demand is elastic, so it holds. That is why the curve is J-shaped.'};
 
-V.fx_ml={kind:'ml', btn:'Marshall-Lerner', showing:'Move the sliders to test the condition',
+V.fx_ml={terms:[["Marshall–Lerner condition", "A depreciation improves the current account only if PED for exports + PED for imports > 1."]], work:{"q": "PED for UK exports is 0.4 and PED for imports is 0.3. Will a depreciation improve the current account?", "steps": ["Add the elasticities, ignoring minus signs: 0.4 + 0.3 = <b>0.7</b>.", "0.7 is less than 1, so the condition <b>fails</b>.", "Quantities respond too little to make up for the price changes, so the current account gets worse."], "ans": "No, not at first: 0.7 < 1. Over time demand becomes more elastic, which is why the J-curve turns up."}, traps:["Use the elasticities <b>without minus signs</b> and add them: the test is whether the sum is above 1, not each one."], kind:'ml', btn:'Marshall-Lerner', showing:'Move the sliders to test the condition',
   title:'The Marshall-Lerner condition',
   lead:'A depreciation improves the current account only if the price elasticities of demand for exports and for imports add up to more than 1.',
   chain:[
@@ -1930,22 +1930,69 @@ V.fx_terms={kind:'card', btn:'Key terms', showing:'Four words that get mixed up'
 /* ------------------------- BALANCE OF PAYMENTS ------------------------- */
 V.bp_struct={kind:'card', btn:'Structure', showing:'Three accounts that balance',
   title:'The structure of the balance of payments',
-  lead:'The balance of payments records all transactions between a country and the rest of the world.',
+  lead:'The balance of payments records every payment between the UK and the rest of the world. Money coming in is a credit; money going out is a debit.',
+  terms:[
+    ['Credit (+)','Money flowing into the country, such as when foreigners buy UK exports.'],
+    ['Debit (−)','Money flowing out, such as when UK residents buy imports.'],
+    ['Current account','Trade in goods and services, plus primary and secondary income.'],
+    ['Balance of trade','Exports minus imports of goods and services.'],
+    ['Current account deficit','More money leaves than comes in on the current account. A surplus is the reverse.']
+  ],
   card:{head:'The accounts', items:[
-    PT('Current account',[['Trade in goods','Physical products: cars, food, oil.'],['Trade in services','Banking, insurance, tourism, education, transport.'],['Primary income','Interest, profits and dividends earned on investments abroad.'],['Secondary income','Transfers with nothing received in return: foreign aid, money sent home by migrant workers.']]),
-    PT('Financial account',[['Direct investment','Buying or building businesses abroad, such as a factory.'],['Portfolio investment','Buying shares and bonds.'],['Reserves','Foreign currency and gold held by the central bank.']]),
-    PT('Capital account',[['','Small. Transfers of fixed assets, for example when a migrant moves their assets to a new country.']])
+    PT('Current account',[
+      ['Trade in goods','Whisky sold to the US: credit. A Shein order: debit. The UK buys more goods than it sells, so this part is usually in deficit.'],
+      ['Trade in services','A tourist spending in London: credit. A family holiday in Spain: debit, even though nothing physical crosses the border. The UK is strong in finance, education and creative industries, so this part is usually in surplus.'],
+      ['Primary income','Income from owning assets or working abroad. Profits a UK firm brings home: credit. Dividends paid to foreign owners of UK firms: debit. So the more UK firms foreigners own, the more flows out here later.'],
+      ['Secondary income','Transfers with nothing given back. UK foreign aid and money migrant workers send home: debits. Money sent to UK families by relatives abroad: credit.']]),
+    PT('Financial account',[
+      ['Direct investment','Buying or building a business abroad with a controlling stake (10% or more). A foreign carmaker building a UK factory is an inflow.'],
+      ['Portfolio investment','Buying shares or bonds without control, such as a UK pension fund buying US shares: an outflow.'],
+      ['Reserves','Foreign currency and gold, managed for the UK by the Bank of England.']]),
+    PT('Capital account',[['','Small: for example, one government writing off another’s debt.']])
   ]},
-  tip:'The accounts sum to zero. A current account deficit has to be matched by a surplus on the financial and capital accounts.'};
+  chain:[
+    'A current account deficit means the UK spends more abroad than it earns.',
+    'The gap is paid for by selling assets to foreigners or borrowing from abroad.',
+    'That brings money in on the financial account, so a current account deficit is matched by a financial account surplus.',
+    'Recorded figures never match exactly, so a balancing item, net errors and omissions, makes them add up.'
+  ],
+  work:{q:'Work out the balance of trade and the current account balance (made-up numbers, £bn).',
+    table:[['','Credits','Debits','Net'],['Goods','350','470','−120'],['Services','330','200','+130'],['Primary income','150','180','−30'],['Secondary income','20','45','−25'],['Current account','','','−45']],
+    steps:['Balance of trade = goods + services = −120 + 130 = <b>+£10bn</b>, a surplus.',
+      'Current account = −120 + 130 − 30 − 25 = <b>−£45bn</b>, a deficit: income outflows outweigh the trade surplus.',
+      'With GDP of £2,500bn, the deficit is 45 ÷ 2,500 = <b>1.8% of GDP</b>.',
+      'If it then reaches 2.3% of GDP, it has widened by 0.5 <b>percentage points</b>, not 0.5%.']},
+  traps:[
+    'It is the <b>current account</b> that is in deficit or surplus. The balance of payments as a whole always balances.',
+    'Primary income is <b>earned</b> (work, investment); secondary income is <b>given</b> (aid, money sent home).',
+    'Buying a foreign firm goes on the <b>financial account</b>. The profits it later sends home go on the current account.',
+    'A trade surplus can sit alongside a current account deficit, if income outflows are large enough.',
+    'Compare deficits as a <b>% of GDP</b>, and give changes between percentages in <b>percentage points</b>.'
+  ]};
 
 V.bp_causes={kind:'card', btn:'Causes of a deficit', showing:'Why imports outrun exports',
   title:'Causes of a current account deficit',
-  lead:'A deficit means more money is leaving on the current account than is coming in.',
+  lead:'A deficit means more money is leaving on the current account than is coming in. Each cause either pushes imports up or holds exports down.',
+  terms:[
+    ['Competitiveness','How well a country’s goods sell against rivals’, on price and on quality.'],
+    ['Deindustrialisation','The long-run fall in manufacturing’s share of output and jobs.']
+  ],
   card:{head:'Causes', items:[
-    PT('Demand side',[['Strong growth','Rising incomes mean households buy more imports.'],['Strong currency','An appreciation makes exports dearer and imports cheaper.'],['Weak world economy','A recession abroad cuts demand for exports.']]),
-    PT('Supply side',[['Low competitiveness','Higher inflation or lower productivity than rival countries makes exports dearer.'],['Deindustrialisation','The decline of manufacturing means more goods have to be imported.']])
+    PT('Demand side',[
+      ['Strong growth','Incomes rise, so households buy more of everything, imports included. Imports grow faster than exports, so the deficit widens.'],
+      ['Strong currency','An appreciation makes exports dearer abroad and imports cheaper at home, so exports fall and imports rise.'],
+      ['Weak world economy','A recession abroad cuts incomes in the countries that buy UK exports, so exports fall.']]),
+    PT('Supply side',[
+      ['Low competitiveness','Higher inflation or slower productivity growth than rivals raises UK costs and prices, so exports lose on price and imports win.'],
+      ['Deindustrialisation','Manufacturing has shrunk, so goods once made at home are now imported, widening the goods deficit.'],
+      ['Non-price factors','Weak quality, design or reliability lose export sales whatever the price.']])
   ]},
-  tip:'A surplus has the opposite causes: weak domestic demand, a weak currency, or highly competitive exports, as in Germany and China.'};
+  evaluation:'The cause decides how worried to be. A deficit from strong growth may shrink on its own when growth slows; one from low competitiveness lasts until productivity improves.',
+  tip:'A surplus has the opposite causes: weak domestic demand, a weak currency, or highly competitive exports, as in Germany and China.',
+  traps:[
+    'Causes and effects are easy to swap. A strong currency <b>causes</b> a deficit; a falling currency is a likely <b>result</b> of one. Answer the one the question asks for.',
+    '“Imports rise” is not a cause on its own. Say <b>why</b> they rise.'
+  ]};
 
 V.bp_ad={kind:'adas', anim:true, da:-22, btn:'Effect on AD', showing:'A larger deficit shifts AD left',
   title:'A deficit and aggregate demand',
@@ -1957,16 +2004,35 @@ V.bp_ad={kind:'adas', anim:true, da:-22, btn:'Effect on AD', showing:'A larger d
     'Tax revenue falls and spending on benefits rises, which worsens the government’s budget.'
   ],
   compare:{vs:'As the deficit grows',rows:[['Net exports','↓ lower'],['Growth','↓ lower'],['Unemployment','↑ higher'],['Inflation','↓ lower']]},
-  evaluation:'This is not the whole story. A deficit often appears because incomes are high and people are buying more imports, so it can go along with strong growth.'};
+  terms:[
+    ['Net exports (X − M)','Exports minus imports: the part of AD the current account feeds into.'],
+    ['Withdrawal','Money that leaves the circular flow of income. Imports are one, with saving and taxes.']
+  ],
+  evaluation:'This is not the whole story. A deficit often appears because incomes are high and people are buying more imports, so it can go along with strong growth. AD only falls if exports fall or spending switches from UK goods to imports.',
+  traps:[
+    'Use the AD/AS diagram and show the <b>shift</b>, AD<sub>1</sub> to AD<sub>2</sub>, with the new price level and real GDP marked. A diagram that does not show the change earns little.',
+    'Check the direction: a fall in net exports shifts AD <b>left</b>, so on its own it lowers inflation, not raises it.'
+  ]};
 
 V.bp_eval={kind:'card', btn:'Does it matter?', showing:'When to worry about a deficit',
   title:'Does a current account deficit matter?',
   lead:'It depends on its size, its cause and how it is paid for.',
+  terms:[
+    ['Capital flight','A rapid outflow of money when investors lose confidence in a country.'],
+    ['Hot money','Short-term money chasing higher interest rates. It can leave as fast as it arrived.']
+  ],
   card:{head:'It depends on', items:[
     PT('What to look at',[['Size','As a share of GDP. Above about 5% is a concern, because the country relies heavily on money coming in from abroad.'],['Cause','A deficit from weak competitiveness is a problem. One from high incomes or an ageing population is much less so.'],['Financing','Foreign investment that builds factories adds to productive capacity. Borrowing to pay for consumption does not.'],['Country','The US can attract capital easily. A developing country is more exposed to investors pulling out.']]),
-    PT('Risks',[['Capital flight','If investors lose confidence and withdraw, the currency falls sharply and import prices jump.'],['Debt','The deficit is paid for by borrowing from abroad or selling assets.'],['Foreign ownership','Future profits and rents flow out of the country.']]),
-    PT('Reasons not to worry',[['Self-correcting','With a floating rate, a deficit should weaken the currency, which makes exports cheaper.'],['Investment','The matching inflow on the financial account can raise productive capacity.']])
-  ]}};
+    PT('Risks',[
+      ['Capital flight','If investors lose confidence and pull money out, the currency falls sharply, so import prices and inflation jump.'],
+      ['Debt','The deficit is paid for by borrowing abroad or selling assets, so interest and profits flow out in future.'],
+      ['Foreign ownership','The more UK firms and property are owned abroad, the more future profits and rents leave the country.']]),
+    PT('Reasons not to worry',[
+      ['Self-correcting','With a floating rate, a deficit should weaken the currency. Exports get cheaper and imports dearer, so the deficit shrinks.'],
+      ['Investment','The matching inflow on the financial account can build factories and raise productive capacity, which helps future exports.']])
+  ]},
+  evaluation:'Judgement: a small, temporary deficit financed by long-term investment is rarely a concern. A large, persistent one financed by short-term borrowing is, because that money can leave quickly.',
+  traps:['Evaluation here means <b>size, cause, financing and time</b>, ending in a judgement. Setting one benefit against one cost is not evaluation.']};
 
 V.bp_ex={kind:'card', btn:'Real examples', showing:'Which account does it go on?',
   title:'Real examples: balance of payments',
@@ -1980,13 +2046,48 @@ V.bp_ex={kind:'card', btn:'Real examples', showing:'Which account does it go on?
 V.bp_fix={kind:'card', btn:'Reducing a deficit', showing:'Three kinds of policy, and doing nothing',
   title:'Measures to reduce a current account deficit',
   lead:'Policies either cut spending on imports, switch spending towards home-produced goods, or make exports more competitive.',
+  terms:[
+    ['Expenditure-reducing','Policies that cut total spending in the economy, spending on imports included.'],
+    ['Expenditure-switching','Policies that make imports dearer than home-produced goods, so spending switches towards UK products.']
+  ],
   card:{head:'Policies', items:[
-    PT('Expenditure-reducing',[['How','Higher taxes or interest rates cut total spending, so fewer imports are bought.'],['Cost','Lower growth and higher unemployment.']]),
-    PT('Expenditure-switching',[['How','A weaker currency or tariffs make imports dearer than home-produced goods.'],['Cost','Imported inflation, and the risk of retaliation.']]),
-    PT('Supply-side',[['How','More investment lowers costs, more enterprise improves products, and lower inflation keeps prices competitive. All raise exports.'],['Cost','Slow to work, and often expensive.']]),
-    PT('Do nothing',[['How','With a floating exchange rate the deficit should weaken the currency and correct itself. Changes in the age of the population can also reduce spending on imports over time.'],['','']])
+    PT('Expenditure-reducing',[['How','Higher taxes or interest rates cut total spending, so households buy fewer imports.'],['Cost','Spending on UK goods falls too, so growth slows and unemployment rises.']]),
+    PT('Expenditure-switching',[['How','A weaker currency or tariffs make imports dearer than UK goods, so spending switches to UK products.'],['Cost','Dearer imports push up inflation, and tariffs invite retaliation against UK exports.']]),
+    PT('Supply-side',[['How','Investment in skills, infrastructure and technology lowers costs and improves products, so exports win on price and quality.'],['Cost','Slow to work and often expensive for the government; the deficit carries on meanwhile.']]),
+    PT('Do nothing',[['How','With a floating exchange rate, a deficit should weaken the currency, making exports cheaper and imports dearer, so it corrects itself.'],['Cost','It can be slow, and it may not happen if money flowing in on the financial account holds the currency up.']])
   ]},
-  evaluation:'Supply-side policies deal with the cause, a lack of competitiveness, so they are the most lasting. The other two treat the symptom and bring costs of their own.'};
+  evaluation:'The right fix depends on the cause. If the deficit comes from booming demand, expenditure-reducing policy works fast. If it comes from weak competitiveness, only supply-side policy lasts; the other two treat the symptom and bring costs of their own.',
+  traps:[
+    'Match the policy to the cause in the question. A cure for weak competitiveness does nothing quickly for a consumer boom.',
+    'A depreciation improves the current account only if the Marshall–Lerner condition holds, and usually only after a J-curve delay.'
+  ]};
+TOPICS.bop.quiz=[
+  ['A UK student pays fees to a US university. Which account, and credit or debit?','Current account, trade in services: a debit.'],
+  ['A Japanese carmaker builds a factory in Sunderland. Which account?','Financial account, direct investment: an inflow.'],
+  ['Migrant workers in the UK send money to their families abroad. Which part of the current account?','Secondary income: a debit.'],
+  ['Can a country have a trade surplus and a current account deficit at the same time?','Yes, if primary and secondary income outflows are bigger than the trade surplus.'],
+  ['Name one expenditure-switching policy and its main cost.','A depreciation or a tariff. Main cost: imported inflation (and, for a tariff, retaliation).']
+];
+
+TOPICS.global.quiz=[["Give two causes of globalisation.", "Any two: trade liberalisation, cheaper transport (containers), cheaper communication (the internet), political change such as China opening up."], ["Why can globalisation raise national income and still be unpopular?", "The gains are spread thinly over all consumers, while job losses fall heavily on particular workers and regions."], ["What does the Prebisch–Singer hypothesis predict for primary exporters?", "Their terms of trade worsen over time, because primary prices rise more slowly than the prices of manufactured imports."]];
+TOPICS.trade.quiz=[["Country A can make 10 cars or 20 bikes; country B can make 5 cars or 15 bikes. Who has the comparative advantage in bikes?", "B: one bike costs B a third of a car, but costs A half a car."], ["What is the formula for the terms of trade?", "Index of export prices ÷ index of import prices × 100."], ["Why must the trading rate lie between the two opportunity costs?", "Outside that range one country could do better by making the good itself, so it would not trade."]];
+TOPICS.protect.quiz=[["On the tariff diagram, which areas are the deadweight loss?", "B (inefficient domestic production) and D (lost consumption)."], ["Who gets area C under a tariff, and who under a quota?", "Under a tariff, the government as revenue. Under a quota, the foreign firms allowed in, who sell at the higher price."], ["Give one argument for protection and its main weakness.", "Infant industries: they may never grow up and stay protected for good. Others: dumping, strategic industries, declining industries."]];
+TOPICS.blocs.quiz=[["What does a customs union have that a free trade area does not?", "A common external tariff."], ["On the trade diversion diagram, what is area E?", "The extra cost of buying from a less efficient member instead of the cheapest producer in the world: a pure loss."], ["Give one cost of a monetary union.", "Losing your own interest rate and exchange rate, so a member in recession cannot cut rates or devalue for itself."]];
+TOPICS.fx.quiz=[["What happens to the price of UK exports abroad when the pound depreciates?", "They get cheaper in foreign currency, so they become more competitive."], ["Give two causes of a rise in demand for pounds.", "Any two: more UK exports sold, more investment into the UK, higher UK interest rates attracting hot money, speculators expecting a rise."], ["State the Marshall–Lerner condition.", "A depreciation improves the current account if PED for exports + PED for imports > 1."], ["How can a central bank stop its currency falling?", "Buy its own currency with foreign reserves, or raise interest rates."]];
+
+TOPICS.growth.quiz=[["Tesco buys a farm that grows its potatoes. Which type of integration is this?", "Backward vertical integration: it moves to an earlier stage of production."], ["Give one reason a firm stays small.", "Any one: a small niche market, owners who want to keep control, lack of finance, or diseconomies of scale."], ["What is the difference between a merger and a takeover?", "A merger is agreed by both firms. A takeover is one firm buying a controlling stake in another, agreed or not."]];
+TOPICS.objectives.quiz=[["Where does a firm maximise revenue?", "Where MR = 0."], ["Where does a sales maximiser produce?", "Where AR = AC: the most it can sell while still earning normal profit."], ["What is satisficing?", "Aiming for a satisfactory profit, not the maximum, to keep shareholders content while pursuing other goals."], ["Why might managers not maximise profit?", "The principal–agent problem: managers may chase size, sales or their own pay instead."]];
+TOPICS.revenue.quiz=[["Price falls from £8 to £7 and sales rise from 10 to 12. What is MR per extra unit?", "TR goes from £80 to £84, so MR = £4 ÷ 2 = £2 per extra unit."], ["Where on a straight-line demand curve is PED = 1?", "At the midpoint, where MR = 0 and total revenue is highest."], ["Why is MR below AR when the demand curve slopes down?", "To sell one more unit the firm must cut the price on every unit, not just the extra one."]];
+TOPICS.costs.quiz=[["A firm’s fixed costs rise. Which curves move?", "AFC and AC shift up. MC and AVC do not move."], ["Why does MC cut AC at its lowest point?", "An extra unit that costs less than the average pulls the average down; one that costs more pulls it up."], ["What gives short-run AC its U shape?", "Fixed costs spread over more units at first, then diminishing marginal returns."]];
+TOPICS.scale.quiz=[["Do internal economies of scale move a firm along its LRAC or shift it?", "Along it: they come from the firm’s own size. External economies shift the whole LRAC."], ["Give two internal economies of scale.", "Any two: technical, purchasing, managerial, financial, marketing, risk-bearing."], ["What is the minimum efficient scale?", "The lowest output at which LRAC reaches its minimum."]];
+TOPICS.profits.quiz=[["What is normal profit?", "The minimum profit needed to keep resources in their current use: where AR = AC."], ["Price is above AVC but below ATC. What should the firm do in the short run?", "Keep producing: it covers its variable costs and part of its fixed costs, so it loses less than by shutting."], ["Where does a firm maximise profit?", "Where MR = MC, with MC rising."]];
+TOPICS.efficiency.quiz=[["What is the condition for allocative efficiency?", "P = MC."], ["What is the condition for productive efficiency?", "Producing at the lowest point of AC, where MC = AC."], ["Which market structure gives both in the long run?", "Perfect competition: P = MC, at the lowest point of AC."]];
+TOPICS.perfect.quiz=[["Why is a perfectly competitive firm a price taker?", "It is one of many firms selling an identical product, so it cannot charge more than the market price."], ["What removes supernormal profit in the long run?", "New firms enter, shifting industry supply right until the price equals minimum AC."], ["Is a perfectly competitive firm dynamically efficient?", "Probably not: with only normal profit and perfect information, it has neither the funds nor a reason to innovate."]];
+TOPICS.monopoly.quiz=[["Where does a monopolist set output, and how does it find its price?", "Output where MR = MC; price read up to the AR curve at that output."], ["Why does monopoly cause a deadweight welfare loss?", "It restricts output below where P = MC, so units that consumers value above their cost are not made."], ["Give the three conditions for third degree price discrimination.", "Market power, groups with different PEDs that can be kept apart, and no resale between them."], ["A monopolist’s fixed costs rise. What happens to its price?", "Nothing: MR and MC do not move, so output and price stay the same and only profit falls."]];
+TOPICS.monopolistic.quiz=[["What makes the long run here different from monopoly?", "Low barriers to entry: supernormal profit attracts new firms until only normal profit is left."], ["Where is long-run equilibrium?", "Where AR is tangent to AC, at the output where MR = MC."], ["What is excess capacity?", "The gap between the firm’s output and the output at minimum AC."]];
+TOPICS.oligopoly.quiz=[["Why is the oligopolist’s demand curve kinked?", "Rivals ignore a price rise but match a price cut, so demand is elastic above the price and inelastic below it."], ["Why does the kinked demand model predict sticky prices?", "There is a gap in MR, so MC can change within it without changing the profit-maximising price."], ["In a prisoners’ dilemma, why might both firms end up cheating?", "Cheating is each firm’s dominant strategy, so both cheat, even though both would do better colluding."]];
+TOPICS.contestable.quiz=[["What makes a market contestable?", "Low barriers to entry and exit, especially low sunk costs."], ["Can a market with only one firm be contestable?", "Yes: what matters is the threat of entry, not the number of firms."], ["What are sunk costs?", "Costs a firm cannot get back when it leaves, such as advertising or specialist equipment."]];
+TOPICS.barriers.quiz=[["What is the difference between limit pricing and predatory pricing?", "Limit pricing keeps the price just low enough to deter entry and stays profitable. Predatory pricing goes below cost to force a rival out, and is illegal."], ["Give two barriers to entry.", "Any two: economies of scale, sunk costs, brand loyalty, patents, control of supplies, licences."], ["Why are sunk costs a barrier to entry?", "An entrant cannot get them back if it fails, so entry is riskier."]];
 
 /* =====================================================================
    MACRO DIAGRAMS
@@ -2426,7 +2527,8 @@ function renderChain(){
     if(!on) lines+='<path class="guide muted" d="M'+r1(e[0])+' '+r1(e[1])+'L'+r1(e[2])+' '+r1(e[3])+'"/>';
     else if(te>0.04) lines+=arrowPx(e[0],e[1],e[0]+(e[2]-e[0])*te,e[1]+(e[3]-e[1])*te,'curve c-ar',sm?10:12);
     if(B.r!==1){ lx=n.x+(sm?9:13); ly=(e[1]+e[3])/2+5; anc='start'; }
-    else { lx=(e[0]+e[2])/2; ly=n.y0-12; anc='middle'; }
+    /* side links: label above the boxes, or below them on a phone, where the top label would meet "backward vertical" */
+    else { lx=(e[0]+e[2])/2; ly=sm ? n.y1+fl+4 : n.y0-12; anc='middle'; }
     labs+='<text x="'+r1(lx)+'" y="'+r1(ly)+'" text-anchor="'+anc+'" font-size="'+fl+'" class="'+(on?'bold t-ar halo':'t-muted halo')+'">'+esc(CHAIN_LAB[k])+'</text>';
   }
   for(k in CHAIN_BOX){
@@ -2745,7 +2847,7 @@ function renderSat(){
   if(tsat<0.999){ var qz=qb+(qStar-qb)*tsat; guides+=g.dot(qz,pi(qz),'eff'); }
   else { guides+=g.vline(qStar,lim,'eff')+g.dot(qStar,lim,'eff'); notes+=g.axQ(qx[1],'Q_VM*','t-eff'); }
   notes+=g.leader(['minimum profit','constraint'], sm?62:66, top*1.2, 74, lim, '');
-  notes+=g.txt(X(s.qm),Y(top)-11,'most profit','bold halo','middle');
+  notes+= sm ? g.txt(X(s.qm)-6,Y(top)-11,'most profit','bold halo','end') : g.txt(X(s.qm),Y(top)-11,'most profit','bold halo','middle');
   g.out('',curves,guides,'',notes);
 }
 
@@ -3058,7 +3160,8 @@ V.ex_negcons={kind:'ext', anim:true, two:true, grow:true, btn:'Negative consumpt
     'The good is over-consumed by Q<sub>m</sub> − Q*, and the shaded triangle is the welfare loss.'
   ],
   evaluation:'Many of these goods are also demerit goods, where consumers underestimate the harm to themselves (information failure). Demand is often price inelastic and addictive, so a tax may not cut consumption much.',
-  tip:'For consumption externalities, the benefit curve moves. MPC = MSC stays where it is.'};
+  tip:'For consumption externalities, the benefit curve moves. MPC = MSC stays where it is.',
+  traps:['Beyond the spec: Edexcel asks for two externality diagrams, external costs of production and external benefits of consumption. This one helps you understand the idea, but you will not be asked to draw it.']};
 
 V.ex_posprod={kind:'ext', anim:true, two:true, grow:true, btn:'Positive production', showing:'MSC below MPC: under-production',
   title:'Positive externality of production',
@@ -3070,7 +3173,8 @@ V.ex_posprod={kind:'ext', anim:true, two:true, grow:true, btn:'Positive producti
     'The good is under-produced by Q* − Q<sub>m</sub>, and the shaded triangle is the welfare loss: too few resources go into it.'
   ],
   evaluation:'Firms may still invest if a patent lets them keep the reward for themselves. Without that protection, rivals free ride on the research, which is the case for government support.',
-  tip:'Another example from the handout: a new housing estate that regenerates an area, bringing jobs and new businesses.'};
+  tip:'Another example from the handout: a new housing estate that regenerates an area, bringing jobs and new businesses.',
+  traps:['Beyond the spec: Edexcel asks for two externality diagrams, external costs of production and external benefits of consumption. This one helps you understand the idea, but you will not be asked to draw it.']};
 
 V.ex_poscons={kind:'ext', anim:true, two:true, grow:true, btn:'Positive consumption', showing:'MSB above MPB: under-consumption',
   title:'Positive externality of consumption',
@@ -3079,10 +3183,11 @@ V.ex_poscons={kind:'ext', anim:true, two:true, grow:true, btn:'Positive consumpt
     'Consumers only count their private benefit, such as higher future earnings from education, so demand follows MPB.',
     'Third parties gain too: a more productive workforce, more tax revenue, less crime. So MSB is above MPB.',
     'The market settles where MPB = MPC, at Q<sub>m</sub>. The social optimum is where MSB = MSC, at the higher Q*.',
-    'The good is under-consumed by Q* − Q<sub>m</sub>, and the shaded triangle is the welfare loss.'
+    'The good is under-consumed by Q* − Q<sub>m</sub>. The shaded triangle is the <b>welfare gain area</b>: the welfare society would gain by moving from Q<sub>m</sub> to Q*.'
   ],
   evaluation:'Vaccination also protects people who are not vaccinated (herd immunity), which is why the NHS gives childhood vaccines for free. Many of these goods are merit goods, which people undervalue because they lack information.',
-  tip:'For consumption externalities, the benefit curve splits: MSB above MPB.'};
+  tip:'For consumption externalities, the benefit curve splits: MSB above MPB.',
+  traps:['The spec calls this triangle the <b>welfare gain area</b>: use those words. Examiners found it often shaded in the wrong place: it sits between MSB and MPC, from Q<sub>m</sub> to Q*.','Put MSB <b>above</b> MPB. Mixing up the two curves was a common error.']};
 
 V.ex_wl={kind:'ext', anim:true, dur:5200, btn:'Find the welfare loss', showing:'Four steps to the welfare loss triangle',
   title:'How to find the welfare loss',
@@ -3094,7 +3199,8 @@ V.ex_wl={kind:'ext', anim:true, dur:5200, btn:'Find the welfare loss', showing:'
     'Join both ends of that line to the social optimum point, and shade the triangle. That is the welfare loss.'
   ],
   compare:{vs:'Step 3: from Q<sub>m</sub>, go',rows:[['Negative production','up to MSC'],['Negative consumption','down to MSB'],['Positive production','down to MSC'],['Positive consumption','up to MSB']]},
-  tip:'The triangle always points at Q*, and its vertical side always sits at Q<sub>m</sub>. If step 3 takes you to MPC or MPB, you are on the wrong curve.'};
+  tip:'The triangle always points at Q*, and its vertical side always sits at Q<sub>m</sub>. If step 3 takes you to MPC or MPB, you are on the wrong curve.',
+  traps:['On the positive consumption diagram, the spec calls this triangle the <b>welfare gain area</b>: the gain from moving to Q*.']};
 
 V.ex_tax={kind:'ext', anim:true, btn:'Tax', showing:'A tax equal to the external cost',
   title:'Correcting a negative externality: an indirect tax',
@@ -3602,7 +3708,9 @@ function renderExt(){
     for(k=n;k>=0;k--){ q=qa+(qb-qa)*k/n; d+='L'+r1(X(q))+' '+r1(Y(fBot(q))); }
     return '<path class="area a-dwl" d="'+d+'Z"/>';
   }
-  function wlNote(fns,q,p){ var s=freeSpot(g,fns,'welfare loss',[50,60,40,70,30,80]); return s?g.leader(['welfare loss'],s[0],s[1],q,p):''; }
+  /* the spec calls the positive consumption triangle the welfare gain area */
+  var wlText=(id==='ex_poscons')?'welfare gain':'welfare loss';
+  function wlNote(fns,q,p){ var s=freeSpot(g,fns,wlText,[50,60,40,70,30,80]); return s?g.leader([wlText],s[0],s[1],q,p):''; }
   function gapArrows(qa,qb,word){
     var y=Y(0)-11, a=X(Math.min(qa,qb))+3, b=X(Math.max(qa,qb))-3, out=arrowPx(a,y,b,y,'leader',6)+arrowPx(b,y,a,y,'leader',6);
     if(!sm) out+=g.txt((a+b)/2,y-7,word,'bold halo','middle');
@@ -3710,7 +3818,8 @@ function renderExt(){
       curves+=linSeg(g,mpc,'c-mc'+(te>0.02?' ghost':''))+(te>0.02?linSeg(g,ms,'c-mc'):'');
       labels+=linLab(g,mpc,sm?30:34,sm?'MSC':'MPC = MSC','t-mc')+(te>0.5&&!sm?linLab(g,ms,94,'MPC − subsidy','t-mc'):'');
       if(qs4-q2>0.3) areas+=tri(q2,qs4,msb2,mpc);
-      if(te>0.12) notes+=arrowPx(X(52),Y(mpc(52))+3,X(52),Y(ms(52))-3,'leader',7)+(sm?'':g.txt(X(52)+7,(Y(mpc(52))+Y(ms(52)))/2+5,'subsidy','bold halo'));
+      var qa=sm?52:58;   /* the subsidy arrow sits right of the long "MPC = MSC" label */
+      if(te>0.12) notes+=arrowPx(X(qa),Y(mpc(qa))+3,X(qa),Y(ms(qa))-3,'leader',7)+(sm?'':g.txt(X(qa)+7,(Y(mpc(qa))+Y(ms(qa)))/2+5,'subsidy','bold halo'));
       guides+=g.guide(qm,pm,'muted')+g.dot(qm,pm,'muted')+g.guide(q2,p2,te>0.97?'eff':'')+g.dot(q2,p2,te>0.97?'eff':'');
       notes+=axes2(qm,pm,q2,p2,['Q_m',te>0.97?'Q*':'Q'],['P_m','P_2'],true);
     }
@@ -3723,7 +3832,7 @@ var AD2={a:110,b:0.85,s:-5.5,k:0.8,yfe:70};
 function renderAD2(){
   var v=cur(), te=v.anim?ease(state.t):1, M=AD2;
   var g=kit({ytitle:'Price level',xtitle:'Real GDP'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
-  var dA=v.sh==='ad'?25*te:0, dS=v.sh==='sras'?20*te:(v.sh==='lras'?-29.7*te:0), dL=v.sh==='lras'?18*te:0;
+  var amt=(v.amt!=null)?v.amt:null, dA=v.sh==='ad'?(amt!=null?amt:25)*te:0, dS=v.sh==='sras'?(amt!=null?amt:20)*te:(v.sh==='lras'?-29.7*te:0), dL=v.sh==='lras'?18*te:0;
   var ad=function(A){return function(y){return A-M.b*y;};}, sras=function(S){return function(y){return S+M.k*y;};};
   var A0=M.a, A1=M.a+dA, S0=M.s, S1=M.s+dS, L0=M.yfe, L1=M.yfe+dL, moving=te>0.02 && !!v.sh;
   /* labels sit well right of equilibrium: AD above its line, SRAS under its line */
@@ -3869,7 +3978,7 @@ function renderPedTax(){
     }
     var q1=(s.a-20)/(s.b+0.6), p1=D(q1), q2=(s.a-20-tax)/(s.b+0.6), p2=D(q2), pp=p2-tax;
     var curves=linSeg(g,D,'c-ar')+linSeg(g,S1,'c-mc ghost')+linSeg(g,S2,'c-mc');
-    var labels=linLab(g,D,i===0?Math.max(22,(s.a-100)/s.b):92,'D','t-ar')+linLab(g,S1,96,'S','t-mc')+linLab(g,S2,70,'S + tax','t-mc');
+    var labels=linLab(g,D,i===0?Math.max(22,(s.a-100)/s.b):92,'D','t-ar')+linLab(g,S1,96,'S','t-mc')+linLab(g,S2,small?48:70,'S + tax','t-mc');
     var areas=g.box(0,q2,p1,p2,'area a-cost')+g.box(0,q2,pp,p1,'area a-cs');
     var guides=g.guide(q1,p1,'muted')+g.dot(q1,p1,'muted')+g.guide(q2,p2)+g.dot(q2,p2)+g.hline(q2,pp)+g.dot(q2,pp);
     var py=spreadN([Y(p2),Y(p1),Y(pp)],fs+9), qx=spreadN([X(q2),X(q1)],fs*1.7);
@@ -3878,6 +3987,1122 @@ function renderPedTax(){
   });
   wrapSvg(first,inner);
 }
+
+/* =====================================================================
+   THEMES 1 AND 2: DIAGRAMS (version 24)
+   mkt    one market: supply and demand, shifts, surplus, taxes, subsidies,
+          maximum and minimum prices, pollution permits; PED and PES in two panels
+   ppf1   production possibility frontier
+   flow   circular flow of income, simple and with injections and withdrawals
+   cycle  the trade cycle and output gaps
+   rounds the multiplier, round by round
+   ===================================================================== */
+/* demand P = a − bQ and supply P = c + dQ meet at Q = 60, P = 52 */
+var MKT={a:100,b:0.8,c:10,d:0.7};
+function polyPts(g,pts,cls){ return '<path class="'+cls+'" d="'+pts.map(function(p,i){ return (i?'L':'M')+r1(g.X(p[0]))+' '+r1(g.Y(p[1])); }).join('')+'Z"/>'; }
+/* a double-headed horizontal arrow between two quantities at one price */
+function hGap(g,q0,q1,p,cls,dy){
+  var y=g.Y(p)+(dy||0), a=g.X(q0), b=g.X(q1), m=(a+b)/2;
+  return arrowPx(m,y,a+(a<b?2:-2),y,cls,7)+arrowPx(m,y,b+(b<a?2:-2),y,cls,7);
+}
+function renderMkt(){
+  var v=cur(), m=v.m, te=v.anim?ease(state.t):1;
+  if(m==='ped' || m==='pes'){ renderMkt2(v,te); return; }
+  var perm=(m==='permit');
+  var g=kit({ytitle:perm?'Price of a permit':'Price', xtitle:perm?'Number of permits':'Quantity'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var a=MKT.a, b=MKT.b, c=MKT.c, d=MKT.d;
+  function D(A){ return function(q){ return A-b*q; }; }
+  function S(C){ return function(q){ return C+d*q; }; }
+  function eq(A,C){ var q=(A-C)/(b+d); return {q:q, p:A-b*q}; }
+  var areas='', curves='', guides='', labels='', notes='', lq=sm?94:98, e0=eq(a,c);
+  function ax(ps,qs){   /* ps, qs: lists of [value, label, muted] */
+    var py=spreadN(ps.map(function(x){ return Y(x[0]); }),fs+9), qx=spreadN(qs.map(function(x){ return X(x[0]); }),fs*1.9);
+    ps.forEach(function(x,i){ notes+=g.axP(py[i],x[1],x[2]?'t-muted':''); });
+    qs.forEach(function(x,i){ notes+=g.axQ(qx[i],x[1],x[2]?'t-muted':''); });
+  }
+  if(m==='demand' || m==='supply'){
+    var dem=(m==='demand'), f=dem?D(a):S(c), p1=dem?70:34, p2=dem?42:62, q1=dem?(a-p1)/b:(p1-c)/d, q2=dem?(a-p2)/b:(p2-c)/d;
+    curves+=linSeg(g,f,dem?'c-ar':'c-mc'); labels+=linLab(g,f,lq,dem?'D':'S',dem?'t-ar':'t-mc');
+    guides+=g.guide(q1,p1,'muted')+g.dot(q1,p1,'muted')+g.guide(q2,p2)+g.dot(q2,p2);
+    var o=dem?9:-9, ma=q1+(q2-q1)*0.22, mb=q1+(q2-q1)*0.78;
+    notes+=arrowPx(X(ma),Y(f(ma)+o),X(mb),Y(f(mb)+o),'leader',9);
+    var mid=(q1+q2)/2;
+    notes+=g.txt(X(mid)+(dem?8:10),Y(f(mid)+(dem?16:-15)),dem?'extension of demand':'extension of supply','bold halo',dem?'start':'start');
+    ax([[p1,'P_1',true],[p2,'P_2']],[[q1,'Q_1',true],[q2,'Q_2']].sort(function(x,y){ return x[0]-y[0]; }));
+  }
+  else if(m==='eq' || m==='excess'){
+    curves+=linSeg(g,D(a),'c-ar')+linSeg(g,S(c),'c-mc');
+    labels+=linLab(g,D(a),lq,'D','t-ar')+linLab(g,S(c),lq,'S','t-mc');
+    guides+=g.guide(e0.q,e0.p)+g.dot(e0.q,e0.p);
+    if(m==='eq') ax([[e0.p,'P_e']],[[e0.q,'Q_e']]);
+    else {
+      var pa=70, pb=34, qda=(a-pa)/b, qsa=(pa-c)/d, qdb=(a-pb)/b, qsb=(pb-c)/d;
+      guides+=g.hline(Math.max(qda,qsa)+4,pa,'muted')+g.hline(Math.max(qdb,qsb)+4,pb,'muted');
+      guides+=g.dot(qda,pa,'muted')+g.dot(qsa,pa,'muted')+g.dot(qdb,pb,'muted')+g.dot(qsb,pb,'muted');
+      notes+=hGap(g,qda,qsa,pa,'leader',-9)+g.txt(X((qda+qsa)/2),Y(pa)-15,'excess supply','bold halo','middle');
+      notes+=hGap(g,qsb,qdb,pb,'leader',9)+g.txt(X((qsb+qdb)/2),Y(pb)+fs+13,'excess demand','bold halo','middle');
+      ax([[pa,'P_1'],[e0.p,'P_e'],[pb,'P_2']],[[e0.q,'Q_e']]);
+    }
+  }
+  else if(m==='dshift' || m==='sshift' || m==='both' || m==='surplus'){
+    var dd=(m==='dshift'||m==='both')?(v.dd||0):0, ds=(m==='sshift'||m==='both'||m==='surplus')?(v.ds||0):0;
+    var A1=a+b*dd*te, C1=c-d*ds*te, movD=Math.abs(A1-a)>0.3, movS=Math.abs(C1-c)>0.3, e1=eq(A1,C1);
+    var lqD=(m==='both')?lq-16:lq;   /* both curves moving: keep the D and S labels apart */
+    if(movD){ curves+=linSeg(g,D(a),'c-ar ghost')+linSeg(g,D(A1),'c-ar'); labels+=linLab(g,D(a),lqD,'D_1','t-ar')+linLab(g,D(A1),lqD,'D_2','t-ar'); }
+    else { curves+=linSeg(g,D(a),'c-ar'); labels+=linLab(g,D(a),lq,'D','t-ar'); }
+    if(movS){ curves+=linSeg(g,S(c),'c-mc ghost')+linSeg(g,S(C1),'c-mc'); labels+=linLab(g,S(c),lq,'S_1','t-mc')+linLab(g,S(C1),lq,'S_2','t-mc'); }
+    else { curves+=linSeg(g,S(c),'c-mc'); labels+=linLab(g,S(c),lq,'S','t-mc'); }
+    if(m==='surplus'){
+      var cut=Math.max(0,C1);
+      areas+=polyPts(g,[[0,A1],[0,e1.p],[e1.q,e1.p]],'area a-cs')+polyPts(g,[[0,e1.p],[0,cut],[(cut-C1)/d,cut],[e1.q,e1.p]],'area a-gain');
+      labels+=g.txt(X(e1.q*0.3),Y((A1+2*e1.p)/3)+5,sm?'CS':'Consumer surplus','bold halo','middle');
+      labels+=g.txt(X(e1.q*0.3),Y((cut+2*e1.p)/3)+5,sm?'PS':'Producer surplus','bold halo','middle');
+    }
+    if(movD||movS){
+      guides+=g.guide(e0.q,e0.p,'muted')+g.dot(e0.q,e0.p,'muted')+g.guide(e1.q,e1.p)+g.dot(e1.q,e1.p);
+      ax([[e0.p,'P_1',true],[e1.p,'P_2']].sort(function(x,y){ return y[0]-x[0]; }),[[e0.q,'Q_1',true],[e1.q,'Q_2']].sort(function(x,y){ return x[0]-y[0]; }));
+    } else {
+      guides+=g.guide(e0.q,e0.p)+g.dot(e0.q,e0.p);
+      ax([[e0.p,'P_e']],[[e0.q,'Q_e']]);
+    }
+  }
+  else if(m==='tax' || m==='sub'){
+    var tax=(m==='tax'), adv=tax && v.adv, k=(tax?(v.t||24):-(v.s||24))*te, r=adv?v.adv*te:0, e1t, pr, S2;
+    if(adv){
+      S2=function(q){ return (c+d*q)*(1+r); };
+      var qq=(a-c*(1+r))/(b+d*(1+r)); e1t={q:qq, p:a-b*qq}; pr=c+d*qq;
+    } else { S2=S(c+k); e1t=eq(a,c+k); pr=e1t.p-k; }
+    curves+=linSeg(g,D(a),'c-ar')+linSeg(g,S(c),'c-mc');
+    labels+=linLab(g,D(a),lq,'D','t-ar')+linLab(g,S(c),lq,'S','t-mc');
+    var moved=te>0.02;
+    if(moved){
+      if(adv){ var qtop=Math.min(116,bisect(function(q){ return S2(q)-PTOP; },0,140)); curves+='<path class="curve c-mc" d="'+g.path(S2,Math.max(0,(2/(1+r)-c)/d),qtop)+'"/>'; }
+      else curves+=linSeg(g,S2,'c-mc');
+      labels+=linLab(g,S2,tax?(sm?70:74):(sm?84:98),tax?'S + tax':(sm?'S − sub':'S − subsidy'),'t-mc');
+      if(tax){
+        areas+=g.box(0,e1t.q,e0.p,e1t.p,'area a-cost')+g.box(0,e1t.q,pr,e0.p,'area a-cs')+polyPts(g,[[e1t.q,e1t.p],[e1t.q,pr],[e0.q,e0.p]],'area a-dwl');
+      } else {
+        areas+=g.box(0,e1t.q,e1t.p,e0.p,'area a-cs')+g.box(0,e1t.q,e0.p,pr,'area a-gain');
+      }
+      guides+=g.guide(e0.q,e0.p,'muted')+g.dot(e0.q,e0.p,'muted')+g.guide(e1t.q,e1t.p)+g.dot(e1t.q,e1t.p)+g.hline(e1t.q,pr)+g.dot(e1t.q,pr);
+      ax([[e1t.p,'P_2'],[e0.p,'P_1',true],[pr,'P_3']].sort(function(x,y){ return y[0]-x[0]; }),[[e0.q,'Q_1',true],[e1t.q,'Q_2']].sort(function(x,y){ return x[0]-y[0]; }));
+    } else { guides+=g.guide(e0.q,e0.p)+g.dot(e0.q,e0.p); ax([[e0.p,'P_1']],[[e0.q,'Q_1']]); }
+  }
+  else if(m==='maxp' || m==='minp'){
+    var mx=(m==='maxp'), target=mx?34:70, pc=e0.p+(target-e0.p)*te;
+    curves+=linSeg(g,D(a),'c-ar')+linSeg(g,S(c),'c-mc');
+    labels+=linLab(g,D(a),lq,'D','t-ar')+linLab(g,S(c),lq,'S','t-mc');
+    var qd=(a-pc)/b, qs=(pc-c)/d, qhi=Math.max(qd,qs);
+    curves+='<path class="curve c-mr" d="M'+r1(X(0))+' '+r1(Y(pc))+'H'+r1(X(Math.min(116,qhi+14)))+'"/>';
+    /* the ceiling is labelled under its right end; the floor above its left end, clear of S */
+    labels+= mx ? g.txt(X(Math.min(116,qhi+14)),Y(pc)+fs+4,'maximum price','bold t-mr halo','end')
+                : g.txt(X(3),Y(pc)-8,'minimum price','bold t-mr halo','start');
+    guides+=g.guide(e0.q,e0.p,'muted')+g.dot(e0.q,e0.p,'muted');
+    if(te>0.15){
+      guides+=g.vline(qd,pc)+g.vline(qs,pc)+g.dot(qd,pc)+g.dot(qs,pc);
+      notes+=hGap(g,Math.min(qd,qs),qhi,pc,'leader',mx?-10:10)+g.txt(X((qd+qs)/2),Y(pc)+(mx?-16:fs+14),mx?'shortage':'excess supply','bold halo','middle');
+      ax([[e0.p,'P_e',true],[pc,mx?'P_max':'P_min']].sort(function(x,y){ return y[0]-x[0]; }),[[Math.min(qd,qs),mx?'Q_s':'Q_d'],[Math.max(qd,qs),mx?'Q_d':'Q_s']]);
+    } else ax([[e0.p,'P_e']],[[e0.q,'Q_e']]);
+  }
+  else if(perm){
+    var Dp=function(q){ return 100-q; }, Q0=70, Q1=Q0-25*te, movedP=te>0.02;
+    curves+=linSeg(g,Dp,'c-ar'); labels+=linLab(g,Dp,sm?84:88,'D','t-ar');
+    function vert(q,cls,name){ curves+='<path class="curve '+cls+'" d="M'+r1(X(q))+' '+r1(Y(PTOP))+'V'+r1(Y(0))+'"/>'; labels+=g.txt(X(q)+7,Y(PTOP)+12,name,'bold t-mc halo'); }
+    if(movedP){ vert(Q0,'c-mc ghost','S_1'); vert(Q1,'c-mc','S_2'); } else vert(Q0,'c-mc','S');
+    guides+=g.guide(Q0,Dp(Q0),movedP?'muted':'')+g.dot(Q0,Dp(Q0),movedP?'muted':'');
+    if(movedP){ guides+=g.guide(Q1,Dp(Q1))+g.dot(Q1,Dp(Q1)); ax([[Dp(Q1),'P_2'],[Dp(Q0),'P_1',true]],[[Q1,'Q_2'],[Q0,'Q_1',true]]); }
+    else ax([[Dp(Q0),'P_1']],[[Q0,'Q_1']]);
+  }
+  g.out(areas,curves,guides,labels,notes);
+}
+/* PED and PES: the same change in two markets side by side */
+function renderMkt2(v,te){
+  var small=(plot.clientWidth||640)<480, ped=(v.m==='ped'), inner='', first=null;
+  var specs = ped
+    ? [{k:1.6, head:small?'Inelastic':'Inelastic demand'},{k:0.25, head:small?'Elastic':'Elastic demand'}]
+    : [{k:2, head:small?'Inelastic':'Inelastic supply'},{k:0.25, head:small?'Elastic':'Elastic supply'}];
+  specs.forEach(function(s,i){
+    var g=kit({n:2,i:i,head:s.head,ytitle:'Price',xtitle:'Quantity'}), X=g.X, Y=g.Y, fs=g.fs;
+    if(!first) first=g;
+    var areas='', curves='', guides='', labels='', notes='';
+    if(ped){
+      var Dn=function(q){ return 40+s.k*(60-q); }, p2=40+10*te, q2=60-(p2-40)/s.k;
+      curves+=linSeg(g,Dn,'c-ar'); labels+=linLab(g,Dn,i===0?24:92,'D','t-ar');
+      if(te>0.02){
+        areas+=g.box(0,q2,40,p2,'area a-gain')+g.box(q2,60,0,40,'area a-cost');
+        guides+=g.guide(60,40,'muted')+g.dot(60,40,'muted')+g.guide(q2,p2)+g.dot(q2,p2);
+        var py=spreadN([Y(p2),Y(40)],fs+9), qx=spreadN([X(q2),X(60)],fs*1.7);
+        notes+=g.axP(py[0],'P_2')+g.axP(py[1],'P_1','t-muted')+g.axQ(qx[0],'Q_2')+g.axQ(qx[1],'Q_1','t-muted');
+      } else { guides+=g.guide(60,40)+g.dot(60,40); notes+=g.axP(Y(40),'P_1')+g.axQ(X(60),'Q_1'); }
+    } else {
+      var Sn=function(q){ return 40+s.k*(q-60); }, A0=88, A1=88+0.8*20*te, D0=function(q){ return A0-0.8*q; }, D1=function(q){ return A1-0.8*q; };
+      var q1=(A1-40+60*s.k)/(0.8+s.k), p1=D1(q1);
+      curves+=linSeg(g,Sn,'c-mc')+linSeg(g,D0,'c-ar'+(te>0.02?' ghost':''))+(te>0.02?linSeg(g,D1,'c-ar'):'');
+      labels+=linLab(g,Sn,i===0?82:104,'S','t-mc')+linLab(g,D0,96,te>0.02?'D_1':'D','t-ar')+(te>0.02?linLab(g,D1,108,'D_2','t-ar'):'');
+      guides+=g.guide(60,40,te>0.02?'muted':'')+g.dot(60,40,te>0.02?'muted':'');
+      if(te>0.02){
+        guides+=g.guide(q1,p1)+g.dot(q1,p1);
+        var py2=spreadN([Y(p1),Y(40)],fs+9), qx2=spreadN([X(60),X(q1)],fs*1.7);
+        notes+=g.axP(py2[0],'P_2')+g.axP(py2[1],'P_1','t-muted')+g.axQ(qx2[0],'Q_1','t-muted')+g.axQ(qx2[1],'Q_2');
+      } else { notes+=g.axP(Y(40),'P_1')+g.axQ(X(60),'Q_1'); }
+    }
+    inner+=g.compose(areas,curves,guides,labels,notes);
+  });
+  wrapSvg(first,inner);
+}
+
+/* ---------- production possibility frontier ---------- */
+function renderPPF1(){
+  var v=cur(), m=v.m||'base', te=v.anim?ease(state.t):1;
+  var g=kit({ytitle:v.yt||'Capital goods', xtitle:v.xt||'Consumer goods'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  function curve(xm,ym,cls){ var d='', n=60; for(var i=0;i<=n;i++){ var th=Math.PI/2*i/n; d+=(i?'L':'M')+r1(X(xm*Math.sin(th)))+' '+r1(Y(ym*Math.cos(th))); } return '<path class="curve '+cls+'" d="'+d+'"/>'; }
+  function yAt(xm,ym,x){ return ym*Math.sqrt(Math.max(0,1-x*x/(xm*xm))); }
+  function pt(x,y,name,dx,dy,cls){ return g.dot(x,y,cls)+g.txt(X(x)+dx,Y(y)+dy,name,'bold halo '+(cls==='muted'?'t-muted':''),'middle'); }
+  var areas='', curves='', guides='', labels='', notes='', xm=100, ym=90;
+  if(m==='base'){
+    curves+=curve(xm,ym,'c-ar'); labels+=g.txt(X(78)+8,Y(yAt(xm,ym,78))-8,'PPF','bold t-ar halo');
+    notes+=pt(55,yAt(xm,ym,55),'A',10,-8)+pt(32,38,'B',0,-12)+pt(84,80,'C',0,-12);
+    notes+=g.txt(X(32),Y(38)+fs+8,sm?'inefficient':'inside: inefficient','halo t-muted','middle');
+    notes+=g.txt(X(84),Y(80)+fs+8,sm?'unattainable':'outside: unattainable','halo t-muted','middle');
+  }
+  else if(m==='oc'){
+    curves+=curve(xm,ym,'c-ar'); labels+=g.txt(X(94)+6,Y(yAt(xm,ym,94))-8,'PPF','bold t-ar halo');
+    [[20,40,'small sacrifice'],[70,90,'big sacrifice']].forEach(function(s,i){
+      var y0=yAt(xm,ym,s[0]), y1=yAt(xm,ym,s[1]);
+      guides+=g.dot(s[0],y0)+g.dot(s[1],y1)+'<path class="guide" d="M'+r1(X(s[0]))+' '+r1(Y(y0))+'H'+r1(X(s[1]))+'"/>';
+      notes+=gapArrow(g,s[1],y0,y1,'leader');
+      /* the second note sits inside the frontier, left of its arrow, so it never runs off the sheet */
+      notes+= i ? g.txt(X(s[1])-8,Y(y1)+fs+4,s[2],'bold halo','end') : g.txt(X(s[1])+8,Y((y0+y1)/2)+5,s[2],'bold halo','start');
+    });
+  }
+  else if(m==='grow' || m==='shrink' || m==='pivot'){
+    var gx=m==='shrink'?-14:(m==='pivot'?18:12), gy=m==='shrink'?-13:(m==='pivot'?0:11);
+    var x2=xm+gx*te, y2=ym+gy*te, mv=te>0.02;
+    curves+=curve(xm,ym,'c-ar'+(mv?' ghost':''));
+    if(mv) curves+=curve(x2,y2,'c-ar');
+    /* the outer curve is labelled outside it near the top, the inner one inside it near the bottom */
+    function cl(xx,yy,th,name,outer){ var px=X(xx*Math.sin(th)), py=Y(yy*Math.cos(th)); return g.txt(px+(outer?6:-6),py+(outer?-6:fs+2),name,'bold t-ar halo',outer?'start':'end'); }
+    if(!mv) labels+=cl(xm,ym,0.45,'PPF',true);
+    else if(m==='shrink') labels+=cl(xm,ym,0.45,'PPF_1',true)+cl(x2,y2,1.1,'PPF_2',false);
+    else labels+=cl(x2,y2,0.45,'PPF_2',true)+cl(xm,ym,1.1,'PPF_1',false);
+    if(mv && m!=='pivot'){ var th=0.8, x0=xm*Math.sin(th), y0=ym*Math.cos(th), x1=x2*Math.sin(th), y1=y2*Math.cos(th);
+      notes+=arrowPx(X(x0)+(m==='shrink'?-4:4),Y(y0)-(m==='shrink'?-4:4),X(x1),Y(y1),'leader',9); }
+  }
+  else if(m==='cap'){
+    curves+=curve(xm,ym,'c-ar'); labels+=g.txt(X(xm)-8,Y(6)-6,'PPF today','bold t-ar halo','end');
+    curves+=curve(118,106,'c-ar ghost')+curve(106,95,'c-mc ghost');
+    labels+=g.txt(X(30),Y(yAt(118,106,30))-8,sm?'if K':'future PPF if K','bold t-ar halo','middle');
+    labels+=g.txt(X(98),Y(yAt(106,95,98))+fs+4,sm?'if C':'future PPF if C','bold t-mc halo','end');
+    notes+=pt(35,yAt(xm,ym,35),'K',12,-8)+pt(85,yAt(xm,ym,85),'C',-10,-10);
+  }
+  g.out(areas,curves,guides,labels,notes);
+}
+
+/* ---------- circular flow of income ---------- */
+function renderFlow(){
+  var v=cur(), full=(v.m==='full');
+  var g=kit({axes:false}), W=g.W, H=g.H, fs=g.fs, sm=g.small;
+  var sw=sm?84:122, mw=sm?92:150, pad=sm?6:22, out='', ts=sm?12:14;
+  function box(x,y,w,h,t1,t2){
+    return '<rect class="cbox" x="'+r1(x)+'" y="'+r1(y)+'" width="'+r1(w)+'" height="'+r1(h)+'" rx="8"/>'
+      + '<text class="panel-head" x="'+r1(x+w/2)+'" y="'+r1(y+h/2+(t2?-ts*0.25:ts*0.35))+'" text-anchor="middle" font-size="'+ts+'">'+esc(t1)+'</text>'
+      + (t2?'<text class="role" x="'+r1(x+w/2)+'" y="'+r1(y+h/2+ts*1.05)+'" text-anchor="middle" font-size="'+(ts-2)+'">'+esc(t2)+'</text>':'');
+  }
+  function lab(x,y,s,anchor,cls){ return '<text x="'+r1(x)+'" y="'+r1(y)+'" text-anchor="'+(anchor||'middle')+'" font-size="'+fs+'" class="bold halo '+(cls||'')+'">'+fmt(s)+'</text>'; }
+  function arc(x0,y0,x1,y1,lift,cls){
+    var mx=(x0+x1)/2, cy=y0+lift;
+    var d='M'+r1(x0)+' '+r1(y0)+'C'+r1(x0)+' '+r1(cy)+' '+r1(x1)+' '+r1(cy)+' '+r1(x1)+' '+r1(y1);
+    var ex=x1, ey=y1, bx=x1, by=y1+(lift<0?-14:14);
+    return '<path class="curve '+cls+'" d="'+d+'"/>'+arrowPx(bx,by,ex,ey,'curve '+cls,10);
+  }
+  var lx=pad, rx=W-pad-sw, top=sm?62:70, bot=H-(sm?62:70), bh=bot-top;
+  out+=box(lx,top,sw,bh,'Households')+box(rx,top,sw,bh,'Firms');
+  var hx=lx+sw/2, fx=rx+sw/2;
+  /* spending over the top, incomes under the bottom */
+  out+=arc(hx,top,fx,top,-(sm?44:52),'c-ar')+lab(W/2,top-(sm?40:46)+fs*0.2,full?'Consumer spending (C)':'Spending on goods and services');
+  out+=arc(fx,bot,hx,bot,(sm?44:52),'c-ac')+lab(W/2,bot+(sm?40:46),full?'Incomes (Y)':'Incomes: wages, rent, interest, profit');
+  var gx0=lx+sw, gx1=rx;
+  if(!full){
+    var y1=top+bh*0.36, y2=top+bh*0.66;
+    out+=arrowPx(gx1-4,y1,gx0+4,y1,'curve c-mr',10)+lab(W/2,y1-9,sm?'goods & services':'goods and services','t-mr');
+    out+=arrowPx(gx0+4,y2,gx1-4,y2,'curve c-mc',10)+lab(W/2,y2+fs+7,sm?'factor services':'land, labour, capital, enterprise','t-mc');
+  } else {
+    var mx0=W/2-mw/2, rows=[['Banks','S','I'],['Government','T','G'],['Abroad','M','X']], gap=sm?8:14, mh=(bh-2*gap)/3;
+    rows.forEach(function(r,i){
+      var y=top+i*(mh+gap), cy=y+mh/2;
+      out+=box(mx0,y,mw,mh,r[0]);
+      out+=arrowPx(gx0+4,cy,mx0-4,cy,'curve c-mc',9)+lab((gx0+mx0)/2,cy-7,r[1],'t-mc');
+      out+=arrowPx(mx0+mw+4,cy,gx1-4,cy,'curve c-ar',9)+lab((mx0+mw+gx1)/2,cy-7,r[2],'t-ar');
+    });
+    if(!sm) out+=lab((gx0+mx0)/2,top-9,'withdrawals','t-mc')+lab((mx0+mw+gx1)/2,top-9,'injections','t-ar');
+  }
+  wrapSvg(g, out);
+}
+
+/* ---------- trade cycle and output gaps ---------- */
+function renderCycle(){
+  var v=cur(), m=v.m||'cycle', te=v.anim?ease(state.t):1;
+  var g=kit({ytitle:'Real GDP', xtitle:'Time'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  function trend(t){ return 24+0.5*t; }
+  function act(t){ return trend(t)+10*Math.sin((t-6)/52*2*Math.PI); }
+  var t0=4, t1=114, tEnd=t0+(t1-t0)*te, areas='', curves='', labels='', notes='', n=90, i, d='';
+  curves+='<path class="curve c-ac" style="stroke-dasharray:7 6" d="'+g.path(trend,t0,t1)+'"/>';
+  labels+=g.txt(X(t1),Y(trend(t1))+fs+6,sm?'trend':'trend (potential) output','bold t-ac halo','end');
+  for(i=0;i<=n;i++){ var t=t0+(tEnd-t0)*i/n; d+=(i?'L':'M')+r1(X(t))+' '+r1(Y(act(t))); }
+  curves+='<path class="curve c-ar" d="'+d+'"/>';
+  if(m==='gap'){
+    /* shade between actual and trend: above trend pink (positive gap), below blue (negative gap) */
+    var segs=[[6,32,'a-cost'],[32,58,'a-cs'],[58,84,'a-cost'],[84,110,'a-cs']];
+    segs.forEach(function(s){
+      var hi=Math.min(s[1],tEnd); if(hi<=s[0]) return;
+      var up='', dn='', k, N=30;
+      for(k=0;k<=N;k++){ var tt=s[0]+(hi-s[0])*k/N; up+=(k?'L':'M')+r1(X(tt))+' '+r1(Y(act(tt))); }
+      for(k=N;k>=0;k--){ var tb=s[0]+(hi-s[0])*k/N; dn+='L'+r1(X(tb))+' '+r1(Y(trend(tb))); }
+      areas+='<path class="area '+s[2]+'" d="'+up+dn+'Z"/>';
+    });
+    if(te>0.3) labels+=g.txt(X(19),Y(act(19))-12,sm?'+ gap':'positive output gap','bold halo','middle');
+    if(te>0.55) labels+=g.txt(X(45),Y(act(45))+fs+10,sm?'− gap':'negative output gap','bold halo','middle');
+  } else {
+    var marks=[[19,'boom',-12],[33,'downturn',0],[45,'recession',1],[60,'recovery',0]];
+    marks.forEach(function(mk){
+      if(tEnd<mk[0]) return;
+      var x=X(mk[0]), y=Y(act(mk[0]));
+      if(mk[2]<0) labels+=g.dot(mk[0],act(mk[0]))+g.txt(x,y-12,mk[1],'bold halo','middle');
+      else if(mk[2]>0) labels+=g.dot(mk[0],act(mk[0]))+g.txt(x,y+fs+10,mk[1],'bold halo','middle');
+      else labels+=g.txt(x+(mk[1]==='downturn'?10:-10),y,mk[1],'bold halo',mk[1]==='downturn'?'start':'end');
+    });
+  }
+  g.out(areas,curves,'',labels,notes);
+}
+
+/* ---------- the multiplier, round by round ---------- */
+function renderRounds(){
+  var v=cur(), mpc=v.mpc||0.75, J=v.inj||100, te=v.anim?ease(state.t):1, n=8;
+  var g=kit({ytitle:'Spending (£m)', xtitle:'Round', qmax:n+1, pmax:J*1.12}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var shown=Math.max(1,Math.min(n,Math.ceil(n*te-0.001))), areas='', notes='', sum=0, k;
+  for(k=1;k<=shown;k++){
+    var amt=J*Math.pow(mpc,k-1); sum+=amt;
+    areas+=g.box(k-0.35,k+0.35,0,amt,'area a-cs')+'<rect class="outline" x="'+r1(X(k-0.35))+'" y="'+r1(Y(amt))+'" width="'+r1(X(k+0.35)-X(k-0.35))+'" height="'+r1(Y(0)-Y(amt))+'"/>';
+    notes+=g.txt(X(k),Y(amt)-6,(amt>=10?Math.round(amt):amt.toFixed(1)),'bold halo','middle')+g.txt(X(k),Y(0)+fs+5,String(k),'bold','middle');
+  }
+  var total=J/(1-mpc);
+  notes+=g.txt(X(n+0.4),Y(J*1.02),'total so far: £'+Math.round(sum)+'m','bold halo','end');
+  notes+=g.txt(X(n+0.4),Y(J*1.02)+fs*1.6,'final total: £'+Math.round(total)+'m','bold t-mc halo','end');
+  g.out(areas,'','','',notes);
+}
+
+/* =====================================================================
+   THEMES 1 AND 2: NOTES (version 24)
+   Theme 1 and Theme 2 replace the "Year 12" section. Notes already on the
+   site (externalities, AD/AS, the balance of payments and some evaluation
+   points) are reused inside these topics.
+   ===================================================================== */
+SECTIONS.t1={label:'Theme 1', heading:'Markets and market failure', scope:'Theme 1: how markets work, market failure and government intervention.',
+  groups:[['How markets work',['nature','demand','supply','elastic','price','taxsub','behave']],['Market failure and intervention',['extern','failure','intervene','govfail']]]};
+SECTIONS.t2={label:'Theme 2', heading:'The UK economy', scope:'Theme 2: measuring performance, AD and AS, national income, growth and policy.',
+  groups:[['Performance',['measures']],['AD, AS and national income',['agg_d','agg_s','natinc']],['Growth and policy',['growth2','policy']]]};
+SECTIONS.t1.order=[].concat(SECTIONS.t1.groups[0][1],SECTIONS.t1.groups[1][1]);
+SECTIONS.t2.order=[].concat(SECTIONS.t2.groups[0][1],SECTIONS.t2.groups[1][1],SECTIONS.t2.groups[2][1]);
+SECTIONS.micro.label='Theme 3'; SECTIONS.macro.label='Theme 4';
+delete SECTIONS.y12; delete TOPICS.adas2;
+TOPICS.extern.section='t1';
+
+function T1(k,label,eyebrow,first,groups){ TOPICS[k]={section:'t1',label:label,eyebrow:'Edexcel A · Theme 1 · '+eyebrow,first:first,groups:groups}; }
+function T2(k,label,eyebrow,first,groups){ TOPICS[k]={section:'t2',label:label,eyebrow:'Edexcel A · Theme 2 · '+eyebrow,first:first,groups:groups}; }
+
+T1('nature','Nature of economics','1.1 Nature of economics','n_model',[
+  ['Thinking like an economist',['n_model','n_posnorm']],['The economic problem',['n_problem']],
+  ['Production possibility frontiers',['ppf_base','ppf_oc','ppf_grow','ppf_cap']],['Specialisation and money',['n_spec','n_money']],['Economic systems',['n_systems']]]);
+T1('demand','Demand','1.2.1 to 1.2.2 Rational decisions and demand','dm_curve',[
+  ['Rational decisions',['dm_rational']],['The demand curve',['dm_curve','dm_shift','dm_fall']]]);
+T1('supply','Supply','1.2.4 Supply','sp_curve',[['The supply curve',['sp_curve','sp_shift','sp_fall']]]);
+T1('elastic','Elasticity','1.2.3 and 1.2.5 Elasticities','el_ped',[
+  ['Price elasticity of demand',['el_ped','el_pedfac']],['Income and cross elasticity',['el_yed','el_xed']],['Price elasticity of supply',['el_pes']]]);
+T1('price','Price and surplus','1.2.6 to 1.2.8 Price determination, price mechanism, surplus','pr_eq',[
+  ['Equilibrium',['pr_eq','pr_excess','pr_both']],['The price mechanism',['pr_mech']],['Consumer and producer surplus',['pr_surplus','pr_cs_change']]]);
+T1('taxsub','Taxes and subsidies','1.2.9 Indirect taxes and subsidies','ts_spec',[
+  ['Indirect taxes',['ts_spec','ts_adv','ev_ped']],['Subsidies',['ts_sub']]]);
+T1('behave','Behaviour','1.2.10 Alternative views of consumer behaviour','bh_why',[['Why people are not always rational',['bh_why','ev_nudge']]]);
+T1('failure','Market failure','1.3.1, 1.3.3, 1.3.4 Market failure, public goods, information gaps','mf_types',[
+  ['Types',['mf_types']],['Public goods',['mf_public','ev_freerider']],['Information gaps',['mf_info','ev_asym']]]);
+T1('intervene','Intervention','1.4.1 Government intervention in markets','gi_max',[
+  ['Taxes and subsidies',['ex_tax','ex_sub']],['Price controls',['gi_max','gi_min']],['Permits and other tools',['gi_permit','gi_state']]]);
+T1('govfail','Government failure','1.4.2 Government failure','gf_causes',[['Government failure',['gf_causes','ev_govfail','ev_unintended','ev_capture']]]);
+
+T2('measures','Measuring performance','2.1 Measures of economic performance','me_gdp',[
+  ['Growth',['me_gdp','me_wellbeing']],['Inflation',['me_cpi','me_inflcause','me_inflfx']],
+  ['Unemployment',['me_unemp','me_ucause','me_ueff']],['Balance of payments',['bp_struct','bp_causes','bp_eval']]]);
+T2('agg_d','Aggregate demand','2.2 Aggregate demand','ad_base',[
+  ['AD and its shifts',['ad_base','ad_dpull','ag_left']],['The components',['ag_cons','ag_inv','ag_gov','ag_nx']]]);
+T2('agg_s','Aggregate supply','2.3 Aggregate supply','as_sr_up',[
+  ['Short-run AS',['as_sr_up','ad_cpush']],['Long-run AS',['as_lrfac','ad_lras','ev_capacity']]]);
+T2('natinc','National income','2.4 National income','ni_flow',[
+  ['The circular flow',['ni_flow','ni_injw']],['The multiplier',['ni_mult','ni_rounds']]]);
+T2('growth2','Growth','2.5 Economic growth','gw_causes',[
+  ['Growth',['gw_causes']],['Output gaps and the cycle',['gw_gap','gw_cycle']],['Impact of growth',['gw_impact','ev_kuz_env','ev_easterlin']]]);
+T2('policy','Policy','2.6 Macroeconomic objectives and policies','po_obj',[
+  ['Objectives',['po_obj']],['Demand-side policy',['po_mon','po_fis']],['Supply-side policy',['po_ss']],['Conflicts',['po_conf','ev_srpc','ev_lrpc']]]);
+
+/* ------------------------- THEME 1: NATURE OF ECONOMICS ------------------------- */
+V.n_model={kind:'card', btn:'Economics as a science', showing:'Models, assumptions and their limits',
+  title:'Economics as a social science',
+  lead:'Economists build simplified models of how the economy works, test them against evidence, then keep, change or drop them.',
+  terms:[['Model','A simplified picture of reality, used to explain and predict.'],['Assumption','Something taken as true to make a model simpler.'],['Ceteris paribus','All other things equal: change one variable and hold the rest constant.']],
+  card:{head:'Models', items:[
+    PT('Why use them',[['Simplify','The economy has millions of moving parts. A model keeps the few that matter, so cause and effect are easier to see.'],['Predict','A model gives predictions you can test, such as “a tax on sugary drinks will cut how many are bought”.']]),
+    PT('Their limits',[['No laboratory','Economists cannot run controlled experiments on a whole economy, so other things always change at the same time.'],['People are not atoms','Behaviour changes with mood, habit and other people, so predictions are less certain than in physics.'],['Assumptions','If an assumption fails, such as rational consumers, the prediction can fail too.']])
+  ]},
+  evaluation:'That is why economists can look at the same data and disagree: evidence rarely isolates one cause. Treat a model’s predictions as likely, not certain.',
+  traps:['Write “ceteris paribus” when you change one thing in an answer: it shows you are holding everything else constant.']};
+
+V.n_posnorm={kind:'card', btn:'Positive and normative', showing:'Testable facts and value judgements',
+  title:'Positive and normative statements',
+  lead:'A positive statement can be tested against evidence. A normative statement is a value judgement about what ought to happen.',
+  terms:[['Positive statement','Objective and testable, even if it turns out to be false.'],['Normative statement','Contains a value judgement, often with “should”, “ought” or “fair”.'],['Value judgement','An opinion based on beliefs about what is right.']],
+  card:{head:'Spot the difference', items:[
+    PT('Positive',[['Example','“A sugar tax will reduce how much fizzy drink people buy.”'],['Why','It can be checked against sales data, so it is testable even if it turns out wrong.']]),
+    PT('Normative',[['Example','“The government should tax sugary drinks.”'],['Why','It says what ought to happen, which depends on what you value: health or freedom of choice.']]),
+    PT('In policy',[['How they combine','Positive evidence (the tax cuts sales) informs a normative decision (so we should tax), but cannot settle it alone.']])
+  ]},
+  traps:['A positive statement can be <b>false</b>. The test is whether it can be tested, not whether it is true.','“Should”, “ought”, “best” and “fair” usually signal a normative statement.']};
+
+V.n_problem={kind:'card', btn:'The economic problem', showing:'Scarcity, factors and opportunity cost',
+  title:'The economic problem',
+  lead:'Wants are unlimited but resources are scarce, so every society must choose what to produce, how to produce it, and who gets it.',
+  terms:[['Scarcity','Not enough resources to satisfy everyone’s wants.'],['Opportunity cost','The next best alternative given up when a choice is made.'],['Factors of production','Land, labour, capital and enterprise: the inputs used to make goods and services.']],
+  card:{head:'The basics', items:[
+    PT('Factors of production',[['Land','Natural resources. Reward: rent.'],['Labour','Human effort. Reward: wages.'],['Capital','Man-made tools and machines. Reward: interest.'],['Enterprise','Organising production and taking risks. Reward: profit.']]),
+    PT('Resources',[['Renewable','Replaced at least as fast as it is used, such as solar power or managed forests.'],['Non-renewable','Runs out once used, such as oil and gas.']]),
+    PT('Opportunity cost',[['Why it exists','Resources are scarce, so using them one way means not using them another.'],['Example','An evening at a part-time job means giving up an evening of revision.']])
+  ]},
+  traps:['Opportunity cost is the <b>next best</b> alternative only, not every alternative added together.']};
+
+V.ppf_base={kind:'ppf1', m:'base', btn:'The PPF', showing:'On, inside and outside the frontier',
+  title:'Production possibility frontier',
+  lead:'A PPF shows the most an economy can produce of two goods when it uses all its resources efficiently.',
+  terms:[['PPF','The maximum combinations of two goods an economy can produce with its resources and technology.'],['Productive efficiency','Producing on the PPF: no more of one good is possible without less of the other.']],
+  plain:[['<b>A</b>','On the frontier: all resources used efficiently.'],['<b>B</b>','Inside: resources unemployed or wasted, as in a recession.'],['<b>C</b>','Outside: unattainable with today’s resources and technology.']],
+  traps:['Every point <b>on</b> the PPF is productively efficient. The PPF cannot say which point is best for society: that is a normative choice.']};
+
+V.ppf_oc={kind:'ppf1', m:'oc', btn:'Opportunity cost', showing:'Each extra unit costs more',
+  title:'Opportunity cost on a PPF',
+  lead:'Moving along a PPF means giving up some of one good to make more of the other. That sacrifice is the opportunity cost.',
+  chain:[
+    'Near the top, moving right gives up only a little capital goods for each extra consumer good.',
+    'Further down, the same rise in consumer goods means giving up much more capital goods.',
+    'Resources are not equally good at everything, and the last ones moved are the least suited.',
+    'So the PPF bows outwards (it is concave to the origin): opportunity cost rises.'
+  ],
+  work:{q:'Moving from A to B, consumer goods rise from 20 to 40 units and capital goods fall from 90 to 80. What is the opportunity cost of each extra consumer good?',
+    steps:['Gain: 40 − 20 = 20 consumer goods. Loss: 90 − 80 = 10 capital goods.','Opportunity cost = loss ÷ gain = 10 ÷ 20 = <b>0.5 capital goods</b> for each extra consumer good.'],
+    ans:'0.5 capital goods per consumer good.'},
+  traps:['A straight-line PPF means a constant opportunity cost; a curved one means it rises. Say which you are drawing.']};
+
+V.ppf_grow={kind:'ppf1', m:'grow', anim:true, btn:'Growth and decline', showing:'The frontier shifts out',
+  title:'Shifts in the PPF',
+  lead:'More resources, or better technology, let the economy make more of both goods: the whole PPF shifts outwards.',
+  chain:[
+    'Causes of an outward shift: more workers, more capital from investment, better technology, a more skilled workforce.',
+    'The PPF moves from PPF<sub>1</sub> to PPF<sub>2</sub>, so combinations that were unattainable become possible.',
+    'This is a rise in <b>potential</b> output: long-run economic growth.',
+    'An inward shift is the reverse: a natural disaster, a war or emigration destroys resources.'
+  ],
+  traps:['Moving from inside the PPF to the frontier is <b>not</b> a shift. It uses existing resources better (actual growth); a shift is more potential.']};
+
+V.ppf_cap={kind:'ppf1', m:'cap', btn:'Capital or consumer goods', showing:'Today’s choice sets tomorrow’s PPF',
+  title:'Capital goods and future growth',
+  lead:'Making more capital goods today means fewer consumer goods now, but a bigger economy later.',
+  chain:[
+    'At K the economy makes lots of capital goods: machines, buildings, infrastructure.',
+    'At C it makes mainly consumer goods, so people enjoy more today.',
+    'Capital goods add to productive capacity, so choosing K shifts the PPF further out over time.',
+    'The opportunity cost of faster growth is less consumption now.'
+  ],
+  evaluation:'Which point is better is a normative judgement. A poor country may not be able to give up consumption today, which is one reason growth is hard to get started.'};
+
+V.n_spec={kind:'card', btn:'Specialisation', showing:'The division of labour',
+  title:'Specialisation and the division of labour',
+  lead:'Specialisation means concentrating on a narrow range of tasks or products. Adam Smith showed that splitting work into small tasks raises output per worker.',
+  terms:[['Division of labour','Splitting production into separate tasks, each done by different workers.'],['Specialisation','Concentrating on what you do best: as a person, a firm, a region or a country.']],
+  card:{head:'Specialisation', items:[
+    PT('Benefits',[['Higher productivity','Workers repeat one task, so they get faster and better at it.'],['Less time wasted','No switching between tasks and tools.'],['Machinery','Simple repeated tasks are easier to automate.'],['Trade','People and countries swap what they make for what they want.']]),
+    PT('Costs',[['Boredom','Repetitive work lowers motivation and raises staff turnover.'],['Dependence','If one stage stops, the whole line stops.'],['Structural unemployment','Narrow skills are hard to move if demand for them collapses.']])
+  ]},
+  tip:'Specialisation needs money to work: you need a way to swap what you make for what you want.'};
+
+V.n_money={kind:'card', btn:'Functions of money', showing:'Four jobs money does',
+  title:'The functions of money',
+  lead:'Without money, specialised workers would have to barter, which needs a double coincidence of wants.',
+  terms:[['Barter','Swapping goods directly, without money.'],['Double coincidence of wants','Each person must want exactly what the other is offering.']],
+  card:{head:'Money is', items:[
+    PT('Functions',[['A medium of exchange','Accepted in payment for anything, so nobody has to barter.'],['A measure of value','Prices in one unit let you compare very different goods.'],['A store of value','It can be saved and spent later, though inflation erodes it.'],['A method of deferred payment','Debts can be agreed now and repaid later.']])
+  ]},
+  traps:['Learn the four functions word for word: they are an easy knowledge mark.']};
+
+V.n_systems={kind:'card', btn:'Economic systems', showing:'Free market, mixed and command',
+  title:'Free market, mixed and command economies',
+  lead:'Economies differ in how far the market or the state decides what is produced, how, and for whom.',
+  terms:[['Free market economy','Resources allocated by the price mechanism, with private ownership.'],['Command economy','The state owns resources and plans production.'],['Mixed economy','Markets plus a large role for the state, as in the UK.']],
+  card:{head:'Three systems', items:[
+    PT('Free market',[['For','Prices signal what people want and reward efficiency. Adam Smith’s “invisible hand”; Friedrich Hayek argued markets use knowledge no planner could hold.'],['Against','Market failure: public goods go missing, externalities are ignored, and inequality can grow.']]),
+    PT('Command',[['For','The state can direct resources to priorities and reduce inequality. Karl Marx argued free markets exploit workers.'],['Against','Planners lack information, there is little incentive to innovate, and shortages are common.']]),
+    PT('Mixed',[['How','Markets for most goods; the state provides public goods, corrects market failure and redistributes income.'],['Debate','How big the state should be is a normative question.']])
+  ]},
+  traps:['Link each thinker to the right idea: Smith (invisible hand, specialisation), Hayek (markets use spread-out knowledge), Marx (critique of free markets).']};
+
+/* ------------------------- THEME 1: DEMAND AND SUPPLY ------------------------- */
+V.dm_rational={kind:'card', btn:'Rational decisions', showing:'What each agent aims for',
+  title:'Rational decision making',
+  lead:'Traditional economic theory assumes every agent makes the choice that is best for them.',
+  terms:[['Utility','The satisfaction a consumer gets from consuming a good.'],['Rational decision making','Choosing the option that maximises your own benefit.']],
+  card:{head:'Economic agents', items:[
+    PT('Aims',[['Consumers','Maximise utility from a limited income.'],['Firms','Maximise profit.'],['Government','Maximise social welfare.']]),
+    PT('Why households may not maximise utility',[['Social norms','People copy what others do.'],['Habit and inertia','People stick with the same choices without checking alternatives.'],['Impulse','Decisions made on the spot, not after weighing costs and benefits.'],['Lack of information','People do not know every price or risk.']])
+  ]},
+  tip:'These limits are the starting point for behavioural economics in 1.2.10.'};
+
+V.dm_curve={kind:'mkt', m:'demand', btn:'The demand curve', showing:'A price change moves you along the curve',
+  title:'The demand curve',
+  lead:'Demand is the quantity consumers are willing and able to buy at each price. As the price falls, quantity demanded rises.',
+  terms:[['Effective demand','Wanting a good and being able to pay for it.'],['Diminishing marginal utility','Each extra unit gives less extra satisfaction than the one before.']],
+  chain:[
+    'The price falls from P<sub>1</sub> to P<sub>2</sub>.',
+    'Quantity demanded rises from Q<sub>1</sub> to Q<sub>2</sub>: an <b>extension</b> of demand, a movement along the curve.',
+    'Why it slopes down: each extra unit adds less utility, so people only buy more if the price falls.',
+    'A price rise does the opposite: a <b>contraction</b> of demand.'
+  ],
+  traps:['A change in the good’s <b>own price</b> moves you along the curve; anything else shifts it. Use “extension” and “contraction” for movements, “increase” and “decrease” for shifts.']};
+
+V.dm_shift={kind:'mkt', m:'dshift', dd:22, anim:true, btn:'Demand increases', showing:'The curve shifts right',
+  title:'An increase in demand',
+  lead:'When something other than the price makes people want more at every price, the whole demand curve shifts right.',
+  plain:[['Income','Higher income raises demand for normal goods.'],['Substitutes','A dearer substitute raises demand.'],['Complements','A cheaper complement raises demand.'],['Tastes','Trends, advertising, influencers.'],['Population','More people, or more in the target age group.'],['Expectations','Expected price rises bring buying forward.']],
+  chain:[
+    'Demand shifts right from D<sub>1</sub> to D<sub>2</sub>.',
+    'At the old price there is excess demand, so the price is bid up.',
+    'The price rises from P<sub>1</sub> to P<sub>2</sub> and quantity from Q<sub>1</sub> to Q<sub>2</sub>.',
+    'Supply extends along the supply curve: firms supply more because the price is higher.'
+  ],
+  compare:{vs:'After demand rises',rows:[['Price','↑ higher'],['Quantity','↑ higher'],['Supply','extends'],['Demand curve','shifts right']]},
+  traps:['When demand shifts, supply does <b>not</b> shift: it extends along itself. Moving both curves is a common slip.']};
+
+V.dm_fall={kind:'mkt', m:'dshift', dd:-22, anim:true, btn:'Demand decreases', showing:'The curve shifts left',
+  title:'A decrease in demand',
+  lead:'Lower incomes, a cheaper substitute or a change in taste shift demand left.',
+  chain:[
+    'Demand shifts left from D<sub>1</sub> to D<sub>2</sub>.',
+    'At the old price there is excess supply, so firms cut prices to sell their stock.',
+    'The price falls from P<sub>1</sub> to P<sub>2</sub> and quantity from Q<sub>1</sub> to Q<sub>2</sub>.',
+    'Supply contracts along the supply curve.'
+  ],
+  compare:{vs:'After demand falls',rows:[['Price','↓ lower'],['Quantity','↓ lower'],['Supply','contracts'],['Demand curve','shifts left']]},
+  traps:['Inferior goods are the exception for income: when incomes rise, demand for them <b>falls</b>.']};
+
+V.sp_curve={kind:'mkt', m:'supply', btn:'The supply curve', showing:'A higher price brings more supply',
+  title:'The supply curve',
+  lead:'Supply is the quantity firms are willing and able to sell at each price. It slopes up, because a higher price makes production more profitable.',
+  terms:[['Supply','The quantity firms are willing and able to sell at each price over a period.']],
+  chain:[
+    'The price rises from P<sub>1</sub> to P<sub>2</sub>.',
+    'Each extra unit is now more profitable, so existing firms make more and new firms may join.',
+    'Quantity supplied rises from Q<sub>1</sub> to Q<sub>2</sub>: an <b>extension</b> of supply.',
+    'A price fall causes a <b>contraction</b> of supply.'
+  ],
+  traps:['Only the good’s own price moves you along the supply curve. Everything else shifts it.']};
+
+V.sp_shift={kind:'mkt', m:'sshift', ds:24, anim:true, btn:'Supply increases', showing:'The curve shifts right',
+  title:'An increase in supply',
+  lead:'Lower costs or better technology let firms supply more at every price, so supply shifts right.',
+  plain:[['Costs','Cheaper materials, energy or labour.'],['Technology','Better machines raise productivity.'],['Subsidies','A payment per unit lowers costs.'],['More firms','New entrants add to supply.'],['Weather','Good harvests raise farm supply.']],
+  chain:[
+    'Supply shifts right from S<sub>1</sub> to S<sub>2</sub>.',
+    'At the old price there is excess supply, so the price falls.',
+    'The price falls from P<sub>1</sub> to P<sub>2</sub> and quantity rises from Q<sub>1</sub> to Q<sub>2</sub>.',
+    'Demand extends along the demand curve.'
+  ],
+  compare:{vs:'After supply rises',rows:[['Price','↓ lower'],['Quantity','↑ higher'],['Demand','extends'],['Supply curve','shifts right']]}};
+
+V.sp_fall={kind:'mkt', m:'sshift', ds:-22, anim:true, btn:'Supply decreases', showing:'The curve shifts left',
+  title:'A decrease in supply',
+  lead:'Higher costs, a tax or bad weather mean firms supply less at every price.',
+  chain:[
+    'Supply shifts left from S<sub>1</sub> to S<sub>2</sub>.',
+    'At the old price there is a shortage, so the price is bid up.',
+    'The price rises from P<sub>1</sub> to P<sub>2</sub> and quantity falls from Q<sub>1</sub> to Q<sub>2</sub>.',
+    'Demand contracts along the demand curve.'
+  ],
+  compare:{vs:'After supply falls',rows:[['Price','↑ higher'],['Quantity','↓ lower'],['Demand','contracts'],['Supply curve','shifts left']]},
+  traps:['Higher costs shift supply <b>left</b>, which is the same as up. Never draw it shifting right.']};
+
+/* ------------------------- THEME 1: ELASTICITY ------------------------- */
+V.el_ped={kind:'mkt', m:'ped', anim:true, two:true, btn:'PED', showing:'The same price rise, two results',
+  title:'Price elasticity of demand',
+  lead:'PED measures how much quantity demanded responds to a change in price.',
+  terms:[['PED','% change in quantity demanded ÷ % change in price.'],['Price elastic','PED above 1 (ignoring the sign): quantity changes by more than price.'],['Price inelastic','PED below 1: quantity changes by less than price.']],
+  plain:[['<b class="k-ac">Green</b>','Revenue gained: the higher price on the units still sold.'],['<b class="k-mc">Pink</b>','Revenue lost: the units no longer sold.']],
+  chain:[
+    'Both firms raise the price from P<sub>1</sub> to P<sub>2</sub>.',
+    'With inelastic demand, quantity falls only a little, so the gain beats the loss: revenue rises.',
+    'With elastic demand, quantity falls a lot, so the loss beats the gain: revenue falls.',
+    'So to raise revenue, raise the price if demand is inelastic and cut it if demand is elastic.'
+  ],
+  work:{q:'The price of a phone case rises from £10 to £12 and weekly sales fall from 500 to 450. Calculate PED.',
+    steps:['% change in quantity = (450 − 500) ÷ 500 × 100 = <b>−10%</b>.','% change in price = (12 − 10) ÷ 10 × 100 = <b>+20%</b>.','PED = −10 ÷ 20 = <b>−0.5</b>.'],
+    ans:'−0.5: inelastic, so the price rise lifts revenue from £5,000 to £5,400.'},
+  traps:['Divide the % change in <b>quantity</b> by the % change in <b>price</b>, not the other way round.','PED is usually negative. Judge elastic or inelastic by the size of the number, ignoring the sign.']};
+
+V.el_pedfac={kind:'card', btn:'What decides PED', showing:'Factors, and why it matters',
+  title:'What decides PED, and why it matters',
+  lead:'Demand is more elastic when it is easy to switch away, or when the good takes a big slice of income.',
+  card:{head:'PED', items:[
+    PT('Factors',[['Substitutes','More close substitutes, more elastic: one brand of crisps against crisps in general.'],['Necessity and habit','Necessities and addictive goods are inelastic: petrol, cigarettes.'],['Share of income','A small share (salt) is inelastic; a big one (a car) is more elastic.'],['Time','Demand gets more elastic over time as people find alternatives.'],['How the market is defined','The narrower the market, the more elastic: Coca-Cola against soft drinks.']]),
+    PT('Why it matters',[['Firms','Raise prices where demand is inelastic to raise revenue.'],['Government','Taxing goods with inelastic demand raises revenue, but cuts consumption little.'],['Price discrimination','Charge more to the group with inelastic demand.']])
+  ]},
+  traps:['When demand is inelastic, most of a <b>tax</b> falls on consumers. Link PED to tax incidence in 1.2.9.']};
+
+V.el_yed={kind:'card', btn:'YED', showing:'Normal, inferior and luxury goods',
+  title:'Income elasticity of demand',
+  lead:'YED measures how demand responds to a change in income.',
+  terms:[['YED','% change in quantity demanded ÷ % change in income.']],
+  card:{head:'YED', items:[
+    PT('Values',[['Above 1','A luxury (income elastic): demand grows faster than income, such as holidays abroad.'],['Between 0 and 1','A normal necessity: demand grows more slowly than income, such as bread.'],['Below 0','An inferior good: demand falls as income rises, such as value-range food or bus travel.']]),
+    PT('Why it matters',[['Firms','In a boom, sellers of luxuries gain most; in a recession, sellers of inferior goods hold up best.'],['Planning','A mix of products spreads the risk across the trade cycle.']])
+  ]},
+  work:{q:'Incomes rise by 4% and demand for streaming subscriptions rises by 6%. Calculate YED and say what kind of good it is.',
+    steps:['YED = 6 ÷ 4 = <b>1.5</b>.','It is positive and above 1.'], ans:'1.5: a normal luxury good (income elastic).'},
+  traps:['For YED and XED the <b>sign</b> matters, unlike PED: negative YED means an inferior good.']};
+
+V.el_xed={kind:'card', btn:'XED', showing:'Substitutes and complements',
+  title:'Cross elasticity of demand',
+  lead:'XED measures how demand for one good responds to a change in the price of another.',
+  terms:[['XED','% change in quantity demanded of good A ÷ % change in the price of good B.']],
+  card:{head:'XED', items:[
+    PT('Values',[['Positive','Substitutes: a dearer B raises demand for A, such as Xbox and PlayStation.'],['Negative','Complements: a dearer B cuts demand for A, such as consoles and games.'],['Zero','Unrelated goods.']]),
+    PT('Why it matters',[['Pricing','Firms watch rivals’ prices closely when XED is high.'],['Complements','Firms price them together: cheap printers, expensive ink.']])
+  ]},
+  work:{q:'The price of PlayStation games rises by 10% and demand for Xbox games rises by 3%. Calculate XED.',
+    steps:['XED = +3 ÷ +10 = <b>+0.3</b>.'], ans:'+0.3: substitutes, but weak ones.'}};
+
+V.el_pes={kind:'mkt', m:'pes', anim:true, two:true, btn:'PES', showing:'The same demand rise, two supply curves',
+  title:'Price elasticity of supply',
+  lead:'PES measures how much quantity supplied responds to a change in price.',
+  terms:[['PES','% change in quantity supplied ÷ % change in price.']],
+  chain:[
+    'Demand rises by the same amount in both markets.',
+    'With inelastic supply, firms cannot raise output quickly, so most of the effect is a higher price.',
+    'With elastic supply, output rises easily, so the price rises only a little.'
+  ],
+  plain:[['Spare capacity','Idle machines let firms expand fast.'],['Stocks','Goods that can be stored are more elastic.'],['Time','Supply is more elastic in the long run.'],['Mobile factors','If workers and machines can switch easily, supply is more elastic.']],
+  traps:['Supply is usually more elastic in the long run, when firms can build capacity. Say which time period you mean.']};
+
+/* ------------------------- THEME 1: PRICE AND SURPLUS ------------------------- */
+V.pr_eq={kind:'mkt', m:'eq', btn:'Equilibrium', showing:'Where supply meets demand',
+  title:'Market equilibrium',
+  lead:'Equilibrium is the price where the quantity consumers want to buy equals the quantity firms want to sell.',
+  terms:[['Equilibrium','A position with no tendency to change: quantity demanded equals quantity supplied.']],
+  chain:['At P<sub>e</sub>, consumers want Q<sub>e</sub> and firms want to sell Q<sub>e</sub>.','Nothing pushes the price up or down, so it stays until something shifts a curve.']};
+
+V.pr_excess={kind:'mkt', m:'excess', btn:'Excess supply and demand', showing:'How the market clears',
+  title:'How the market reaches equilibrium',
+  lead:'Away from equilibrium, a surplus or a shortage pushes the price back.',
+  chain:[
+    'Above equilibrium, at P<sub>1</sub>, firms supply more than consumers want: excess supply.',
+    'Firms cut prices to clear unsold stock, so the price falls towards P<sub>e</sub>.',
+    'Below equilibrium, at P<sub>2</sub>, consumers want more than firms supply: excess demand.',
+    'Buyers bid the price up, so it rises towards P<sub>e</sub>.'
+  ],
+  traps:['Measure a surplus or a shortage <b>across</b>, between the two curves at that price.']};
+
+V.pr_both={kind:'mkt', m:'both', dd:20, ds:26, anim:true, btn:'Both curves shift', showing:'Quantity rises; the price depends',
+  title:'When both curves shift',
+  lead:'If demand and supply both increase, quantity certainly rises, but the price could go either way.',
+  chain:[
+    'Demand shifts right (D<sub>1</sub> to D<sub>2</sub>) and supply shifts right (S<sub>1</sub> to S<sub>2</sub>).',
+    'Both push quantity up, so it rises from Q<sub>1</sub> to Q<sub>2</sub>.',
+    'Demand pushes the price up and supply pushes it down. Here supply shifts more, so the price falls.',
+    'Had demand shifted more, the price would have risen.'
+  ],
+  traps:['With two shifts, say which change is <b>certain</b> and which depends on the relative size of the shifts.']};
+
+V.pr_mech={kind:'card', btn:'The price mechanism', showing:'Rationing, signalling, incentive',
+  title:'The price mechanism',
+  lead:'In a market, prices do three jobs that allocate scarce resources without anyone in charge.',
+  terms:[['Price mechanism','The way changes in prices allocate resources between different uses.']],
+  card:{head:'Three functions', items:[
+    PT('Functions',[['Rationing','A higher price limits demand to those most willing and able to pay, such as tickets for a big tour.'],['Signalling','A rising price tells producers what consumers want more of.'],['Incentive','A higher price raises profit, giving firms a reason to supply more.']]),
+    PT('Example: a heatwave',[['Demand','Demand for fans rises, so their price rises.'],['Signal and incentive','Shops order more and makers raise output.'],['Rationing','Until supply catches up, the higher price rations the fans available.']])
+  ]},
+  tip:'Markets can be local (a market stall), national (UK housing) or global (oil).',
+  traps:['Name each function <b>and</b> explain it in context. “Rationing, signalling, incentive” as a list earns little.']};
+
+V.pr_surplus={kind:'mkt', m:'surplus', btn:'Consumer and producer surplus', showing:'The two triangles',
+  title:'Consumer and producer surplus',
+  lead:'Consumer surplus is what buyers gain by paying less than they would have; producer surplus is what sellers gain by receiving more than they needed.',
+  terms:[['Consumer surplus','The difference between what consumers are willing to pay and what they actually pay.'],['Producer surplus','The difference between the price producers receive and the lowest price they would accept.']],
+  plain:[['<b class="k-ar">Blue</b>','Consumer surplus: below demand, above the price.'],['<b class="k-ac">Green</b>','Producer surplus: above supply, below the price.']],
+  work:{q:'The equilibrium price is £52 and quantity 60. Demand meets the price axis at £100. Calculate consumer surplus.',
+    steps:['Height of the triangle = £100 − £52 = £48.','Area = ½ × base × height = ½ × 60 × £48 = <b>£1,440</b>.'], ans:'£1,440.'}};
+
+V.pr_cs_change={kind:'mkt', m:'surplus', ds:24, anim:true, btn:'When supply rises', showing:'A lower price, more consumer surplus',
+  title:'How surplus changes',
+  lead:'When supply increases, the price falls and consumer surplus grows.',
+  chain:[
+    'Supply shifts right, so the price falls and quantity rises.',
+    'Consumers pay less for the units they already bought, and buy extra units they value above the new price.',
+    'Both add to consumer surplus: the blue triangle grows.'
+  ]};
+
+/* ------------------------- THEME 1: TAXES AND SUBSIDIES ------------------------- */
+V.ts_spec={kind:'mkt', m:'tax', t:24, anim:true, btn:'Specific tax', showing:'Who really pays the tax',
+  title:'A specific (unit) tax',
+  lead:'A specific tax is a fixed amount per unit, such as fuel duty. Supply shifts up by the tax at every quantity.',
+  terms:[['Specific tax','A fixed amount of tax per unit sold.'],['Tax incidence','Who really bears a tax: consumers, producers, or both.']],
+  plain:[['<b class="k-mc">Pink</b>','Paid by consumers: the price rise, P<sub>1</sub> to P<sub>2</sub>, on Q<sub>2</sub> units.'],['<b class="k-ar">Blue</b>','Paid by producers: what they keep falls from P<sub>1</sub> to P<sub>3</sub>.'],['<b>Orange</b>','Deadweight loss: trades that no longer happen.']],
+  chain:[
+    'Supply shifts up by the tax, from S to S + tax.',
+    'Consumers now pay P<sub>2</sub>; producers keep P<sub>3</sub>, which is P<sub>2</sub> minus the tax.',
+    'Quantity falls from Q<sub>1</sub> to Q<sub>2</sub>.',
+    'Tax revenue is the tax × Q<sub>2</sub>: the pink and blue boxes together.'
+  ],
+  work:{q:'A £2 tax per unit is added. The price rises from £10 to £11.50 and sales fall from 1,000 to 800. Find the tax revenue and the consumers’ share.',
+    steps:['Revenue = £2 × 800 = <b>£1,600</b>.','Consumers pay £1.50 of each £2: £1.50 × 800 = <b>£1,200</b>.','Producers pay the other £0.50: £0.50 × 800 = <b>£400</b>.'],
+    ans:'£1,600 in revenue; consumers bear £1,200 of it, because demand is relatively inelastic.'},
+  traps:['Revenue is the tax × the <b>new</b> quantity, not the old one.','The more inelastic demand is, the bigger the consumers’ share of the tax.']};
+
+V.ts_adv={kind:'mkt', m:'tax', adv:0.45, anim:true, btn:'Ad valorem tax', showing:'A percentage tax pivots supply',
+  title:'An ad valorem tax',
+  lead:'An ad valorem tax is a percentage of the price, such as VAT. The tax per unit grows as the price grows, so supply pivots upwards.',
+  terms:[['Ad valorem tax','A tax charged as a percentage of the price, such as VAT.']],
+  chain:[
+    'At low prices the tax per unit is small; at high prices it is large.',
+    'So S + tax gets further from S the higher up you go.',
+    'The price rises from P<sub>1</sub> to P<sub>2</sub>, quantity falls from Q<sub>1</sub> to Q<sub>2</sub>, and producers keep P<sub>3</sub>.'
+  ],
+  traps:['A specific tax shifts supply <b>parallel</b>; an ad valorem tax <b>pivots</b> it. Draw the right one.']};
+
+V.ts_sub={kind:'mkt', m:'sub', s:24, anim:true, btn:'Subsidy', showing:'Who gains from a subsidy',
+  title:'A subsidy',
+  lead:'A subsidy is a payment per unit from the government to producers. Supply shifts down by the subsidy.',
+  terms:[['Subsidy','A payment from the government to producers that lowers their cost per unit.']],
+  plain:[['<b class="k-ar">Blue</b>','Consumers gain: the price falls from P<sub>1</sub> to P<sub>2</sub>.'],['<b class="k-ac">Green</b>','Producers gain: they receive P<sub>3</sub>, the price plus the subsidy.'],['Both boxes','The cost to the government: subsidy × Q<sub>2</sub>.']],
+  chain:[
+    'Supply shifts down by the subsidy, from S to S − subsidy.',
+    'Consumers pay less (P<sub>2</sub>) and buy more (Q<sub>2</sub>).',
+    'Producers receive P<sub>3</sub> per unit: the price plus the subsidy.',
+    'The government pays the subsidy on every unit: subsidy × Q<sub>2</sub>.'
+  ],
+  evaluation:'Subsidies have an opportunity cost: the money could fund schools or hospitals. Firms may come to rely on them and stop cutting costs.',
+  traps:['The cost to the government is the subsidy × the <b>new, higher</b> quantity.']};
+
+/* ------------------------- THEME 1: BEHAVIOUR ------------------------- */
+V.bh_why={kind:'card', btn:'Why we are not always rational', showing:'Other people, habits and maths',
+  title:'Alternative views of consumer behaviour',
+  lead:'Behavioural economics uses psychology to explain why real people do not always act as rational utility maximisers.',
+  terms:[['Behavioural economics','The study of how psychological, social and emotional factors affect economic decisions.'],['Bounded rationality','Making good-enough decisions with limited information, time and brainpower.']],
+  card:{head:'Why consumers may not be rational', items:[
+    PT('The spec’s three reasons',[['Other people','We copy friends and influencers (herd behaviour), and care about fairness and others’ welfare (altruism).'],['Habit','Routines and defaults carry on without a fresh decision: the same phone network, the same lunch.'],['Weakness at computation','People struggle with maths and risk, so they use shortcuts.']]),
+    PT('Shortcuts and biases',[['Rule of thumb','A quick rule, such as always buying the second-cheapest option.'],['Anchoring','Judging a price against the first number seen: “was £80, now £40”.'],['Availability','Judging how likely something is by how easily examples come to mind.']])
+  ]},
+  evaluation:'Behavioural ideas explain real choices better, but they are hard to build into simple models. Governments use them through nudges, which are cheap but often have small effects.',
+  traps:['Use the spec’s wording: the influence of other people’s behaviour, the importance of habitual behaviour, consumer weakness at computation.']};
+
+/* ------------------------- THEME 1: MARKET FAILURE ------------------------- */
+V.mf_types={kind:'card', btn:'Types of market failure', showing:'Three ways markets go wrong',
+  title:'Market failure',
+  lead:'Market failure is when the free market allocates resources inefficiently, so society’s welfare is not as high as it could be.',
+  terms:[['Market failure','When the price mechanism leads to an inefficient allocation of resources.']],
+  card:{head:'Three types', items:[
+    PT('Types',[['Externalities','Third parties bear costs or gain benefits that the buyer and seller ignore, so too much or too little is made.'],['Public goods','Non-rival, non-excludable goods are under-provided, because people can use them without paying.'],['Information gaps','Buyers or sellers lack information, so they make choices that do not maximise their welfare.']])
+  ]},
+  traps:['Market failure is about <b>inefficiency</b>, not unfairness. An unequal outcome is a separate (equity) argument.']};
+
+V.mf_public={kind:'card', btn:'Public goods', showing:'Non-rival and non-excludable',
+  title:'Public goods and the free rider problem',
+  lead:'Some goods would hardly be provided at all in a free market, because people can benefit without paying.',
+  terms:[['Non-rival','One person using it does not reduce the amount left for others.'],['Non-excludable','People who do not pay cannot be stopped from using it.'],['Free rider','Someone who benefits from a good without paying for it.']],
+  card:{head:'Public goods', items:[
+    PT('Pure public goods',[['Examples','Street lighting, national defence, flood defences.'],['Why the market fails','Nobody can be made to pay, so firms cannot profit, and the good is under-provided or missing.']]),
+    PT('Quasi-public goods',[['What','Partly rival or partly excludable, such as roads (congestion, tolls) or beaches.'],['Why it matters','Technology can make a good excludable, through tolls or subscriptions.']]),
+    PT('Private goods',[['What','Rival and excludable: a pizza, a phone.']])
+  ]},
+  traps:['Explain <b>both</b> characteristics, then the free rider problem. A public good is not just “a good the government provides”.']};
+
+V.mf_info={kind:'card', btn:'Information gaps', showing:'When one side knows more',
+  title:'Information gaps',
+  lead:'Markets work best when buyers and sellers are well informed. When they are not, resources are misallocated.',
+  terms:[['Symmetric information','Both sides of a deal know the same.'],['Asymmetric information','One side knows more than the other.'],['Merit good','Under-consumed because people underestimate its benefits, such as education.'],['Demerit good','Over-consumed because people underestimate its costs, such as vaping.']],
+  card:{head:'How gaps misallocate resources', items:[
+    PT('Examples',[['Used cars','Sellers know the faults and buyers do not, so buyers overpay or avoid the market.'],['Health care','Patients cannot judge treatments, so they rely on doctors.'],['Merit goods','Students underestimate the lifetime benefits of education, so they consume too little of it.'],['Demerit goods','Young people underestimate the long-run harm of vaping, so they consume too much.']])
+  ]},
+  tip:'Merit and demerit goods combine information gaps with externalities.'};
+
+/* ------------------------- THEME 1: GOVERNMENT INTERVENTION ------------------------- */
+V.gi_max={kind:'mkt', m:'maxp', anim:true, btn:'Maximum price', showing:'A price ceiling causes a shortage',
+  title:'Maximum prices',
+  lead:'A maximum price is a legal limit set below the equilibrium price, to make something affordable, such as a cap on rents.',
+  terms:[['Maximum price','A price ceiling: it is illegal to charge more.']],
+  chain:[
+    'The maximum price is set below equilibrium, at P<sub>max</sub>.',
+    'Consumers want more at the lower price (Q<sub>d</sub>), but firms supply less (Q<sub>s</sub>).',
+    'The gap is a shortage: excess demand.',
+    'Some people get the good cheaply and others get none, so a black market can appear.'
+  ],
+  evaluation:'It helps those who get the good, but it needs rationing by queues or lotteries, and supply can shrink further over time, as when rent caps cut the number of homes to let.',
+  traps:['A maximum price only has an effect if it is set <b>below</b> equilibrium.']};
+
+V.gi_min={kind:'mkt', m:'minp', anim:true, btn:'Minimum price', showing:'A price floor causes a surplus',
+  title:'Minimum prices',
+  lead:'A minimum price is a legal floor set above equilibrium, to cut consumption of a demerit good or protect producers’ incomes, such as the minimum unit price for alcohol in Scotland.',
+  terms:[['Minimum price','A price floor: it is illegal to sell below it.']],
+  chain:[
+    'The minimum price is set above equilibrium, at P<sub>min</sub>.',
+    'Consumers buy less (Q<sub>d</sub>), while producers want to sell more (Q<sub>s</sub>).',
+    'The gap is excess supply.',
+    'For alcohol the aim is the lower consumption; for farm goods, the government may have to buy up the surplus.'
+  ],
+  evaluation:'How far drinking falls depends on PED: heavy drinkers have inelastic demand, so the price rises a lot but consumption falls little.',
+  traps:['A minimum price only works if it is set <b>above</b> equilibrium. In the UK, minimum unit pricing for alcohol applies in Scotland and Wales, not England.']};
+
+V.gi_permit={kind:'mkt', m:'permit', anim:true, btn:'Pollution permits', showing:'Fewer permits, a higher price',
+  title:'Tradable pollution permits',
+  lead:'The government caps total pollution by issuing a fixed number of permits. Firms that can cut pollution cheaply sell their spare permits to firms that cannot.',
+  terms:[['Tradable pollution permit','A licence to emit a set amount of pollution, which can be bought and sold.']],
+  chain:[
+    'The government fixes the number of permits, so supply is vertical.',
+    'Cutting the number of permits shifts supply left, from S<sub>1</sub> to S<sub>2</sub>.',
+    'The price of a permit rises from P<sub>1</sub> to P<sub>2</sub>, so polluting costs more.',
+    'Firms that can cut emissions cheaply do so and sell their permits, so pollution falls where it is cheapest to cut.'
+  ],
+  evaluation:'Permits guarantee the total amount of pollution, which a tax cannot. But if too many are issued the price collapses, as in the early years of the EU scheme, and monitoring emissions is costly.'};
+
+V.gi_state={kind:'card', btn:'Other tools', showing:'State provision, information, regulation',
+  title:'Other ways to intervene',
+  lead:'Taxes, subsidies and price controls work through prices. These tools work directly.',
+  card:{head:'Direct tools', items:[
+    PT('State provision',[['How','The government provides the good itself, paid for by taxes: street lighting, defence, the NHS.'],['Problem','With no price signal it is hard to know how much to provide, and services can be inefficient.']]),
+    PT('Provision of information',[['How','Campaigns and labelling close information gaps: calorie counts on menus, health warnings.'],['Problem','People may ignore it, and the effects are slow and small.']]),
+    PT('Regulation',[['How','Laws that ban or limit an activity: age limits on vapes, emission standards for cars.'],['Problem','It must be policed, firms may evade it, and the limit may be set at the wrong level.']])
+  ]},
+  evaluation:'Each tool has costs and can cause government failure. The best one depends on the market failure: regulation suits dangerous goods, information suits information gaps.'};
+
+V.gf_causes={kind:'card', btn:'Causes of government failure', showing:'When intervention makes things worse',
+  title:'Government failure',
+  lead:'Government failure is when intervention leads to a worse allocation of resources than before.',
+  terms:[['Government failure','When government intervention causes a net welfare loss.']],
+  card:{head:'Government failure', items:[
+    PT('The spec’s four causes',[['Distortion of price signals','Subsidies and price controls stop prices showing what people want, so resources go to the wrong place.'],['Unintended consequences','A policy changes behaviour in ways nobody planned: a very high tax encourages smuggling.'],['Excessive administrative costs','Running and policing the policy costs more than the problem it fixes.'],['Information gaps','The government does not know the true size of an externality, so it sets the tax or subsidy at the wrong level.']]),
+    PT('Examples',[['Tobacco taxes','Very high taxes encourage illegal imports.'],['Rent controls','Landlords leave the market, so fewer homes are available to rent.']])
+  ]},
+  traps:['Government failure needs a <b>net</b> welfare loss. A policy that works imperfectly is not automatically a failure.']};
+
+/* ------------------------- THEME 2: MEASURING PERFORMANCE ------------------------- */
+V.me_gdp={kind:'card', btn:'Measuring growth', showing:'Real, nominal, per capita',
+  title:'Measuring economic growth',
+  lead:'Economic growth is a rise in real GDP: the value of all the goods and services an economy produces, adjusted for inflation.',
+  terms:[['GDP','The total value of goods and services produced in a country in a year.'],['Real GDP','GDP adjusted for inflation.'],['GDP per capita','GDP divided by the population.'],['GNI','GDP plus income earned from abroad, minus income paid abroad.'],['PPP','Purchasing power parity: an exchange rate that equalises what money buys in each country.']],
+  card:{head:'Measuring growth', items:[
+    PT('Which measure',[['Real, not nominal','Nominal GDP can rise just because prices rise; real GDP shows extra output.'],['Per capita','Divide by population to compare living standards.'],['GNI','Better for countries with big income flows across borders.'],['PPP','Converts using what money actually buys, so living standards compare fairly.']]),
+    PT('Limits for comparing living standards',[['Inequality','An average hides how income is shared.'],['Hidden economy','Unpaid care and cash-in-hand work are missed.'],['Quality of life','Pollution, leisure and wellbeing are not counted.'],['Data','Measured differently, and with errors, across countries.']])
+  ]},
+  work:{q:'Nominal GDP rises from £2,000bn to £2,100bn while prices rise by 3%. Roughly how much did real GDP grow?',
+    steps:['Nominal growth = (2,100 − 2,000) ÷ 2,000 × 100 = <b>5%</b>.','Real growth ≈ nominal growth − inflation = 5% − 3% = <b>about 2%</b>.'], ans:'About 2%.'},
+  traps:['To compare countries, use <b>real GDP per capita at PPP</b>, and say why each adjustment matters.']};
+
+V.me_wellbeing={kind:'card', btn:'Happiness and wellbeing', showing:'Beyond GDP',
+  title:'National happiness and wellbeing',
+  lead:'GDP measures output, not how well people live. Wellbeing measures ask people directly.',
+  card:{head:'Beyond GDP', items:[
+    PT('Measures',[['Life satisfaction','The ONS asks people how satisfied they are with their lives.'],['HDI','Combines income, life expectancy and education.']]),
+    PT('What the evidence shows',[['Income matters','Richer people tend to be happier, up to a point.'],['Then it flattens','Beyond that point, extra income adds little happiness: the Easterlin paradox.'],['Other things','Health, relationships, job security and the environment matter a lot.']])
+  ]},
+  evaluation:'Wellbeing surveys are subjective and hard to compare across cultures, but they show why governments should look beyond GDP.'};
+
+V.me_cpi={kind:'card', btn:'Measuring inflation', showing:'CPI, RPI and index numbers',
+  title:'Measuring inflation',
+  lead:'Inflation is a sustained rise in the general price level. The UK measures it with the Consumer Prices Index (CPI).',
+  terms:[['Inflation','A sustained rise in the general price level.'],['Deflation','A sustained fall in the general price level.'],['Disinflation','Inflation slowing down while prices still rise.']],
+  card:{head:'How the CPI is built', items:[
+    PT('Steps',[['Survey','The Living Costs and Food Survey finds what households spend their money on.'],['Basket','Prices of hundreds of items are collected every month.'],['Weights','Each item is weighted by its share of spending, so petrol counts more than matches.'],['Index','The weighted average becomes an index number, with a base year of 100.']]),
+    PT('CPI and RPI',[['RPI','Includes mortgage interest payments and council tax, so it is usually higher.'],['Limits','An average household may not match yours; quality improvements are hard to measure; new products are added late.']])
+  ]},
+  work:{q:'A basket costs £200 in the base year and £208 a year later. What is the price index, and the rate of inflation?',
+    steps:['Index = 208 ÷ 200 × 100 = <b>104</b>.','Inflation = 104 − 100 = <b>4%</b>.'], ans:'An index of 104 and inflation of 4%.'},
+  traps:['Disinflation is <b>not</b> deflation: prices are still rising, just more slowly.']};
+
+V.me_inflcause={kind:'card', btn:'Causes of inflation', showing:'Demand-pull, cost-push, money supply',
+  title:'Causes of inflation',
+  lead:'Inflation comes from too much demand, rising costs, or too much money chasing too few goods.',
+  card:{head:'Causes', items:[
+    PT('Three causes',[['Demand-pull','AD grows faster than the economy can produce, so prices are bid up.'],['Cost-push','Firms pass on higher costs: energy, wages, or imported materials after a fall in the pound.'],['Money supply','If the money supply grows faster than output, more money chases the same goods.']])
+  ]},
+  tip:'Use the AD/AS diagrams: demand-pull is AD shifting right; cost-push is SRAS shifting left.'};
+
+V.me_inflfx={kind:'card', btn:'Effects of inflation', showing:'Who wins and who loses',
+  title:'The effects of inflation',
+  lead:'Inflation hurts some groups and helps others, depending on how fast it is and whether it was expected.',
+  card:{head:'Effects', items:[
+    PT('Consumers',[['Lose','Real incomes fall if wages lag behind prices; savers lose when interest rates are below inflation.'],['Gain','Borrowers repay debts worth less in real terms.']]),
+    PT('Firms',[['Lose','Menu costs, uncertainty that delays investment, and less competitive exports.'],['Gain','Mild inflation makes it easier to cut real wages without cutting pay.']]),
+    PT('Government',[['Gain','Fiscal drag: tax revenue rises as wages move into higher tax bands.'],['Lose','Pensions and benefits linked to inflation cost more.']]),
+    PT('Workers',[['Lose','Real wages fall until pay catches up. Low earners suffer most, because more of their income goes on essentials.']])
+  ]},
+  evaluation:'Low, stable inflation does little harm, which is why the target is 2%, not zero. Deflation can be worse: people delay spending, which deepens a recession.'};
+
+V.me_unemp={kind:'card', btn:'Measuring unemployment', showing:'Claimant count and the ILO measure',
+  title:'Measuring employment and unemployment',
+  lead:'The unemployed are people of working age who want a job and can start one, but cannot find one.',
+  terms:[['Unemployment','Of working age, available and looking for work, but without a job.'],['Underemployment','Working fewer hours than you want, or in a job below your skills.'],['Economically inactive','Of working age but not looking for work: students, carers, the long-term sick.']],
+  card:{head:'Two measures', items:[
+    PT('Measures',[['Claimant count','People claiming unemployment-related benefits. Quick and cheap, but misses those not eligible or not claiming.'],['ILO (Labour Force Survey)','A survey asking whether people looked for work and could start. Comparable across countries, but a sample with errors.']]),
+    PT('What the changes mean',[['Employment up, unemployment flat','People are moving from inactivity into work.'],['Inactivity up','Fewer people in the labour force, which can shrink potential output.']])
+  ]},
+  traps:['The ILO measure is usually <b>higher</b> than the claimant count, because it includes people who cannot or do not claim benefits.']};
+
+V.me_ucause={kind:'card', btn:'Causes of unemployment', showing:'Five types',
+  title:'Causes of unemployment',
+  lead:'Unemployment has different causes, and each needs a different cure.',
+  card:{head:'Types', items:[
+    PT('Causes',[['Frictional','Between jobs while searching: short-term and unavoidable.'],['Seasonal','Jobs that disappear at certain times of year: summer tourism, Christmas retail.'],['Structural','Industries decline and workers lack the skills or location for new jobs: coal mining, high-street retail.'],['Cyclical (demand-deficient)','Too little AD in a recession, so firms need fewer workers.'],['Real wage inflexibility','Wages held above the market-clearing level, so more people want work than firms want to hire.']]),
+    PT('Migration and skills',[['Migration','Can fill skill shortages and cut structural unemployment, or compete for low-skilled jobs.']])
+  ]},
+  traps:['Match the cure to the cause: cyclical needs more AD; structural needs supply-side policy such as retraining.']};
+
+V.me_ueff={kind:'card', btn:'Effects of unemployment', showing:'Costs for everyone',
+  title:'The effects of unemployment',
+  lead:'Unemployment wastes resources: the economy produces inside its PPF.',
+  card:{head:'Effects', items:[
+    PT('Who is affected',[['Consumers','Lower incomes and spending; some switch to inferior goods.'],['Firms','Lower demand, but more people to hire from and less pressure on wages.'],['Workers','Lost income, skills that fade the longer it lasts, and poorer mental health.'],['Government','Less tax revenue and more spent on benefits, so the budget worsens.'],['Society','Crime and social problems where long-term unemployment is high.']])
+  ]},
+  evaluation:'Short spells of frictional unemployment cost little. Long-term structural unemployment does lasting damage, because skills erode (hysteresis).'};
+
+/* ------------------------- THEME 2: AD AND AS ------------------------- */
+V.ag_left={kind:'adas2', sh:'ad', amt:-22, anim:true, btn:'AD shifts left', showing:'Less spending, less output',
+  title:'A fall in aggregate demand',
+  lead:'A fall in any component of AD (C, I, G or X − M) shifts the AD curve left.',
+  chain:[
+    'Spending falls, so AD shifts left from AD<sub>1</sub> to AD<sub>2</sub>.',
+    'Real GDP falls from Y<sub>1</sub> to Y<sub>2</sub>: firms produce less and need fewer workers.',
+    'The price level falls from P<sub>1</sub> to P<sub>2</sub>, so inflation slows.'
+  ],
+  compare:{vs:'After AD falls',rows:[['Real GDP','↓ lower'],['Unemployment','↑ higher'],['Price level','↓ lower'],['AD curve','shifts left']]},
+  traps:['A change in the <b>price level</b> moves along AD; a change in C, I, G or X − M shifts it.']};
+
+V.ag_cons={kind:'card', btn:'Consumption', showing:'What drives household spending',
+  title:'Consumption',
+  lead:'Consumption is household spending on goods and services: the biggest part of AD.',
+  terms:[['Marginal propensity to consume (MPC)','The share of each extra pound of income that is spent.'],['Savings ratio','Household saving as a share of disposable income.']],
+  card:{head:'Influences', items:[
+    PT('What changes consumption',[['Income','More disposable income, more spending.'],['Interest rates','Higher rates reward saving and make borrowing dearer, so spending falls.'],['Confidence','Worried households save more; confident ones spend.'],['Wealth','Rising house and share prices make people feel richer: the wealth effect.'],['Credit','Easier borrowing raises spending.']])
+  ]},
+  traps:['Saving and consumption move in opposite directions: a higher savings ratio means less consumption out of each pound of income.']};
+
+V.ag_inv={kind:'card', btn:'Investment', showing:'Spending on capital goods',
+  title:'Investment',
+  lead:'Investment is spending by firms on capital goods, such as machinery and buildings, that raise future output.',
+  terms:[['Gross investment','All spending on new capital goods.'],['Net investment','Gross investment minus depreciation (capital that has worn out).'],['Accelerator','Investment depends on how fast output is growing: faster growth needs more capacity.']],
+  card:{head:'Influences', items:[
+    PT('What changes investment',[['Growth (the accelerator)','When demand grows fast, firms invest to keep up.'],['Confidence','Keynes’s “animal spirits”: optimism raises investment, gloom cuts it.'],['Interest rates','Higher rates make borrowing to invest dearer.'],['Access to credit','If banks will not lend, investment falls.'],['Exports and regulation','Strong export demand encourages investment; heavy regulation discourages it.']])
+  ]},
+  evaluation:'Investment is the most volatile part of AD, because it rests on expectations, which can change quickly.'};
+
+V.ag_gov={kind:'card', btn:'Government spending', showing:'Automatic and deliberate',
+  title:'Government expenditure',
+  lead:'Government spending on public services and investment is part of AD. Transfer payments such as benefits are not, until they are spent.',
+  card:{head:'Influences', items:[
+    PT('What changes it',[['The trade cycle','Automatic stabilisers: in a recession, spending on benefits rises and tax revenue falls with no decision needed.'],['Fiscal policy','Deliberate choices to spend more or less, to steer the economy.']])
+  ]},
+  traps:['Benefits are <b>transfer payments</b>: they are not part of G, though they raise consumption when spent.']};
+
+V.ag_nx={kind:'card', btn:'Net trade', showing:'Exports minus imports',
+  title:'Net trade',
+  lead:'Net trade is exports minus imports (X − M). Exports add to AD; imports are a leakage.',
+  card:{head:'Influences', items:[
+    PT('What changes it',[['Real income','Rising UK incomes suck in imports; rising incomes abroad boost exports.'],['Exchange rate','A weaker pound makes exports cheaper and imports dearer.'],['World economy','A global recession cuts demand for exports.'],['Protectionism','Tariffs abroad hit exports; UK tariffs cut imports.'],['Non-price factors','Quality, design, reliability and reputation.']])
+  ]}};
+
+V.as_sr_up={kind:'adas2', sh:'sras', amt:-18, anim:true, btn:'SRAS increases', showing:'Lower costs shift SRAS right',
+  title:'Short-run aggregate supply',
+  lead:'SRAS shows how much firms will produce at each price level while costs stay the same. Lower costs shift it right.',
+  terms:[['SRAS','Total planned output at each price level, with costs held constant.']],
+  plain:[['Materials and energy','Cheaper oil or gas cuts costs.'],['Exchange rate','A stronger pound makes imported inputs cheaper.'],['Taxes','Lower business taxes or duties cut costs.'],['Wages','Slower wage growth cuts costs.']],
+  chain:[
+    'Costs fall, so SRAS shifts right from SRAS<sub>1</sub> to SRAS<sub>2</sub>.',
+    'Real GDP rises from Y<sub>1</sub> to Y<sub>2</sub> and the price level falls from P<sub>1</sub> to P<sub>2</sub>.',
+    'Growth with lower inflation: the best of both.'
+  ],
+  compare:{vs:'After SRAS rises',rows:[['Real GDP','↑ higher'],['Price level','↓ lower'],['Unemployment','↓ lower'],['SRAS','shifts right']]}};
+
+V.as_lrfac={kind:'card', btn:'What shifts LRAS', showing:'Productive capacity',
+  title:'Long-run aggregate supply',
+  lead:'LRAS is the economy’s productive capacity: what it can produce using all its resources. It shifts when the quantity or quality of resources changes.',
+  terms:[['LRAS','The output the economy can produce at full capacity.']],
+  card:{head:'LRAS', items:[
+    PT('What shifts LRAS right',[['Technology','New technology raises output per worker.'],['Productivity','Better management and capital make each worker produce more.'],['Education and skills','A more skilled workforce produces more.'],['Regulation','Less red tape lowers costs and encourages enterprise.'],['Demographics and migration','More people of working age add to the labour force.'],['Competition policy','More competition pushes firms to cut costs and innovate.']]),
+    PT('Two views of LRAS',[['Classical','Vertical at full capacity: in the long run, output is set by supply, not demand.'],['Keynesian','Flat while there is spare capacity, then curving up, then vertical at full capacity.']])
+  ]},
+  traps:['Draw the classical LRAS <b>vertical</b>; the Keynesian AS curves. Say which model you are using.']};
+
+/* ------------------------- THEME 2: NATIONAL INCOME ------------------------- */
+V.ni_flow={kind:'flow', m:'simple', btn:'Circular flow', showing:'Households and firms',
+  title:'The circular flow of income',
+  lead:'Households sell factor services to firms and receive incomes; they spend those incomes on firms’ goods and services.',
+  terms:[['National income','The total income of an economy, which equals its output and its spending.'],['Income','A flow of money over time, such as wages.'],['Wealth','A stock of assets at a point in time, such as savings and property.']],
+  chain:[
+    'Households supply land, labour, capital and enterprise to firms.',
+    'Firms pay them incomes: rent, wages, interest and profit.',
+    'Households spend their incomes on goods and services, so the money flows back to firms.',
+    'So output = income = spending: three ways to measure national income.'
+  ],
+  traps:['Income is a <b>flow</b>; wealth is a <b>stock</b>. Do not use them as if they mean the same.']};
+
+V.ni_injw={kind:'flow', m:'full', btn:'Injections and withdrawals', showing:'Money in and money out',
+  title:'Injections and withdrawals',
+  lead:'Some income leaks out of the circular flow, and some spending is injected in.',
+  terms:[['Injections','Spending that enters the flow from outside it: investment (I), government spending (G), exports (X).'],['Withdrawals','Income that leaves the flow: saving (S), taxes (T), imports (M).']],
+  chain:[
+    'Households save (S), pay taxes (T) and buy imports (M): money leaks out.',
+    'Firms invest (I), the government spends (G) and foreigners buy exports (X): money comes in.',
+    'If injections exceed withdrawals, national income grows; if withdrawals exceed injections, it shrinks.',
+    'Income settles where injections equal withdrawals.'
+  ],
+  traps:['Learn the pairs: <b>S and I</b> (banks), <b>T and G</b> (government), <b>M and X</b> (abroad).']};
+
+V.ni_mult={kind:'card', btn:'The multiplier', showing:'One injection, a bigger rise in income',
+  title:'The multiplier',
+  lead:'An injection into the circular flow raises national income by more than the injection itself, because one person’s spending is another’s income.',
+  terms:[['Multiplier','The final change in national income divided by the initial change in injections.'],['MPC','Marginal propensity to consume: the share of extra income spent.'],['MPW','Marginal propensity to withdraw: MPS + MPT + MPM, the share of extra income that leaks out.']],
+  card:{head:'The multiplier', items:[
+    PT('The formula',[['Multiplier','1 ÷ (1 − MPC), which is the same as 1 ÷ MPW.'],['Bigger when','People spend more of each extra pound: a high MPC, low taxes, few imports.']]),
+    PT('Why it matters',[['Policy','More government spending raises GDP by more than the spending.'],['Recessions','Cuts in spending multiply too, so recessions can deepen.']])
+  ]},
+  work:{q:'The MPC is 0.75 and the government spends an extra £20bn. How much does national income rise?',
+    steps:['Multiplier = 1 ÷ (1 − 0.75) = 1 ÷ 0.25 = <b>4</b>.','Change in income = 4 × £20bn = <b>£80bn</b>.'], ans:'£80bn.'},
+  evaluation:'In the UK the multiplier is small, because much of any extra income leaks into taxes and imports. Time lags and crowding out weaken it further.',
+  traps:['In an open economy with a government, use the MPW (saving, tax and imports), not just the MPS.']};
+
+V.ni_rounds={kind:'rounds', mpc:0.75, inj:100, anim:true, two:true, btn:'Rounds of spending', showing:'Each round is smaller',
+  title:'The multiplier, round by round',
+  lead:'An injection of £100m is spent, becomes someone’s income, and part of it is spent again.',
+  chain:[
+    'Round 1: £100m is spent and becomes someone’s income.',
+    'They spend 75% of it (MPC = 0.75): £75m in round 2.',
+    'Then about £56m, then about £42m, each round smaller than the last.',
+    'Added up, the rounds come to £100m × 4 = £400m.'
+  ]};
+
+/* ------------------------- THEME 2: GROWTH ------------------------- */
+V.gw_causes={kind:'card', btn:'Causes of growth', showing:'Actual and potential',
+  title:'Causes of economic growth',
+  lead:'Actual growth is a rise in real GDP. Potential growth is a rise in productive capacity.',
+  terms:[['Actual growth','A rise in real GDP: more output produced.'],['Potential growth','A rise in productive capacity: the PPF or LRAS shifts out.'],['Export-led growth','Growth driven by rising exports, as in China and Germany.']],
+  card:{head:'Growth', items:[
+    PT('Actual growth (AD)',[['Causes','A rise in C, I, G or net exports uses spare capacity.'],['Diagram','AD shifts right, or the economy moves from inside the PPF to the frontier.']]),
+    PT('Potential growth (LRAS)',[['Causes','More and better capital, a bigger or more skilled workforce, new technology.'],['Diagram','LRAS shifts right; the PPF shifts out.']]),
+    PT('Trade',[['Export-led growth','Rising exports add to AD and allow economies of scale; trade also spreads new technology.']])
+  ]},
+  traps:['Growth needs both. AD growth without LRAS growth ends in inflation once spare capacity runs out.']};
+
+V.gw_gap={kind:'cycle', m:'gap', anim:true, two:true, btn:'Output gaps', showing:'Actual against trend GDP',
+  title:'Output gaps',
+  lead:'An output gap is the difference between actual GDP and potential (trend) output: what the economy could produce without pushing up inflation.',
+  terms:[['Positive output gap','Actual GDP above potential: overheating, inflation rising.'],['Negative output gap','Actual GDP below potential: spare capacity, unemployment.']],
+  chain:[
+    'The dashed line is trend growth: how fast potential output grows.',
+    'Where actual GDP is above trend there is a positive output gap: demand outruns capacity, so inflation rises.',
+    'Where it is below trend there is a negative output gap: resources sit idle, so unemployment rises.'
+  ],
+  evaluation:'Output gaps are hard to measure, because potential output cannot be observed and estimates are often revised later. Policy based on them can be wrong.'};
+
+V.gw_cycle={kind:'cycle', m:'cycle', anim:true, two:true, btn:'The trade cycle', showing:'Boom, downturn, recession, recovery',
+  title:'The trade (business) cycle',
+  lead:'Real GDP grows in waves around its trend: periods of fast growth followed by slowdowns.',
+  terms:[['Recession','Two consecutive quarters of falling real GDP.'],['Boom','Fast growth, with actual GDP above trend.']],
+  plain:[['<b>Boom</b>','Fast growth, low unemployment, rising inflation.'],['<b>Downturn</b>','Growth slows and firms cut investment.'],['<b>Recession</b>','Real GDP falls and unemployment rises.'],['<b>Recovery</b>','Growth returns as confidence and spending pick up.']],
+  traps:['A recession is real GDP falling for two quarters in a row, not just slow growth.']};
+
+V.gw_impact={kind:'card', btn:'Impact of growth', showing:'Costs and benefits',
+  title:'The impact of economic growth',
+  lead:'Growth raises incomes and living standards, but it has costs, and the gains are not shared equally.',
+  card:{head:'Impact', items:[
+    PT('Benefits',[['Consumers','Higher real incomes and more choice.'],['Firms','More sales and profit, which pay for investment.'],['Government','More tax revenue and less spent on benefits, so public services can improve.'],['Workers','More jobs and rising wages.']]),
+    PT('Costs',[['Environment','More pollution and resource use, at least until countries are rich enough to clean up.'],['Inequality','The gains can go mostly to the richest.'],['Inflation','Growth beyond capacity pushes prices up.'],['Future living standards','Using up resources now can lower living standards later.']])
+  ]},
+  evaluation:'Whether growth raises living standards depends on what is growing, who gains, and whether it can last. The Kuznets and Easterlin evaluation points go further.'};
+
+/* ------------------------- THEME 2: POLICY ------------------------- */
+V.po_obj={kind:'card', btn:'Objectives', showing:'What governments aim for',
+  title:'Macroeconomic objectives',
+  lead:'Governments aim for a healthy economy on several fronts at once.',
+  card:{head:'Objectives', items:[
+    PT('The objectives',[['Economic growth','Steady, sustainable growth in real GDP.'],['Low unemployment','As few people as possible out of work.'],['Low and stable inflation','The UK target is 2% CPI inflation.'],['Balance of payments','A current account position that can be sustained.'],['Balanced budget','Spending broadly covered by tax revenue over time.'],['Environment','Growth that does not harm future generations.'],['Equality','A fairer distribution of income.']])
+  ]},
+  tip:'The objectives often conflict, and that is where most evaluation comes from: see “Conflicts”.'};
+
+V.po_mon={kind:'card', btn:'Monetary policy', showing:'Interest rates and QE',
+  title:'Monetary policy',
+  lead:'Monetary policy is set by the Bank of England’s Monetary Policy Committee to hit the inflation target, mainly by changing Bank Rate.',
+  terms:[['Bank Rate','The interest rate the Bank of England pays on reserves; other rates follow it.'],['Quantitative easing (QE)','The central bank creates money to buy bonds, pushing down long-term interest rates.']],
+  chain:[
+    'The Monetary Policy Committee raises Bank Rate.',
+    'Borrowing gets dearer and saving more rewarding, so consumption and investment fall.',
+    'Higher rates attract hot money, so the pound rises: exports get dearer and imports cheaper.',
+    'AD shifts left, so inflation falls, but growth slows and unemployment rises.'
+  ],
+  card:{head:'Monetary policy', items:[
+    PT('Tools',[['Bank Rate','The main tool: raised to cut inflation, cut to boost demand.'],['Quantitative easing','Used when Bank Rate is already close to zero.']]),
+    PT('Limits',[['Time lags','It takes many months to affect inflation.'],['Confidence','If people are gloomy, low rates may not make them borrow.'],['Supply shocks','Higher rates cannot fix inflation caused by energy prices without hurting output.']])
+  ]},
+  evaluation:'Monetary policy is quick to change and kept away from politics, but it is blunt: it hits borrowers hardest and works with long lags.',
+  traps:['MPC here means the Monetary Policy Committee, not the marginal propensity to consume. Make clear which one you mean.']};
+
+V.po_fis={kind:'card', btn:'Fiscal policy', showing:'Taxes and government spending',
+  title:'Fiscal policy',
+  lead:'Fiscal policy is the government’s use of taxes and spending to influence AD.',
+  terms:[['Direct tax','A tax on income or wealth, such as income tax.'],['Indirect tax','A tax on spending, such as VAT.'],['Budget deficit','Spending more than tax revenue in a year.'],['National debt','The total built-up borrowing of the government.']],
+  card:{head:'Fiscal policy', items:[
+    PT('Expansionary',[['How','Cut taxes or raise spending, so AD shifts right.'],['When','In a recession, to close a negative output gap.']]),
+    PT('Contractionary',[['How','Raise taxes or cut spending, so AD shifts left.'],['When','When the economy is overheating.']]),
+    PT('Two schools',[['Keynesian','Use fiscal policy actively to manage demand, above all in a recession.'],['Classical','Keep budgets balanced; government borrowing crowds out private investment.']])
+  ]},
+  evaluation:'Fiscal policy can aim spending where it is needed, but it is slow (decision and implementation lags), it can raise the national debt, and the multiplier may be small.',
+  traps:['A deficit is <b>one year’s</b> shortfall; the national debt is the <b>total</b> built up over time.']};
+
+V.po_ss={kind:'card', btn:'Supply-side policies', showing:'Market-based and interventionist',
+  title:'Supply-side policies',
+  lead:'Supply-side policies aim to raise productive capacity: they shift LRAS right.',
+  card:{head:'Supply-side policies', items:[
+    PT('Market-based',[['Lower taxes','Lower income and corporation tax reward work and investment.'],['Deregulation','Less red tape makes it easier to start and run firms.'],['Privatisation','Selling state firms lets competition and profit drive efficiency.'],['Labour market reform','Easier hiring and firing; less union power.']]),
+    PT('Interventionist',[['Education and training','Raise skills and productivity.'],['Infrastructure','Roads, rail and broadband cut firms’ costs.'],['Industrial policy','Support for research and new industries.']]),
+    PT('Strengths and weaknesses',[['Strengths','Growth without inflation; a cure for structural unemployment.'],['Weaknesses','Slow, often expensive; market-based policies can widen inequality.']])
+  ]},
+  evaluation:'Supply-side policies are the only lasting way to raise growth without inflation, but they take years to work, so they cannot fix a recession quickly.'};
+
+V.po_conf={kind:'card', btn:'Conflicts and trade-offs', showing:'You cannot hit every target at once',
+  title:'Conflicts between objectives',
+  lead:'A policy that helps one objective often harms another.',
+  card:{head:'Conflicts', items:[
+    PT('Between objectives',[['Growth and inflation','Growth beyond capacity raises inflation.'],['Inflation and unemployment','The short-run Phillips curve: less unemployment comes with more inflation.'],['Growth and the current account','Rising incomes suck in imports.'],['Growth and the environment','More output, more emissions.'],['The budget and growth','Cutting the deficit cuts AD in the short run.']]),
+    PT('From particular policies',[['Higher interest rates','Lower inflation, but slower growth and a stronger pound.'],['Expansionary fiscal policy','Faster growth, but a bigger deficit.']])
+  ]},
+  evaluation:'Supply-side policies are the main way to ease these conflicts, because extra capacity allows more growth without more inflation.'};
+
+/* ------------------------- TOPIC QUIZZES ------------------------- */
+TOPICS.nature.quiz=[['Is “raising taxes will reduce consumption” positive or normative?','Positive: it can be tested against evidence, even if it turns out wrong.'],['What does a point inside the PPF show?','Unemployed or inefficiently used resources.'],['Name the four functions of money.','A medium of exchange, a measure of value, a store of value, a method of deferred payment.']];
+TOPICS.demand.quiz=[['What causes a movement along a demand curve?','A change in the good’s own price.'],['Give three things that shift demand right.','Any three: higher income (normal goods), a dearer substitute, a cheaper complement, a favourable change in tastes, a bigger population, expected price rises.'],['Why does the demand curve slope down?','Diminishing marginal utility: each extra unit adds less satisfaction, so people only buy more at a lower price.']];
+TOPICS.supply.quiz=[['Why does the supply curve slope up?','A higher price makes each extra unit more profitable, so firms supply more.'],['Give two things that shift supply left.','Any two: higher costs, an indirect tax, bad weather, firms leaving the market, lower productivity.'],['Supply rises. What happens to price and quantity?','The price falls and quantity rises; demand extends.']];
+TOPICS.elastic.quiz=[['Price rises by 10% and quantity falls by 25%. What is PED?','−2.5: elastic.'],['What does a negative YED tell you?','The good is inferior: demand falls as income rises.'],['Give two factors that make supply more elastic.','Any two: spare capacity, stocks that can be stored, a longer time period, mobile factors of production.']];
+TOPICS.price.quiz=[['What happens to the price when there is excess demand?','Buyers bid it up until the market clears.'],['Name the three functions of the price mechanism.','Rationing, signalling and incentive.'],['What happens to consumer surplus when the price falls?','It rises: consumers pay less for existing units and buy extra ones.']];
+TOPICS.taxsub.quiz=[['How is tax revenue shown on the diagram?','The tax per unit × the new quantity: the box between P<sub>2</sub> and P<sub>3</sub>.'],['When does the consumer bear most of a tax?','When demand is price inelastic.'],['What is the cost of a subsidy to the government?','The subsidy per unit × the new, higher quantity.']];
+TOPICS.behave.quiz=[['Give the spec’s three reasons consumers may not be rational.','The influence of other people’s behaviour, habitual behaviour, and weakness at computation.'],['What is anchoring?','Judging a price against the first number you see.'],['What is a nudge?','A change in how a choice is presented that steers behaviour without banning options or changing prices.']];
+TOPICS.failure.quiz=[['Name the three types of market failure in the spec.','Externalities, under-provision of public goods, and information gaps.'],['What two characteristics make a pure public good?','Non-rivalry and non-excludability.'],['Why is education a merit good?','People underestimate its long-run benefits, so they consume too little of it.']];
+TOPICS.intervene.quiz=[['What does a maximum price below equilibrium cause?','A shortage: excess demand.'],['Why is the supply of pollution permits vertical?','The government fixes the number issued, whatever the price.'],['Give one weakness of providing information.','People may ignore it, and its effects are slow and small.']];
+TOPICS.govfail.quiz=[['Define government failure.','Intervention that causes a net welfare loss.'],['Give the spec’s four causes.','Distortion of price signals, unintended consequences, excessive administrative costs, information gaps.'],['Give an example of an unintended consequence.','A very high tax on cigarettes encourages smuggling.']];
+TOPICS.measures.quiz=[['Why use real rather than nominal GDP?','Nominal GDP can rise just because prices rise; real GDP shows extra output.'],['What is disinflation?','Inflation slowing down while prices still rise.'],['Why is the ILO measure usually above the claimant count?','It includes people who are not entitled to, or do not claim, benefits.']];
+TOPICS.agg_d.quiz=[['What are the four components of AD?','Consumption, investment, government spending and net exports: C + I + G + (X − M).'],['What is the accelerator?','Investment depends on how fast output is growing.'],['Are benefits part of G?','No: they are transfer payments, though they raise consumption when spent.']];
+TOPICS.agg_s.quiz=[['Give two causes of an SRAS shift right.','Any two: cheaper raw materials or energy, a stronger pound, lower business taxes, slower wage growth.'],['Give two causes of an LRAS shift right.','Any two: new technology, higher productivity, better education and skills, less regulation, more working-age people, more competition.'],['What shape is the classical LRAS?','Vertical at full capacity.']];
+TOPICS.natinc.quiz=[['Name the three injections and three withdrawals.','Injections: I, G, X. Withdrawals: S, T, M.'],['The MPW is 0.4. What is the multiplier?','1 ÷ 0.4 = 2.5.'],['What is the difference between income and wealth?','Income is a flow over time; wealth is a stock of assets at a point in time.']];
+TOPICS.growth2.quiz=[['What is the difference between actual and potential growth?','Actual: a rise in real GDP. Potential: a rise in productive capacity.'],['What does a positive output gap mean?','Actual GDP above potential: inflationary pressure.'],['Define a recession.','Two consecutive quarters of falling real GDP.']];
+TOPICS.policy.quiz=[['Who sets Bank Rate in the UK?','The Bank of England’s Monetary Policy Committee.'],['What is the difference between the budget deficit and the national debt?','The deficit is one year’s shortfall; the debt is the total built up over time.'],['Why are supply-side policies said to ease conflicts between objectives?','They raise capacity, allowing more growth without more inflation.']];
 
 /* =====================================================================
    STATE
@@ -4475,7 +5700,7 @@ function renderCont(){
   var cc=g.costs(FIRM,FIRM,null); curves+=cc.curves;
   var labels=cc.labels + g.txt(X(70)+7,Y(ar(70))-6,g.small?'AR':'AR = D','bold t-ar halo')
     + g.txt(X(a/(2*b))+6,Y(2.5),'MR','bold t-mr halo');
-  var nx=g.small?43:50;
+  var nx=g.small?38:50;
 
   if(id==='cm_mono' || id==='cm_hit'){
     areas+=g.box(0,qm,cm,pm,'area a-profit');
@@ -4681,6 +5906,65 @@ panel.addEventListener('input', function(e){
 });
 
 /* =====================================================================
+   NOTE EXTRAS (version 24). Key terms sit under the lead; three tabs sit
+   under the note: a worked example, exam traps, and practice. A note can carry
+     terms: [[term, definition], ...]
+     work:  {q:'...', table:[[heads...],[cells...]...], steps:['...'], ans:'...'}
+     traps: ['...', ...]
+     quiz:  [['question','answer'], ...]   (a topic can carry a quiz as well)
+   The spec tag comes from the spec index (spec.js). The practice-board and
+   past-paper links are added on their own.
+   ===================================================================== */
+/* note -> its question on the practice board (generated from practice.js) */
+var BOARD = {profit:'mono-snp', alloc:'mono-alloc', dwl:'mono-dwl', prod:'mono-prod', costup:'mono-costup', fixed:'mono-fixed', revmax:'revmax', ob_sat:'satisfice', rv_tr:'tr-hill', co_avg:'costs-sr', sc_lrac:'lrac-mes', sc_ext:'ext-eos', pf_shut:'shutdown', pc_snp:'pc-snp', pc_entry:'pc-entry', mc_lr:'mc-lr', mc_entry:'mc-entry', eqm:'kink', rigid:'rigid', nm_reg:'nat-reg', cm_threat:'contest', ef_x:'x-ineff', ef_ppf:'ppf-dyn', br_limit:'limit-eos', tf_areas:'tariff', qt:'quota', sb:'subsidy', bl_create:'create', fx_sup:'fx-dep', fx_fix_buy:'fx-fix', fx_adas:'fx-adas', ca_gain:'ppc', ex_negprod:'ext-negprod', ex_negcons:'ext-negcons', ex_poscons:'ext-poscons', ex_posprod:'ext-posprod', ex_tax:'ext-tax', ev_govfail:'gov-fail', ev_ped:'ped-tax', ad_dpull:'adas-dpull', ad_cpush:'adas-cpush', ev_capacity:'keynes-as', ev_laffer:'laffer', ev_lrpc:'lrpc', ev_kuz_env:'kuznets'};
+/* past-paper questions sorted by topic, one page per theme (Expert Tuition files Theme 4 under "unit-3 ... 2") */
+var PAPERS = {
+  '1':'https://expert-tuition.co.uk/past-papers/a-level-edexcel-economics-unit-1-questions-by-topic/',
+  '2':'https://expert-tuition.co.uk/past-papers/a-level-edexcel-economics-unit-2-questions-by-topic/',
+  '3':'https://expert-tuition.co.uk/past-papers/a-level-edexcel-economics-unit-3-questions-by-topic/',
+  '4':'https://expert-tuition.co.uk/past-papers/a-level-edexcel-economics-unit-3-questions-by-topic-2/'
+};
+/* note -> the spec points that list it, read from the spec index */
+var SPECOF = {};
+(function(){
+  if(typeof SPEC==='undefined') return;
+  SPEC.forEach(function(th){ (th.sections||[]).forEach(function(s){ (s.points||[]).forEach(function(p){ (p.items||[]).forEach(function(it){
+    (it[1]||[]).forEach(function(id){ var a=SPECOF[id]||(SPECOF[id]=[]); if(a.indexOf(p.code)<0) a.push(p.code); });
+  }); }); }); });
+  for(var k in SPECOF) SPECOF[k].sort(function(a,b){ return a.localeCompare(b, undefined, {numeric:true}); });
+})();
+function themeOf(id){
+  if(SPECOF[id]) return SPECOF[id][0].charAt(0);
+  var t=topicOf(id), s=t && TOPICS[t].section;
+  return s==='micro' ? '3' : s==='macro' ? '4' : null;
+}
+function workHtml(w){
+  var h='';
+  if(w.q) h+='<p class="wq">'+w.q+'</p>';
+  if(w.table) h+='<div class="wwrap"><table class="wtable">'+w.table.map(function(r,i){
+    return '<tr>'+r.map(function(c){ return i ? '<td>'+c+'</td>' : '<th>'+c+'</th>'; }).join('')+'</tr>';
+  }).join('')+'</table></div>';
+  if(w.steps) h+='<ol class="wsteps">'+w.steps.map(function(s){ return '<li>'+s+'</li>'; }).join('')+'</ol>';
+  if(w.ans) h+='<p class="wans"><b>Answer:</b> '+w.ans+'</p>';
+  return h;
+}
+function extrasHtml(v, id){
+  var T=TOPICS[state.topic], tabs=[], quiz=(v.quiz||[]).concat((T && T.quiz)||[]), th=themeOf(id), pr='';
+  if(v.work) tabs.push(['work','Worked example', workHtml(v.work)]);
+  if(v.traps) tabs.push(['traps','Exam traps', '<ul class="traps">'+v.traps.map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ul>']);
+  if(quiz.length) pr+='<p class="label">Test yourself: tap a question for the answer</p><div class="quiz">'
+    + quiz.map(function(q){ return '<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'; }).join('')+'</div>';
+  if(BOARD[id]) pr+='<p class="go"><a href="practice.html#q='+BOARD[id]+'">Draw this diagram yourself on the practice board</a></p>';
+  if(th && PAPERS[th]) pr+='<p class="go"><a href="'+PAPERS[th]+'" target="_blank" rel="noopener">Past-paper questions for Theme '+th+', sorted by topic (Expert Tuition)</a></p>';
+  if(pr) tabs.push(['quiz','Practise', pr]);
+  if(!tabs.length) return '';
+  var open=null; tabs.forEach(function(t){ if(t[0]===state.xopen) open=t[0]; });
+  return '<div class="xtra"><div class="xtabs">'
+    + tabs.map(function(t){ return '<button type="button" class="xtab" data-x="'+t[0]+'" aria-expanded="'+(t[0]===open)+'">'+t[1]+'</button>'; }).join('')+'</div>'
+    + tabs.map(function(t){ return '<div class="xpanel" data-xp="'+t[0]+'"'+(t[0]===open?'':' hidden')+'>'+t[2]+'</div>'; }).join('')+'</div>';
+}
+
+/* =====================================================================
    PAGE WIRING
    ===================================================================== */
 function render(){
@@ -4718,12 +6002,20 @@ function render(){
   else if(k==='totcalc') renderTot();
   else if(k==='ml') renderML();
   else if(k==='kink') renderKink();
+  else if(k==='mkt') renderMkt();
+  else if(k==='ppf1') renderPPF1();
+  else if(k==='flow') renderFlow();
+  else if(k==='cycle') renderCycle();
+  else if(k==='rounds') renderRounds();
   else if(k==='game') renderGame();
   else if(k==='cr'){ if(!document.getElementById('cr-0')) renderCR(); else updateCR(); }
 }
 function renderNotes(){
-  var v=cur(), h='';
+  var v=cur(), id=curId(), h='', codes=SPECOF[id];
+  if(codes) h+='<p class="spec-tag">Spec '+codes.slice(0,3).join(' · ')+'</p>';
   h+='<h3>'+v.title+'</h3><p class="lead">'+v.lead+'</p>';
+  if(v.terms) h+='<div class="terms"><p class="label">Key terms</p><dl>'
+      + v.terms.map(function(t){return '<div><dt>'+t[0]+'</dt><dd>'+t[1]+'</dd></div>';}).join('')+'</dl></div>';
   if(v.plain) h+='<ul class="plain">'+v.plain.map(function(r){return '<li>'+r[0]+'<span>'+r[1]+'</span></li>';}).join('')+'</ul>';
   if(v.compare) h+='<div><p class="label">'+v.compare.vs+'</p><div class="compare">'
       + v.compare.rows.map(function(r){return '<div><span>'+r[0]+'</span><strong>'+r[1]+'</strong></div>';}).join('')+'</div></div>';
@@ -4735,6 +6027,7 @@ function renderNotes(){
   if(v.evaluation) h+='<div class="eval"><p class="label"><span>Evaluation</span></p><p>'+v.evaluation+'</p></div>';
   if(v.line) h+='<div class="model"><p class="label">Write it like this</p><p>'+v.line+'</p></div>';
   if(v.tip) h+='<p class="tip">'+v.tip+'</p>';
+  h+=extrasHtml(v, id);
   document.getElementById('notes').innerHTML=h;
   document.getElementById('showing').textContent=v.showing;
   document.getElementById('replay').hidden=!v.anim;
@@ -4789,6 +6082,17 @@ document.querySelector('.tabs').addEventListener('click', function(e){
   if(b) setTopic(b.dataset.topic);
 });
 document.getElementById('replay').addEventListener('click', play);
+/* the extras tabs under a note: one open at a time, and it stays open as you move between notes */
+document.getElementById('notes').addEventListener('click', function(e){
+  var b=e.target.closest ? e.target.closest('.xtab') : null; if(!b) return;
+  state.xopen = b.getAttribute('aria-expanded')==='true' ? null : b.getAttribute('data-x');
+  var bs=this.querySelectorAll('.xtab'), ps=this.querySelectorAll('.xpanel');
+  for(var i=0;i<bs.length;i++) bs[i].setAttribute('aria-expanded', bs[i].getAttribute('data-x')===state.xopen ? 'true' : 'false');
+  for(var j=0;j<ps.length;j++) ps[j].hidden = ps[j].getAttribute('data-xp')!==state.xopen;
+});
+/* ?debug exposes the note data, for the audit scripts */
+if(/[?&]debug\b/.test(location.search)) window.__econ={V:V, TOPICS:TOPICS, SECTIONS:SECTIONS, SPECOF:SPECOF,
+  fin:function(){ cancelAnimationFrame(raf); state.t=1; render(); }};
 
 function setHash(id){ if(EMBED) return; try{ if(location.hash!=='#'+id) history.replaceState(null,'','#'+id); }catch(e){} }
 function topicOf(id){
@@ -4798,6 +6102,8 @@ function topicOf(id){
 /* a hash can name a topic (#monopoly), a section (#macro) or one exact view (#profit) */
 function readHash(){
   var h=decodeURIComponent((location.hash||'').slice(1));
+  /* old links from before Themes 1 and 2 were built */
+  if(h==='y12') h='t1'; else if(h==='adas2') h='agg_d';
   if(TOPICS[h]) return {topic:h, view:null};
   if(SECTIONS[h]) return {topic:state.last[h]||SECTIONS[h].order[0], view:null};
   if(V[h]){ var t=topicOf(h); if(t) return {topic:t, view:h}; }
@@ -4812,7 +6118,7 @@ window.addEventListener('hashchange', function(){
 
 /* ---------- sections (Micro / Macro) and their tabs ---------- */
 for(var tk0 in TOPICS){ if(!state.view[tk0]) state.view[tk0]=TOPICS[tk0].first; }
-state.last={micro:'monopoly',macro:'global',y12:'extern',ev:'e_fiscal'};
+state.last={t1:'nature',t2:'measures',micro:'monopoly',macro:'global',ev:'e_fiscal'};
 function renderTabs(){
   var sec=TOPICS[state.topic].section, S=SECTIONS[sec], tabsEl=document.getElementById('tabs');
   state.last[sec]=state.topic;

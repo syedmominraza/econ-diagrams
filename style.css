@@ -170,10 +170,11 @@ h1 span{background:linear-gradient(transparent 58%,var(--swipe-a) 58% 92%,transp
 .sec:hover{background:var(--hover-bg);color:var(--hover-fg)}
 .sec[aria-selected="true"]{background:var(--ink);color:var(--paper)}
 .sec:focus-visible{outline:3px solid var(--pen-ar);outline-offset:2px}
-/* four sections: on a phone the switch becomes a 2 x 2 grid */
-@media (max-width:560px){
-  .sections{display:grid;grid-template-columns:1fr 1fr;align-self:stretch;border-radius:18px}
-  .sec{padding:.38em .6em}
+/* five sections (Themes 1 to 4, Evaluation): on a phone the switch becomes a grid, Evaluation on its own row */
+@media (max-width:640px){
+  .sections{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-self:stretch;border-radius:18px}
+  .sec{padding:.38em .3em;font-size:.95rem;white-space:nowrap}
+  .sec:last-child{grid-column:1 / -1}
 }
 /* evaluation notes: where to use it, and a model sentence */
 ul.plain.use li{grid-template-columns:9em minmax(0,1fr)}
@@ -251,3 +252,35 @@ ul.plain b{font-family:var(--font-hand);font-size:1.1rem;line-height:1.35}
 .tip{font-family:var(--font-hand);font-size:1.12rem;line-height:1.4;color:var(--pen-mc);max-width:52ch}
 .page-note{font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:14px}
 @media (prefers-reduced-motion: reduce){.fade{animation:none}}
+
+/* note extras (version 24): spec tag, key terms, and the worked example / exam traps / practise tabs */
+.spec-tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 -10px!important}
+.terms dl{margin:0;display:flex;flex-direction:column;gap:7px;max-width:62ch}
+.terms dl div{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:10px}
+.terms dt{font-weight:700;line-height:1.35}
+.terms dd{margin:0;line-height:1.45}
+@media (max-width:560px){ .terms dl div{grid-template-columns:minmax(0,1fr);gap:0} }
+.xtra{display:flex;flex-direction:column;gap:10px;border-top:1px dashed var(--rule);padding-top:14px}
+.xtabs{display:flex;flex-wrap:wrap;gap:7px}
+.xtab{font:inherit;font-weight:700;font-size:.86rem;line-height:1.2;padding:.45em .8em;border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer}
+.xtab::after{content:" +"}
+.xtab[aria-expanded="true"]{background:var(--ink);color:var(--paper)}
+.xtab[aria-expanded="true"]::after{content:" \2212"}
+.xtab:hover{background:var(--hover-bg);color:var(--hover-fg)}
+.xtab:focus-visible{outline:3px solid var(--pen-ar);outline-offset:2px}
+.xpanel{border:1.5px solid var(--ink);border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;max-width:62ch;background:var(--sheet);min-width:0}
+.xpanel[hidden]{display:none}
+.xpanel .label{margin:0}
+ul.traps{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:8px}
+.wwrap{overflow-x:auto;max-width:100%}
+.wtable{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+.wtable th,.wtable td{border:1px solid var(--rule);padding:4px 9px;text-align:right;white-space:nowrap}
+.wtable th:first-child,.wtable td:first-child{text-align:left}
+.wtable tr:last-child td{font-weight:700}
+ol.wsteps{margin:0;padding-left:1.25em;display:flex;flex-direction:column;gap:6px}
+.wq{font-weight:700}
+.quiz{display:flex;flex-direction:column}
+.quiz details{border-bottom:1px dashed var(--rule);padding:7px 0}
+.quiz summary{cursor:pointer;font-weight:700;line-height:1.4}
+.quiz details p{margin:6px 0 2px}
+.go a{font-weight:700;color:var(--ink)}

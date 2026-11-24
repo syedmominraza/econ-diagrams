@@ -13,7 +13,7 @@ Live site: https://syedmominraza.github.io/econ-diagrams/
 | Page | What it is |
 |---|---|
 | `index.html` | Home: live demo, how to use it, the spec index for Themes 1 to 4, about |
-| `learn.html` | The diagrams and notes. Micro (3.1 to 3.4, except monopsony), Macro (4.1), Year 12 (externalities, AD/AS) and Evaluation points |
+| `learn.html` | The diagrams and notes. Theme 1 and Theme 2 in full, Theme 3 (3.1 to 3.4, except monopsony), Theme 4 (4.1) and Evaluation points |
 | `practice.html` | The practice board: build a diagram from movable pieces, then reveal the answer |
 
 ## Files
