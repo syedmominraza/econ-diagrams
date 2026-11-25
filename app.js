@@ -112,7 +112,7 @@ var V = {
 
   profitmax:{traps:["Find the output where MR = MC, then go <b>up to AR</b> for the price. Never read the price across from MC."], kind:'mono', btn:'Profit max point', showing:'Profit maximisation: MR = MC',
     title:'Profit maximisation: MR = MC',
-    lead:'A profit-maximising monopolist chooses the output where marginal revenue equals marginal cost, then charges the highest price consumers will pay for it.',
+    lead:'A firm with market power has to decide how much to make. Each extra unit adds to its revenue and to its costs, so it keeps going while the extra revenue is bigger, and stops where marginal revenue equals marginal cost. Then it charges the highest price consumers will pay for that output.',
     chain:[
       'Below Q<sub>1</sub>, MR is above MC. Each extra unit adds more to revenue than to cost, so producing it raises profit.',
       'Beyond Q<sub>1</sub>, MC is above MR. Each extra unit costs more than it brings in, so profit falls.',
@@ -160,7 +160,7 @@ var V = {
 
   salesmax:{terms:[["Sales maximisation", "Selling as many units as possible without making an economic loss: where AR = AC."]], traps:["Sales maximisation is at <b>AR = AC</b>, the furthest output that still earns normal profit."], kind:'mono', anim:true, btn:'Sales max', showing:'Sales maximisation: AR = AC',
     title:'Sales maximisation: AR = AC',
-    lead:'The firm sells as much as it can without making a loss, so it expands until price only just covers average cost.',
+    lead:'The firm sells as much as it can without making an economic loss, so it expands until price only just covers average cost.',
     chain:[
       'Sales volume is as high as possible, with the firm still breaking even, where AR = AC at Q<sub>3</sub>.',
       'Price P<sub>3</sub> equals average cost, so the firm makes normal profit only. The supernormal profit box disappears.',
@@ -239,7 +239,7 @@ var V = {
       'Revenue is unchanged but total cost is higher, so the profit box shrinks from below.'
     ],
     compare:{vs:'After the shift',rows:[['Price','= same'],['Output','= same'],['Revenue','= same'],['Profit','↓ lower']]},
-    evaluation:'This is why a lump-sum tax can take profit from a monopolist without raising prices for consumers. If AC rises above AR, though, the firm makes a loss and may leave the industry in the long run.',
+    evaluation:'This is why a lump-sum tax can take profit from a monopolist without raising prices for consumers. If AC rises above AR, though, the firm makes an economic loss and may leave the industry in the long run.',
     tip:'Fixed cost change: move AC only. Moving MC as well is the classic error.'},
 
   srlr:{kind:'mono', btn:'Short run vs long run', showing:'Same diagram in the short run and the long run',
@@ -270,7 +270,7 @@ var V = {
     lead:'Now one firm takes over the whole market with the same costs. It is a price maker, so it uses MR, not AR, to choose its output.',
     chain:[
       'The monopolist produces where MR = MC, at point C, giving output Q<sub>M</sub>.',
-      'It goes up to AR at point B and charges P<sub>M</sub>. Price is higher and output lower than under competition.',
+      'It charges the most consumers will pay for that output, which is read off AR at point B: P<sub>M</sub>. Price is higher and output lower than under competition.',
       'Consumer surplus shrinks to triangle A B P<sub>M</sub>. The rectangle P<sub>M</sub> B C P<sub>PC</sub>, which used to be consumer surplus, is now supernormal profit.',
       'Triangle B C E is lost altogether: the deadweight loss.'
     ],
@@ -355,10 +355,10 @@ var V = {
     chain:[
       'At P<sub>R</sub> output rises from Q<sub>1</sub> to Q<sub>R</sub>, and price equals marginal cost.',
       'But MC is below AC in a natural monopoly, so at Q<sub>R</sub> the price P<sub>R</sub> is below average cost, C<sub>R</sub>.',
-      'The firm makes a loss of C<sub>R</sub> minus P<sub>R</sub> on every unit: the shaded band, (C<sub>R</sub> − P<sub>R</sub>) × Q<sub>R</sub> in total.',
+      'The firm makes an economic loss of C<sub>R</sub> minus P<sub>R</sub> on every unit: the shaded band, (C<sub>R</sub> − P<sub>R</sub>) × Q<sub>R</sub> in total.',
       'It would leave the industry, so the government has to pay a subsidy equal to that loss.'
     ],
-    compare:{vs:'Compared with the unregulated outcome',rows:[['Price','↓ much lower'],['Output','↑ higher'],['Allocative','efficient'],['Firm','loss, needs subsidy']]},
+    compare:{vs:'Compared with the unregulated outcome',rows:[['Price','↓ much lower'],['Output','↑ higher'],['Allocative','efficient'],['Firm','economic loss, needs subsidy']]},
     evaluation:'A guaranteed subsidy removes the incentive to keep costs down: if costs rise the subsidy rises, so X-inefficiency develops, and the firm may overstate its costs. The regulator needs accurate information and may be captured by the firm it regulates. The alternative is nationalisation, which stops consumers being exploited but also has no profit incentive.'},
 
   /* ------------------------- PERFECT COMPETITION ------------------------- */
@@ -384,13 +384,13 @@ var V = {
     ],
     tip:'The firm produces where MC cuts the price line on its way up. That is not the lowest point of AC.'},
 
-  pc_loss:{kind:'pc', p0:32, costs:true, btn:'Loss', showing:'Short run: price below AC',
-    title:'Short run: a loss',
-    lead:'If the market price is below average cost, the firm makes a loss even at its best output.',
+  pc_loss:{kind:'pc', p0:32, costs:true, btn:'Economic loss', showing:'Short run: price below AC',
+    title:'Short run: an economic loss',
+    lead:'If the market price is below average cost, the firm makes an economic loss even at its best output.',
     chain:[
       'The firm still produces where MC = MR, at Q<sub>1</sub>, because that is where the loss is smallest.',
       'At Q<sub>1</sub>, AC (at C) is above AR (the price P<sub>1</sub>).',
-      'The gap between AC and AR, multiplied by Q<sub>1</sub>, is the loss: the shaded box.',
+      'The gap between AC and AR, multiplied by Q<sub>1</sub>, is the economic loss: the shaded box.',
       'In the short run it keeps producing as long as the price covers its variable costs, because the fixed costs have to be paid either way.'
     ],
     evaluation:'If the price falls below average variable cost, the firm is better off shutting down straight away, because producing would add to its losses. In the long run it leaves the industry unless the price recovers.'},
@@ -408,8 +408,8 @@ var V = {
     evaluation:'The model assumes entry is immediate and costless. In reality setting up takes time and money, so supernormal profit can last longer than the model suggests.'},
 
   pc_exit:{kind:'pc', p0:32, toLR:true, costs:true, anim:true, btn:'Losses cause exit', showing:'Exit: supply shifts left, price rises',
-    title:'Long run: losses cause exit',
-    lead:'Losses do not last either. With no barriers to exit, loss-making firms leave the industry.',
+    title:'Long run: economic losses cause exit',
+    lead:'Economic losses do not last either. With no barriers to exit, loss-making firms leave the industry.',
     chain:[
       'Some firms leave, so industry supply shifts left from S<sub>1</sub> to S<sub>2</sub>.',
       'The market price rises from P<sub>1</sub> to P<sub>2</sub>.',
@@ -425,7 +425,7 @@ var V = {
       'Price equals the lowest point of AC, so firms make normal profit. There is no reason to enter and no reason to leave.',
       'Productive efficiency: output is at the lowest point of AC.',
       'Allocative efficiency: price equals MC, so no firm can charge more than the cost of the last unit.',
-      'X-efficiency: any firm with costs above the minimum would make a loss and be forced out.'
+      'X-efficiency: any firm with costs above the minimum would make an economic loss and be forced out.'
     ],
     compare:{vs:'Efficiency in the long run',rows:[['Productive','yes'],['Allocative','yes'],['X-efficiency','yes'],['Dynamic','no']]},
     evaluation:'There is no dynamic efficiency: firms have no supernormal profit to fund research, and perfect knowledge means rivals would copy any innovation at once. Products are identical, so consumers get low prices but no choice. Very few real markets meet all the assumptions, so the model is mainly a benchmark for judging other market structures.'},
@@ -442,13 +442,13 @@ var V = {
     ],
     tip:'It is the monopoly diagram with AR and MR drawn flatter.'},
 
-  mc_loss:{kind:'mcomp', a:'loss', btn:'Loss', showing:'Short run: AR below AC',
-    title:'Short run: a loss',
+  mc_loss:{kind:'mcomp', a:'loss', btn:'Economic loss', showing:'Short run: AR below AC',
+    title:'Short run: an economic loss',
     lead:'If demand for the firm’s product is weak, AR lies below AC at every output. The best the firm can do is keep its loss as small as possible.',
     chain:[
       'The firm produces where MR = MC, at Q<sub>1</sub>, and charges P<sub>1</sub>.',
       'At Q<sub>1</sub>, AC (at C) is above AR.',
-      'The gap between AC and AR, multiplied by Q<sub>1</sub>, is the loss: the shaded box.',
+      'The gap between AC and AR, multiplied by Q<sub>1</sub>, is the economic loss: the shaded box.',
       'It carries on in the short run as long as the price covers its variable costs.'
     ]},
 
@@ -465,7 +465,7 @@ var V = {
     evaluation:'Firms try to slow this down by differentiating their product further through branding, quality or location, which makes their demand less elastic. Because entry is easy, any advantage tends to be copied.'},
 
   mc_exit:{kind:'mcomp', a:'loss', anim:true, btn:'Losses cause exit', showing:'Exit: AR and MR shift right',
-    title:'Long run: exit removes the loss',
+    title:'Long run: exit removes the economic loss',
     lead:'There are no barriers to exit either, so loss-making firms leave.',
     chain:[
       'Some firms leave the market, and their customers move to the firms that remain.',
@@ -481,7 +481,7 @@ var V = {
     chain:[
       'The firm produces where MR = MC, at Q<sub>1</sub>.',
       'At that output AR just touches AC, so price equals average cost and profit is normal.',
-      'At any other output AC is above AR and the firm would make a loss. That is why AR must touch AC and not cross it.',
+      'At any other output AC is above AR and the firm would make an economic loss. That is why AR must touch AC and not cross it.',
       'No firm wants to enter or leave, so this is the long-run equilibrium.'
     ],
     compare:{vs:'In the long run',rows:[['Profit','normal'],['Price','above MC'],['Output','below MES'],['Products','differentiated']]},
@@ -869,7 +869,7 @@ TOPICS.scale={section:'micro',label:'Economies of scale',eyebrow:'Edexcel A · T
 TOPICS.profits={section:'micro',label:'Profit',eyebrow:'Edexcel A · Theme 3 · 3.3.4 Normal profits, supernormal profits and losses',first:'pf_types',groups:[
   ['What profit means',['pf_calc','pf_types']],
   ['Profit maximisation',['pf_max']],
-  ['Losses and shutting down',['pf_stay','pf_shut']]
+  ['Economic losses and shutting down',['pf_stay','pf_shut']]
 ]};
 TOPICS.efficiency={section:'micro',label:'Efficiency',eyebrow:'Edexcel A · Theme 3 · 3.4.1 Efficiency',first:'ef_prod',groups:[
   ['Static efficiency',['ef_prod','ef_alloc']],
@@ -1011,7 +1011,7 @@ V.ob_all={work:{"q": "A firm maximises profit at 40 units, where price is £30 a
   plain:[
     ['<b class="k-mc">MR = MC</b>','Profit maximisation, at Q<sub>1</sub> and P<sub>1</sub>.'],
     ['<b class="k-mr">MR = 0</b>','Revenue maximisation, at Q<sub>2</sub> and P<sub>2</sub>. Output is higher and price lower.'],
-    ['<b class="k-ac">AR = AC</b>','Sales maximisation, at Q<sub>3</sub> and P<sub>3</sub>. The highest output and lowest price the firm can manage without making a loss.']
+    ['<b class="k-ac">AR = AC</b>','Sales maximisation, at Q<sub>3</sub> and P<sub>3</sub>. The highest output and lowest price the firm can manage without making an economic loss.']
   ],
   evaluation:'Moving from Q<sub>1</sub> to Q<sub>3</sub>, consumers get more output at a lower price, but the firm gives up profit. Which objective a firm follows depends on who controls it, and how closely the owners can watch the managers.',
   tip:'On the usual diagram, Q<sub>1</sub> &lt; Q<sub>2</sub> &lt; Q<sub>3</sub> and P<sub>1</sub> &gt; P<sub>2</sub> &gt; P<sub>3</sub>. Every price is read off AR.'};
@@ -1304,16 +1304,16 @@ V.pf_calc={terms:[["Accounting profit", "Revenue minus explicit costs."], ["Econ
   evaluation:'Supernormal profit is economic profit above zero. It signals to other firms that the industry is worth entering.',
   tip:'Tobi would give up a £30,000 data science job to run a DJ business. She needs £49,000 of revenue just to make normal profit.'};
 
-V.pf_types={terms:[["Normal profit", "The minimum profit needed to keep resources in their current use: where AR = AC."], ["Supernormal profit", "Profit above normal profit: AR is above AC."], ["Economic loss", "AR is below AC: the firm earns less than normal profit."]], work:{"q": "At the profit-maximising output of 100 units, price is £12 and average cost is £9. What is supernormal profit?", "steps": ["Profit per unit = AR − AC = £12 − £9 = £3.", "Supernormal profit = £3 × 100 = <b>£300</b>."], "ans": "£300: the box from AC up to the price, across to the output."}, traps:["Read profit at the output where <b>MR = MC</b>. Compare AR with AC at that output, not where AC is lowest."], kind:'profit', btn:'Supernormal, normal, loss', showing:'AR against AC at the chosen output',
-  title:'Supernormal profit, normal profit and losses',
+V.pf_types={terms:[["Normal profit", "The minimum profit needed to keep resources in their current use: where AR = AC."], ["Supernormal profit", "Profit above normal profit: AR is above AC."], ["Economic loss", "AR is below AC: the firm earns less than normal profit."]], work:{"q": "At the profit-maximising output of 100 units, price is £12 and average cost is £9. What is supernormal profit?", "steps": ["Profit per unit = AR − AC = £12 − £9 = £3.", "Supernormal profit = £3 × 100 = <b>£300</b>."], "ans": "£300: the box from AC up to the price, across to the output."}, traps:["Read profit at the output where <b>MR = MC</b>. Compare AR with AC at that output, not where AC is lowest."], kind:'profit', btn:'Supernormal, normal, economic loss', showing:'AR against AC at the chosen output',
+  title:'Supernormal profit, normal profit and economic losses',
   lead:'The firm chooses its output where MR = MC. Then compare average revenue with average cost at that output.',
   plain:[
     ['<b>AR &gt; AC</b>','Supernormal profit: more than enough to keep the firm in the industry. The shaded box is the profit.'],
     ['<b>AR = AC</b>','Normal profit: all costs are covered, including the opportunity cost. AR just touches AC.'],
-    ['<b>AR &lt; AC</b>','A loss: average cost is above the price. The shaded box is the loss.']
+    ['<b>AR &lt; AC</b>','An economic loss: average cost is above the price. The shaded box is the economic loss.']
   ],
-  evaluation:'A loss in the short run does not mean the firm closes. It keeps producing as long as the price covers average variable cost, because its fixed costs have to be paid either way.',
-  tip:'Read the profit or loss at the output where MR = MC, not where AR crosses AC.'};
+  evaluation:'An economic loss in the short run does not mean the firm closes. It keeps producing as long as the price covers average variable cost, because its fixed costs have to be paid either way.',
+  tip:'Read the profit or economic loss at the output where MR = MC, not where AR crosses AC.'};
 
 V.pf_max={traps:["Profit is maximised where MR = MC <b>and</b> MC is rising, cutting MR from below."], kind:'profit', btn:'MR = MC', showing:'The biggest gap between TR and TC',
   title:'The profit-maximising rule: MR = MC',
@@ -1328,10 +1328,10 @@ V.pf_max={traps:["Profit is maximised where MR = MC <b>and</b> MC is rising, cut
   tip:'At Q<sub>1</sub>, TR and TC have the same slope. The slope of TR is MR and the slope of TC is MC.'};
 
 V.pf_stay={terms:[["Short-run shut-down point", "The price equal to minimum AVC. Below it, the firm loses less by closing."]], work:{"q": "A firm sells at £8. Its AVC is £6 and its ATC is £10. Should it keep producing in the short run?", "steps": ["Price is below ATC, so it makes an economic loss of £2 on each unit.", "But price is above AVC, so each unit also covers £2 of fixed costs.", "If it shut, it would still pay all its fixed costs and lose more."], "ans": "Keep producing in the short run. If nothing changes, it leaves in the long run."}, traps:["Short run: stay open if price covers <b>AVC</b>. Long run: leave if price does not cover <b>ATC</b>."], kind:'profit', btn:'Loss but stay open', showing:'Price covers AVC: stay open for now',
-  title:'Making a loss but staying open',
-  lead:'If the price is below average total cost but above average variable cost, the firm makes a loss but should keep producing in the short run.',
+  title:'Making an economic loss but staying open',
+  lead:'If the price is below average total cost but above average variable cost, the firm makes an economic loss but should keep producing in the short run.',
   chain:[
-    'At Q<sub>1</sub>, where MC = MR, the price P<sub>1</sub> is below ATC, so the firm makes a loss: the top box.',
+    'At Q<sub>1</sub>, where MC = MR, the price P<sub>1</sub> is below ATC, so the firm makes an economic loss: the top box.',
     'But P<sub>1</sub> is above AVC. Each unit sold covers its variable cost and leaves something over.',
     'That surplus, the lower box, goes towards the fixed costs, which have to be paid whether the firm produces or not.',
     'Shutting down would lose all the fixed costs. Staying open loses less, so the firm stays open in the short run.'
@@ -1430,7 +1430,7 @@ V.br_types={terms:[["Barrier to entry", "Anything that makes it hard for a new f
     PT('Economies of scale',[['','An incumbent producing on a large scale has much lower average costs than a newcomer starting small, so the newcomer cannot match its prices.'],['Example','Amazon’s delivery network gives it costs a new online shop cannot match.']]),
     PT('Brand loyalty',[['','Customers stick with brands they know, even if a newcomer is cheaper or better.'],['Example','Many iPhone users will not consider switching, partly because their photos, apps and messages are tied to Apple.']]),
     PT('Control of raw materials',[['','If one firm controls the supply of a key input, rivals cannot get hold of it.'],['Example','De Beers once controlled most of the world’s supply of diamonds.']]),
-    PT('Limit pricing',[['','The incumbent sets a price low enough that a newcomer, with higher costs, would make a loss.']]),
+    PT('Limit pricing',[['','The incumbent sets a price low enough that a newcomer, with higher costs, would make an economic loss.']]),
     PT('Predatory pricing',[['','The incumbent cuts its price below average variable cost to drive a rival out. It is illegal, but hard to prove.']])
   ]},
   tip:'Limit pricing keeps firms out. Predatory pricing drives firms out.'};
@@ -1451,19 +1451,19 @@ V.br_eos={kind:'lrac', btn:'Economies of scale', showing:'The incumbent’s cost
   chain:[
     'The incumbent produces a large output, Q<sub>I</sub>, at a low average cost, C<sub>I</sub>.',
     'A new firm starts small, at Q<sub>E</sub>, where average cost is much higher, at C<sub>E</sub>.',
-    'At the market price P, the incumbent makes supernormal profit, but the newcomer would make a loss.',
+    'At the market price P, the incumbent makes supernormal profit, but the newcomer would make an economic loss.',
     'To get its costs down, the newcomer would have to win a big share of the market straight away.'
   ],
   evaluation:'This barrier is strongest where the minimum efficient scale is a large share of the market. New technology can lower it: selling online let small firms reach customers without big shops.'};
 
 V.br_limit={terms:[["Limit pricing", "Setting the price low enough that a new entrant, with higher costs, could not make a profit."]], traps:["Limit pricing sets the price at or just below the <b>entrant’s</b> AC. The incumbent still makes some profit."], kind:'lrac', anim:true, btn:'Limit pricing', showing:'Price cut to just below the newcomer’s cost',
   title:'Limit pricing',
-  lead:'The incumbent deliberately sets a low price, limiting its own profit, so that a new firm with higher costs would make a loss if it entered.',
+  lead:'The incumbent deliberately sets a low price, limiting its own profit, so that a new firm with higher costs would make an economic loss if it entered.',
   chain:[
     'Without the threat of entry, the incumbent would charge P<sub>1</sub> and make large supernormal profit.',
     'A newcomer would start small, at Q<sub>E</sub>, with average cost C<sub>E</sub>. At P<sub>1</sub> it could make a profit, so it would come in.',
     'The incumbent cuts its price to P<sub>L</sub>, just below C<sub>E</sub>.',
-    'The newcomer would now make a loss, so it stays out. The incumbent still covers its own lower costs and keeps some supernormal profit.'
+    'The newcomer would now make an economic loss, so it stays out. The incumbent still covers its own lower costs and keeps some supernormal profit.'
   ],
   evaluation:'Limit pricing gives up some profit now to protect profit in the future. It only works if the incumbent really does have lower costs, and if newcomers believe the low price will last. Consumers gain from the lower price, but miss out on extra competition.',
   tip:'The limit price is below the newcomer’s average cost but above the incumbent’s.'};
@@ -2342,7 +2342,8 @@ function renderPPC(){
   var c='', l='', gd='', nt='';
   c+=line(gu,0,600,600,0,'c-ar');
   l+=gu.txt(gu.X(300)-8,gu.Y(300)+fs+2,'PPC','bold t-ar halo','end');
-  nt+=gu.axP(gu.Y(600),'600');
+  /* on a phone the panel margin is narrow: tuck the number in so it stays on the sheet */
+  nt+= gu.small ? gu.txt(gu.mg.l-3,gu.Y(600)+5,'600','bold','end') : gu.axP(gu.Y(600),'600');
   if(showT){
     if(ukGhost) c+=line(gu,0,600,ukGhost,0,'c-mc ghost');
     c+=line(gu,0,600,ukX,0,'c-mc');
@@ -2548,7 +2549,7 @@ function renderRev(){
   function mr(q){return a-2*b*q;}
   if(id==='rv_tr' || id==='rv_taker'){
     var taker=(id==='rv_taker'), P=60;
-    var gl=kit({n:2,i:0,head:taker?'Price taker':'Price maker',ytitle:'Price / revenue'}), X=gl.X, Y=gl.Y, fs=gl.fs;
+    var gl=kit({n:2,i:0,head:taker?'Price taker':'Price maker',ytitle:'Price / revenue',pmin:MR_FLOOR}), X=gl.X, Y=gl.Y, fs=gl.fs;
     var c='', l='', gd='', nt='';
     if(taker){
       c+=seg(gl,0,P,116,P,'curve c-ar');
@@ -2556,10 +2557,10 @@ function renderRev(){
       nt+=gl.axP(Y(P),'P_1');
     } else {
       var qNow=2+(114-2)*te;
-      c+='<path class="curve c-ar" d="'+gl.path(ar,0,116)+'"/><path class="curve c-mr" d="'+gl.path(mr,0,qMid)+'"/>';
+      c+='<path class="curve c-ar" d="'+gl.path(ar,0,116)+'"/><path class="curve c-mr" d="'+gl.path(mr,0,mrQ(a,b))+'"/>';
       l+=gl.txt(X(92)+5,Y(ar(92))-6,'AR','bold t-ar halo')+gl.txt(X(37)-6,Y(35),'MR','bold t-mr halo','end');
-      if(te<1){ gd+=gl.dot(qNow,ar(qNow),'eff'); if(qNow<qMid) gd+=gl.dot(qNow,mr(qNow),'eff'); }
-      else { gd+=gl.vline(qMid,ar(qMid),'muted')+gl.dot(qMid,0); nt+=gl.axQ(X(qMid),'Q_1')+gl.txt(X(qMid)+7,Y(0)-9,'MR = 0','halo t-mr bold'); }
+      if(te<1){ gd+=gl.dot(qNow,ar(qNow),'eff'); if(qNow<mrQ(a,b)) gd+=gl.dot(qNow,mr(qNow),'eff'); }
+      else { gd+=gl.vline(qMid,ar(qMid),'muted')+gl.dot(qMid,0); nt+=gl.axQ(X(qMid)-9,'Q_1')+gl.txt(X(qMid)+7,Y(0)-9,'MR = 0','halo t-mr bold'); }
     }
     var inner=gl.compose('',c,gd,l,nt);
     var trTop=taker?P*116:a*a/(4*b);
@@ -2583,12 +2584,12 @@ function renderRev(){
     wrapSvg(gl,inner);
     return;
   }
-  var g=kit({ytitle:'Price / revenue'}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
+  var g=kit({ytitle:'Price / revenue',pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs, sm=g.small;
   var curves='<path class="curve c-ar" d="'+g.path(ar,0,116)+'"/>', labels='', guides='', notes='';
   labels+=g.txt(X(116),Y(ar(116))-12,sm?'AR':'AR = D','bold t-ar halo','end');
   if(id==='rv_armr'){
-    curves+='<path class="curve c-mr" d="'+g.path(mr,0,qMid)+'"/>';
-    labels+=g.txt(X(37)-8,Y(35),'MR','bold t-mr halo','end');
+    curves+='<path class="curve c-mr" d="'+g.path(mr,0,mrQ(a,b))+'"/>';
+    labels+=g.txt(X(45)+7,Y(mr(45))-7,'MR','bold t-mr halo');   /* above the line, right of the Q1 guide */
     var q1=30;
     guides+=g.guide(q1,ar(q1))+g.dot(q1,ar(q1))+g.dot(q1,mr(q1))+g.dot(qMid,0);
     notes+=g.axP(Y(ar(q1)),'P_1')+g.axQ(X(q1),'Q_1')+g.txt(X(qMid)+9,Y(0)-10,'MR = 0','halo t-mr bold');
@@ -2596,7 +2597,7 @@ function renderRev(){
     notes+='<path class="gap" d="M'+r1(X(q1))+' '+r1(Y(ar(q1))+6)+'V'+r1(Y(mr(q1))-6)+'"/>';
   }
   else if(id==='rv_ped'){
-    curves+='<path class="curve c-mr ghost" d="'+g.path(mr,0,qMid)+'"/>';
+    curves+='<path class="curve c-mr ghost" d="'+g.path(mr,0,mrQ(a,b))+'"/>';
     labels+=g.txt(X(37)-8,Y(35),'MR','bold t-mr halo','end');
     guides+=g.guide(qMid,a/2,'eff')+g.dot(qMid,a/2,'eff')+g.dot(qMid,0);
     notes+=g.txt(X(qMid)+12,Y(a/2)-8,sm?'PED = 1':'unit elastic: PED = 1','bold t-eff halo');
@@ -2757,18 +2758,19 @@ function renderProfits(){
   if(id==='pf_types'){
     var qT=44, b=m.F/(qT*qT)-2*m.k*(qT-m.q1), aN=AC(m,qT)+b*qT;
     var small=(plot.clientWidth||640)<480;
-    var specs=[{a:aN+18,head:small?'Supernormal':'Supernormal profit'},{a:aN,head:small?'Normal':'Normal profit'},{a:aN-14,head:'Loss'}];
+    var specs=[{a:aN+18,head:small?'Supernormal':'Supernormal profit'},{a:aN,head:small?'Normal':'Normal profit'},{a:aN-14,head:small?'Loss':'Economic loss'}];
     var inner='', first=null;
     specs.forEach(function(s,i){
-      var g=kit({n:3,i:i,qmax:100,head:s.head,ytitle:small?'£':'Costs / revenue'}), X=g.X, Y=g.Y, fs=g.fs;
+      var g=kit({n:3,i:i,qmax:100,head:s.head,ytitle:small?'£':'Costs / revenue',pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs;
       if(!first) first=g;
       var A=s.a, q=bisect(function(x){return A-2*b*x-MC(m,x);},20,80), p=A-b*q, c=AC(m,q);
       var arEnd=Math.min(98,(A-3)/b);
       var curves='<path class="curve c-ar" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(arEnd))+' '+r1(Y(A-b*arEnd))+'"/>'
-        + '<path class="curve c-mr" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(A/(2*b)))+' '+r1(Y(0))+'"/>'
+        + '<path class="curve c-mr" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(mrQ(A,b,98)))+' '+r1(Y(A-2*b*mrQ(A,b,98)))+'"/>'
         + '<path class="curve c-mc" d="'+g.path(mcF,rm[0],Math.min(rm[1],98))+'"/>'
         + '<path class="curve c-ac" d="'+g.path(acF,ra[0],98)+'"/>';
-      var labels=g.txt(X(arEnd),Y(A-b*arEnd)-8,'AR','bold t-ar halo','end')+g.txt(X(A/(2*b))+4,Y(4),'MR','bold t-mr halo')
+      /* MR: just right of where it cuts the axis, high enough to clear the axis arrowhead in the first panel */
+      var labels=g.txt(X(arEnd),Y(A-b*arEnd)-8,'AR','bold t-ar halo','end')+g.txt(X(A/(2*b))+4,Y(0)-7,'MR','bold t-mr halo')
         + g.txt(X(98),Y(AC(m,98))-8,'AC','bold t-ac halo','end')+g.txt(X(rm[1])-6,Y(MC(m,rm[1]))+12,'MC','bold t-mc halo','end');
       var areas='', guides=g.guide(q,Math.max(p,c))+g.dot(q,p)+g.dot(q,MC(m,q)), notes=g.axQ(X(q),'Q');
       if(i===1) notes+=g.axP(Y(p),'P');
@@ -2819,7 +2821,7 @@ function renderProfits(){
     areas+=g.box(0,q,P2,c,'area a-cost')+g.box(0,q,vv,P2,'area a-gain');
     guides+=g.vline(q,c)+g.hline(q,c)+g.hline(q,vv)+g.dot(q,P2)+g.dot(q,c)+g.dot(q,vv);
     notes+=g.axP(Y2(P2),'P_1')+g.axQ(X2(q),'Q_1');
-    notes+=g.txt(X2(q/2),(Y2(P2)+Y2(c))/2+5,'loss','bold','middle');
+    notes+=g.txt(X2(q/2),(Y2(P2)+Y2(c))/2+5,((plot.clientWidth||640)<480)?'loss':'economic loss','bold','middle');
     notes+=sm ? g.txt(X2(q/2),(Y2(P2)+Y2(vv))/2+5,'to fixed costs','bold','middle')
               : g.txt2(X2(q/2),(Y2(P2)+Y2(vv))/2-fs2*0.2,'pays part of the','fixed costs','bold','middle');
   } else {
@@ -3677,8 +3679,12 @@ function linSeg(g,fn,cls,qmaxDraw){
   else { lo=Math.max(0,(PTOP-f0)/s); hi=Math.min(qm,(2-f0)/s); }
   return '<path class="curve '+cls+'" d="M'+r1(g.X(lo))+' '+r1(g.Y(fn(lo)))+'L'+r1(g.X(hi))+' '+r1(g.Y(fn(hi)))+'"/>';
 }
-/* label beside a straight line: above a falling line, under a rising one, so the line runs away from the text */
+/* label beside a straight line: above a falling line, under a rising one, so the line runs away from the text.
+   A long label near the right edge slides back along the line until it fits inside its panel (version 25:
+   at about 1024px wide the drawing is narrow but uses the full-size font) */
 function linLab(g,fn,q,text,cls){
+  var w=String(text).replace(/_/g,'').length*g.fs*0.56, right=g.mg.l+g.pw+g.mg.r-3, x0=g.X(0);
+  if(g.X(q)+7+w>right && g.X(q)>x0) q=Math.max(0, q*(right-7-w-x0)/(g.X(q)-x0));
   var rising=fn(q+1)>fn(q);
   return g.txt(g.X(q)+7, g.Y(fn(q))+(rising?g.fs+3:-7), text, 'bold halo '+cls);
 }
@@ -3816,7 +3822,9 @@ function renderExt(){
     } else {
       var sb=E.e*te, ms=function(q){return mpc(q)-sb;}, q2=cross(mpb,ms), p2=mpb(q2);
       curves+=linSeg(g,mpc,'c-mc'+(te>0.02?' ghost':''))+(te>0.02?linSeg(g,ms,'c-mc'):'');
-      labels+=linLab(g,mpc,sm?30:34,sm?'MSC':'MPC = MSC','t-mc')+(te>0.5&&!sm?linLab(g,ms,94,'MPC − subsidy','t-mc'):'');
+      /* the shifted curve's full name only where it fits at the right edge (about 1024px wide it does not) */
+      var msName=(X(94)+7+13*fs*0.56<=g.W-3)?'MPC − subsidy':'MPC − sub';
+      labels+=linLab(g,mpc,sm?30:34,sm?'MSC':'MPC = MSC','t-mc')+(te>0.5&&!sm?linLab(g,ms,94,msName,'t-mc'):'');
       if(qs4-q2>0.3) areas+=tri(q2,qs4,msb2,mpc);
       var qa=sm?52:58;   /* the subsidy arrow sits right of the long "MPC = MSC" label */
       if(te>0.12) notes+=arrowPx(X(qa),Y(mpc(qa))+3,X(qa),Y(ms(qa))-3,'leader',7)+(sm?'':g.txt(X(qa)+7,(Y(mpc(qa))+Y(ms(qa)))/2+5,'subsidy','bold halo'));
@@ -4091,7 +4099,7 @@ function renderMkt(){
   else if(m==='maxp' || m==='minp'){
     var mx=(m==='maxp'), target=mx?34:70, pc=e0.p+(target-e0.p)*te;
     curves+=linSeg(g,D(a),'c-ar')+linSeg(g,S(c),'c-mc');
-    labels+=linLab(g,D(a),lq,'D','t-ar')+linLab(g,S(c),lq,'S','t-mc');
+    labels+=linLab(g,D(a),lq,'D','t-ar')+linLab(g,S(c),mx?lq:(sm?58:64),'S','t-mc');   /* S label below the floor line */
     var qd=(a-pc)/b, qs=(pc-c)/d, qhi=Math.max(qd,qs);
     curves+='<path class="curve c-mr" d="M'+r1(X(0))+' '+r1(Y(pc))+'H'+r1(X(Math.min(116,qhi+14)))+'"/>';
     /* the ceiling is labelled under its right end; the floor above its left end, clear of S */
@@ -5107,7 +5115,8 @@ TOPICS.policy.quiz=[['Who sets Bank Rate in the UK?','The Bank of England’s Mo
 /* =====================================================================
    STATE
    ===================================================================== */
-var state = {topic:'monopoly', view:{perfect:'pc_taker', monopoly:'profitmax', monopolistic:'mc_snp', oligopoly:'kink', contestable:'cm_mono'}, t:1, fade:true, cheater:'A'};
+/* a first visit (nothing saved, no link) starts at the beginning: Theme 1, the nature of economics */
+var state = {topic:'nature', view:{perfect:'pc_taker', monopoly:'base', monopolistic:'mc_snp', oligopoly:'kink', contestable:'cm_mono'}, t:1, fade:true, cheater:'A'};
 var raf = 0;
 var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var plot = document.getElementById('plot'), panel = document.getElementById('panel');
@@ -5143,9 +5152,10 @@ function kit(o){
   var ml = multi ? (g.small?28:44) : (g.small?52:66), mr = multi ? (g.small?7:14) : (g.small?10:18);
   var mg = g.mg = {l:x0+ml, r:mr, t:multi?52:36, b:g.small?42:46};
   g.pw = cell-ml-mr; g.ph = g.H-mg.t-mg.b;
-  var qmax = o.qmax||QMAX, pmax = o.pmax||PMAX;
+  var qmax = o.qmax||QMAX, pmax = o.pmax||PMAX, pmin = o.pmin||0;   /* pmin < 0 leaves room for MR below the axis */
+  g.pmin=pmin;
   g.X=function(q){return mg.l+q/qmax*g.pw;};
-  g.Y=function(p){return mg.t+(1-p/pmax)*g.ph;};
+  g.Y=function(p){return mg.t+(1-(p-pmin)/(pmax-pmin))*g.ph;};
   g.path=function(fn,q0,q1){
     var d='',n=90;
     for(var i=0;i<=n;i++){var q=q0+(q1-q0)*i/n; d+=(i?'L':'M')+r1(g.X(q))+' '+r1(g.Y(fn(q)));}
@@ -5182,7 +5192,7 @@ function kit(o){
   };
   g.axes=function(){
     var y0=g.Y(0), xe=mg.l+g.pw, ts=g.small?12:13;
-    return '<path class="axis" d="M'+mg.l+' '+(mg.t-8)+'V'+r1(y0)+'H'+r1(xe+4)+'"/>'
+    return '<path class="axis" d="M'+mg.l+' '+(mg.t-8)+'V'+r1(pmin<0?g.Y(pmin):y0)+'M'+mg.l+' '+r1(y0)+'H'+r1(xe+4)+'"/>'
       + '<path class="axis" d="M'+(mg.l-5)+' '+(mg.t-1)+'L'+mg.l+' '+(mg.t-9)+'L'+(mg.l+5)+' '+(mg.t-1)+'"/>'
       + '<path class="axis" d="M'+r1(xe-3)+' '+r1(y0-5)+'L'+r1(xe+5)+' '+r1(y0)+'L'+r1(xe-3)+' '+r1(y0+5)+'"/>'
       + (o.head ? '<text class="panel-head" x="'+r1(mg.l-(g.small?16:24))+'" y="19" font-size="'+(g.small?12.5:15)+'">'+esc(o.head)+'</text>' : '')
@@ -5224,6 +5234,9 @@ function kit(o){
   g.out=function(areas,curves,guides,labels,notes){ wrapSvg(g, g.compose(areas,curves,guides,labels,notes)); };
   return g;
 }
+/* MR carries on below the quantity axis (version 25): past MR = 0, selling more lowers total revenue */
+var MR_FLOOR=-12, MR_END=-8;
+function mrQ(a,b,cap){ return Math.min(cap||116,(a-MR_END)/(2*b)); }
 function wrapSvg(g, inner){
   plot.innerHTML = '<svg viewBox="0 0 '+g.W+' '+g.H+'" width="'+g.W+'" height="'+g.H+'" aria-hidden="true">'+inner+'</svg>';
   state.fade=false;
@@ -5238,16 +5251,22 @@ function spread(a,b,minGap){
    MONOPOLY DIAGRAM
    ===================================================================== */
 function renderMono(){
-  var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id], shift=v.shift;
+  var g=kit({pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id], shift=v.shift;
   var te = shift ? ease(state.t) : 0;
   var tm = (v.anim && !shift) ? ease(state.t) : 1;   /* slides away from profit max (revenue, sales, P = MC) */
   var now = shift ? moved(MONO,shift,te) : MONO;
   var s0=solveMono(MONO), s1 = shift ? solveMono(now) : s0;
   var areas='', guides='', notes='';
-  var nx = g.small ? 47 : 52;   /* where hand notes sit: the empty top-middle of the sheet */
+  var nx = g.small ? 41 : 52;   /* where hand notes sit: the empty top-middle of the sheet (left of MC's label on a phone) */
 
+  /* MR runs on below the axis, but stops short of a quantity label just past MR = 0 (Q2 on the efficiency views, MES) */
+  var mrStop = mrQ(MONO.a,MONO.b);
+  if(id==='alloc' || id==='dwl') mrStop = Math.min(mrStop, s0.qa-3.5);
+  if(id==='salesmax' || id==='ob_all') mrStop = Math.min(mrStop, s0.qs-3.5);
+  if(id==='prod') mrStop = Math.min(mrStop, bisect(function(q){return MC(MONO,q)-AC(MONO,q);},20,110)-3.5);
+  mrStop = Math.max(mrStop, s0.qr+1);
   var curves = '<path class="curve c-ar" d="'+g.path(mAR,0,MONO.a/MONO.b)+'"/>'
-             + '<path class="curve c-mr" d="'+g.path(mMR,0,s0.qr)+'"/>';
+             + '<path class="curve c-mr" d="'+g.path(mMR,0,mrStop)+'"/>';
   var cc = g.costs(MONO,now,shift);
   curves += cc.curves;
   var labels = cc.labels;
@@ -5284,7 +5303,7 @@ function renderMono(){
     notes += g.axP(ypm,'P_1') + g.axQ(xm,'Q_1') + g.axP(Y(s0.cm),'C');
     notes += g.txt(midX, (ypm+Y(s0.cm))/2+5, 'profit', 'bold', 'middle');
     notes += g.txt(X(s0.qm*0.36), Y(s0.cm*0.45), 'total cost', 'bold', 'middle');
-    notes += g.leader(['total revenue','= both boxes'], g.small?nx-4:nx+3, 97, s0.qm, s0.pm);
+    notes += g.leader(['total revenue','= both boxes'], g.small?nx-4:nx-2, 97, s0.qm, s0.pm);   /* clear of the MC label at about 1024px */
   }
   else if((id==='revmax' || id==='salesmax' || id==='alloc') && tm<0.999){
     mutedPM();
@@ -5295,7 +5314,7 @@ function renderMono(){
   else if(id==='revmax'){
     mutedPM();
     guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0);
-    notes += g.axP(Y(s0.pr),'P_2') + g.axQ(X(s0.qr),'Q_2');
+    notes += g.axP(Y(s0.pr),'P_2') + g.axQ(X(s0.qr)-9,'Q_2');   /* left of the MR = 0 crossing, clear of MR below the axis */
     notes += g.txt(X(s0.qr)+10, Y(0)-10, 'MR = 0', 'halo');
   }
   else if(id==='salesmax'){
@@ -5335,8 +5354,8 @@ function renderMono(){
     var tt = v.anim ? state.t : 1, r2 = tt>=0.5, r3 = tt>=1;
     guides += g.guide(s0.qm,s0.pm) + g.dot(s0.qm,s0.mcm) + g.dot(s0.qm,s0.pm);
     var pys = spreadN([ypm,Y(s0.pr),Y(s0.ps)], fs+7), qxs = spreadN([xm,X(s0.qr),X(s0.qs)], fs*1.7);
-    notes += g.axP(pys[0],'P_1') + g.axQ(qxs[0],'Q_1') + g.txt(xm+14, Y(s0.mcm)+5, 'MR = MC', 'halo t-mc bold');
-    if(r2){ guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0); notes += g.axP(pys[1],'P_2') + g.axQ(qxs[1],'Q_2') + g.txt(X(s0.qr)+8, Y(0)-10, 'MR = 0', 'halo t-mr bold'); }
+    notes += g.axP(pys[0],'P_1') + g.axQ(qxs[0],'Q_1') + g.txt(xm-10, Y(s0.mcm)+5, 'MR = MC', 'halo t-mc bold', 'end');   /* left of the point: Q_2's guide runs just to its right */
+    if(r2){ guides += g.guide(s0.qr,s0.pr) + g.dot(s0.qr,s0.pr) + g.dot(s0.qr,0); notes += g.axP(pys[1],'P_2') + g.axQ(qxs[1]-9,'Q_2') + g.txt(X(s0.qr)+8, Y(0)-10, 'MR = 0', 'halo t-mr bold'); }
     if(r3){ guides += g.guide(s0.qs,s0.ps) + g.dot(s0.qs,s0.ps); notes += g.axP(pys[2],'P_3') + g.axQ(qxs[2],'Q_3') + g.leader(['AR = AC'], g.small?88:82, 16, s0.qs, s0.ps, ''); }
     if(!r3){ var a2 = !r2 ? ease(tt/0.5) : ease((tt-0.5)/0.5), qa0 = !r2 ? s0.qm : s0.qr, qa1 = !r2 ? s0.qr : s0.qs, qz = qa0+(qa1-qa0)*a2; guides += g.dot(qz,mAR(qz),'eff'); }
   }
@@ -5361,7 +5380,7 @@ function renderMono(){
    MONOPOLY AGAINST PERFECT COMPETITION (constant costs, lettered points)
    ===================================================================== */
 function renderVs(){
-  var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId();
+  var g=kit({pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs, id=curId();
   var a=100, b=0.8, mc=36, qm=(a-mc)/(2*b), pm=a-b*qm, qpc=(a-mc)/b, pd=(id==='vs_pd');
   /* first degree: MR swings up onto AR as the firm learns to charge each buyer their own price */
   var tp=(pd && V[id].anim) ? ease(state.t) : 1, mrEnd=Math.min(112, a/((2-tp)*b));
@@ -5374,11 +5393,11 @@ function renderVs(){
   var areas='', guides='', notes='';
   var curves = '<path class="curve c-ar" d="'+g.path(ar,0,112)+'"/>'
     + (pd ? '<path class="curve c-mr'+(tp>0.98?' ghost':'')+'" d="M'+r1(X(0))+' '+r1(Y(a))+'L'+r1(X(mrEnd))+' '+r1(Y(a-(2-tp)*b*mrEnd))+'"/>'
-          : '<path class="curve c-mr" d="'+g.path(mr,0,a/(2*b))+'"/>')
+          : '<path class="curve c-mr" d="'+g.path(mr,0,mrQ(a,b,112))+'"/>')
     + '<path class="curve c-mc" d="M'+r1(X(0))+' '+r1(Y(mc))+'H'+r1(X(116))+'"/>';
   var labels = g.txt(X(118), Y(ar(100))-12, pd?(tp>0.98?'AR = MR':'AR'):(g.small?'AR':'AR = D'), 'bold t-ar halo', 'end')
     + g.txt(X(116), Y(mc)-9, 'MC = AC', 'bold t-mc halo', 'end');
-  if(!pd) labels += g.txt(X(56)+9, Y(5), 'MR', 'bold t-mr halo');
+  if(!pd) labels += g.txt(X(a/(2*b))+6, Y(2.5), 'MR', 'bold t-mr halo');   /* just right of where MR cuts the axis, clear of the line */
 
   var AE = letter(0,a,'A',9,-3) + letter(qpc,mc,'E',8,-9);
   var BC = letter(qm,pm,'B',8,-9) + letter(qm,mc,'C',-17,fs+3);
@@ -5390,7 +5409,7 @@ function renderVs(){
   if(id==='vs_pc'){
     areas += poly([[0,a],[qpc,mc],[0,mc]],'area a-cs');
     guides += pcGuide; notes += pcAxis + AE;
-    notes += g.txt2(X(48), Y(48), 'consumer', 'surplus', 'bold', 'middle');
+    notes += g.small ? g.txt2(X(15), Y(45), 'consumer', 'surplus', 'bold', 'middle') : g.txt2(X(48), Y(48), 'consumer', 'surplus', 'bold', 'middle');
   }
   else if(id==='vs_mono' && V[id].anim && state.t<0.999){
     /* one firm takes over: price climbs up AR from E to B, consumer surplus shrinks, profit and the loss appear */
@@ -5430,7 +5449,7 @@ function renderVs(){
    AC = F/q + c + A/sqrt q. AC is above MC at every output.
    ===================================================================== */
 function renderNat(){
-  var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId();
+  var g=kit({pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs, id=curId();
   var a=100, b=0.9, c=6, A=120, F=600;
   function ar(q){return a-b*q;}
   function mr(q){return a-2*b*q;}
@@ -5441,7 +5460,7 @@ function renderNat(){
   var acStart=bisect(function(q){return ac(q)-PTOP;},5,30);
   var areas='', guides='', notes='';
   var curves='<path class="curve c-ar" d="'+g.path(ar,0,108)+'"/>'
-    + '<path class="curve c-mr" d="'+g.path(mr,0,a/(2*b))+'"/>'
+    + '<path class="curve c-mr" d="'+g.path(mr,0,mrQ(a,b))+'"/>'
     + '<path class="curve c-mc" d="'+g.path(mc,5,116)+'"/>'
     + '<path class="curve c-ac" d="'+g.path(ac,acStart,116)+'"/>';
   var labels=g.txt(X(70)+7,Y(ar(70))-7,g.small?'AR':'AR = D','bold t-ar halo')
@@ -5484,30 +5503,35 @@ function renderNat(){
    ===================================================================== */
 function renderPD3(){
   var two=(curId()==='pd3'), mc=30, tw=(two && V.pd3.anim) ? ease(state.t) : 1;
-  var A={a:100,b:1}, B={a:62,b:0.9};
+  /* version 25: market A is much more inelastic, so its price ends well above market B's (about 67 against 41) */
+  var A={a:104,b:1.2}, B={a:52,b:0.35};
   var bW=1/(1/A.b+1/B.b), aW=bW*(A.a/A.b+B.a/B.b), p1=(aW+mc)/2;
   var small=(plot.clientWidth||640)<480;
   var specs=[
-    {a:A.a,b:A.b,qmax:200,sub:'A',head:small?'A: inelastic':'Market A: inelastic'},
-    {a:B.a,b:B.b,qmax:35,sub:'B',head:small?'B: elastic':'Market B: elastic'},
+    {a:A.a,b:A.b,qmax:100,sub:'A',head:small?'A: inelastic':'Market A: inelastic'},
+    {a:B.a,b:B.b,qmax:80,sub:'B',head:small?'B: elastic':'Market B: elastic'},
     {a:aW,b:bW,qmax:130,sub:'1',head:small?'A + B':'Whole market'}
   ];
   var inner='', first=null;
   specs.forEach(function(s,i){
-    var g=kit({n:3,i:i,qmax:s.qmax,head:s.head,ytitle:'Price'}), X=g.X, Y=g.Y, fs=g.fs;
+    var g=kit({n:3,i:i,qmax:s.qmax,head:s.head,ytitle:'Price',pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs;
     if(!first) first=g;
     function ar(q){return s.a-s.b*q;}
-    var arEnd=Math.min(s.qmax,(s.a-3)/s.b), mrEnd=Math.min(s.qmax,s.a/(2*s.b));
+    var arEnd=Math.min(s.qmax,(s.a-3)/s.b), mr0=s.a/(2*s.b), mrEnd=mrQ(s.a,s.b,s.qmax);
     var curves='<path class="curve c-ar" d="M'+r1(X(0))+' '+r1(Y(s.a))+'L'+r1(X(arEnd))+' '+r1(Y(ar(arEnd)))+'"/>'
       + '<path class="curve c-mr" d="M'+r1(X(0))+' '+r1(Y(s.a))+'L'+r1(X(mrEnd))+' '+r1(Y(s.a-2*s.b*mrEnd))+'"/>'
       + '<path class="curve c-mc" d="M'+r1(X(0))+' '+r1(Y(mc))+'H'+r1(X(s.qmax))+'"/>';
     var labels='';
+    /* MR runs on below the axis. In A it is labelled just above the axis, right of where it crosses
+       (and right of the one-price guide at Q1); in B and the whole market it is labelled under the end of the line */
+    function mr(q){return s.a-2*s.b*q;}
     if(i===0){
-      labels+=g.txt(X(57)+4,Y(43),'AR','bold t-ar halo')+g.txt(X(47)+4,Y(6),'MR','bold t-mr halo')+g.txt(X(200),Y(mc)-7,'MC','bold t-mc halo','end');
+      labels+=g.txt(X(16)+8,Y(ar(16))+4,'AR','bold t-ar halo')+g.txt(Math.max(X(mr0)+4,X((s.a-p1)/s.b)+5),Y(0)-5,'MR','bold t-mr halo')+g.txt(X(s.qmax),Y(mc)-7,'MC','bold t-mc halo','end');
     } else if(i===1){
-      labels+=g.txt(X(35),Y(ar(35))-7,'AR','bold t-ar halo','end')+g.txt(X(28)-4,Y(6),'MR','bold t-mr halo','end')+g.txt(X(1.2),Y(mc)+fs+2,'MC','bold t-mc halo');
+      /* all three labels sit at the right-hand ends of their lines, clear of the guides on the left */
+      labels+=g.txt(X(s.qmax),Y(ar(s.qmax))+fs+2,'AR','bold t-ar halo','end')+g.txt(X(s.qmax),Y(mr(s.qmax))+fs+2,'MR','bold t-mr halo','end')+g.txt(X(s.qmax),Y(mc)-7,'MC','bold t-mc halo','end');
     } else {
-      labels+=g.txt(X(130),Y(ar(130))-7,'AR','bold t-ar halo','end')+g.txt(X(75)-4,Y(6),'MR','bold t-mr halo','end')+g.txt(X(130),Y(mc)-7,small?'MC':'MC = AC','bold t-mc halo','end');
+      labels+=g.txt(X(10)+6,Y(ar(10))-7,'AR','bold t-ar halo')+g.txt(X(s.qmax),Y(mr(s.qmax))+fs+2,'MR','bold t-mr halo','end')+g.txt(X(1.2),Y(mc)+fs+2,small?'MC':'MC = AC','bold t-mc halo');
     }
     var qs=(s.a-mc)/(2*s.b), ps=(s.a+mc)/2, q1=(s.a-p1)/s.b;
     var areas='', guides='', notes='';
@@ -5603,7 +5627,7 @@ function renderPC(){
       if(Math.abs(p-c)>0.4){
         areas+=gf.box(0,q,Math.min(p,c),Math.max(p,c),'area '+(p>c?'a-profit':'a-cost'));
         guides+=gf.hline(q,c)+gf.dot(q,c);
-        notes+=gf.axP(Y(c),'C')+gf.txt(X(q/2),(Y(p)+Y(c))/2+5,p>c?'profit':'loss','bold','middle');
+        notes+=gf.axP(Y(c),'C')+gf.txt(X(q/2),(Y(p)+Y(c))/2+5,p>c?'profit':(gf.small?'loss':'economic loss'),'bold','middle');
       } else {
         notes+=gf.txt(X(q)+9,Y(p)+fs+7,'lowest AC','t-eff bold halo');
       }
@@ -5621,7 +5645,7 @@ function renderPC(){
    the same slope, which also guarantees MR = MC at that output.
    ===================================================================== */
 function renderMcomp(){
-  var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id];
+  var g=kit({pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id];
   var te = v.anim ? ease(state.t) : 0;
   var qT=44, b=FIRM.F/(qT*qT)-2*FIRM.k*(qT-FIRM.q1), aLR=AC(FIRM,qT)+b*qT;
   var aStart = v.a==='snp' ? aLR+18 : (v.a==='loss' ? aLR-14 : aLR);
@@ -5634,12 +5658,18 @@ function renderMcomp(){
   function lines(A,ghost,sfx){
     var arEnd=Math.min(116,(A-3)/b), mrEnd=A/(2*b), gc=ghost?' ghost':'';
     curves+='<path class="curve c-ar'+gc+'" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(arEnd))+' '+r1(Y(A-b*arEnd))+'"/>'
-          + '<path class="curve c-mr'+gc+'" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(mrEnd))+' '+r1(Y(0))+'"/>';
+          + '<path class="curve c-mr'+gc+'" d="M'+r1(X(0))+' '+r1(Y(A))+'L'+r1(X(mrQ(A,b)))+' '+r1(Y(A-2*b*mrQ(A,b)))+'"/>';
     var arName = sfx ? 'AR'+sfx : (g.small?'AR':'AR = D');
     /* the line is higher to the left of its end, so lift the label clear of it */
     var lift = b * (arName.replace('_','').length*fs*0.56) / (g.pw/QMAX) * (g.ph/PMAX);
+    /* one MR: just right of where it cuts the axis. Two MRs (entry, exit): each under the end of its own line,
+       because the other line runs through the gap beside the axis crossing. The left line's label is centred
+       under its end (hanging it further left would hit the Q labels on phones) and the right line's hangs
+       right, so the two stay apart, even while the lines are still together */
+    var mrE=mrQ(A,b), leftLine = ghost ? (aStart<aLR) : !(aStart<aLR);
     labels+=g.txt(X(arEnd),Y(A-b*arEnd)-8-lift,arName,'bold t-ar halo','end')
-          + g.txt(X(mrEnd)+6,Y(2.5),'MR'+sfx,'bold t-mr halo');
+          + (sfx ? g.txt(X(mrE)+(leftLine?0:-4),Y(A-2*b*mrE)+fs+2,'MR'+sfx,'bold t-mr halo',leftLine?'middle':'start')
+                 : g.txt(X(mrEnd)+6,Y(2.5),'MR','bold t-mr halo'));
   }
   if(v.anim){ lines(aStart,true,'_1'); lines(a,false,'_2'); } else lines(a,false,'');
   var cc=g.costs(FIRM,FIRM,null); curves+=cc.curves; labels+=cc.labels;
@@ -5661,7 +5691,21 @@ function renderMcomp(){
     guides+=g.vline(s.q,Math.max(s.p,s.c))+g.hline(s.q,s.p)+g.hline(s.q,s.c)+g.dot(s.q,s.p)+g.dot(s.q,s.c)+g.dot(s.q,s.mc);
     notes+=g.axP(Y(s.p),'P_1')+g.axP(Y(s.c),'C')+g.axQ(X(s.q),'Q_1');
     if(profit) notes+=g.txt2(X(s.q/2),(Y(s.p)+Y(s.c))/2-fs*0.2,'supernormal','profit','bold','middle');
-    else notes+=g.txt(X(s.q*0.72),Y(s.c)+fs+5,'loss','bold','middle');
+    else {
+      /* The label goes in the part of the box right of MR, which cuts through it. MR is furthest right at
+         the bottom of the text, which is its baseline (none of these words has a descender), so it is
+         measured there. "economic loss" on one line if it fits, else on two lines if the box is tall
+         enough, else "loss" (a narrow drawing, such as a phone) */
+      var vs=Y(0)-Y(1), cw=fs*0.56, xb=X(s.q)-4, top=Y(s.c)+fs*0.75+3;
+      var mrX=function(y){ return X((a-(s.c-(y-Y(s.c))/vs))/(2*b))+6; };   /* MR's x at a height on the page, plus a gap */
+      var xa1=mrX(top);
+      if(xb-xa1>=13*cw) notes+=g.txt((xa1+xb)/2,top,'economic loss','bold','middle');
+      else {
+        var yB=top+fs*1.1, cx=Math.max(xa1+4*cw, mrX(yB)+2*cw);
+        if(yB<=Y(s.p)-3 && cx+4*cw<=xb) notes+=g.txt(cx,top,'economic','bold','middle')+g.txt(cx,yB,'loss','bold','middle');
+        else notes+=g.txt(Math.max(mrX(top)+2*cw,(xa1+xb)/2),top,'loss','bold','middle');
+      }
+    }
   }
   else if(id==='mc_lr'){
     guides+=g.guide(s.q,s.p)+g.dot(s.q,s.p)+g.dot(s.q,s.mc);
@@ -5687,7 +5731,7 @@ function renderMcomp(){
    AR is placed so that it cuts AC just before the lowest point of AC.
    ===================================================================== */
 function renderCont(){
-  var g=kit(), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id];
+  var g=kit({pmin:MR_FLOOR}), X=g.X, Y=g.Y, fs=g.fs, id=curId(), v=V[id];
   var te = v.anim ? ease(state.t) : 0;
   var a=107.2, b=1.2;
   function ar(q){return a-b*q;}
@@ -5696,10 +5740,13 @@ function renderCont(){
   var qc=bisect(function(q){return ar(q)-AC(FIRM,q);},45,80), pc=ar(qc);
   var areas='', guides='', notes='';
   var curves='<path class="curve c-ar" d="'+g.path(ar,0,(a-3)/b)+'"/>'
-    + '<path class="curve c-mr" d="'+g.path(mr,0,a/(2*b))+'"/>';
+    + '<path class="curve c-mr" d="'+g.path(mr,0,mrQ(a,b))+'"/>';
   var cc=g.costs(FIRM,FIRM,null); curves+=cc.curves;
+  /* MR is labelled on its left, just above the P_M guide: lower down, MC and the P_C guide are in the way.
+     The text's top-right corner is kept clear of the line at every width */
+  var pTop=66+fs*0.75/(Y(0)-Y(1));
   var labels=cc.labels + g.txt(X(70)+7,Y(ar(70))-6,g.small?'AR':'AR = D','bold t-ar halo')
-    + g.txt(X(a/(2*b))+6,Y(2.5),'MR','bold t-mr halo');
+    + g.txt(X((a-pTop)/(2*b))-5,Y(66),'MR','bold t-mr halo','end');
   var nx=g.small?38:50;
 
   if(id==='cm_mono' || id==='cm_hit'){
@@ -5952,7 +5999,7 @@ function extrasHtml(v, id){
   var T=TOPICS[state.topic], tabs=[], quiz=(v.quiz||[]).concat((T && T.quiz)||[]), th=themeOf(id), pr='';
   if(v.work) tabs.push(['work','Worked example', workHtml(v.work)]);
   if(v.traps) tabs.push(['traps','Exam traps', '<ul class="traps">'+v.traps.map(function(t){ return '<li>'+t+'</li>'; }).join('')+'</ul>']);
-  if(quiz.length) pr+='<p class="label">Test yourself: tap a question for the answer</p><div class="quiz">'
+  if(quiz.length) pr+='<p class="label">Answer each one first, in your head or on paper, then tap to check</p><div class="quiz">'
     + quiz.map(function(q){ return '<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'; }).join('')+'</div>';
   if(BOARD[id]) pr+='<p class="go"><a href="practice.html#q='+BOARD[id]+'">Draw this diagram yourself on the practice board</a></p>';
   if(th && PAPERS[th]) pr+='<p class="go"><a href="'+PAPERS[th]+'" target="_blank" rel="noopener">Past-paper questions for Theme '+th+', sorted by topic (Expert Tuition)</a></p>';
@@ -6092,7 +6139,9 @@ document.getElementById('notes').addEventListener('click', function(e){
 });
 /* ?debug exposes the note data, for the audit scripts */
 if(/[?&]debug\b/.test(location.search)) window.__econ={V:V, TOPICS:TOPICS, SECTIONS:SECTIONS, SPECOF:SPECOF,
-  fin:function(){ cancelAnimationFrame(raf); state.t=1; render(); }};
+  fin:function(){ cancelAnimationFrame(raf); state.t=1; render(); },
+  /* open one note at its final frame straight away (no hash, no timers), for audits run in background tabs */
+  show:function(t,id){ cancelAnimationFrame(raf); state.topic=t; state.view[t]=id; state.fade=false; renderControls(); renderNotes(); state.t=1; render(); }};
 
 function setHash(id){ if(EMBED) return; try{ if(location.hash!=='#'+id) history.replaceState(null,'','#'+id); }catch(e){} }
 function topicOf(id){

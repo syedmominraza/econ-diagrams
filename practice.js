@@ -983,7 +983,7 @@ function icon(t){
   if(t==='eraser') return o+'<path class="icf" d="M24 30l16-20 16 12-12 14H28z" fill="#FF8DBA"/><path class="ic" d="M18 36h40"/></svg>';
   if(t==='box') return o+'<rect class="icf" x="12" y="8" width="52" height="24" fill="#FFDD33" opacity=".75"/></svg>';
   if(t==='tri') return o+'<polygon class="icf" points="18,6 18,34 60,34" fill="#FF9A3D" opacity=".75"/></svg>';
-  return o+'<text x="38" y="30" text-anchor="middle" font-family="Kalam, cursive" font-weight="700" font-size="24" fill="currentColor">P\u2081</text></svg>';
+  return o+'<text x="38" y="30" text-anchor="middle" font-family="Karla, sans-serif" font-weight="700" font-size="24" fill="currentColor">P\u2081</text></svg>';
 }
 var pal=[['mc','MC'],['ac','AC'],['lrac','LRAC'],['lrmc','LRMC'],['as','AS'],['ppc','PPC'],['line','Straight line'],['dline','Dotted line'],['pt','Point'],['box','Shade box'],['tri','Shade triangle'],['text','Text label']];
 var tools=[['select','Select'],['pencil','Pencil'],['eraser','Eraser']];
