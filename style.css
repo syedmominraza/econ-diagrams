@@ -13,9 +13,10 @@ img{max-width:100%}
   --swipe-a:#FFE24A; --swipe-b:#FFB3D1;
   --hover-bg:#FFE24A; --hover-fg:#17203A;
   --foot-bg:#17203A; --foot-fg:#EEF2E6; --foot-soft:#A9B3C9; --foot-line:#2E3A57; --heart:#E5484D;
-  --font-display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
-  --font-body:"Karla","Segoe UI",system-ui,sans-serif;
-  --font-hand:var(--font-body);   /* one font throughout (version 25): the handwriting font is gone */
+  /* one font throughout (version 26): the handwriting font, Kalam, for everything */
+  --font-hand:"Kalam","Comic Sans MS","Segoe Print",cursive;
+  --font-body:var(--font-hand);
+  --font-display:var(--font-hand);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -53,7 +54,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-
 .theme{display:flex;gap:7px}
 .credit{display:flex;flex-direction:column;align-items:flex-end;gap:3px;line-height:1;transform:rotate(-3deg);margin-right:6px}
 .credit-main{background:linear-gradient(transparent 34%,var(--swipe-b) 34% 94%,transparent 94%);padding:0 .35em;white-space:nowrap}
-.credit i{font-family:var(--font-hand);font-style:normal;font-size:.95rem}
+.credit i{font-family:var(--font-hand);font-style:normal;font-size:1.05rem}
 .credit b{font-family:var(--font-display);font-weight:800;font-size:1.45rem;letter-spacing:-.02em}
 .credit small{font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding-right:.35em}
 .eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft)}
@@ -93,7 +94,7 @@ h1 span{background:linear-gradient(transparent 58%,var(--swipe-a) 58% 92%,transp
 #plot svg{display:block;width:100%;height:auto}
 .sheet-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
   border-top:1.5px solid var(--ink);padding:8px 12px;min-height:46px}
-.showing{font-family:var(--font-hand);font-size:.95rem;font-weight:500;line-height:1.3}
+.showing{font-family:var(--font-hand);font-size:1.05rem;line-height:1.3}
 .replay{font:inherit;font-weight:700;font-size:.85rem;padding:.35em .8em;border:1.5px solid var(--ink);
   background:transparent;color:var(--ink);border-radius:4px;cursor:pointer}
 .replay:hover{background:var(--hover-bg);color:var(--hover-fg)}
@@ -148,7 +149,7 @@ h1 span{background:linear-gradient(transparent 58%,var(--swipe-a) 58% 92%,transp
 .pay{font-family:var(--font-display);font-weight:800;font-size:1.02rem;line-height:1.2;padding:2px 9px;border:2px solid transparent;border-radius:999px;white-space:nowrap}
 .pay.a{color:var(--pen-ar)} .pay.b{color:var(--pen-mc)}
 .pay.best{border-color:currentColor}
-.hint{font-family:var(--font-hand);font-size:.95rem;line-height:1.4;margin:0}
+.hint{font-family:var(--font-hand);font-size:1.02rem;line-height:1.35;margin:0}
 
 .cr-rows{display:flex;flex-direction:column;gap:7px}
 .cr-row{display:grid;grid-template-columns:4.6em 4.4em minmax(0,1fr);gap:10px;align-items:center}
@@ -181,7 +182,7 @@ ul.plain.use li{grid-template-columns:9em minmax(0,1fr)}
 ul.plain.use b{font-family:var(--font-body);font-size:.88rem;line-height:1.35}
 @media (max-width:560px){ ul.plain.use li{grid-template-columns:minmax(0,1fr);gap:2px} }
 .model{border-left:4px solid var(--pen-ar);padding:2px 0 2px 14px}
-.model p:last-child{margin:0;font-family:var(--font-hand);font-size:1rem;font-style:italic;line-height:1.5}
+.model p:last-child{margin:0;font-family:var(--font-hand);font-size:1.08rem;line-height:1.45}
 
 /* text cards shown in the sheet (examples, consumer effects, notes-only topics) */
 .card-list{display:flex;flex-direction:column;gap:14px}
@@ -189,7 +190,7 @@ ul.plain.use b{font-family:var(--font-body);font-size:.88rem;line-height:1.35}
 .ex:last-child{border-bottom:0;padding-bottom:0}
 .ex h4{margin:0;font-family:var(--font-display);font-weight:800;font-size:1.08rem;line-height:1.25;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .ex p{margin:0;font-size:.93rem;line-height:1.45}
-.ex b.k{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-right:.6em}
+.ex b.k{font-size:.84rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin-right:.5em}   /* card labels (Why it fits...): bold, full ink and near text size, so they read as headings (version 26) */
 .chipv{font-family:var(--font-body);font-weight:700;font-size:.78rem;line-height:1.3;padding:.12em .55em;border:1.5px solid var(--ink);border-radius:4px;white-space:nowrap}
 .chipv.yes{background:var(--swipe-a)} .chipv.no{background:var(--swipe-b)}
 .chips-v{display:flex;flex-wrap:wrap;gap:5px}
@@ -236,7 +237,7 @@ ol.chain{counter-reset:step}
 ol.chain li{counter-increment:step;display:grid;grid-template-columns:1.7em minmax(0,1fr);gap:4px}
 ol.chain li::before{content:counter(step);font-family:var(--font-display);font-weight:800;font-size:1.05rem;line-height:1.4;color:var(--ink-soft)}
 ul.plain li{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:8px}
-ul.plain b{font-family:var(--font-hand);font-size:.95rem;line-height:1.4}
+ul.plain b{font-family:var(--font-hand);font-size:1.1rem;line-height:1.35}
 .k-ar{color:var(--pen-ar)} .k-mr{color:var(--pen-mr)} .k-mc{color:var(--pen-mc)} .k-ac{color:var(--pen-ac)}
 .compare{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1.5px solid var(--ink)}
 .compare div{padding:8px 10px;display:flex;flex-direction:column;gap:1px;min-width:0}
@@ -249,7 +250,7 @@ ul.plain b{font-family:var(--font-hand);font-size:.95rem;line-height:1.4}
   .compare div:nth-child(n+3){border-top:1.5px solid var(--ink)}
 }
 .eval .label span{background:linear-gradient(transparent 40%,var(--swipe-b) 40% 95%,transparent 95%);padding:0 .25em;margin:0 -.25em;color:var(--ink)}
-.tip{font-family:var(--font-hand);font-size:1rem;font-weight:500;line-height:1.45;color:var(--pen-mc);max-width:58ch}
+.tip{font-family:var(--font-hand);font-size:1.12rem;line-height:1.4;color:var(--pen-mc);max-width:52ch}
 .page-note{font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:14px}
 @media (prefers-reduced-motion: reduce){.fade{animation:none}}
 

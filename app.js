@@ -5531,7 +5531,9 @@ function renderPD3(){
       /* all three labels sit at the right-hand ends of their lines, clear of the guides on the left */
       labels+=g.txt(X(s.qmax),Y(ar(s.qmax))+fs+2,'AR','bold t-ar halo','end')+g.txt(X(s.qmax),Y(mr(s.qmax))+fs+2,'MR','bold t-mr halo','end')+g.txt(X(s.qmax),Y(mc)-7,'MC','bold t-mc halo','end');
     } else {
-      labels+=g.txt(X(10)+6,Y(ar(10))-7,'AR','bold t-ar halo')+g.txt(X(s.qmax),Y(mr(s.qmax))+fs+2,'MR','bold t-mr halo','end')+g.txt(X(1.2),Y(mc)+fs+2,small?'MC':'MC = AC','bold t-mc halo');
+      /* "MC = AC" only if it ends before MR dips under MC, else "MC" (narrow panels, or a wider font) */
+      var mcName=(X(1.2)+7*fs*0.56<X((s.a-mc)/(2*s.b))-4)?'MC = AC':'MC';
+      labels+=g.txt(X(10)+6,Y(ar(10))-7,'AR','bold t-ar halo')+g.txt(X(s.qmax),Y(mr(s.qmax))+fs+2,'MR','bold t-mr halo','end')+g.txt(X(1.2),Y(mc)+fs+2,mcName,'bold t-mc halo');
     }
     var qs=(s.a-mc)/(2*s.b), ps=(s.a+mc)/2, q1=(s.a-p1)/s.b;
     var areas='', guides='', notes='';
